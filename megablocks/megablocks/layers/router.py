@@ -80,7 +80,19 @@ class SimilarityRouter(LearnedRouter):
             device=args.device
         )
         args.init_method(self.expert_matrices.weight)   # borrowed from the original code
+    
+    # TODO: Implement orthogonality loss if needed
+    def orthogonality_loss(self, latent_feats):
+        pass
+    
+    def similarity_loss(self,pairs, similarity_matrix):
+        batch_size = pairs.shape[0]
+        batch_indices = torch.arange(batch_size, device=pairs.device)
         
+        pair_similarities = similarity_matrix[batch_indices, pairs[:, 0], pairs[:, 1]]
+        
+        return -pair_similarities.mean()
+
     def forward(self, x):
         # Step 1: Compute latent features for each expert
         latent_feats = self.expert_matrices(x).contiguous() # shape: (batch_size, seq_len, num_experts*latent_size)
@@ -95,8 +107,13 @@ class SimilarityRouter(LearnedRouter):
         latent_feats = torch.bmm(latent_feats, latent_feats.contiguous().transpose(1, 2)) # FIXME change transpose to view
         mask = torch.eye(self.moe_num_experts, device=x.device, dtype=x.dtype).bool()
         latent_feats = latent_feats.masked_fill(mask, float('-inf'))
-        _, max_idx = latent_feats.view(latent_feats.shape[0], -1).max(dim=1)
+        # print(latent_feats)
+        # print(latent_feats.view(latent_feats.shape[0], -1))
+        max_vals , max_idx = latent_feats.view(latent_feats.shape[0], -1).max(dim=1)
+        print(max_idx)
         
-        max_pair = (max_idx // self.moe_num_experts, max_idx % self.moe_num_experts)
+        max_pair = torch.stack([max_idx // self.moe_num_experts, max_idx % self.moe_num_experts],dim=1) # shape: (batch_size*seq_len, 2)
         
-        return max_pair
+        sim_loss = self.similarity_loss(max_pair, latent_feats)
+        
+        return max_pair, sim_loss
