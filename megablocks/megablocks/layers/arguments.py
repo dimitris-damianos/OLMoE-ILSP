@@ -18,6 +18,7 @@ class Arguments:
     # Model arguments.
     hidden_size : int = 1024
     ffn_hidden_size : int = 4096
+    latent_size : int = 128
     num_layers : int = 1
     bias : bool = True
     return_bias : bool = True

@@ -63,3 +63,40 @@ class LearnedRouter(torch.nn.Module):
             if self.args.uniform_expert_assignment else expert_indices
         )
         return scores, expert_weights, expert_indices
+    
+class SimilarityRouter(LearnedRouter):
+    def __init__(self, args: Arguments):
+        super().__init__(args)
+        self.args = args
+        self.moe_num_experts = args.moe_num_experts
+        self.hidden_size = args.hidden_size
+        self.latent_size = args.latent_size
+        
+        self.expert_matrices = torch.nn.Linear(
+            self.hidden_size,
+            self.latent_size * self.moe_num_experts,    # one matrix multiplication for all
+            bias=False,
+            dtype=common.dtype(args),
+            device=args.device
+        )
+        args.init_method(self.expert_matrices.weight)   # borrowed from the original code
+        
+    def forward(self, x):
+        # Step 1: Compute latent features for each expert
+        latent_feats = self.expert_matrices(x).contiguous() # shape: (batch_size, seq_len, num_experts*latent_size)
+        latent_feats = latent_feats.view(
+            x.shape[0]*x.shape[1], 
+            self.moe_num_experts, 
+            self.latent_size  # shape: (batch_size*seq_len, num_experts, latent_size)
+        )
+        
+        # Step 2: Compute cosine similarity between experts (ignore diagonal)
+        latent_feats = torch.nn.functional.normalize(latent_feats, dim=-1)  # Normalize along the latent size dimension
+        latent_feats = torch.bmm(latent_feats, latent_feats.contiguous().transpose(1, 2)) # FIXME change transpose to view
+        mask = torch.eye(self.moe_num_experts, device=x.device, dtype=x.dtype).bool()
+        latent_feats = latent_feats.masked_fill(mask, float('-inf'))
+        _, max_idx = latent_feats.view(latent_feats.shape[0], -1).max(dim=1)
+        
+        max_pair = (max_idx // self.moe_num_experts, max_idx % self.moe_num_experts)
+        
+        return max_pair
