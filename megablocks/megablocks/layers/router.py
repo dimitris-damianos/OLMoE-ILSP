@@ -57,7 +57,7 @@ class LearnedRouter(torch.nn.Module):
         if self.args.moe_normalize_expert_weights:
             expert_weights = expert_weights / torch.norm(
                 expert_weights, p=self.args.moe_normalize_expert_weights,dim=-1, keepdim=True)
-
+        
         expert_indices = (
             _uniform_expert_assignment(expert_indices, self.args.moe_num_experts)
             if self.args.uniform_expert_assignment else expert_indices
