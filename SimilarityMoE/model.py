@@ -4,6 +4,8 @@ import torch
 
 from transformers.models.olmoe.modeling_olmoe import OlmoeMLP
 
+from RIM import RIMCell, RIM
+
 class OlmoeSparseMoeBlock(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -94,3 +96,72 @@ class OlmoeSimilarityMoeBlock(nn.Module):
         selected_experts = torch.stack([expert_i, expert_j], dim=1)  # shape: (batch_size*seq_len, top_k, 2)
         
         return expert_weights, selected_experts
+    
+class OlmoeRimMoeBlock(nn.Module):
+    def forward(self, hidden_states):
+        """
+        Args:
+            hidden_states: (batch_size, seq_len, hidden_size)
+            
+        Returns:
+            final_hidden_states: (batch_size, seq_len, hidden_size)
+            router_logits: Router logits for auxiliary loss
+        """
+        batch_size, seq_len, hidden_size = hidden_states.shape
+        hidden_states_flat = hidden_states.view(-1, hidden_size)
+        
+        # Get routing weights and selected experts using RIMCell
+        routing_weights, selected_experts = self.router(hidden_states)
+        
+        # Normalize routing weights if needed
+        if self.norm_topk_prob:
+            # Reshape for normalization across experts dimension
+            routing_weights = routing_weights.view(-1, self.top_k)
+            routing_weights = routing_weights / routing_weights.sum(dim=-1, keepdim=True)
+            routing_weights = routing_weights.view(-1)
+        
+        # Ensure routing weights match hidden states dtype
+        routing_weights = routing_weights.to(hidden_states.dtype)
+        
+        # Create output tensor
+        final_hidden_states = torch.zeros(
+            (batch_size * seq_len, hidden_size),
+            dtype=hidden_states.dtype,
+            device=hidden_states.device
+        )
+        
+        # One-hot encode selected experts - reshape for processing
+        token_indices = torch.arange(batch_size * seq_len, device=hidden_states.device)
+        token_indices = token_indices.repeat_interleave(self.top_k)
+        
+        # Process in groups by expert
+        for expert_idx in range(self.num_experts):
+            # Find where this expert was selected
+            expert_mask = (selected_experts == expert_idx)
+            if not expert_mask.any():
+                continue
+                
+            # Get the token indices where this expert is active
+            token_idx = token_indices[expert_mask]
+            
+            # Get corresponding weights
+            expert_weights = routing_weights[expert_mask].unsqueeze(-1)
+            
+            # Process through the expert
+            expert_output = self.experts[expert_idx](hidden_states_flat[token_idx])
+            
+            # Add weighted output to the result tensor
+            final_hidden_states.index_add_(0, token_idx, expert_output * expert_weights)
+        
+        # Reshape back to sequence format
+        final_hidden_states = final_hidden_states.view(batch_size, seq_len, hidden_size)
+        
+        # For compatibility, create a tensor for router logits
+        # This is just a placeholder since RIM doesn't use traditional router logits
+        router_logits = torch.zeros(
+            batch_size * seq_len, self.num_experts,
+            device=hidden_states.device,
+            dtype=hidden_states.dtype
+        )
+        
+        return final_hidden_states, router_logits
