@@ -69,7 +69,8 @@ def test_hf_moe_block():
     print(f'Output indices shape: {idx.shape}, {idx}')
     
 def test_custom_moe():
-    from model import OlmoeMoeBlockWithRIM, OlmoeSparseMoeBlock
+    from model import OlmoeMoeBlockWithRIM
+    from transformers.models.olmoe.modeling_olmoe import OlmoeSparseMoeBlock
     from transformers import AutoConfig
     
     config = AutoConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
