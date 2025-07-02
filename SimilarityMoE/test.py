@@ -68,10 +68,26 @@ def test_hf_moe_block():
     print(f'Output values shape: {vals.shape}, {vals}')
     print(f'Output indices shape: {idx.shape}, {idx}')
     
+def test_custom_moe():
+    from model import OlmoeMoeBlockWithRIM, OlmoeSparseMoeBlock
+    from transformers import AutoConfig
     
+    config = AutoConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
+    config.num_experts = 4  # Set the number of experts for the MoE
+    config.num_experts_per_tok = 2
+    
+    x = torch.randn(2, 10, config.hidden_size)
+    print(f'Input shape: {x.shape},')
+    
+    # model = OlmoeSparseMoeBlock(config)
+    # hidden, logits = model(x)
+    # print('Logits shape:', logits.shape)
+    model = OlmoeMoeBlockWithRIM(config)
+    model(x)
 
 
 if __name__ == "__main__":
     # test_olmoe()
     # test_router()
-    test_hf_moe_block()
+    # test_hf_moe_block()
+    test_custom_moe()
