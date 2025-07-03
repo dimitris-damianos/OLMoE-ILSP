@@ -21,10 +21,8 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         # TODO: add communication attention
         # print(f'Number of experts: {self.num_experts}, Top-k: {self.top_k}, Norm top-k prob: {self.norm_topk_prob}')
 
-    # TODO return values as the base OlmoeSparseMoeBlock does
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         batch_size, sequence_length, hidden_dim = hidden_states.shape
-        
         null_values = torch.zeros(
             (batch_size, sequence_length, hidden_dim), 
             dtype=hidden_states.dtype, 
@@ -33,8 +31,6 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         
         # null values are located the second half of the sequence (on dim 1) 
         hidden_states = torch.cat([hidden_states, null_values], dim=1)  # (batch, sequence_length, hidden_dim)
-        
-        print(f"Input hidden states shape: {hidden_states.shape}")
         
         # keys, values shared between experts 
         keys = self.key(hidden_states)  # (batch, sequence_length, hidden_dim)
@@ -74,18 +70,10 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         for expert_idx in range(self.num_experts):
             # Get pairs of batch and token indices where the expert is selected
             batch_idx, token_idx = torch.where(expert_mask[expert_idx])
-            
-            # 
             selected_tokens = hidden_states[batch_idx, token_idx, :]  # (num_selected_tokens, hidden_dim)
-            # print(f"Selected tokens shape: {selected_tokens.shape}, Batch indices: {batch_idx.shape}, Token indices: {token_idx.shape}")
-            
-            
             null_values[batch_idx, token_idx, :] = self.experts[expert_idx](selected_tokens) * expert_weights[expert_idx, batch_idx, token_idx].unsqueeze(-1)
             
-        print(f"Final hidden states shape: {null_values.shape}")
-        print(f"{expert_weights.shape}")
-        
-        return 
+        return null_values, expert_weights.view(batch_size*sequence_length, self.num_experts)  # Reshape to (batch*sequence_length, num_experts)
 
 class OlmoeMoeBlockFlatRIM(nn.Module):
     def __init__(self, config):

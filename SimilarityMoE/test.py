@@ -86,6 +86,7 @@ def test_custom_moe():
     # print('Hidden shape:', hidden.shape)
     # print('Logits shape:', logits.shape)
     model = OlmoeMoeBlockFlatRIM(config)
+    # model = OlmoeMoeBlockWithRIM(config)
     h, l = model(x)
     print('Hidden shape:', h.shape)
     print('Logits shape:', l.shape)
