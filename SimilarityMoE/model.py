@@ -87,7 +87,7 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         
         return 
 
-class OlmoeMoeBlockWithRIMFlat(nn.Module):
+class OlmoeMoeBlockFlatRIM(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.num_experts = config.num_experts
@@ -108,8 +108,14 @@ class OlmoeMoeBlockWithRIMFlat(nn.Module):
                                             self.num_experts*config.hidden_size, bias=False)
         
         # TODO: add communication attention
-        # print(f'Number of experts: {self.num_experts}, Top-k: {self.top_k}, Norm top-k prob: {self.norm_topk_prob}')
-
+        self.enable_comm = config.enable_comm 
+        # if self.enable_comm:
+        #     # Each expert has its own communication attention
+        #     # keys, values, queries for communication attention
+        #     self.comm_key = nn.Linear(self.num_experts*config.hidden_size, self.num_experts*config.hidden_size, bias=False)
+        #     self.comm_value = nn.Linear(self.num_experts*config.hidden_size, self.num_experts*config.hidden_size, bias=False)
+        #     self.comm_query = nn.Linear(self.num_experts*config.hidden_size, self.num_experts*config.hidden_size, bias=False)
+    
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         batch_size, sequence_length, hidden_dim = hidden_states.shape
         hidden_states = hidden_states.view(-1, hidden_dim) # (batch * sequence_length, hidden_dim)
@@ -119,37 +125,41 @@ class OlmoeMoeBlockWithRIMFlat(nn.Module):
             device=hidden_states.device
         )
         
-        # null values are located the second half of the sequence (on dim 1) 
+        # Following original RIM, we concatenate the null values to the hidden states
+        # null values are located the second half of the batch*sequence dim (dim 0) 
         hidden_states = torch.cat([hidden_states, null_values], dim=0)  # (batch*2*sequence_length, hidden_dim)
-        print(f"Input hidden states shape: {hidden_states.shape}")
-        
+    
         # keys, values shared between experts 
         keys = self.key(hidden_states)  # (batch*2*sequence_length, hidden_dim)
-        print(f"Keys shape: {keys.shape}")
         values = self.value(hidden_states)  # (batch*2*sequence_length, hidden_dim)
-        print(f"Values shape: {values.shape}")
-        expert_mask = []
-        expert_weights = []
         
         # Compute the attention scores for each expert
         experts_flat_states = self.expert_states_flat(hidden_states)  # (batch *2* sequence_length, num_experts * hidden_dim)
+        # if self.enable_comm:
+        #     # Compute communication attention
+        #     comm_keys = self.comm_key(experts_flat_states)
+        #     comm_values = self.comm_value(experts_flat_states)
+        #     comm_query = self.comm_query(experts_flat_states)
+        #     comm_attn_scores = nn.functional.softmax(
+        #         torch.matmul(comm_query, comm_keys.T)/torch.sqrt(torch.tensor(hidden_dim)), dim=-1
+        #     )   # (batch*2*sequence_length, num_experts, batch*2*sequence_length)
+        #     comm_attn_weights = torch.matmul(comm_attn_scores, comm_values)  # (batch * sequence_length, num_experts, hidden_dim)
+        #     experts_flat_states += comm_attn_weights.view(batch_size*2*sequence_length, self.num_experts*hidden_dim)
         
-        print(f"Experts flat states shape: {experts_flat_states.shape}")
         experts_flat_query = self.expert_query(experts_flat_states)  # (batch *2* sequence_length, num_experts * hidden_dim)
-        print(f"Experts flat query shape: {experts_flat_query.shape}")
-        
+    
         attention_scores_flat = nn.functional.softmax(
-            torch.matmul(experts_flat_query, torch.concat([keys for _ in range(self.num_experts)],dim=-1).T)/torch.sqrt(torch.tensor(hidden_dim)), dim=-1
-        )
-        attention_weights_flat = torch.matmul(attention_scores_flat, 
-                                              torch.concat([values for _ in range(self.num_experts)],dim=-1))  # (batch * sequence_length, hidden_dim)
-        print(f"Attention weights flat shape: {attention_weights_flat.shape}")
+            torch.matmul(experts_flat_query.view(batch_size*2*sequence_length,self.num_experts,hidden_dim), keys.T)/torch.sqrt(torch.tensor(hidden_dim)), dim=-1
+        )   # (batch*2*sequence_length, num_experts, batch*2*sequence_length)
+        
+        attention_weights_flat = torch.matmul(attention_scores_flat, values)  # (batch * sequence_length, num_experts, hidden_dim)
         
         # Separate attention weights for real tokens and null tokens
+        # reshape attention weights to (batch*sequence_length, num_experts, hidden_dim) to sum over hidden_dim
         attention_to_real_flat = attention_weights_flat[:batch_size*sequence_length, :].view(batch_size*sequence_length,
                                                                                              self.num_experts,
                                                                                              hidden_dim).sum(dim=-1)  # (batch*sequence_length,num_experts)
-        print(f"Attention to real tokens shape: {attention_to_real_flat.shape}")    # (batch*sequence_length, num_experts)
+        
         attention_to_null_flat = attention_weights_flat[batch_size*sequence_length:, :].view(batch_size*sequence_length,
                                                                                              self.num_experts,
                                                                                              hidden_dim).sum(dim=-1)  # (batch*sequence_length,num_experts)
@@ -158,44 +168,14 @@ class OlmoeMoeBlockWithRIMFlat(nn.Module):
         # If attention to real tokens is greater than to null tokens, the expert prefers the real tokens
         # Otherwise, it prefers the null tokens
         # Normalize the attention weights
-        experts_mask = ((attention_to_real_flat - attention_to_null_flat) > 0)    
-        attention_to_real_flat = attention_to_real_flat / (attention_to_real_flat + attention_to_null_flat) # Normalize the attention weights
-        
-        # print(f"Attention to real tokens shape: {attention_to_real_flat.shape}")    # (batch*sequence_length)
-        # print(f"Attention to null tokens shape: {attention_to_null_flat.shape}")
-        print(f"FLAT Token preference shape: {experts_mask.shape}")
-        print(f"FLAT Attention to real tokens shape: {attention_to_real_flat.shape}")
-        
-        print(experts_mask.T)
+        experts_mask = ((attention_to_real_flat - attention_to_null_flat) > 0)    # (batch*sequence_length, num_experts)
+        attention_to_real_flat = attention_to_real_flat / (attention_to_real_flat + attention_to_null_flat) # (batch*sequence_length, num_experts)
         
         for expert_idx in range(self.num_experts):
-            print(f"Processing expert {expert_idx}")
-            print(f"Expert {expert_idx} mask shape: {experts_mask[:, expert_idx]}")
-            token_idx = torch.where(experts_mask[:, expert_idx])        # Get token indices where the expert is selected in the batch*sequence_length range
-            
-            # print(token_idx)
+            token_idx = torch.where(experts_mask[:, expert_idx])[0]        # Get token indices (in tuple) where the expert is selected in the batch*sequence_length range
             selected_tokens = hidden_states[token_idx]
+            null_values[token_idx] = self.experts[expert_idx](selected_tokens) * attention_to_real_flat[token_idx, expert_idx].unsqueeze(-1)
             
-            print(f"Selected tokens shape: {selected_tokens.shape}, Token indices: {token_idx}, {token_idx[0].shape}")
+        null_values = null_values.view(batch_size, sequence_length, hidden_dim)  # Reshape back to (batch, 2*sequence_length, hidden_dim)
         
-        # print(token_perference)
-        return
-        
-
-        
-        # re-use null values to store the final hidden states
-        for expert_idx in range(self.num_experts):
-            # Get pairs of batch and token indices where the expert is selected
-            batch_idx, token_idx = torch.where(expert_mask[expert_idx])
-            
-            # 
-            selected_tokens = hidden_states[batch_idx, token_idx, :]  # (num_selected_tokens, hidden_dim)
-            # print(f"Selected tokens shape: {selected_tokens.shape}, Batch indices: {batch_idx.shape}, Token indices: {token_idx.shape}")
-            
-            
-            null_values[batch_idx, token_idx, :] = self.experts[expert_idx](selected_tokens) * expert_weights[expert_idx, batch_idx, token_idx].unsqueeze(-1)
-            
-        print(f"Final hidden states shape: {null_values.shape}")
-        print(f"{expert_weights.shape}")
-        
-        return 
+        return null_values, attention_to_real_flat
