@@ -71,7 +71,9 @@ class OlmoeMoeBlockWithRIM(nn.Module):
             # Get pairs of batch and token indices where the expert is selected
             batch_idx, token_idx = torch.where(expert_mask[expert_idx])
             selected_tokens = hidden_states[batch_idx, token_idx, :]  # (num_selected_tokens, hidden_dim)
-            null_values[batch_idx, token_idx, :] = self.experts[expert_idx](selected_tokens) * expert_weights[expert_idx, batch_idx, token_idx].unsqueeze(-1)
+            
+            # the resulting hidden states are the weighted sum of the selected expert's output 
+            null_values[batch_idx, token_idx, :] += self.experts[expert_idx](selected_tokens) * expert_weights[expert_idx, batch_idx, token_idx].unsqueeze(-1)
             
         return null_values, expert_weights.view(batch_size*sequence_length, self.num_experts)  # Reshape to (batch*sequence_length, num_experts)
 
@@ -162,7 +164,8 @@ class OlmoeMoeBlockFlatRIM(nn.Module):
         for expert_idx in range(self.num_experts):
             token_idx = torch.where(experts_mask[:, expert_idx])[0]        # Get token indices (in tuple) where the expert is selected in the batch*sequence_length range
             selected_tokens = hidden_states[token_idx]
-            null_values[token_idx] = self.experts[expert_idx](selected_tokens) * attention_to_real_flat[token_idx, expert_idx].unsqueeze(-1)
+            # the resulting hidden states are the weighted sum of the selected expert's output 
+            null_values[token_idx] += self.experts[expert_idx](selected_tokens) * attention_to_real_flat[token_idx, expert_idx].unsqueeze(-1)
             
         null_values = null_values.view(batch_size, sequence_length, hidden_dim)  # Reshape back to (batch, 2*sequence_length, hidden_dim)
         
