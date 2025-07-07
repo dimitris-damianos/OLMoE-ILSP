@@ -19,8 +19,58 @@ from transformers.utils import logging
 logger = logging.get_logger(__name__)
 
 # Based on transformers.models.mixtral.modeling_mixtral.load_balancing_loss_func
-def load_balancing_loss_func():
-    pass
+# Changed to fit our test case
+def load_balancing_loss_for_rim(logit_weights = None,
+                             expert_mask = None,
+                             attention_mask = None,
+                             num_experts: int = 8,
+                             ):
+    if logit_weights is None or not isinstance(logit_weights, tuple):
+        return 0
+    if isinstance(logit_weights, tuple) and isinstance(expert_mask, tuple):
+        # concatenate logits from all layers
+        compute_device = logit_weights[0].device
+        concatenated_logits = torch.cat([layer_logits.to(compute_device) for layer_logits in logit_weights], dim=0)
+        concatenated_expert_mask = torch.cat([layer_expert_mask.to(compute_device) for layer_expert_mask in expert_mask], dim=0)
+    
+    # if attention_mask is None:
+        # Compute the percentage of tokens routed to each expert
+    tokens_per_expert = torch.mean(concatenated_expert_mask.float(), dim=0)
+    # Compute the average probability of routing to these experts
+    router_prob_per_expert = torch.mean(concatenated_logits, dim=0)
+
+    # else: 
+    #     batch_size, sequence_length = attention_mask.shape
+    #     num_hidden_layers = concatenated_logits.shape[0] // (batch_size * sequence_length)
+
+    #     # Compute the mask that masks all padding tokens as 0 with the same shape of expert_mask
+    #     expert_attention_mask = (
+    #         attention_mask[None, :, :, None, None]
+    #         .expand((num_hidden_layers, batch_size, sequence_length, num_experts))
+    #         .reshape(-1, num_experts)
+    #         .to(compute_device)
+    #     )
+
+    #     # Compute the percentage of tokens routed to each experts
+    #     tokens_per_expert = torch.sum(expert_mask.float() * expert_attention_mask, dim=0) / torch.sum(
+    #         expert_attention_mask, dim=0
+    #     )
+
+    #     # Compute the mask that masks all padding tokens as 0 with the same shape of tokens_per_expert
+    #     router_per_expert_attention_mask = (
+    #         attention_mask[None, :, :, None]
+    #         .expand((num_hidden_layers, batch_size, sequence_length, num_experts))
+    #         .reshape(-1, num_experts)
+    #         .to(compute_device)
+    #     )
+
+    #     # Compute the average probability of routing to these experts
+    #     router_prob_per_expert = torch.sum(logit_weights * router_per_expert_attention_mask, dim=0) / torch.sum(
+    #         router_per_expert_attention_mask, dim=0
+    #     )
+    
+    aux_loss = torch.sum(tokens_per_expert * router_prob_per_expert)
+    return aux_loss
 
 @dataclass
 class MoeModelOutputWithPastAndExpertMask(MoeModelOutputWithPast):
@@ -184,10 +234,12 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         # Decide which tokens the expert prefers based on attention weights
         # If attention to real tokens is greater than to null tokens, the expert prefers the real tokens
         # Otherwise, it prefers the null tokens
-        # Normalize the attention weights
+        
         experts_mask = ((attention_to_real_flat - attention_to_null_flat) > 0)    # (batch*sequence_length, num_experts)
-        # TODO abs or not?
-        attention_to_real_flat = attention_to_real_flat / (torch.abs(attention_to_real_flat) + torch.abs(attention_to_null_flat)) # (batch*sequence_length, num_experts)
+        
+        # Normalize the attention weights
+        # attention_to_real_flat = attention_to_real_flat / (torch.abs(attention_to_real_flat) + torch.abs(attention_to_null_flat)) # (batch*sequence_length, num_experts)
+        attention_to_real_flat = torch.nn.functional.softmax(attention_to_real_flat, dim=-1)  # Normalize the attention weights
         
         for expert_idx in range(self.num_experts):
             token_idx = torch.where(experts_mask[:, expert_idx])[0]        # Get token indices (in tuple) where the expert is selected in the batch*sequence_length range
@@ -499,15 +551,15 @@ class OlmoeForCausalLMWithRIM(OlmoeForCausalLM):
 
         aux_loss = None
         # TODO: Implement load balancing loss function
-        # if output_router_logits:
-        #     aux_loss = load_balancing_loss_func(
-        #         outputs.router_logits if return_dict else outputs[2],
-        #         self.num_experts,
-        #         self.num_experts_per_tok,
-        #         attention_mask,
-        #     )
-        #     if labels is not None:
-        #         loss += self.router_aux_loss_coef * aux_loss.to(loss.device)  # make sure to reside in the same device
+        if output_router_logits:
+            aux_loss = load_balancing_loss_for_rim(
+                outputs.router_logits if return_dict else outputs[2],
+                outputs.expert_mask if return_dict else outputs[3],
+                attention_mask = attention_mask,  # TODO: Implement attention mask for load balancing loss,
+                num_experts=self.num_experts,
+            )
+            if labels is not None:
+                loss += self.router_aux_loss_coef * aux_loss.to(loss.device)  # make sure to reside in the same device
 
         if not return_dict:
             output = (logits,) + outputs[1:]
