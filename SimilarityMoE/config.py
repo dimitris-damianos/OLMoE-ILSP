@@ -7,3 +7,4 @@ class OlmoeWithRIMConfig(OlmoeConfig):
         self.enable_comm = kwargs.get("enable_comm", False)  # Enable communication attention
         self.expert_comm_size = kwargs.get("enable_comm", False)  # Enable communication attention
         
+        self.output_expert_mask = kwargs.get("output_expert_mask", False)  # Output expert mask
