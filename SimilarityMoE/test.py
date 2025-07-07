@@ -69,7 +69,7 @@ def test_hf_moe_block():
     print(f'Output indices shape: {idx.shape}, {idx}')
     
 def test_custom_moe():
-    from model import OlmoeMoeBlockWithRIM, OlmoeMoeBlockFlatRIM
+    from model import OlmoeMoeBlockWithRIM_, OlmoeMoeBlockWithRIM, OlmoeDecoderLayerWithRIM, OlmoeForCausalLMWithRIM
     from transformers.models.olmoe.modeling_olmoe import OlmoeSparseMoeBlock
     from transformers import AutoConfig
     
@@ -85,11 +85,21 @@ def test_custom_moe():
     # hidden, logits = model(x)
     # print('Hidden shape:', hidden.shape)
     # print('Logits shape:', logits.shape)
-    model = OlmoeMoeBlockFlatRIM(config)
-    # model = OlmoeMoeBlockWithRIM(config)
+    print('testing MoE block with RIM...')
+    model = OlmoeMoeBlockWithRIM(config)
     h, l = model(x)
     print('Hidden shape:', h.shape)
     print('Logits shape:', l.shape)
+    
+    print('testing custom OlmoeForCausalLM with RIM...')
+    model = OlmoeForCausalLMWithRIM(config)
+    inputs = {
+        "input_ids": torch.randint(0, 1000, (2, 10)),  # Example input IDs
+        "attention_mask": torch.ones(2, 10)  # Example attention mask
+    }
+    outputs = model(**inputs)
+    print('Model outputs:', outputs)
+    
 
 
 if __name__ == "__main__":

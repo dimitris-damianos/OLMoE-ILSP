@@ -2,9 +2,17 @@ from torch import nn
 import torch.nn.functional as F
 import torch
 
-from transformers.models.olmoe.modeling_olmoe import OlmoeMLP
+from transformers.models.olmoe.modeling_olmoe import (
+    OlmoeMLP,
+    OlmoeDecoderLayer,
+    OlmoeModel,
+    OlmoeForCausalLM,
+)
 
-class OlmoeMoeBlockWithRIM(nn.Module):
+class OlmoeMoeBlockWithRIM_(nn.Module):
+    """
+    MoE block with RIM (Recurrent Inference Machine) attention mechanism.
+    """
     def __init__(self, config):
         super().__init__()
         self.num_experts = config.num_experts
@@ -77,7 +85,10 @@ class OlmoeMoeBlockWithRIM(nn.Module):
             
         return null_values, expert_weights.view(batch_size*sequence_length, self.num_experts)  # Reshape to (batch*sequence_length, num_experts)
 
-class OlmoeMoeBlockFlatRIM(nn.Module):
+class OlmoeMoeBlockWithRIM(nn.Module):
+    """
+    MoE block with efficient RIM (Recurrent Inference Machine) attention mechanism.
+    """
     def __init__(self, config):
         super().__init__()
         self.num_experts = config.num_experts
@@ -170,3 +181,23 @@ class OlmoeMoeBlockFlatRIM(nn.Module):
         null_values = null_values.view(batch_size, sequence_length, hidden_dim)  # Reshape back to (batch, 2*sequence_length, hidden_dim)
         
         return null_values, attention_to_real_flat
+
+
+class OlmoeDecoderLayerWithRIM(OlmoeDecoderLayer):
+    def __init__(self, config,layer_idx=None):
+        super().__init__(config,layer_idx=layer_idx)
+        self.mlm = OlmoeMoeBlockWithRIM(config)
+        
+class OlmoeModelWithRIM(OlmoeModel):
+    def __init__(self, config):
+        super().__init__(config)
+        self.layers = nn.ModuleList(
+            [OlmoeDecoderLayerWithRIM(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+        )
+        
+class OlmoeForCausalLMWithRIM(OlmoeForCausalLM):
+    def __init__(self, config):
+        super().__init__(config)
+        self.model = OlmoeModelWithRIM(config)
+        
+    
