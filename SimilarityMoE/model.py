@@ -8,6 +8,7 @@ from transformers.models.olmoe.modeling_olmoe import (
     OlmoeModel,
     OlmoeForCausalLM,
 )
+from config import OlmoeWithRIMConfig
 
 class OlmoeMoeBlockWithRIM_(nn.Module):
     """
@@ -16,9 +17,6 @@ class OlmoeMoeBlockWithRIM_(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.num_experts = config.num_experts
-        self.top_k = config.num_experts_per_tok
-        self.norm_topk_prob = config.norm_topk_prob
-        self.gate = nn.Linear(config.hidden_size, self.num_experts, bias=False)
         self.experts = nn.ModuleList([OlmoeMLP(config) for _ in range(self.num_experts)])
         self.expert_states = nn.ModuleList([nn.Linear(config.hidden_size, config.hidden_size) for _ in range(self.num_experts)])
         
@@ -89,24 +87,23 @@ class OlmoeMoeBlockWithRIM(nn.Module):
     """
     MoE block with efficient RIM (Recurrent Inference Machine) attention mechanism.
     """
-    def __init__(self, config):
+    def __init__(self, config: OlmoeWithRIMConfig):
         super().__init__()
         self.num_experts = config.num_experts
         self.top_k = config.num_experts_per_tok
-        self.norm_topk_prob = config.norm_topk_prob
-        self.gate = nn.Linear(config.hidden_size, self.num_experts, bias=False)
+        self.expert_attn_size = config.expert_attn_size
+        
         self.experts = nn.ModuleList([OlmoeMLP(config) for _ in range(self.num_experts)])
         self.expert_states = nn.ModuleList([nn.Linear(config.hidden_size, config.hidden_size) for _ in range(self.num_experts)])
         
-        self.key = nn.Linear(config.hidden_size, config.hidden_size, bias=False)
-        self.value = nn.Linear(config.hidden_size, config.hidden_size, bias=False)
-        self.expert_querries = nn.ModuleList([nn.Linear(config.hidden_size, config.hidden_size) for _ in range(self.num_experts)])  # TODO check dimensions
+        self.key = nn.Linear(config.hidden_size, config.expert_attn_size, bias=False)
+        self.value = nn.Linear(config.hidden_size, config.expert_attn_size, bias=False)
+        self.expert_querries = nn.ModuleList([nn.Linear(config.hidden_size, config.expert_attn_size) for _ in range(self.num_experts)])  # TODO check dimensions
         
-        
-        self.expert_query = nn.Linear(self.num_experts*config.hidden_size, 
-                                      self.num_experts*config.hidden_size, bias=False)  # TODO check dimensions
+        self.expert_query = nn.Linear(self.num_experts*config.expert_attn_size, 
+                                      self.num_experts*config.expert_attn_size, bias=False)  # TODO check dimensions
         self.expert_states_flat = nn.Linear(config.hidden_size, 
-                                            self.num_experts*config.hidden_size, bias=False)
+                                            self.num_experts*config.expert_attn_size, bias=False)
         
         # TODO: add communication attention
         self.enable_comm = config.enable_comm 
@@ -125,7 +122,6 @@ class OlmoeMoeBlockWithRIM(nn.Module):
             dtype=hidden_states.dtype, 
             device=hidden_states.device
         )
-        
         # Following original RIM, we concatenate the null values to the hidden states
         # null values are located the second half of the batch*sequence dim (dim 0) 
         hidden_states = torch.cat([hidden_states, null_values], dim=0)  # (batch*2*sequence_length, hidden_dim)
@@ -150,7 +146,7 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         experts_flat_query = self.expert_query(experts_flat_states)  # (batch *2* sequence_length, num_experts * hidden_dim)
     
         attention_scores_flat = nn.functional.softmax(
-            torch.matmul(experts_flat_query.view(batch_size*2*sequence_length,self.num_experts,hidden_dim), keys.T)/torch.sqrt(torch.tensor(hidden_dim)), dim=-1
+            torch.matmul(experts_flat_query.view(batch_size*2*sequence_length,self.num_experts,self.expert_attn_size), keys.T)/torch.sqrt(torch.tensor(hidden_dim)), dim=-1
         )   # (batch*2*sequence_length, num_experts, batch*2*sequence_length)
         
         attention_weights_flat = torch.matmul(attention_scores_flat, values)  # (batch * sequence_length, num_experts, hidden_dim)
@@ -159,11 +155,11 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         # reshape attention weights to (batch*sequence_length, num_experts, hidden_dim) to sum over hidden_dim
         attention_to_real_flat = attention_weights_flat[:batch_size*sequence_length, :].view(batch_size*sequence_length,
                                                                                              self.num_experts,
-                                                                                             hidden_dim).sum(dim=-1)  # (batch*sequence_length,num_experts)
+                                                                                             self.expert_attn_size).sum(dim=-1)  # (batch*sequence_length,num_experts)
         
         attention_to_null_flat = attention_weights_flat[batch_size*sequence_length:, :].view(batch_size*sequence_length,
                                                                                              self.num_experts,
-                                                                                             hidden_dim).sum(dim=-1)  # (batch*sequence_length,num_experts)
+                                                                                             self.expert_attn_size).sum(dim=-1)  # (batch*sequence_length,num_experts)
         
         # Decide which tokens the expert prefers based on attention weights
         # If attention to real tokens is greater than to null tokens, the expert prefers the real tokens
@@ -186,7 +182,8 @@ class OlmoeMoeBlockWithRIM(nn.Module):
 class OlmoeDecoderLayerWithRIM(OlmoeDecoderLayer):
     def __init__(self, config,layer_idx=None):
         super().__init__(config,layer_idx=layer_idx)
-        self.mlm = OlmoeMoeBlockWithRIM(config)
+        self.mlp = OlmoeMoeBlockWithRIM(config)
+    
         
 class OlmoeModelWithRIM(OlmoeModel):
     def __init__(self, config):

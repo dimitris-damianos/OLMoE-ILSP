@@ -1,5 +1,9 @@
-class TestConfig:
-    rnn_type = "lstm"  # Options: "lstm", "gru", "rnn"
-    num_experts = 4
-    input_size = 512  # Size of the input features
-    input_query_size = 512  # Size of the query vector for each expert
+from transformers import OlmoeConfig
+
+class OlmoeWithRIMConfig(OlmoeConfig):
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.expert_attn_size = kwargs.get("key_size", 512)
+        self.enable_comm = kwargs.get("enable_comm", False)  # Enable communication attention
+        self.expert_comm_size = kwargs.get("enable_comm", False)  # Enable communication attention
+        

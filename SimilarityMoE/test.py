@@ -72,11 +72,10 @@ def test_custom_moe():
     from model import OlmoeMoeBlockWithRIM_, OlmoeMoeBlockWithRIM, OlmoeDecoderLayerWithRIM, OlmoeForCausalLMWithRIM
     from transformers.models.olmoe.modeling_olmoe import OlmoeSparseMoeBlock
     from transformers import AutoConfig
+    from config import OlmoeWithRIMConfig
     
-    config = AutoConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
-    config.num_experts = 4  # Set the number of experts for the MoE
-    config.num_experts_per_tok = 2
-    config.enable_comm = True  # Enable communication attention
+    config = OlmoeWithRIMConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
+    config.num_experts = 4  # Set the number of experts for the MoE block
     
     x = torch.randn(2, 10, config.hidden_size)
     print(f'Input shape: {x.shape},')
@@ -92,10 +91,13 @@ def test_custom_moe():
     print('Logits shape:', l.shape)
     
     print('testing custom OlmoeForCausalLM with RIM...')
-    model = OlmoeForCausalLMWithRIM(config)
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+    model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
+    with open('model.txt', 'w') as f:
+        f.write(str(model))
     inputs = {
-        "input_ids": torch.randint(0, 1000, (2, 10)),  # Example input IDs
-        "attention_mask": torch.ones(2, 10)  # Example attention mask
+        "input_ids": torch.randint(0, 1000, (2, 10)).to(DEVICE),  # Example input IDs
+        "attention_mask": torch.ones(2, 10).to(DEVICE)  # Example attention mask
     }
     outputs = model(**inputs)
     print('Model outputs:', outputs)
