@@ -2,6 +2,7 @@ from transformers import OlmoeForCausalLM, AutoTokenizer, BitsAndBytesConfig
 # from megablocks.megablocks.layers.router import SimilarityRouter, LearnedRouter
 # from megablocks.megablocks.layers.arguments import Arguments
 import torch
+from torch import nn
 # from megablocks.layers import common
 
 
@@ -67,7 +68,11 @@ def test_hf_moe_block():
     vals, idx = moe_block(x)
     print(f'Output values shape: {vals.shape}, {vals}')
     print(f'Output indices shape: {idx.shape}, {idx}')
-    
+
+def const_weight_init(model,val=1.0):
+    for name, param in model.named_parameters():
+        nn.init.constant_(param, val)
+
 def test_custom_moe():
     from model import OlmoeMoeBlockWithRIM_, OlmoeMoeBlockWithRIM, OlmoeDecoderLayerWithRIM, OlmoeForCausalLMWithRIM
     from transformers.models.olmoe.modeling_olmoe import OlmoeSparseMoeBlock
@@ -75,24 +80,36 @@ def test_custom_moe():
     from config import OlmoeWithRIMConfig
     
     config = OlmoeWithRIMConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
-    config.num_experts = 4  # Set the number of experts for the MoE block
+    config.num_experts = 8  # Set the number of experts for the MoE block
     config.num_experts_per_tok = 2 
+    config.enable_comm = False  # Enable communication attention
+    config.expert_attn_size = 64
     
-    # x = torch.randn(2, 10, config.hidden_size)
+    torch.manual_seed(42)  # For reproducibility
+    x = torch.randn(2, 10, config.hidden_size)
     # print(f'Input shape: {x.shape},')
     
-    # model = OlmoeSparseMoeBlock(config)
-    # hidden, logits = model(x)
+    # model = OlmoeMoeBlockWithRIM_(config)
+    # const_weight_init(model, 0.1)
+    # hidden, logits, e_mask = model(x)
+    # with open('e_mask.txt', 'w') as f:
+    #     f.write(str(e_mask))
     # print('Hidden shape:', hidden.shape)
     # print('Logits shape:', logits.shape)
-    # print('Logits:', logits)  # batch_size x seq_len x num_experts
+    # print('Expert mask shape:', e_mask.shape)  
     
     # print('testing MoE block with RIM...')
-    # model = OlmoeMoeBlockWithRIM(config)
-    # h, l, mask = model(x)
-    # print('Hidden shape:', h.shape)
-    # print('Logits shape:', l.shape)
-    # print('Experts mask shape:', mask.shape)
+    model = OlmoeMoeBlockWithRIM(config)
+    # const_weight_init(model,0.1)
+    h, l, mask = model(x)
+    with open('mask.txt', 'w') as f:
+        f.write(str(mask))
+    print('Hidden shape:', h.shape)
+    print('Logits shape:', l.shape)
+    print('Experts mask shape:', mask.shape)
+    
+    # assert torch.equal(mask,e_mask), "Expert mask mismatch between OlmoeMoeBlockWithRIM and OlmoeMoeBlockWithRIM_"
+    
     # print('Experts mask:', mask)    # batch_size x seq_len x num_experts
     # print('Logits:', l)  # batch_size x seq_len x num_experts
     
@@ -108,7 +125,7 @@ def test_custom_moe():
         'output_expert_mask': True,
     }
     outputs = model(**inputs)
-    print('Model outputs:', outputs)
+    print('Model outputs:', outputs.expert_mask)
     
 
 
