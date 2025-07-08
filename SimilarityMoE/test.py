@@ -108,8 +108,8 @@ def test_custom_moe():
         'output_expert_mask': True,
     }
     outputs = model(**inputs)
-    # print('Model outputs:', outputs)
-    # print
+    print('Model outputs:', outputs)
+    
 
 
 if __name__ == "__main__":
