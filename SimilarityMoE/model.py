@@ -149,6 +149,7 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         self.num_experts = config.num_experts
         self.top_k = config.num_experts_per_tok
         self.expert_attn_size = config.expert_attn_size
+        self.top_p = config.experts_top_p
         
         self.experts = nn.ModuleList([OlmoeMLP(config) for _ in range(self.num_experts)])
         self.key = nn.Linear(config.hidden_size, 
@@ -161,10 +162,6 @@ class OlmoeMoeBlockWithRIM(nn.Module):
                                       self.num_experts*config.expert_attn_size, bias=False)  # TODO check dimensions
         self.expert_states_flat = nn.Linear(config.hidden_size, 
                                             self.num_experts*config.expert_attn_size, bias=False)
-        
-        self.enable_comm = config.enable_comm 
-        if self.enable_comm:
-            self.comm_layer = nn.Linear(config.expert_attn_size, config.expert_attn_size, bias=False)
             
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         batch_size, sequence_length, hidden_dim = hidden_states.shape
@@ -174,65 +171,56 @@ class OlmoeMoeBlockWithRIM(nn.Module):
             dtype=hidden_states.dtype, 
             device=hidden_states.device
         )
-        # # Following original RIM, we concatenate the null values to the hidden states
-        # # null values are located the second half of the batch*sequence dim (dim 0) 
-        # hidden_states = torch.cat([hidden_states, null_values], dim=-1)
+        nn.init.xavier_uniform_(null_hidden_states) 
+        # Following original RIM, we concatenate the null hidden states to batch size 
+        hidden_states = torch.cat([hidden_states, null_hidden_states], dim=0) 
 
-        # STEP 1: check real values
         # keys, values shared between experts 
         keys = self.key(hidden_states) 
         values = self.value(hidden_states)  
+        
         experts_flat_states = self.expert_states_flat(hidden_states)    
         experts_flat_query = self.expert_query(experts_flat_states)  
-        experts_flat_query = experts_flat_query.view(batch_size*sequence_length,self.num_experts,self.expert_attn_size)
-        q_x_k =  torch.bmm(experts_flat_query, keys.view(batch_size*sequence_length,self.expert_attn_size,self.num_experts))/torch.sqrt(torch.tensor(self.expert_attn_size))
+        experts_flat_query = experts_flat_query.view(2*batch_size*sequence_length,
+                                                     self.num_experts,
+                                                     self.expert_attn_size)
+        q_x_k =  torch.bmm(experts_flat_query, keys.view(2*batch_size*sequence_length,
+                                                         self.expert_attn_size,
+                                                         self.num_experts))/torch.sqrt(torch.tensor(self.expert_attn_size))
         attention_scores_flat = nn.functional.softmax(
            q_x_k, dim=1
         )  
-        print(attention_scores_flat.shape)
-        values = values.view(batch_size*sequence_length, self.num_experts, self.expert_attn_size)  
-        attention_weights_real_flat = torch.matmul(attention_scores_flat, values)  
-        
-        # SETP 2: check null values
-        null_keys = self.key(null_hidden_states) 
-        null_values = self.value(null_hidden_states)  
-        experts_flat_null_states = self.expert_states_flat(null_hidden_states)    
-        experts_flat_null_query = self.expert_query(experts_flat_null_states)  
-        experts_flat_null_query = experts_flat_null_query.view(batch_size*sequence_length,self.num_experts,self.expert_attn_size)
-        q_x_k =  torch.bmm(experts_flat_null_query, null_keys.view(batch_size*sequence_length,self.expert_attn_size,self.num_experts))/torch.sqrt(torch.tensor(self.expert_attn_size))
-        attention_scores_flat_null = nn.functional.softmax(
-           q_x_k, dim=1
-        )  
-        print(attention_scores_flat_null.shape)
-        null_values = null_values.view(batch_size*sequence_length, self.num_experts, self.expert_attn_size)  
-        attention_weights_null_flat = torch.matmul(attention_scores_flat_null, null_values)  
-        
-        all_attn_weights = torch.cat([attention_weights_real_flat, attention_weights_null_flat], dim=-1)  # (batch*sequence_length, num_experts, 2*expert_attn_size)
-        print(f"Attn real weights {all_attn_weights.shape}")
-        # Separate attention weights for real tokens and null tokens
-        # reshape attention weights to (batch*sequence_length, num_experts, hidden_dim) to sum over hidden_dim
-        all_attn_weights = nn.functional.softmax(all_attn_weights, dim=-1)  
-        attention_to_real_flat = all_attn_weights[:, :, :self.expert_attn_size].sum(dim=-1)  # (batch*sequence_length,num_experts)
-        print(f"Attn to real {attention_to_real_flat.shape}")
-        print(f"Attn to real {attention_to_real_flat[0]}")
-        
-        attention_to_null_flat = all_attn_weights[:, :, self.expert_attn_size:].sum(dim=-1)  # (batch*sequence_length,num_experts)
-        print(f"Attn to null {attention_to_null_flat[0]}")
+        values = values.view(2*batch_size*sequence_length, 
+                             self.num_experts, 
+                             self.expert_attn_size)  
+        all_attn_weights = torch.matmul(attention_scores_flat, 
+                                        values)
+
+        # Separate attention weights for real tokens and null tokens to check which expert prefers which tokens  
+        all_attn_weights = all_attn_weights.view(batch_size*sequence_length, 
+                                                 self.num_experts, 
+                                                 2*self.expert_attn_size)  
+        attention_to_real_flat = all_attn_weights[:, :, :self.expert_attn_size].sum(dim=-1)  
+        attention_to_null_flat = all_attn_weights[:, :, self.expert_attn_size:].sum(dim=-1)  
+       
             
-        # Decide which tokens the expert prefers based on attention weights
-        # If attention to real tokens is greater than to null tokens, the expert prefers the real tokens
-        # Otherwise, it prefers the null tokens
-        
-        experts_mask = ((attention_to_real_flat - attention_to_null_flat) > 0)    # (batch*sequence_length, num_experts)
+        # Top-p selection using top-k on all experts
+        # Attn diff is used to regulate each experts attn to real and null part
+        attn_diff_normalized = nn.functional.softmax(attention_to_real_flat - attention_to_null_flat,dim=-1)
+        sorted_weights, sorted_indices = torch.topk(attn_diff_normalized, k=self.num_experts, dim=-1,sorted=True)  # Sort the attention weights in descending order
+        top_p_mask = torch.cumsum(sorted_weights, dim=-1) <= self.top_p
+        top_p_mask[..., 0] = True   # always activate the expert with the highest attention weight
+
+        experts_mask = torch.zeros_like(attn_diff_normalized, dtype=torch.bool)
+        experts_mask.scatter_(dim=1, index=sorted_indices, src=top_p_mask) 
         
         # Normalize the attention weights
-        # attention_to_real_flat = torch.nn.functional.softmax(attention_to_real_flat, dim=-1)  # Normalize the attention weights
-        # hidden_states = hidden_states[:, :hidden_dim]  # Reshape back to (batch*sequence_length, hidden_dim)
+        hidden_states = hidden_states[:batch_size*sequence_length,:]
         for expert_idx in range(self.num_experts):
             token_idx = torch.where(experts_mask[:, expert_idx])[0]        # Get token indices (in tuple) where the expert is selected in the batch*sequence_length range
             selected_tokens = hidden_states[token_idx]
             # the resulting hidden states are the weighted sum of the selected expert's output 
-            hidden_states[token_idx] += self.experts[expert_idx](selected_tokens) * attention_to_real_flat[token_idx, expert_idx].unsqueeze(-1)
+            hidden_states[token_idx] += self.experts[expert_idx](selected_tokens) * attn_diff_normalized[token_idx, expert_idx].unsqueeze(-1)
             
         hidden_states = hidden_states.view(batch_size, sequence_length, hidden_dim)  # Reshape back to (batch, 2*sequence_length, hidden_dim)
         

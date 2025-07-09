@@ -84,6 +84,8 @@ def test_custom_moe():
     config.num_experts_per_tok = 2 
     config.enable_comm = False  # Enable communication attention
     config.expert_attn_size = 64
+    config.experts_top_p = 0.5  # Set the top_p for experts selection
+    
     
     torch.manual_seed(42)  # For reproducibility
     x = torch.randn(2, 10, config.hidden_size)
@@ -99,14 +101,15 @@ def test_custom_moe():
     # print('Expert mask shape:', e_mask.shape)  
     
     # print('testing MoE block with RIM...')
-    model = OlmoeMoeBlockWithRIM(config)
-    # const_weight_init(model,0.1)
-    h, l, mask = model(x)
-    with open('mask.txt', 'w') as f:
-        f.write(str(mask))
-    print('Hidden shape:', h.shape)
-    print('Logits shape:', l.shape)
-    print('Experts mask shape:', mask.shape)
+    # model = OlmoeMoeBlockWithRIM(config)
+    # # const_weight_init(model,0.1)
+    # h, l, mask = model(x)
+    # with open('mask.txt', 'w') as f:
+    #     f.write(str(mask))
+    # print('Hidden shape:', h.shape)
+    # print('Logits shape:', l.shape)
+    # print('Experts mask shape:', mask.shape)
+    # print(mask)
     
     # assert torch.equal(mask,e_mask), "Expert mask mismatch between OlmoeMoeBlockWithRIM and OlmoeMoeBlockWithRIM_"
     
@@ -116,6 +119,7 @@ def test_custom_moe():
     print('testing custom OlmoeForCausalLM with RIM...')
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
+    print(config.experts_top_p)
     with open('model.txt', 'w') as f:
         f.write(str(model))
     inputs = {
