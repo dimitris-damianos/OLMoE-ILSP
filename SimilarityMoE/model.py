@@ -64,6 +64,7 @@ def load_balancing_loss_for_rim(logit_weights = None,
 
 class OlmoeMoeBlockWithRIM_(nn.Module):
     """
+    DEPRECATED
     MoE block with RIM (Recurrent Inference Machine) attention mechanism.
     """
     def __init__(self, config):
@@ -548,8 +549,7 @@ class OlmoeForCausalLMWithRIM(OlmoeForCausalLM):
             router_logits=outputs.router_logits,
             expert_mask=outputs.expert_mask
         )
-        
-        
+             
 class Qwen3MoeBlockWithRIM(nn.Module):
     """
     MoE block with efficient RIM (Recurrent Inference Machine) attention mechanism.
@@ -561,7 +561,7 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         self.expert_attn_size = config.expert_attn_size
         self.top_p = config.experts_top_p
         
-        self.experts = nn.ModuleList([OlmoeMLP(config) for _ in range(self.num_experts)])
+        self.experts = nn.ModuleList([Qwen3MLP(config) for _ in range(self.num_experts)])
         self.key = nn.Linear(config.hidden_size, 
                              self.num_experts*config.expert_attn_size, 
                              bias=False)    
