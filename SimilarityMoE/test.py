@@ -74,12 +74,16 @@ def const_weight_init(model,val=1.0):
         nn.init.constant_(param, val)
 
 def test_custom_moe():
-    from model import OlmoeMoeBlockWithRIM_, OlmoeMoeBlockWithRIM, OlmoeDecoderLayerWithRIM, OlmoeForCausalLMWithRIM
+    from model import (
+        OlmoeMoeBlockWithRIM, OlmoeDecoderLayerWithRIM, OlmoeForCausalLMWithRIM,
+        Qwen3MoeBlockWithRIM, Qwen3ForCausalLMWithRIM,     
+    )
     from transformers.models.olmoe.modeling_olmoe import OlmoeSparseMoeBlock
     from transformers import AutoConfig
-    from config import OlmoeWithRIMConfig
+    from config import OlmoeWithRIMConfig, Qwen3WithRIMConfig
     
-    config = OlmoeWithRIMConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
+    config = Qwen3WithRIMConfig.from_pretrained("Qwen/Qwen3-0.6B")
+    # config = OlmoeWithRIMConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
     config.num_experts = 8  # Set the number of experts for the MoE block
     config.num_experts_per_tok = 2 
     config.enable_comm = False  # Enable communication attention
@@ -88,40 +92,21 @@ def test_custom_moe():
     
     
     torch.manual_seed(42)  # For reproducibility
-    x = torch.randn(2, 10, config.hidden_size)
-    # print(f'Input shape: {x.shape},')
-    
-    # model = OlmoeMoeBlockWithRIM_(config)
-    # const_weight_init(model, 0.1)
-    # hidden, logits, e_mask = model(x)
-    # with open('e_mask.txt', 'w') as f:
-    #     f.write(str(e_mask))
-    # print('Hidden shape:', hidden.shape)
-    # print('Logits shape:', logits.shape)
-    # print('Expert mask shape:', e_mask.shape)  
-    
+    # x = torch.randn(2, 10, config.hidden_size) 
     # print('testing MoE block with RIM...')
     # model = OlmoeMoeBlockWithRIM(config)
+    # # model = Qwen3ForCausalLMWithRIM(config)
     # # const_weight_init(model,0.1)
-    # h, l, mask = model(x)
-    # with open('mask.txt', 'w') as f:
-    #     f.write(str(mask))
+    # h, l, mask = model(x,output_attentions=True,output_router_logits=True, output_expert_mask=True)
     # print('Hidden shape:', h.shape)
     # print('Logits shape:', l.shape)
     # print('Experts mask shape:', mask.shape)
     # print(mask)
     
-    # assert torch.equal(mask,e_mask), "Expert mask mismatch between OlmoeMoeBlockWithRIM and OlmoeMoeBlockWithRIM_"
-    
-    # print('Experts mask:', mask)    # batch_size x seq_len x num_experts
-    # print('Logits:', l)  # batch_size x seq_len x num_experts
-    
-    print('testing custom OlmoeForCausalLM with RIM...')
+    # print('testing custom OlmoeForCausalLM with RIM...')
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-    model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
-    print(config.experts_top_p)
-    with open('model.txt', 'w') as f:
-        f.write(str(model))
+    # model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
+    model = Qwen3ForCausalLMWithRIM(config).to(DEVICE)
     inputs = {
         "input_ids": torch.randint(0, 1000, (2, 10)).to(DEVICE),  # Example input IDs
         "attention_mask": torch.ones(2, 10).to(DEVICE),  # Example attention mask
@@ -130,7 +115,7 @@ def test_custom_moe():
     }
     outputs = model(**inputs)
     print('Model outputs:', outputs.expert_mask)
-    
+    print(outputs.aux_loss)
 
 
 if __name__ == "__main__":
