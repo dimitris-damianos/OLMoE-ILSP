@@ -76,13 +76,14 @@ def const_weight_init(model,val=1.0):
 def test_custom_moe():
     from model import (
         OlmoeMoeBlockWithRIM, OlmoeDecoderLayerWithRIM, OlmoeForCausalLMWithRIM,
-        Qwen3MoeBlockWithRIM, Qwen3ForCausalLMWithRIM,     
+        Qwen3MoeBlockWithRIM, Qwen3ForCausalLMWithRIM, Qwen2ForCausalLMWithRIM,  
     )
     from transformers.models.olmoe.modeling_olmoe import OlmoeSparseMoeBlock
     from transformers import AutoConfig
-    from config import OlmoeWithRIMConfig, Qwen3WithRIMConfig
+    from config import OlmoeWithRIMConfig, Qwen3WithRIMConfig, Qwen2WithRIMConfig
     
-    config = Qwen3WithRIMConfig.from_pretrained("Qwen/Qwen3-0.6B")
+    config = Qwen2WithRIMConfig.from_pretrained("Qwen/Qwen2.5-0.5B")
+    # config = Qwen3WithRIMConfig.from_pretrained("Qwen/Qwen3-0.6B")
     # config = OlmoeWithRIMConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
     config.num_experts = 8  # Set the number of experts for the MoE block
     config.num_experts_per_tok = 2 
@@ -106,7 +107,8 @@ def test_custom_moe():
     # print('testing custom OlmoeForCausalLM with RIM...')
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     # model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
-    model = Qwen3ForCausalLMWithRIM(config).to(DEVICE)
+    # model = Qwen3ForCausalLMWithRIM(config).to(DEVICE)
+    model = Qwen2ForCausalLMWithRIM(config).to(DEVICE)
     inputs = {
         "input_ids": torch.randint(0, 1000, (2, 10)).to(DEVICE),  # Example input IDs
         "attention_mask": torch.ones(2, 10).to(DEVICE),  # Example attention mask
