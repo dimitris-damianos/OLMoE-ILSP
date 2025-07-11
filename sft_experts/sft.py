@@ -21,21 +21,38 @@ from accelerate.state import PartialState
 
 import wandb
 
-from sft_formatting import (  # format functions to convert datasets to prompt-completion
+import yaml
+from dataset_mixer import mix_datasets_with_mapping
+
+from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
     map_mathinstruct_to_prompt_completion,
+    map_mathinstruct_to_conversation,
     map_pythonalpaca_to_prompt_completion,
-    map_piqa_to_prompt_completion,
-    map_pubmedqa_to_prompt_completion,
+    map_pythonalpaca_to_conversation,
     map_aya_to_prompt_completion,
+    map_aya_to_conversation,
     map_aya_with_language_to_prompt_completion,
+    map_aya_with_language_to_conversation,
     map_alpaca_to_prompt_completion,
+    map_alpaca_to_conversation,
     map_copa_to_prompt_completion,
+    map_copa_to_conversation,
     map_socialiqa_to_prompt_completion,
+    map_socialiqa_to_conversation,
+    map_pubmedqa_to_prompt_completion,
+    map_pubmedqa_to_conversation,
+    map_piqa_to_prompt_completion,
+    map_piqa_to_conversation,
     map_ecare_causal_reasoning_to_prompt_completion,
+    map_ecare_causal_reasoning_to_conversation,
     map_ecare_explanation_generation_to_prompt_completion,
+    map_ecare_explanation_generation_to_conversation,
     map_moleculeqa_to_prompt_completion,
+    map_moleculeqa_to_conversation,
     map_casehold_to_prompt_completion,
-    map_finqa_to_prompt_completion
+    map_casehold_to_conversation,
+    map_finqa_to_prompt_completion,
+    map_finqa_to_conversation,
 )
 
 def main():
@@ -46,11 +63,47 @@ def main():
     parser.add_argument("--cache_dir", type=str, default="./hf_cache")
 
     # Dataset
-    parser.add_argument("--dataset_name", type=str, required=True)
+    parser.add_argument("--dataset_name", type=str, required=False)
     parser.add_argument("--dataset_config_name", type=str, default=None)
     parser.add_argument("--train_split", type=str, default="train")
     parser.add_argument("--eval_split", type=str, default=None)
     parser.add_argument("--data_files", type=str, default=None)
+    parser.add_argument("--dataset_mix_config", type=str, default=None)
+    parser.add_argument(
+        "--instruction_format",
+        type=str,
+        choices = [
+            "mathinstruct",
+            "mathinstruct_chat",
+            "pythonalpaca",
+            "pythonalpaca_chat",
+            "piqa",
+            "piqa_chat",
+            "pubmedqa",
+            "pubmedqa_chat",
+            "aya",
+            "aya_chat",
+            "aya_with_language",
+            "aya_with_language_chat",
+            "alpaca",
+            "alpaca_chat",
+            "copa",
+            "copa_chat",
+            "socialiqa",
+            "socialiqa_chat",
+            "e-care_causal_reasoning",
+            "e-care_causal_reasoning_chat",
+            "e-care_explanation_generation",
+            "e-care_explanation_generation_chat",
+            "moleculeqa",
+            "moleculeqa_chat",
+            "casehold",
+            "casehold_chat",
+            "finqa",
+            "finqa_chat",
+        ],
+        required=False,
+    )
 
     # Training hyperparameters
     parser.add_argument("--output_dir", type=str, default="./sft_output")
@@ -68,6 +121,7 @@ def main():
     parser.add_argument("--max_length", type=int, default=8192)
     parser.add_argument("--packing", action="store_true")
     parser.add_argument("--completion_only_loss", action="store_true") # NOTE: not compatible with packing!
+    parser.add_argument("--assistant_only_loss", action="store_true") # NOTE: not compatible with packing!
     parser.add_argument("--resume_from_checkpoint", type=str, default=None)
     parser.add_argument("--neftune_noise_alpha", type=float, default=None)
     parser.add_argument("--activation_offloading", action="store_true")
@@ -77,7 +131,7 @@ def main():
     parser.add_argument("--weight_decay", type=float, default=0.1)
     parser.add_argument("--max_grad_norm", type=float, default=1.0)
     parser.add_argument("--adam_beta1", type=float, default=0.9)
-    parser.add_argument("--adam_beta2", type=float, default=0.95)
+    parser.add_argument("--adam_beta2", type=float, default=0.999)
     parser.add_argument("--adam_epsilon", type=float, default=1e-5)
     parser.add_argument("--lr_scheduler_type", type=str, default="linear")
     parser.add_argument("--warmup_ratio", type=float, default=0.03)
@@ -90,33 +144,18 @@ def main():
     parser.add_argument("--use_rslora", action="store_true")
 
     # Other settings
-    parser.add_argument("--push_to_hub", action="store_true")
-    parser.add_argument(
-        "--instruction_format",
-        type=str,
-        choices=[
-            "mathinstruct",
-            "pythonalpaca",
-            "piqa",
-            "pubmedqa",
-            "aya",
-            "aya_with_language",
-            "alpaca",
-            # "copa",
-            "socialiqa",
-            "e-care_causal_reasoning",
-            "e-care_explanation_generation",
-            "moleculeqa",
-            "casehold",
-            "finqa"
-        ],
-        required=True,
-    )
+    # parser.add_argument("--push_to_hub", action="store_true")
 
     args = parser.parse_args()
 
-    if args.packing and args.completion_only_loss:
-        raise ValueError("Cannot use --packing together with --completion_only_loss.")
+    if args.packing and (args.completion_only_loss or args.assistant_only_loss):
+        raise ValueError("Cannot use --packing together with --completion_only_loss or --assistant_only_loss.")
+
+    if args.dataset_mix_config:
+        if not os.path.exists(args.dataset_mix_config):
+            raise ValueError(f"Dataset mix config file not found: {args.dataset_mix_config}")
+    elif not args.dataset_name or not args.instruction_format:
+        raise ValueError("You must provide either --dataset_mix_config or both --dataset_name and --instruction_format.")
 
     accelerator = Accelerator()
     accelerator.print(f"Training config:\n{args}\n")
@@ -143,8 +182,6 @@ def main():
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left" if args.packing else "right"
     tokenizer.truncation_side = "right"
-    # if tokenizer.chat_template is None: # set default chat template if needed
-    #     model, tokenizer = clone_chat_template(model, tokenizer, "Qwen/Qwen3-0.6B")
 
     PartialState().wait_for_everyone()
 
@@ -166,6 +203,11 @@ def main():
     model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True
 
+    # if tokenizer.chat_template is None: # set default chat template if needed
+    # model, tokenizer = clone_chat_template(model, tokenizer, "Qwen/Qwen3-0.6B")
+    # necessary for Qwen3!
+    tokenizer.chat_template = "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {{- messages[0].content + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0].content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = '' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n\n        {{- '<|im_start|>' + message.role }}\n        {% generation %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- '<think>\\n' + reasoning_content.strip('\\n') + '\\n</think>\\n\\n' + content.lstrip('\\n') }}\n            {%- else %}\n                {{- content }}\n            {%- endif %}\n        {%- else %}\n            {{- content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>' }}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}"
+
     # if args.completion_only_loss:
     #     accelerator.print("Using DataCollatorForCompletionOnlyLM (completions only)")
     #     collator = DataCollatorForCompletionOnlyLM(
@@ -184,60 +226,108 @@ def main():
     PartialState().wait_for_everyone()
 
     accelerator.print("Loading dataset...")
-    if args.data_files:
-        import json
-        data_files = json.loads(args.data_files)
-        dataset = load_dataset(
-            path=args.dataset_name,
-            data_files=data_files,
-            cache_dir=args.cache_dir
-        )
-    else:
-        dataset = load_dataset(
-            path=args.dataset_name,
-            name=args.dataset_config_name,
-            cache_dir=args.cache_dir
-        )
-    map_functions = {
-        "mathinstruct": map_mathinstruct_to_prompt_completion,
-        "pythonalpaca": map_pythonalpaca_to_prompt_completion,
-        "piqa": map_piqa_to_prompt_completion,
-        "pubmedqa": map_pubmedqa_to_prompt_completion,
-        "aya": map_aya_to_prompt_completion,
-        "aya_with_language": map_aya_with_language_to_prompt_completion,
-        "alpaca": map_alpaca_to_prompt_completion,
-        "copa": map_copa_to_prompt_completion,
-        "socialiqa": map_socialiqa_to_prompt_completion,
-        "e-care_causal_reasoning": map_ecare_causal_reasoning_to_prompt_completion,
-        "e-care_explanation_generation": map_ecare_explanation_generation_to_prompt_completion,
-        "moleculeqa": map_moleculeqa_to_prompt_completion,
-        "casehold": map_casehold_to_prompt_completion,
-        "finqa": map_finqa_to_prompt_completion
-    }
-    mapping_fn = map_functions[args.instruction_format] # convert dataset to prompt-completion format
-    train_dataset = dataset[args.train_split].map(mapping_fn)
-    train_dataset = train_dataset.remove_columns([c for c in train_dataset.column_names if c not in ["prompt", "completion"]])
-    if args.eval_split:
-        eval_dataset = dataset[args.eval_split].map(mapping_fn)
-        eval_dataset = eval_dataset.remove_columns([c for c in eval_dataset.column_names if c not in ["prompt", "completion"]])
-    else:
-        eval_dataset = None
 
-    def concat_prompt_completion(example): # convert dataset to language modeling format (text)
-        text = example["prompt"] + example["completion"]
-        if "### Response:\n" not in text:
-            accelerator.print("[WARNING] Response template missing in example.")
-        return {"text": text}
+    if args.dataset_mix_config:  # datamix
+        with open(args.dataset_mix_config, "r") as f:
+            config = yaml.safe_load(f)
+        splits = config.get("splits", [args.train_split, args.eval_split])
+        dataset = mix_datasets_with_mapping(
+            dataset_configs=config["datasets"],
+            splits=splits,
+            shuffle_init=config.get("shuffle_init", True),
+            shuffle_post=config.get("shuffle_post", True),
+            cache_dir=args.cache_dir,
+        )
+        train_dataset = dataset[args.train_split]
+        if args.eval_split and args.eval_split in dataset:
+            eval_dataset = dataset[args.eval_split]
+        else:
+            eval_dataset = None
 
-    # train_dataset = train_dataset.map(
-    #     concat_prompt_completion,
-    #     remove_columns=["prompt", "completion"]
-    # )
-    # if eval_dataset is not None:
-    #     eval_dataset = eval_dataset.map(
-    #         concat_prompt_completion,
-    #         remove_columns=["prompt", "completion"]
-    #     )
+    else:  # single dataset
+        if args.data_files:
+            import json
+            data_files = json.loads(args.data_files)
+            dataset = load_dataset(
+                path=args.dataset_name,
+                data_files=data_files,
+                cache_dir=args.cache_dir
+            )
+        else:
+            dataset = load_dataset(
+                path=args.dataset_name,
+                name=args.dataset_config_name,
+                cache_dir=args.cache_dir
+            )
+        map_functions = {
+            "mathinstruct": map_mathinstruct_to_prompt_completion,
+            "mathinstruct_chat": map_mathinstruct_to_conversation,
+            "pythonalpaca": map_pythonalpaca_to_prompt_completion,
+            "pythonalpaca_chat": map_pythonalpaca_to_conversation,
+            "piqa": map_piqa_to_prompt_completion,
+            "piqa_chat": map_piqa_to_conversation,
+            "pubmedqa": map_pubmedqa_to_prompt_completion,
+            "pubmedqa_chat": map_pubmedqa_to_conversation,
+            "aya": map_aya_to_prompt_completion,
+            "aya_chat": map_aya_to_conversation,
+            "aya_with_language": map_aya_with_language_to_prompt_completion,
+            "aya_with_language_chat": map_aya_with_language_to_conversation,
+            "alpaca": map_alpaca_to_prompt_completion,
+            "alpaca_chat": map_alpaca_to_conversation,
+            "copa": map_copa_to_prompt_completion,
+            "copa_chat": map_copa_to_conversation,
+            "socialiqa": map_socialiqa_to_prompt_completion,
+            "socialiqa_chat": map_socialiqa_to_conversation,
+            "e-care_causal_reasoning": map_ecare_causal_reasoning_to_prompt_completion,
+            "e-care_causal_reasoning_chat": map_ecare_causal_reasoning_to_conversation,
+            "e-care_explanation_generation": map_ecare_explanation_generation_to_prompt_completion,
+            "e-care_explanation_generation_chat": map_ecare_explanation_generation_to_conversation,
+            "moleculeqa": map_moleculeqa_to_prompt_completion,
+            "moleculeqa_chat": map_moleculeqa_to_conversation,
+            "casehold": map_casehold_to_prompt_completion,
+            "casehold_chat": map_casehold_to_conversation,
+            "finqa": map_finqa_to_prompt_completion,
+            "finqa_chat": map_finqa_to_conversation,
+        }
+        mapping_fn = map_functions[args.instruction_format]
+
+        # convert dataset to prompt-completion (instruction) or conversational format
+        train_dataset = dataset[args.train_split].map(
+            mapping_fn,
+            # fn_kwargs={"tokenizer": tokenizer},
+            remove_columns=list(dataset[args.train_split].features),
+            # num_proc=multiprocessing.cpu_count(),
+        )
+        if args.eval_split:
+            eval_dataset = dataset[args.eval_split].map(
+                mapping_fn,
+                # fn_kwargs={"tokenizer": tokenizer},
+                remove_columns=list(dataset[args.eval_split].features),
+                # num_proc=multiprocessing.cpu_count(),
+            )
+        else:
+            eval_dataset = None
+
+        # convert dataset from prompt-completion to language modeling format (text)
+        # def concat_prompt_completion(example):
+        #     text = example["prompt"] + example["completion"]
+        #     if "### Response:\n" not in text:
+        #         accelerator.print("[WARNING] Response template missing in example.")
+        #     return {"text": text}
+        
+        # train_dataset = train_dataset.map(
+        #     concat_prompt_completion,
+        #     remove_columns=["prompt", "completion"]
+        # )
+        # if eval_dataset is not None:
+        #     eval_dataset = eval_dataset.map(
+        #         concat_prompt_completion,
+        #         remove_columns=["prompt", "completion"]
+        #     )
+
+    accelerator.print(f"Loaded {len(train_dataset)} training samples.")
+    if eval_dataset:
+        accelerator.print(f"Loaded {len(eval_dataset)} evaluation samples.")
 
     PartialState().wait_for_everyone()
 
@@ -279,10 +369,11 @@ def main():
         warmup_ratio=args.warmup_ratio,
         packing=args.packing,
         completion_only_loss=args.completion_only_loss,
+        assistant_only_loss=args.assistant_only_loss,
         max_length=args.max_length,
         neftune_noise_alpha=args.neftune_noise_alpha,
         activation_offloading=args.activation_offloading,
-        # eos_token="<|im_end|>",  # conversational
+        eos_token="<|im_end|>",  # uncomment for conversational format!
     )
     accelerator.print(f"SFT config:\n{sft_config}")
 

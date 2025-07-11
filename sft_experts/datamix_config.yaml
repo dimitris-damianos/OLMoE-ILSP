@@ -1,0 +1,93 @@
+datasets:
+  - name: TIGER-Lab/MathInstruct  # math
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: mathinstruct_chat
+
+  - name: Vezora/Tested-143k-Python-Alpaca  # code
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: pythonalpaca_chat
+
+  - name: CohereForAI/aya_dataset  # multilingual
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: aya_with_language_chat
+
+  - name: allenai/social_i_qa  # social reasoning
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: socialiqa_chat
+
+  - name: json  # bio
+    splits:
+      - train
+      - validation
+    data_files:
+      train: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/train.json
+      validation: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/valid.json
+    fraction: 1.0
+    map_fn: moleculeqa_chat
+
+  - name: 12ml/e-CARE  # causal reasoning
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: e-care_causal_reasoning_chat
+
+  - name: 12ml/e-CARE  # causal reasoning - explanation generation
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: e-care_explanation_generation_chat
+
+  - name: pkavumba/balanced-copa  # causal reasoning
+    splits:
+      - train
+      - test
+    fraction: 1.0
+    map_fn: copa_chat
+
+  - name: ibm-research/finqa  # finance
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: finqa_chat
+
+  - name: tatsu-lab/alpaca  # general instruction following
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: alpaca_chat
+
+  - name: casehold/casehold  # legal
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: casehold_chat
+
+  - name: qiaojin/PubMedQA  # medical
+    splits:
+      - train
+    config_name: pqa_artificial 
+    fraction: 1.0
+    map_fn: pubmedqa_chat
+
+  - name: ybisk/piqa  # physical commonsense
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: piqa_chat
+
+shuffle_init: true
+shuffle_post: true
