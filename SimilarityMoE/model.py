@@ -562,7 +562,6 @@ class Qwen3MoeBlockWithRIM(nn.Module):
     def __init__(self, config: Qwen3WithRIMConfig):
         super().__init__()
         self.num_experts = config.num_experts
-        self.top_k = config.num_experts_per_tok
         self.expert_attn_size = config.expert_attn_size
         self.top_p = config.experts_top_p
         
@@ -913,7 +912,6 @@ class Qwen2MoeBlockWithRIM(nn.Module):
     def __init__(self, config: Qwen2WithRIMConfig):
         super().__init__()
         self.num_experts = config.num_experts
-        self.top_k = config.num_experts_per_tok
         self.expert_attn_size = config.expert_attn_size
         self.top_p = config.experts_top_p
         

@@ -22,6 +22,7 @@ class Qwen3WithRIMConfig(Qwen3Config):
 class Qwen2WithRIMConfig(Qwen2Config):
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
+        self.num_experts = kwargs.get("num_experts", 8)
         self.expert_attn_size = kwargs.get("key_size", 512)
         self.output_expert_mask = kwargs.get("output_expert_mask", False)  # Output expert mask
         self.output_router_logits = kwargs.get("output_router_logits", False)

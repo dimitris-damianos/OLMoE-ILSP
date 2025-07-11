@@ -109,19 +109,50 @@ def test_custom_moe():
     # model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
     # model = Qwen3ForCausalLMWithRIM(config).to(DEVICE)
     model = Qwen2ForCausalLMWithRIM(config).to(DEVICE)
+    with open('model.txt', 'w') as f:
+        f.write(str(model))
     inputs = {
         "input_ids": torch.randint(0, 1000, (2, 10)).to(DEVICE),  # Example input IDs
         "attention_mask": torch.ones(2, 10).to(DEVICE),  # Example attention mask
         'output_router_logits': True,
         'output_expert_mask': True,
     }
+    
     outputs = model(**inputs)
     print('Model outputs:', outputs.expert_mask)
     print(outputs.aux_loss)
 
+def test_merging():
+    from utils import create_moe_from_specialists
+    from config import Qwen2WithRIMConfig
+    
+    base_model = "Qwen/Qwen2.5-0.5B"
+    specialists = [
+        "Qwen/Qwen2.5-0.5B",
+        "Qwen/Qwen2.5-0.5B",
+        "Qwen/Qwen2.5-0.5B",
+        "Qwen/Qwen2.5-0.5B",
+    ]
+    # get pretrained config
+    moe_config = Qwen2WithRIMConfig.from_pretrained(base_model)
+    
+    # additional config parameters
+    moe_config.num_experts = len(specialists)
+    moe_config.expert_attn_size = 64
+    # moe_config.output_hidden_states = True
+    # moe_config.output_attentions = True
+    moe_config.output_expert_mask = True
+    moe_config.output_router_logits = True
+    moe_config.router_aux_loss_coef = 0.1 
+    moe_config.experts_top_p = 0.5 
+    
+    moe_model = create_moe_from_specialists(base_model, specialists, moe_config)
+    print("MoE model created with specialists merged successfully.")
+    # print(moe_model)
 
 if __name__ == "__main__":
     # test_olmoe()
     # test_router()
     # test_hf_moe_block()
-    test_custom_moe()
+    # test_custom_moe()
+    test_merging()
