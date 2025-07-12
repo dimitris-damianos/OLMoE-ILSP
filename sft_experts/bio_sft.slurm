@@ -63,4 +63,3 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
   # --lora_r 16 \
   # --lora_alpha 16 \
   # --use_rslora
-  

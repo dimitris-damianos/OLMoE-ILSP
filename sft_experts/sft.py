@@ -3,9 +3,11 @@
 import argparse
 import os
 import datetime
+import yaml
 
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling
+from transformers.trainer_utils import get_last_checkpoint
 from trl import (
     SFTTrainer,
     SFTConfig,
@@ -21,12 +23,14 @@ from accelerate.state import PartialState
 
 import wandb
 
-import yaml
 from dataset_mixer import mix_datasets_with_mapping
+
+# import multiprocessing
 
 from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
     map_mathinstruct_to_prompt_completion,
     map_mathinstruct_to_conversation,
+    map_metamathqa_to_conversation,
     map_pythonalpaca_to_prompt_completion,
     map_pythonalpaca_to_conversation,
     map_aya_to_prompt_completion,
@@ -55,12 +59,14 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
     map_finqa_to_conversation,
 )
 
+
 def main():
     parser = argparse.ArgumentParser(description="MoE experts with SFT.")
 
     # Model
     parser.add_argument("--model_name_or_path", type=str, required=True)
     parser.add_argument("--cache_dir", type=str, default="./hf_cache")
+    # TODO: add model revision
 
     # Dataset
     parser.add_argument("--dataset_name", type=str, required=False)
@@ -75,6 +81,7 @@ def main():
         choices = [
             "mathinstruct",
             "mathinstruct_chat",
+            "metamathqa_chat",
             "pythonalpaca",
             "pythonalpaca_chat",
             "piqa",
@@ -144,7 +151,7 @@ def main():
     parser.add_argument("--use_rslora", action="store_true")
 
     # Other settings
-    # parser.add_argument("--push_to_hub", action="store_true")
+    parser.add_argument("--push_to_hub", action="store_true")
 
     args = parser.parse_args()
 
@@ -187,9 +194,15 @@ def main():
 
     # from transformers import BitsAndBytesConfig
     # quantization_config = None
-    # quantization_config = BitsAndBytesConfig(
+    # quantization_config = BitsAndBytesConfig(  # 8-bit
     #     load_in_8bit=True,
     #     llm_int8_threshold=6.0,
+    # )
+    # quantization_config = BitsAndBytesConfig(  # 4-bit
+    #     load_in_4bit=True,
+    #     bnb_4bit_use_double_quant=True,
+    #     bnb_4bit_quant_type="nf4",
+    #     bnb_4bit_compute_dtype=torch.bfloat16,
     # )
 
     model = AutoModelForCausalLM.from_pretrained(
@@ -205,15 +218,19 @@ def main():
 
     # if tokenizer.chat_template is None: # set default chat template if needed
     # model, tokenizer = clone_chat_template(model, tokenizer, "Qwen/Qwen3-0.6B")
-    # necessary for Qwen3!
+
+    # NOTE: uncommment - necessary for Qwen3!
     tokenizer.chat_template = "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {{- messages[0].content + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0].content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = '' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n\n        {{- '<|im_start|>' + message.role }}\n        {% generation %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- '<think>\\n' + reasoning_content.strip('\\n') + '\\n</think>\\n\\n' + content.lstrip('\\n') }}\n            {%- else %}\n                {{- content }}\n            {%- endif %}\n        {%- else %}\n            {{- content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>' }}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}"
 
+    # NOTE: data collator is used when we pass {"text": text}
     # if args.completion_only_loss:
     #     accelerator.print("Using DataCollatorForCompletionOnlyLM (completions only)")
     #     collator = DataCollatorForCompletionOnlyLM(
     #         tokenizer=tokenizer,
     #         mlm=False,
     #         response_template="### Response:\n",
+    #         # instruction_template="<|user|>\n",
+    #         # response_template="<|assistant|>\n",
     #         pad_to_multiple_of=8, # needed?
     #     )
     # else:
@@ -237,6 +254,7 @@ def main():
             shuffle_init=config.get("shuffle_init", True),
             shuffle_post=config.get("shuffle_post", True),
             cache_dir=args.cache_dir,
+            # accelerator=accelerator,
         )
         train_dataset = dataset[args.train_split]
         if args.eval_split and args.eval_split in dataset:
@@ -262,6 +280,7 @@ def main():
         map_functions = {
             "mathinstruct": map_mathinstruct_to_prompt_completion,
             "mathinstruct_chat": map_mathinstruct_to_conversation,
+            "metamathqa_chat": map_metamathqa_to_conversation,
             "pythonalpaca": map_pythonalpaca_to_prompt_completion,
             "pythonalpaca_chat": map_pythonalpaca_to_conversation,
             "piqa": map_piqa_to_prompt_completion,
@@ -292,23 +311,22 @@ def main():
         mapping_fn = map_functions[args.instruction_format]
 
         # convert dataset to prompt-completion (instruction) or conversational format
+        # NOTE: internally the SFTTrainer uses tha apply_chat_template() method
         train_dataset = dataset[args.train_split].map(
             mapping_fn,
-            # fn_kwargs={"tokenizer": tokenizer},
             remove_columns=list(dataset[args.train_split].features),
             # num_proc=multiprocessing.cpu_count(),
         )
         if args.eval_split:
             eval_dataset = dataset[args.eval_split].map(
                 mapping_fn,
-                # fn_kwargs={"tokenizer": tokenizer},
                 remove_columns=list(dataset[args.eval_split].features),
                 # num_proc=multiprocessing.cpu_count(),
             )
         else:
             eval_dataset = None
 
-        # convert dataset from prompt-completion to language modeling format (text)
+        # convert dataset from prompt-completion to language modeling format (text) - or use formatting_func
         # def concat_prompt_completion(example):
         #     text = example["prompt"] + example["completion"]
         #     if "### Response:\n" not in text:
@@ -325,21 +343,24 @@ def main():
         #         remove_columns=["prompt", "completion"]
         #     )
 
+        # TODO: same for chat/conversational format
+        # apply_chat_template(example, tokenizer)  # NOTE: no need, the SFTTrainer does it for us
+
     accelerator.print(f"Loaded {len(train_dataset)} training samples.")
     if eval_dataset:
-        accelerator.print(f"Loaded {len(eval_dataset)} evaluation samples.")
+        accelerator.print(f"Loaded {len(eval_dataset)} evaluation samples.\n")
 
     PartialState().wait_for_everyone()
 
     peft_cfg = None
-    if args.use_peft:
+    if args.use_peft:  # qLoRA -> quantize model
         accelerator.print("Using LoRA")
         peft_cfg = LoraConfig(
             r=args.lora_r,
             lora_alpha=args.lora_alpha,
             lora_dropout=args.lora_dropout,
             use_rslora=args.use_rslora,
-            # target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+            target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
             bias="none",
             task_type="CAUSAL_LM",
         )
@@ -395,25 +416,49 @@ def main():
 
     PartialState().wait_for_everyone()
 
-    accelerator.print("Starting training...")
-    if args.resume_from_checkpoint:
-        accelerator.print(f"Starting training from checkpoint {args.resume_from_checkpoint}...")
-        trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)
+    resume_checkpoint = args.resume_from_checkpoint
+    latest = ""
+    if resume_checkpoint is None:
+        latest_ckpt = get_last_checkpoint(args.output_dir)
+        if latest_ckpt is not None:
+            resume_checkpoint = latest_ckpt
+            latest = "latest "
+
+    if resume_checkpoint:
+        accelerator.print(f"Resuming training from {latest}checkpoint: {resume_checkpoint}...")
+        trainer.train(resume_from_checkpoint=resume_checkpoint)
     else:
+        accelerator.print("Starting training from scratch...")
         trainer.train()
-    # TODO: load from last checkpoint found
+
+    accelerator.print("Training complete.")
+
+    accelerator.print("Saving trainer state...")
+    trainer.save_state()
 
     trainer.accelerator.wait_for_everyone()  # save model on main process
-
-    accelerator.print("Training complete. Saving model...")
-
-    trainer.save_model(args.output_dir)
+    accelerator.print("Saving model...")
+    trainer.save_model()
     accelerator.print(f"Model saved to {args.output_dir}")
+
     if args.push_to_hub:
         accelerator.print("Pushing to hub...")
         trainer.push_to_hub()
 
-    trainer.accelerator.wait_for_everyone()
+    trainer.accelerator.wait_for_everyone()  # save tokenizer and info on main process
+    if trainer.accelerator.is_main_process:
+        accelerator.print("Saving tokenizer...")
+        tokenizer.save_pretrained(args.output_dir)
+
+        # save SFT info
+        if args.dataset_mix_config:
+            dataset_names = [dataset["name"] for dataset in config["datasets"]]
+        else:
+            dataset_names = [args.dataset_name]
+        kwargs = {
+            "finetuned_from": args.model_name_or_path,
+            "dataset": dataset_names,
+        }
 
     if args.use_peft:
         accelerator.print("Merging LoRA adapters into base model...")
@@ -429,6 +474,8 @@ def main():
             max_shard_size="5GB",
         )
         accelerator.print(f"Merged model saved to {args.output_dir}")
+
+    # TODO: evaluate?
 
 
 if __name__ == "__main__":

@@ -5,6 +5,12 @@ datasets:
     fraction: 1.0
     map_fn: mathinstruct_chat
 
+  - name: meta-math/MetaMathQA  # math
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: metamathqa_chat
+
   - name: Vezora/Tested-143k-Python-Alpaca  # code
     splits:
       - train

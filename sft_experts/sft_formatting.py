@@ -29,6 +29,19 @@ def map_mathinstruct_to_conversation(example):
     }
 
 
+def map_metamathqa_to_conversation(example):
+    query = example["query"].strip()
+    response = example["response"].strip()
+
+    return {
+        "messages": [
+            {"role": "system", "content": ""},
+            {"role": "user", "content": query},
+            {"role": "assistant", "content": response}
+        ]
+    }
+
+
 def map_pythonalpaca_to_prompt_completion(example):
     instruction = example["instruction"].strip()
     input_text = example["input"].strip()

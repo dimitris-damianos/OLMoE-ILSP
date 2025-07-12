@@ -5,12 +5,15 @@ import math
 from typing import List, Dict
 from datasets import load_dataset, load_from_disk, concatenate_datasets, DatasetDict
 
+from accelerate import Accelerator
 from accelerate.logging import get_logger
 logger = get_logger(__name__)
+logger.setLevel("INFO")
 
 from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
     map_mathinstruct_to_prompt_completion,
     map_mathinstruct_to_conversation,
+    map_metamathqa_to_conversation,
     map_pythonalpaca_to_prompt_completion,
     map_pythonalpaca_to_conversation,
     map_aya_to_prompt_completion,
@@ -42,6 +45,7 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
 MAP_FUNCTIONS = {
     "mathinstruct": map_mathinstruct_to_prompt_completion,
     "mathinstruct_chat": map_mathinstruct_to_conversation,
+    "metamathqa_chat": map_metamathqa_to_conversation,
     "pythonalpaca": map_pythonalpaca_to_prompt_completion,
     "pythonalpaca_chat": map_pythonalpaca_to_conversation,
     "piqa": map_piqa_to_prompt_completion,
@@ -75,7 +79,8 @@ def mix_datasets_with_mapping(
     splits: List[str],
     shuffle_init: bool = True,
     shuffle_post: bool = True,
-    cache_dir: str = "./hf_cache"
+    cache_dir: str = "./hf_cache",
+    # accelerator: Accelerator = None,
 ) -> DatasetDict:
     mixed = {}
  
@@ -134,7 +139,11 @@ def mix_datasets_with_mapping(
                     dataset.select(range(int(extra * len(dataset))))
                 ])
 
-            logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
+            logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")  # FIXME: or pass the accelerator from sft.py
+            # if accelerator is not None:
+            #     accelerator.print(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
+            # else:
+            #     logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
             dataset = dataset.map(map_fn, remove_columns=list(dataset.features))
             if len(split_subsets) > 0:
                 first_keys = set(split_subsets[0].features)

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3-0.6B_multilingual_expert_SFT
+#SBATCH --job-name=qwen2.5-1.5B_multilingual_expert_SFT
 #SBATCH --partition=boost_usr_prod
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -17,7 +17,7 @@ module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
 
-TASK=multilingual_expert_Qwen3-0.6B_SFT
+TASK=multilingual_expert_Qwen2.5-1.5B_SFT
 
 mkdir -p $WORK/experts/$TASK
 
@@ -30,12 +30,12 @@ export WANDB_DIR=$WORK
 # export CUDA_LAUNCH_BLOCKING=1
 
 accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
-  --model_name_or_path $HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455 \
+  --model_name_or_path $HF_HOME/models--Qwen--Qwen2.5-1.5B/snapshots/8faed761d45a263340a0528343f099c05c9a4323 \
   --dataset_name "CohereForAI/aya_dataset" \
   --cache_dir $HF_HOME \
   --train_split train \
   --output_dir $WORK/experts/$TASK \
-  --per_device_train_batch_size 4 \
+  --per_device_train_batch_size 2 \
   --gradient_accumulation_steps 8 \
   --num_train_epochs 2 \
   --learning_rate 2e-5 \

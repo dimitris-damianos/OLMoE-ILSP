@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3-0.6B_causalreasoning_expert_SFT
+#SBATCH --job-name=qwen2.5-1.5B_causalreasoning_expert_SFT
 #SBATCH --partition=boost_usr_prod
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=128G
-#SBATCH --time=3:00:00
+#SBATCH --time=10:00:00
 #SBATCH --account=EUHPC_A06_067
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
@@ -17,7 +17,7 @@ module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
 
-TASK=causalreasoning_expert_Qwen3-0.6B_SFT
+TASK=causalreasoning_expert_Qwen2.5-1.5B_SFT
 
 mkdir -p $WORK/experts/$TASK
 
@@ -30,7 +30,7 @@ export WANDB_DIR=$WORK
 # export CUDA_LAUNCH_BLOCKING=1
 
 accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
-  --model_name_or_path $HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455 \
+  --model_name_or_path $HF_HOME/models--Qwen--Qwen2.5-1.5B/snapshots/8faed761d45a263340a0528343f099c05c9a4323 \
   --dataset_name "12ml/e-CARE" \
   --cache_dir $HF_HOME \
   --train_split train \

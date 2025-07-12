@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen2.5-1.5B_math_expert_SFT
+#SBATCH --job-name=qwen2.5-1.5B_math_expert_SFT_chat
 #SBATCH --partition=boost_usr_prod
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=128G
-#SBATCH --time=10:00:00
+#SBATCH --time=12:00:00
 #SBATCH --account=EUHPC_A06_067
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
@@ -17,7 +17,7 @@ module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
 
-TASK=math_expert_Qwen2.5-1.5B_SFT
+TASK=math_expert_Qwen2.5-1.5B_SFT_chat
 
 mkdir -p $WORK/experts/$TASK
 
@@ -38,21 +38,19 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
   --per_device_train_batch_size 2 \
   --gradient_accumulation_steps 8 \
   --num_train_epochs 3 \
-  --learning_rate 2e-5 \
+  --learning_rate 5.0e-06 \
   --optim adamw_torch_fused \
   --weight_decay 0.1 \
   --max_grad_norm 1.0 \
-  --adam_beta2 0.95 \
   --warmup_ratio 0.03 \
   --bf16 \
-  --gradient_checkpointing \
   --logging_steps 10 \
   --save_steps 500 \
   --eval_steps 500 \
-  --completion_only_loss \
-  --instruction_format mathinstruct \
-  --max_length 8192 \
-  # --use_liger \
+  --assistant_only_loss \
+  --instruction_format mathinstruct_chat \
+  --max_length 4096 \
+  --use_liger \
   # --activation_offloading \
   # --push_to_hub \
   # --packing \
