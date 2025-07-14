@@ -124,17 +124,20 @@ def test_custom_moe():
 
 def test_merging():
     from utils import create_moe_from_specialists
-    from config import Qwen2WithRIMConfig
+    from config import Qwen2WithRIMConfig, Qwen3WithRIMConfig
+    from transformers import Qwen2ForCausalLM
+    from transformers.models.qwen3.modeling_qwen3 import Qwen3ForCausalLM
+    from model import Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM
     
-    base_model = "Qwen/Qwen2.5-0.5B"
+    base_model = "Qwen/Qwen3-0.6B"
     specialists = [
-        "Qwen/Qwen2.5-0.5B",
-        "Qwen/Qwen2.5-0.5B",
-        "Qwen/Qwen2.5-0.5B",
-        "Qwen/Qwen2.5-0.5B",
+        "Qwen/Qwen3-0.6B",
+        "Qwen/Qwen3-0.6B",
+        "Qwen/Qwen3-0.6B",
+        "Qwen/Qwen3-0.6B"
     ]
     # get pretrained config
-    moe_config = Qwen2WithRIMConfig.from_pretrained(base_model)
+    moe_config = Qwen3WithRIMConfig.from_pretrained(base_model)
     
     # additional config parameters
     moe_config.num_experts = len(specialists)
@@ -146,7 +149,11 @@ def test_merging():
     moe_config.router_aux_loss_coef = 0.1 
     moe_config.experts_top_p = 0.5 
     
-    moe_model = create_moe_from_specialists(base_model, specialists, moe_config)
+    moe_model = create_moe_from_specialists(base_model, 
+                                            specialists, 
+                                            moe_config,
+                                            base_class=Qwen3ForCausalLM,
+                                            moe_class=Qwen3ForCausalLMWithRIM)
     print("MoE model created with specialists merged successfully.")
     # print(moe_model)
 

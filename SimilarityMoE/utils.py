@@ -1,7 +1,8 @@
 import os 
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Type, Union
 from transformers import AutoModel, Qwen2ForCausalLM
+from transformers.models.qwen3.modeling_qwen3 import Qwen3ForCausalLM
 from config import Qwen2WithRIMConfig, Qwen3WithRIMConfig
 from model import Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM
 
@@ -9,10 +10,12 @@ def create_moe_from_specialists(
     base_model: str,
     specialists: List[str],
     moe_config: Optional[Qwen2WithRIMConfig] = None,
+    base_class: Union[Qwen2ForCausalLM, Qwen3ForCausalLM] = Qwen2ForCausalLM,
+    moe_class: Union[Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM] = Qwen2ForCausalLMWithRIM
     ):
     print("Loading base model:", base_model)
-    base_model = Qwen2ForCausalLM.from_pretrained(base_model)
-    moe_model = Qwen2ForCausalLMWithRIM(config=moe_config)
+    base_model = base_class.from_pretrained(base_model)
+    moe_model = moe_class(config=moe_config)
     
     assert len(specialists) == moe_config.num_experts, \
         f"Number of specialists ({len(specialists)}) does not match the number of experts ({moe_config.num_experts})"
@@ -35,7 +38,7 @@ def create_moe_from_specialists(
     print('Copying MLP parameters from specialists...')
     for i, specialist in enumerate(specialists):
         print(f"Loading specialist {i+1}/{len(specialists)}: {specialist}")
-        specialist_model = Qwen2ForCausalLM.from_pretrained(specialist)
+        specialist_model = base_class.from_pretrained(specialist)
         specialist_dict = specialist_model.state_dict()
         
         for layer_idx in range(moe_config.num_hidden_layers):
