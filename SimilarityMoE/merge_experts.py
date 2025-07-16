@@ -64,7 +64,7 @@ def main():
     print(f"Saving merged MoE model to {args.output_dir}...")
     moe_model.save_pretrained(args.output_dir, safe_serialization=True)
     config.save_pretrained(args.output_dir)
-    # TODO: tokenizer
+    # TODO: save tokenizer
     
     total_params = sum(p.numel() for p in moe_model.parameters())
     print(f"Total parameters in merged MoE model: {total_params:,}")

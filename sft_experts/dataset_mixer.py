@@ -10,7 +10,10 @@ from accelerate.logging import get_logger
 logger = get_logger(__name__)
 logger.setLevel("INFO")
 
+import multiprocessing
+
 from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
+    map_to_conversation_with_system_message,
     map_mathinstruct_to_prompt_completion,
     map_mathinstruct_to_conversation,
     map_metamathqa_to_conversation,
@@ -43,6 +46,7 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
 )
 
 MAP_FUNCTIONS = {
+    "insert_system_message": map_to_conversation_with_system_message,
     "mathinstruct": map_mathinstruct_to_prompt_completion,
     "mathinstruct_chat": map_mathinstruct_to_conversation,
     "metamathqa_chat": map_metamathqa_to_conversation,
@@ -144,7 +148,7 @@ def mix_datasets_with_mapping(
             #     accelerator.print(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
             # else:
             #     logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
-            dataset = dataset.map(map_fn, remove_columns=list(dataset.features))
+            dataset = dataset.map(map_fn, remove_columns=list(dataset.features), num_proc=multiprocessing.cpu_count())
             if len(split_subsets) > 0:
                 first_keys = set(split_subsets[0].features)
                 current_keys = set(dataset.features)

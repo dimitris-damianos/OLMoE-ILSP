@@ -1,6 +1,6 @@
 # sft_formatting.py
 
-def map_to_conversation_with_system(example):
+def map_to_conversation_with_system_message(example):
     new_messages = [{"role": "system", "content": ""}]  # add system message
     
     for msg in example["messages"]:
