@@ -12,7 +12,7 @@
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
-module load cuda/12.1
+module load cuda/12.2
 module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
@@ -24,6 +24,12 @@ export WANDB_PROJECT=$TASK
 export WANDB_MODE="offline"
 export WANDB_DIR=$WORK
 
+# export TORCH_NCCL_BLOCKING_WAIT=1
+# export NCCL_ASYNC_ERROR_HANDLING=1
+# export NCCL_DEBUG=INFO
+# export NCCL_P2P_DISABLE=1
+# export NCCL_TIMEOUT=1800
+
 # export PYTHONHASHSEED=42
 # export CUDA_LAUNCH_BLOCKING=1
 
@@ -32,11 +38,12 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml moe_sft.py \
   --dataset_name "allenai/tulu-v3.1-mix-preview-4096-OLMoE" \
   --cache_dir $HF_HOME \
   --train_split train \
-  --output_dir $WORK/experts/$TASK \
+  --output_dir $WORK/moe_models/$TASK \
   --per_device_train_batch_size 2 \
   --gradient_accumulation_steps 8 \
-  --num_train_epochs 3 \
-  --learning_rate 5.0e-06 \
+  --num_train_epochs 2 \
+  --learning_rate 2.0e-05 \
+  --lr_scheduler_type cosine \
   --optim adamw_torch_fused \
   --weight_decay 0.1 \
   --max_grad_norm 1.0 \
@@ -46,9 +53,9 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml moe_sft.py \
   --save_steps 500 \
   --eval_steps 500 \
   --assistant_only_loss \
-  --instruction_format add_system_message \
+  --instruction_format insert_system_message \
   --max_length 4096 \
-  --use_liger \
+  --gradient_checkpointing \
   --freeze_experts \
   # --activation_offloading \
   # --push_to_hub \
