@@ -6,7 +6,8 @@ import datetime
 import yaml
 
 from datasets import load_dataset
-from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling
+from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling, BitsAndBytesConfig
+from model import Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM
 from transformers.trainer_utils import get_last_checkpoint
 from trl import (
     SFTTrainer,
@@ -61,7 +62,7 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
 
 
 def main():
-    parser = argparse.ArgumentParser(description="MoE experts with SFT.")
+    parser = argparse.ArgumentParser(description="SFT MoE models.")
 
     # Model
     parser.add_argument("--model_name_or_path", type=str, required=True)
@@ -132,6 +133,8 @@ def main():
     parser.add_argument("--resume_from_checkpoint", type=str, default=None)
     parser.add_argument("--neftune_noise_alpha", type=float, default=None)
     parser.add_argument("--activation_offloading", action="store_true")
+    parser.add_argument("--freeze_experts", action="store_true")  # NOTE: freeze expert FFNs
+    parser.add_argument("--freeze_non_experts", action="store_true")  # NOTE: freeze non-FFN weights (except router!)
 
     # Optimizer and scheduler
     parser.add_argument("--optim", type=str, default="adamw_torch_fused")
@@ -192,8 +195,7 @@ def main():
 
     PartialState().wait_for_everyone()
 
-    # from transformers import BitsAndBytesConfig
-    # quantization_config = None
+    quantization_config = None
     # quantization_config = BitsAndBytesConfig(  # 8-bit
     #     load_in_8bit=True,
     #     llm_int8_threshold=6.0,
@@ -205,14 +207,45 @@ def main():
     #     bnb_4bit_compute_dtype=torch.bfloat16,
     # )
 
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_name_or_path,
-        cache_dir=args.cache_dir,
-        trust_remote_code=True,
-        local_files_only=True,
-        # device_map=get_kbit_device_map() if quantization_config is not None else None,
-        # quantization_config=quantization_config,
-    )
+    if "qwen2" in args.model_name_or_path.lower():
+        model = Qwen2ForCausalLMWithRIM.from_pretrained(
+            args.model_name_or_path,
+            local_files_only=True,
+            device_map=get_kbit_device_map() if quantization_config is not None else None,
+            quantization_config=quantization_config,
+        )
+    elif "qwen3" in args.model_name_or_path.lower():
+        model = Qwen3ForCausalLMWithRIM.from_pretrained(
+            args.model_name_or_path,
+            local_files_only=True,
+            device_map=get_kbit_device_map() if quantization_config is not None else None,
+            quantization_config=quantization_config,
+        )
+    else:
+        raise ValueError("MoE model must be Qwen2 or Qwen3.")
+    
+    assert hasattr(model.config, "num_experts"), "Loaded model is not a MoE model with RIM routing."
+
+    # freeze expert FFNs
+    if args.freeze_experts:
+        for name, param in model.named_parameters():
+            if "mlp.experts" in name and any(p in name for p in ["gate_proj", "up_proj", "down_proj"]):
+                param.requires_grad = False
+                accelerator.print(f"Froze expert FFN param: {name}")
+
+    # freeze non-FFN params (NOTE: router params remain always trainable)
+    if args.freeze_non_experts:
+        for name, param in model.named_parameters():
+            is_expert_ffn = (
+                "mlp.experts" in name and any(p in name for p in ["gate_proj", "up_proj", "down_proj"])
+            )
+            is_router = any(r in name for r in [
+                "key", "value", "expert_query", "expert_states_flat"
+            ])
+            if not (is_expert_ffn or is_router):
+                param.requires_grad = False
+                accelerator.print(f"Froze non-FFN param: {name}")
+        
     model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True
 

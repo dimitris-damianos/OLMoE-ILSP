@@ -1,7 +1,7 @@
 import os
 import argparse
 from typing import List, Optional, Union
-from transformers import Qwen2ForCausalLM
+from transformers import Qwen2ForCausalLM, AutoTokenizer
 from transformers.models.qwen3.modeling_qwen3 import Qwen3ForCausalLM
 
 from config import Qwen2WithRIMConfig, Qwen3WithRIMConfig
@@ -47,7 +47,7 @@ def main():
     else:
         raise ValueError(f"Unsupported model type: {args.model_type}")
 
-    print(f"Merging {num_experts} expert models into a RIM-based MoE model...")
+    print(f"Merging {num_experts} expert models into a RIM-based MoE model...\n")
     print("Base model:", args.base_model)
     print("Specialists:", args.specialists)
     print("Saving to:", args.output_dir)
@@ -64,9 +64,10 @@ def main():
     print(f"Saving merged MoE model to {args.output_dir}...")
     moe_model.save_pretrained(args.output_dir, safe_serialization=True)
     config.save_pretrained(args.output_dir)
+    # TODO: tokenizer
     
     total_params = sum(p.numel() for p in moe_model.parameters())
-    print(f"Merge completed. Total parameters in merged MoE model: {total_params:,}")
+    print(f"Total parameters in merged MoE model: {total_params:,}")
 
 if __name__ == "__main__":
     main()
