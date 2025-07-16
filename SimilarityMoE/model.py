@@ -7,6 +7,7 @@ from transformers.models.olmoe.modeling_olmoe import (
 from transformers.models.qwen3.modeling_qwen3 import (
     Qwen3MLP, Qwen3DecoderLayer, Qwen3Model, Qwen3ForCausalLM,
 )
+from transformers.masking_utils import create_causal_mask, create_sliding_window_causal_mask
 from transformers.models.qwen2.modeling_qwen2 import (
     Qwen2MLP, Qwen2DecoderLayer, Qwen2Model, Qwen2ForCausalLM,   
 )
@@ -765,9 +766,36 @@ class Qwen3ModelWithRIM(Qwen3Model):
         if position_ids is None:
             position_ids = cache_position.unsqueeze(0)
 
-        causal_mask = self._update_causal_mask(
-            attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions
-        )
+        # FIXME: this works for Olmoe but not for Qwen
+        # causal_mask = self._update_causal_mask(
+        #     attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions
+        # )
+
+        # NOTE: alt approach
+        # mask_function = create_causal_mask if self.config.sliding_window is None else create_sliding_window_causal_mask
+        # causal_mask = mask_function(
+        #     config=self.config,
+        #     input_embeds=inputs_embeds,
+        #     attention_mask=attention_mask,
+        #     cache_position=cache_position,
+        #     past_key_values=past_key_values,
+        #     position_ids=position_ids,
+        # )
+
+        if not isinstance(causal_mask_mapping := attention_mask, dict):
+            mask_kwargs = {
+                "config": self.config,
+                "input_embeds": inputs_embeds,
+                "attention_mask": attention_mask,
+                "cache_position": cache_position,
+                "past_key_values": past_key_values,
+                "position_ids": position_ids,
+            }
+            causal_mask_mapping = {
+                "full_attention": create_causal_mask(**mask_kwargs),
+            }
+            if self.has_sliding_layers:
+                causal_mask_mapping["sliding_attention"] = create_sliding_window_causal_mask(**mask_kwargs)
 
         hidden_states = inputs_embeds
 
@@ -786,7 +814,8 @@ class Qwen3ModelWithRIM(Qwen3Model):
 
             layer_outputs = decoder_layer(
                 hidden_states,
-                attention_mask=causal_mask,
+                # attention_mask=causal_mask,
+                attention_mask=causal_mask_mapping[decoder_layer.attention_type],
                 position_ids=position_ids,
                 past_key_value=past_key_values,
                 output_attentions=output_attentions,
@@ -1115,9 +1144,25 @@ class Qwen2ModelWithRIM(Qwen2Model):
         if position_ids is None:
             position_ids = cache_position.unsqueeze(0)
 
-        causal_mask = self._update_causal_mask(
-            attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions
-        )
+        # FIXME: this works for Olmoe but not for Qwen
+        # causal_mask = self._update_causal_mask(
+        #     attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions
+        # )
+
+        if not isinstance(causal_mask_mapping := attention_mask, dict):
+            mask_kwargs = {
+                "config": self.config,
+                "input_embeds": inputs_embeds,
+                "attention_mask": attention_mask,
+                "cache_position": cache_position,
+                "past_key_values": past_key_values,
+                "position_ids": position_ids,
+            }
+            causal_mask_mapping = {
+                "full_attention": create_causal_mask(**mask_kwargs),
+            }
+            if self.has_sliding_layers:
+                causal_mask_mapping["sliding_attention"] = create_sliding_window_causal_mask(**mask_kwargs)
 
         hidden_states = inputs_embeds
 
@@ -1136,7 +1181,8 @@ class Qwen2ModelWithRIM(Qwen2Model):
 
             layer_outputs = decoder_layer(
                 hidden_states,
-                attention_mask=causal_mask,
+                # attention_mask=causal_mask,
+                attention_mask=causal_mask_mapping[decoder_layer.attention_type],
                 position_ids=position_ids,
                 past_key_value=past_key_values,
                 output_attentions=output_attentions,
