@@ -33,8 +33,8 @@ def create_moe_from_specialists(
     for key in moe_state_dict:
         if key in base_state_dict and 'experts' not in key:
             moe_state_dict[key] = base_state_dict[key]
-            replaced_params['non_experts'] += 1
-            # replaced_params['non_experts'] += moe_state_dict[key].numel()  # scalar params
+            # replaced_params['non_experts'] += 1
+            replaced_params['non_experts'] += moe_state_dict[key].numel()  # scalar params
     
     print('Copying MLP parameters from specialists...')
     for i, specialist in enumerate(specialists):
@@ -55,14 +55,14 @@ def create_moe_from_specialists(
             for base_key, moe_key in param_mapping.items():
                 if base_key in specialist_dict and moe_key in moe_state_dict:
                     moe_state_dict[moe_key] = specialist_dict[base_key]
-                    replaced_params['experts'] += 1
-                    # replaced_params['experts'] += moe_state_dict[moe_key].numel()  # scalar params
+                    # replaced_params['experts'] += 1
+                    replaced_params['experts'] += moe_state_dict[moe_key].numel()  # scalar params
     
     # Check for RIM-specific parameters
     for key in moe_state_dict:
         if any(name in key for name in ['key', 'value', 'expert_query', 'expert_states_flat']):
-            replaced_params['rim_specific'] += 1
-            # replaced_params['rim_specific'] += moe_state_dict[key].numel()  # scalar params
+            # replaced_params['rim_specific'] += 1
+            replaced_params['rim_specific'] += moe_state_dict[key].numel()  # scalar params
             
     moe_model.load_state_dict(moe_state_dict)
     print(f"Model merging complete. Stats:")

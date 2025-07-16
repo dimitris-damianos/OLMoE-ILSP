@@ -1,5 +1,8 @@
 # sft.py
 
+import sys
+sys.path.append("../sft_experts")
+
 import argparse
 import os
 import datetime
@@ -29,6 +32,7 @@ from dataset_mixer import mix_datasets_with_mapping
 # import multiprocessing
 
 from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
+    map_to_conversation_with_system,
     map_mathinstruct_to_prompt_completion,
     map_mathinstruct_to_conversation,
     map_metamathqa_to_conversation,
@@ -80,6 +84,7 @@ def main():
         "--instruction_format",
         type=str,
         choices = [
+            "add_system_message",
             "mathinstruct",
             "mathinstruct_chat",
             "metamathqa_chat",
@@ -224,7 +229,7 @@ def main():
     else:
         raise ValueError("MoE model must be Qwen2 or Qwen3.")
     
-    assert hasattr(model.config, "num_experts"), "Loaded model is not a MoE model with RIM routing."
+    assert hasattr(model.config, "num_experts"), "Loaded model is not a MoE model with RIM routing."  # FIXME
 
     # freeze expert FFNs
     if args.freeze_experts:
@@ -311,6 +316,7 @@ def main():
                 cache_dir=args.cache_dir
             )
         map_functions = {
+            "add_system_message": map_to_conversation_with_system,
             "mathinstruct": map_mathinstruct_to_prompt_completion,
             "mathinstruct_chat": map_mathinstruct_to_conversation,
             "metamathqa_chat": map_metamathqa_to_conversation,
@@ -394,6 +400,7 @@ def main():
             lora_dropout=args.lora_dropout,
             use_rslora=args.use_rslora,
             target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+            # target_modules = ["gate_proj", "up_proj", "down_proj"],
             bias="none",
             task_type="CAUSAL_LM",
         )
@@ -492,6 +499,10 @@ def main():
             "finetuned_from": args.model_name_or_path,
             "dataset": dataset_names,
         }
+        trainer.create_model_card(**kwargs)
+        # restore k,v cache for fast inference
+        trainer.model.config.use_cache = True
+        trainer.model.config.save_pretrained(args.output_dir)
 
     if args.use_peft:
         accelerator.print("Merging LoRA adapters into base model...")

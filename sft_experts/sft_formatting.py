@@ -1,5 +1,17 @@
 # sft_formatting.py
 
+def map_to_conversation_with_system(example):
+    new_messages = [{"role": "system", "content": ""}]  # add system message
+    
+    for msg in example["messages"]:
+        new_messages.append({
+            "role": msg["role"],
+            "content": msg["content"]
+        })
+
+    return {"messages": new_messages}
+
+
 def map_mathinstruct_to_prompt_completion(example):
     instruction = example["instruction"].strip()
     output = example["output"].strip()
