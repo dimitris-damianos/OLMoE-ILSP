@@ -1,0 +1,41 @@
+datasets:
+  - name: json  # bio
+    splits:
+      - train
+      - validation
+    data_files:
+      train: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/train.json
+      validation: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/valid.json
+    fraction: 1.0
+    map_fn: moleculeqa_chat
+
+  - name: casehold/casehold  # legal
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: casehold_chat
+
+  - name: qiaojin/PubMedQA  # medical
+    splits:
+      - train
+    config_name: pqa_artificial
+    fraction: 1.0
+    map_fn: pubmedqa_chat
+
+  - name: ibm-research/finqa  # finance
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: finqa_chat
+
+  - name: microsoft/wiki_qa  # world knowledge
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: wikiqa_chat
+ 
+shuffle_init: true
+shuffle_post: true

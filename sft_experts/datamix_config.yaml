@@ -95,5 +95,39 @@ datasets:
     fraction: 1.0
     map_fn: piqa_chat
 
+  - name: qwedsacf/story-generation  # story generation
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: story_chat
+
+  - name: EdinburghNLP/xsum  # news summarization
+    splits: 
+      - train 
+      - validation
+    fraction: 1.0
+    map_fn: news_chat
+
+  - name: demelin/moral_stories  # moral reasoning (moral actions)
+    splits:
+      - train
+    config_name: full
+    fraction: 1.0
+    map_fn: moral_actions_chat
+
+  - name: demelin/moral_stories  # moral reasoning (immoral actions)
+    splits:
+      - train
+    config_name: full
+    fraction: 1.0
+    map_fn: immoral_actions_chat
+
+  - name: microsoft/wiki_qa  # world knowledge
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: wikiqa_chat
+
 shuffle_init: true
 shuffle_post: true

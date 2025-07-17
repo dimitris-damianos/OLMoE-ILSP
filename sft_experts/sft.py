@@ -58,6 +58,16 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
     map_casehold_to_conversation,
     map_finqa_to_prompt_completion,
     map_finqa_to_conversation,
+    map_story_generation_to_prompt_completion,
+    map_story_generation_to_conversation,
+    map_news_summarization_to_prompt_completion,
+    map_news_summarization_to_conversation,
+    map_moral_stories_moral_action_to_prompt_completion,
+    map_moral_stories_moral_action_to_conversation,
+    map_moral_stories_immoral_action_to_prompt_completion,
+    map_moral_stories_immoral_action_to_conversation,
+    map_wikiqa_to_prompt_completion,
+    map_wikiqa_to_conversation,
 )
 
 
@@ -110,6 +120,16 @@ def main():
             "casehold_chat",
             "finqa",
             "finqa_chat",
+            "story",
+            "story_chat",
+            "news",
+            "news_chat",
+            "moral_actions",
+            "moral_actions_chat",
+            "immoral_actions",
+            "immoral_actions_chat",
+            "wikiqa",
+            "wikiqa_chat",
         ],
         required=False,
     )
@@ -214,6 +234,7 @@ def main():
         local_files_only=True,
         # device_map=get_kbit_device_map() if quantization_config is not None else None,
         # quantization_config=quantization_config,
+        torch_dtype=torch.bfloat16
     )
     model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True
@@ -221,7 +242,7 @@ def main():
     # if tokenizer.chat_template is None: # set default chat template if needed
     # model, tokenizer = clone_chat_template(model, tokenizer, "Qwen/Qwen3-0.6B")
 
-    # NOTE: uncommment - necessary for Qwen3!, FIXME: give as param
+    # NOTE: uncommment - necessary for Qwen3!, FIXME: give as param - or do it with chat_template_path
     tokenizer.chat_template = "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {{- messages[0].content + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0].content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = '' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n\n        {{- '<|im_start|>' + message.role }}\n        {% generation %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- '<think>\\n' + reasoning_content.strip('\\n') + '\\n</think>\\n\\n' + content.lstrip('\\n') }}\n            {%- else %}\n                {{- content }}\n            {%- endif %}\n        {%- else %}\n            {{- content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>' }}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}"
 
     # NOTE: data collator is used when we pass {"text": text}
@@ -310,6 +331,16 @@ def main():
             "casehold_chat": map_casehold_to_conversation,
             "finqa": map_finqa_to_prompt_completion,
             "finqa_chat": map_finqa_to_conversation,
+            "story": map_story_generation_to_prompt_completion,
+            "story_chat": map_story_generation_to_conversation,
+            "news": map_news_summarization_to_prompt_completion,
+            "news_chat": map_news_summarization_to_conversation,
+            "moral_actions": map_moral_stories_moral_action_to_prompt_completion,
+            "moral_actions_chat": map_moral_stories_moral_action_to_conversation,
+            "immoral_actions": map_moral_stories_immoral_action_to_prompt_completion,
+            "immoral_actions_chat": map_moral_stories_immoral_action_to_conversation,
+            "wikiqa": map_wikiqa_to_prompt_completion,
+            "wikiqa_chat": map_wikiqa_to_conversation,
         }
         mapping_fn = map_functions[args.instruction_format]
 

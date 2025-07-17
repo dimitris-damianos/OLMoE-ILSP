@@ -43,6 +43,16 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
     map_casehold_to_conversation,
     map_finqa_to_prompt_completion,
     map_finqa_to_conversation,
+    map_story_generation_to_prompt_completion,
+    map_story_generation_to_conversation,
+    map_news_summarization_to_prompt_completion,
+    map_news_summarization_to_conversation,
+    map_moral_stories_moral_action_to_prompt_completion,
+    map_moral_stories_moral_action_to_conversation,
+    map_moral_stories_immoral_action_to_prompt_completion,
+    map_moral_stories_immoral_action_to_conversation,
+    map_wikiqa_to_prompt_completion,
+    map_wikiqa_to_conversation,
 )
 
 MAP_FUNCTIONS = {
@@ -76,6 +86,16 @@ MAP_FUNCTIONS = {
     "casehold_chat": map_casehold_to_conversation,
     "finqa": map_finqa_to_prompt_completion,
     "finqa_chat": map_finqa_to_conversation,
+    "story": map_story_generation_to_prompt_completion,
+    "story_chat": map_story_generation_to_conversation,
+    "news": map_news_summarization_to_prompt_completion,
+    "news_chat": map_news_summarization_to_conversation,
+    "moral_actions": map_moral_stories_moral_action_to_prompt_completion,
+    "moral_actions_chat": map_moral_stories_moral_action_to_conversation,
+    "immoral_actions": map_moral_stories_immoral_action_to_prompt_completion,
+    "immoral_actions_chat": map_moral_stories_immoral_action_to_conversation,
+    "wikiqa": map_wikiqa_to_prompt_completion,
+    "wikiqa_chat": map_wikiqa_to_conversation,
 }
 
 def mix_datasets_with_mapping(

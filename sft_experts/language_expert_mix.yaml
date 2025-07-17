@@ -1,0 +1,28 @@
+datasets:
+  - name: CohereForAI/aya_dataset  # multilingual
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: aya_with_language_chat
+  
+  - name: tatsu-lab/alpaca  # general instruction following
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: alpaca_chat
+  
+  - name: qwedsacf/story-generation  # story generation
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: story_chat
+
+  - name: EdinburghNLP/xsum  # news summarization
+    splits: 
+      - train 
+      - validation
+    fraction: 1.0
+    map_fn: news_chat
+
+shuffle_init: true
+shuffle_post: true

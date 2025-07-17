@@ -833,3 +833,141 @@ def map_finqa_to_conversation(example):
             {"role": "assistant", "content": final_result}
         ]
     }
+
+
+def map_wikiqa_to_prompt_completion(example):
+    prompt = (
+        f"### Question:\n{example['question'].strip()}\n\n"
+        "### Response:\n"
+    ).rstrip() + "\n"
+    completion = example['answer'].strip()
+
+    return {
+        "prompt": prompt,
+        "completion": completion
+    }
+
+
+def map_wikiqa_to_conversation(example):
+    return {
+        "messages": [
+            {"role": "system", "content": ""},
+            {"role": "user", "content": example["question"].strip()},
+            {"role": "assistant", "content": example["answer"].strip()}
+        ]
+    }
+
+
+def map_story_generation_to_prompt_completion(example):
+    summary = example["summary"].strip()
+    story = example["story"].strip()
+
+    prompt = (
+        "Below is a summary. Write a full story that corresponds to the summary.\n\n"
+        f"### Summary:\n{summary}\n\n"
+        "### Response:\n"
+    ).rstrip() + "\n"
+
+    return {
+        "prompt": prompt,
+        "completion": story
+    }
+
+
+def map_story_generation_to_conversation(example):
+    summary = example["summary"].strip()
+    story = example["story"].strip()
+
+    user_message = (
+        "Below is a summary. Please write a full story that corresponds to the summary.\n\n"
+        f"### Summary:\n{summary}"
+    )
+
+    return {
+        "messages": [
+            {"role": "system", "content": ""},
+            {"role": "user", "content": user_message},
+            {"role": "assistant", "content": story}
+        ]
+    }
+
+
+def map_news_summarization_to_prompt_completion(example):
+    prompt = (
+        f"### Document:\n{example['document'].strip()}\n\n"
+        "Write a concise summary of the document above.\n\n"
+        "### Response:\n"
+    ).rstrip() + "\n"
+    summary = example['summary'].strip()
+
+    return {
+        "prompt": prompt,
+        "completion": summary
+    }
+
+
+def map_news_summarization_to_conversation(example):
+    user_msg = (
+        f"Here is a document:\n{example['document'].strip()}\n\n"
+        "Please summarize the document."
+    )
+
+    return {
+        "messages": [
+            {"role": "system", "content": ""},
+            {"role": "user", "content": user_msg},
+            {"role": "assistant", "content": example["summary"].strip()}
+        ]
+    }
+
+
+def map_moral_stories_moral_action_to_prompt_completion(example):
+    prompt = (
+        f"Given the norm: '{example['norm'].strip()}', is the following action moral or immoral?\n\n"
+        f"### Action: {example['moral_action'].strip()}\n\n"
+        "### Response:\n"
+    ).rstrip() + "\n"
+    return {
+        "prompt": prompt,
+        "completion": "Moral"
+    }
+
+
+def map_moral_stories_immoral_action_to_prompt_completion(example):
+    prompt = (
+        f"Given the norm: '{example['norm'].strip()}', is the following action moral or immoral?\n\n"
+        f"### Action: {example['immoral_action'].strip()}\n\n"
+        "### Response:\n"
+    ).rstrip() + "\n"
+    return {
+        "prompt": prompt,
+        "completion": "Immoral"
+    }
+
+
+def map_moral_stories_moral_action_to_conversation(example):
+    user_msg = (
+        f"Given the norm: '{example['norm'].strip()}', is the following action moral or immoral?\n\n"
+        f"### Action: {example['moral_action'].strip()}"
+    )
+    return {
+        "messages": [
+            {"role": "system", "content": ""},
+            {"role": "user", "content": user_msg},
+            {"role": "assistant", "content": "Moral"}
+        ]
+    }
+
+
+def map_moral_stories_immoral_action_to_conversation(example):
+    user_msg = (
+        f"Given the norm: '{example['norm'].strip()}', is the following action moral or immoral?\n\n"
+        f"### Action: {example['immoral_action'].strip()}"
+    )
+    return {
+        "messages": [
+            {"role": "system", "content": ""},
+            {"role": "user", "content": user_msg},
+            {"role": "assistant", "content": "Immoral"}
+        ]
+    }

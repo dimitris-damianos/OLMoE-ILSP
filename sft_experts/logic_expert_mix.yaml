@@ -1,0 +1,42 @@
+datasets:
+  - name: TIGER-Lab/MathInstruct  # math
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: mathinstruct_chat
+
+  # - name: meta-math/MetaMathQA  # math
+  #   splits:
+  #     - train
+  #   fraction: 1.0
+  #   map_fn: metamathqa_chat
+
+  - name: Vezora/Tested-143k-Python-Alpaca  # code
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: pythonalpaca_chat
+  
+  - name: 12ml/e-CARE  # causal reasoning
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: e-care_causal_reasoning_chat
+
+  - name: 12ml/e-CARE  # causal reasoning - explanation generation
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: e-care_explanation_generation_chat
+
+  - name: ybisk/piqa  # physical commonsense
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: piqa_chat
+   
+shuffle_init: true
+shuffle_post: true
