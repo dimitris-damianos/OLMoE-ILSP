@@ -12,7 +12,7 @@
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
-module load cuda/12.1
+module load cuda/12.2
 module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
@@ -40,4 +40,6 @@ python merge_experts.py \
   --base_model $BASE_MODEL \
   --specialists ${SPECIALISTS[@]} \
   --output_dir $MOE_SAVE_DIR \
-  --model_type qwen3
+  --model_type qwen3 \
+  --output_expert_mask \
+  --output_router_logits

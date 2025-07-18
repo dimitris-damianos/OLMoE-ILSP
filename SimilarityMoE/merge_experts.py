@@ -17,6 +17,8 @@ def main():
     parser.add_argument("--key_size", type=int, default=512, help="Attention key size for RIMs.")
     parser.add_argument("--experts_top_p", type=float, default=0.5, help="Top-p threshold for expert routing.")
     parser.add_argument("--router_aux_loss_coef", type=float, default=0.1, help="Router auxiliary loss coefficient.")
+    parser.add_argument("--output_expert_mask", action="store_true")
+    parser.add_argument("--output_router_logits", action="store_true")
 
     args = parser.parse_args()
 
@@ -27,9 +29,10 @@ def main():
             args.base_model,
             num_experts=num_experts,
             expert_attn_size=args.key_size,
-            experts_top_p=args.experts_top_p,
+            output_expert_mask=args.output_expert_mask,
+            output_router_logits=args.output_router_logits,
             router_aux_loss_coef=args.router_aux_loss_coef,
-            output_expert_mask=True,
+            experts_top_p=args.experts_top_p,
         )
         base_class = Qwen2ForCausalLM
         moe_class = Qwen2ForCausalLMWithRIM
@@ -38,9 +41,10 @@ def main():
             args.base_model,
             num_experts=num_experts,
             expert_attn_size=args.key_size,
-            experts_top_p=args.experts_top_p,
+            output_expert_mask=args.output_expert_mask,
+            output_router_logits=args.output_router_logits,
             router_aux_loss_coef=args.router_aux_loss_coef,
-            output_expert_mask=True,
+            experts_top_p=args.experts_top_p,
         )
         base_class = Qwen3ForCausalLM
         moe_class = Qwen3ForCausalLMWithRIM
