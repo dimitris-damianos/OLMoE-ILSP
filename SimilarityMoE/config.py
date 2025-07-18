@@ -16,7 +16,6 @@ class Qwen3WithRIMConfig(Qwen3Config):
         self.expert_attn_size = kwargs.get("key_size", 512)
         self.output_expert_mask = kwargs.get("output_expert_mask", False)  # Output expert mask
         self.output_router_logits = kwargs.get("output_router_logits", False)
-        self.output_expert_mask = kwargs.get("output_expert_mask", False)
         self.router_aux_loss_coef = kwargs.get("router_aux_loss_coef", 0.1)  # Coefficient for router auxiliary loss
         self.experts_top_p = kwargs.get("experts_top_p", 0.5)
         
@@ -27,6 +26,5 @@ class Qwen2WithRIMConfig(Qwen2Config):
         self.expert_attn_size = kwargs.get("key_size", 512)
         self.output_expert_mask = kwargs.get("output_expert_mask", False)  # Output expert mask
         self.output_router_logits = kwargs.get("output_router_logits", False)
-        self.output_expert_mask = kwargs.get("output_expert_mask", False)
         self.router_aux_loss_coef = kwargs.get("router_aux_loss_coef", 0.1)  # Coefficient for router auxiliary loss
         self.experts_top_p = kwargs.get("experts_top_p", 0.5)
