@@ -1,4 +1,4 @@
-# sft.py
+# moe_sft.py
 
 import sys
 sys.path.append("../sft_experts")
@@ -8,9 +8,11 @@ import os
 import datetime
 import yaml
 
+import torch
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling, BitsAndBytesConfig
 from model import Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM
+from rim_liger import apply_liger_to_model
 from transformers.trainer_utils import get_last_checkpoint
 from trl import (
     SFTTrainer,
@@ -62,11 +64,21 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
     map_casehold_to_conversation,
     map_finqa_to_prompt_completion,
     map_finqa_to_conversation,
+    map_story_generation_to_prompt_completion,
+    map_story_generation_to_conversation,
+    map_news_summarization_to_prompt_completion,
+    map_news_summarization_to_conversation,
+    map_moral_stories_moral_action_to_prompt_completion,
+    map_moral_stories_moral_action_to_conversation,
+    map_moral_stories_immoral_action_to_prompt_completion,
+    map_moral_stories_immoral_action_to_conversation,
+    map_wikiqa_to_prompt_completion,
+    map_wikiqa_to_conversation,
 )
 
 
 def main():
-    parser = argparse.ArgumentParser(description="SFT MoE models.")
+    parser = argparse.ArgumentParser(description="SFT Qwen RIM-based MoE models.")
 
     # Model
     parser.add_argument("--model_name_or_path", type=str, required=True)
@@ -114,6 +126,16 @@ def main():
             "casehold_chat",
             "finqa",
             "finqa_chat",
+            "story",
+            "story_chat",
+            "news",
+            "news_chat",
+            "moral_actions",
+            "moral_actions_chat",
+            "immoral_actions",
+            "immoral_actions_chat",
+            "wikiqa",
+            "wikiqa_chat",
         ],
         required=False,
     )
@@ -133,13 +155,13 @@ def main():
     parser.add_argument("--use_liger", action="store_true")
     parser.add_argument("--max_length", type=int, default=8192)
     parser.add_argument("--packing", action="store_true")
-    parser.add_argument("--completion_only_loss", action="store_true")  # NOTE: not compatible with packing!
-    parser.add_argument("--assistant_only_loss", action="store_true")  # NOTE: not compatible with packing!
+    parser.add_argument("--completion_only_loss", action="store_true")
+    parser.add_argument("--assistant_only_loss", action="store_true")
     parser.add_argument("--resume_from_checkpoint", type=str, default=None)
     parser.add_argument("--neftune_noise_alpha", type=float, default=None)
     parser.add_argument("--activation_offloading", action="store_true")
-    parser.add_argument("--freeze_experts", action="store_true")  # NOTE: freeze expert FFNs
-    parser.add_argument("--freeze_non_experts", action="store_true")  # NOTE: freeze non-FFN weights (except router!)
+    parser.add_argument("--freeze_experts", action="store_true")
+    parser.add_argument("--freeze_non_experts", action="store_true")
 
     # Optimizer and scheduler
     parser.add_argument("--optim", type=str, default="adamw_torch_fused")
@@ -163,8 +185,9 @@ def main():
 
     args = parser.parse_args()
 
-    if args.packing and (args.completion_only_loss or args.assistant_only_loss):
-        raise ValueError("Cannot use --packing together with --completion_only_loss or --assistant_only_loss.")
+    # NOTE: packing is compatible now with masking
+    # if args.packing and (args.completion_only_loss or args.assistant_only_loss):
+    #     raise ValueError("Cannot use --packing together with --completion_only_loss or --assistant_only_loss.")
 
     if args.dataset_mix_config:
         if not os.path.exists(args.dataset_mix_config):
@@ -218,14 +241,24 @@ def main():
             local_files_only=True,
             device_map=get_kbit_device_map() if quantization_config is not None else None,
             quantization_config=quantization_config,
+            torch_dtype=torch.bfloat16,  # force bf16
+            attn_implementation="flash_attention_2",
         )
+        if args.use_liger:  # custom liger kernel
+            apply_liger_to_model(model=model, qwen_type='qwen2') 
+        accelerator.print(model) 
     elif "qwen3" in args.model_name_or_path.lower():
         model = Qwen3ForCausalLMWithRIM.from_pretrained(
             args.model_name_or_path,
             local_files_only=True,
             device_map=get_kbit_device_map() if quantization_config is not None else None,
             quantization_config=quantization_config,
+            torch_dtype=torch.bfloat16,  # force bf16
+            attn_implementation="flash_attention_2",
         )
+        if args.use_liger:
+            apply_liger_to_model(model=model, qwen_type='qwen3')
+        accelerator.print(model) 
     else:
         raise ValueError("MoE model must be Qwen2 or Qwen3.")
     
@@ -253,14 +286,17 @@ def main():
         
     model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True
+    gradient_checkpointing_kwargs = None
+    if args.gradient_checkpointing:
+        gradient_checkpointing_kwargs = {'use_reentrant':False}
 
     # if tokenizer.chat_template is None: # set default chat template if needed
     # model, tokenizer = clone_chat_template(model, tokenizer, "Qwen/Qwen3-0.6B")
 
-    # NOTE: uncommment - necessary for Qwen3!, FIXME: give as param
+    # NOTE: uncommment - necessary for Qwen!, FIXME: give as param - or do it with chat_template_path?
     tokenizer.chat_template = "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {{- messages[0].content + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0].content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = '' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n\n        {{- '<|im_start|>' + message.role }}\n        {% generation %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- '<think>\\n' + reasoning_content.strip('\\n') + '\\n</think>\\n\\n' + content.lstrip('\\n') }}\n            {%- else %}\n                {{- content }}\n            {%- endif %}\n        {%- else %}\n            {{- content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>' }}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}"
 
-    # NOTE: data collator is used when we pass {"text": text}
+    # NOTE: data collator is used when we pass 'text'
     # if args.completion_only_loss:
     #     accelerator.print("Using DataCollatorForCompletionOnlyLM (completions only)")
     #     collator = DataCollatorForCompletionOnlyLM(
@@ -346,11 +382,21 @@ def main():
             "casehold_chat": map_casehold_to_conversation,
             "finqa": map_finqa_to_prompt_completion,
             "finqa_chat": map_finqa_to_conversation,
+            "story": map_story_generation_to_prompt_completion,
+            "story_chat": map_story_generation_to_conversation,
+            "news": map_news_summarization_to_prompt_completion,
+            "news_chat": map_news_summarization_to_conversation,
+            "moral_actions": map_moral_stories_moral_action_to_prompt_completion,
+            "moral_actions_chat": map_moral_stories_moral_action_to_conversation,
+            "immoral_actions": map_moral_stories_immoral_action_to_prompt_completion,
+            "immoral_actions_chat": map_moral_stories_immoral_action_to_conversation,
+            "wikiqa": map_wikiqa_to_prompt_completion,
+            "wikiqa_chat": map_wikiqa_to_conversation,
         }
         mapping_fn = map_functions[args.instruction_format]
 
         # convert dataset to prompt-completion (instruction) or conversational format
-        # NOTE: internally the SFTTrainer uses tha apply_chat_template() method
+        # NOTE: internally the SFTTrainer uses tha apply_chat_template() method and tokenizes
         train_dataset = dataset[args.train_split].map(
             mapping_fn,
             remove_columns=list(dataset[args.train_split].features),
@@ -364,6 +410,11 @@ def main():
             )
         else:
             eval_dataset = None
+
+        # NOTE: uncomment just for testing
+        # total = len(train_dataset)
+        # subset_size = int(total * 0.1)
+        # train_dataset = train_dataset.select(range(subset_size))
 
         # convert dataset from prompt-completion to language modeling format (text) - or use formatting_func
         # def concat_prompt_completion(example):
@@ -415,9 +466,11 @@ def main():
         save_steps=args.save_steps,
         eval_steps=args.eval_steps,
         bf16=args.bf16,
+        tf32=True,
         fp16=args.fp16,
         gradient_checkpointing=args.gradient_checkpointing,
-        use_liger_kernel=args.use_liger,
+        gradient_checkpointing_kwargs=gradient_checkpointing_kwargs,
+        # use_liger_kernel=args.use_liger,
         eval_strategy="steps" if eval_dataset else "no",
         push_to_hub=False,
         optim=args.optim,
@@ -429,6 +482,8 @@ def main():
         lr_scheduler_type=args.lr_scheduler_type,
         warmup_ratio=args.warmup_ratio,
         packing=args.packing,
+        padding_free=True,
+        model_init_kwargs={"attn_implementation": "flash_attention_2"},
         completion_only_loss=args.completion_only_loss,
         assistant_only_loss=args.assistant_only_loss,
         max_length=args.max_length,
@@ -451,11 +506,11 @@ def main():
         #     ex["prompt"] + ex["completion"] for ex in examples
         # ],
     )
-    trainable_params = sum(p.numel() for p in trainer.model.parameters() if p.requires_grad)
-    total_params = sum(p.numel() for p in trainer.model.parameters())
-    accelerator.print(f"\nTrainable parameters: {trainable_params} / {total_params} ({100*trainable_params/total_params:.2f}%)")
+    # trainable_params = sum(p.numel() for p in trainer.model.parameters() if p.requires_grad)
+    # total_params = sum(p.numel() for p in trainer.model.parameters())
+    # accelerator.print(f"\nTrainable parameters: {trainable_params} / {total_params} ({100*trainable_params/total_params:.2f}%)")
 
-    PartialState().wait_for_everyone()
+    PartialState().wait_for_everyone()  # FIXME: nccl crashes for large datasets?
 
     resume_checkpoint = args.resume_from_checkpoint
     latest = ""
@@ -500,7 +555,7 @@ def main():
             "finetuned_from": args.model_name_or_path,
             "dataset": dataset_names,
         }
-        trainer.create_model_card(**kwargs)
+        # trainer.create_model_card(**kwargs)  # deprecated
         # restore k,v cache for fast inference
         trainer.model.config.use_cache = True
         trainer.model.config.save_pretrained(args.output_dir)
