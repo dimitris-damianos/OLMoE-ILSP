@@ -894,6 +894,7 @@ def map_story_generation_to_conversation(example):
 
 def map_news_summarization_to_prompt_completion(example):
     prompt = (
+        "You are given a document.\n\n"
         f"### Document:\n{example['document'].strip()}\n\n"
         "Write a concise summary of the document above.\n\n"
         "### Response:\n"
@@ -908,8 +909,9 @@ def map_news_summarization_to_prompt_completion(example):
 
 def map_news_summarization_to_conversation(example):
     user_msg = (
-        f"Here is a document:\n{example['document'].strip()}\n\n"
-        "Please summarize the document."
+        "You are given a document.\n\n"
+        f"### Document:\n{example['document'].strip()}\n\n"
+        "Write a concise summary of the document above."
     )
 
     return {
@@ -927,6 +929,7 @@ def map_moral_stories_moral_action_to_prompt_completion(example):
         f"### Action: {example['moral_action'].strip()}\n\n"
         "### Response:\n"
     ).rstrip() + "\n"
+
     return {
         "prompt": prompt,
         "completion": "Moral"
@@ -939,6 +942,7 @@ def map_moral_stories_immoral_action_to_prompt_completion(example):
         f"### Action: {example['immoral_action'].strip()}\n\n"
         "### Response:\n"
     ).rstrip() + "\n"
+
     return {
         "prompt": prompt,
         "completion": "Immoral"
@@ -950,6 +954,7 @@ def map_moral_stories_moral_action_to_conversation(example):
         f"Given the norm: '{example['norm'].strip()}', is the following action moral or immoral?\n\n"
         f"### Action: {example['moral_action'].strip()}"
     )
+
     return {
         "messages": [
             {"role": "system", "content": ""},
@@ -964,6 +969,7 @@ def map_moral_stories_immoral_action_to_conversation(example):
         f"Given the norm: '{example['norm'].strip()}', is the following action moral or immoral?\n\n"
         f"### Action: {example['immoral_action'].strip()}"
     )
+
     return {
         "messages": [
             {"role": "system", "content": ""},
