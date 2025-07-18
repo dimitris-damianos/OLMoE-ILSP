@@ -152,3 +152,11 @@ def apply_liger_to_model(model, qwen_type):
         print(
             "The model is not an instance of PreTrainedModel. No liger kernels will be applied."
         )
+
+
+def monkey_patch_trainer_for_liger(trainer):
+    def fused_loss_compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
+        outputs = model(**inputs)
+        loss = outputs.loss
+        return (loss, outputs) if return_outputs else loss
+    trainer.compute_loss = MethodType(fused_loss_compute_loss, trainer)

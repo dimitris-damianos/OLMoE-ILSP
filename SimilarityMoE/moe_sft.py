@@ -12,7 +12,7 @@ import torch
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling, BitsAndBytesConfig
 from model import Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM
-from rim_liger import apply_liger_to_model
+from rim_liger import apply_liger_to_model, monkey_patch_trainer_for_liger
 from transformers.trainer_utils import get_last_checkpoint
 from trl import (
     SFTTrainer,
@@ -241,7 +241,7 @@ def main():
             local_files_only=True,
             device_map=get_kbit_device_map() if quantization_config is not None else None,
             quantization_config=quantization_config,
-            torch_dtype=torch.bfloat16,  # force bf16
+            torch_dtype="bfloat16",
             attn_implementation="flash_attention_2",
         )
         if args.use_liger:  # custom liger kernel
@@ -253,7 +253,7 @@ def main():
             local_files_only=True,
             device_map=get_kbit_device_map() if quantization_config is not None else None,
             quantization_config=quantization_config,
-            torch_dtype=torch.bfloat16,  # force bf16
+            torch_dtype="bfloat16",
             attn_implementation="flash_attention_2",
         )
         if args.use_liger:
@@ -506,9 +506,12 @@ def main():
         #     ex["prompt"] + ex["completion"] for ex in examples
         # ],
     )
-    # trainable_params = sum(p.numel() for p in trainer.model.parameters() if p.requires_grad)
-    # total_params = sum(p.numel() for p in trainer.model.parameters())
-    # accelerator.print(f"\nTrainable parameters: {trainable_params} / {total_params} ({100*trainable_params/total_params:.2f}%)")
+    if args.use_liger:
+        monkey_patch_trainer_for_liger(trainer)  # TODO: better solution
+
+    trainable_params = sum(p.numel() for p in trainer.model.parameters() if p.requires_grad)
+    total_params = sum(p.numel() for p in trainer.model.parameters())
+    accelerator.print(f"\nTrainable parameters: {trainable_params} / {total_params} ({100*trainable_params/total_params:.2f}%)")
 
     PartialState().wait_for_everyone()  # FIXME: nccl crashes for large datasets?
 
