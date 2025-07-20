@@ -235,10 +235,10 @@ def main():
         local_files_only=True,
         device_map=get_kbit_device_map() if quantization_config is not None else None,
         quantization_config=quantization_config,
-        torch_dtype=torch.bfloat16,  # force bf16
-        attn_implementation="flash_attention_2",
+        torch_dtype=torch.bfloat16,
+        # attn_implementation="flash_attention_2",  # NOTE: add as param
     )
-    model.config.attn_implementation = "flash_attention_2"
+    # model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True
     gradient_checkpointing_kwargs = None
     if args.gradient_checkpointing:
@@ -431,8 +431,8 @@ def main():
         lr_scheduler_type=args.lr_scheduler_type,
         warmup_ratio=args.warmup_ratio,
         packing=args.packing,
-        padding_free=True,
-        model_init_kwargs={"attn_implementation": "flash_attention_2"},
+        padding_free=True,  # TODO: add as param - requires flash_attention_2
+        # model_init_kwargs={"attn_implementation": "flash_attention_2"},
         completion_only_loss=args.completion_only_loss,
         assistant_only_loss=args.assistant_only_loss,
         max_length=args.max_length,
