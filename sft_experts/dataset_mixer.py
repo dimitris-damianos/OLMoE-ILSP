@@ -169,6 +169,7 @@ def mix_datasets_with_mapping(
             # else:
             #     logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
             dataset = dataset.map(map_fn, remove_columns=list(dataset.features), num_proc=multiprocessing.cpu_count())
+            dataset = dataset.filter(lambda x: x["messages"] is not None)  # NOTE: for conversational format - added to quickly filter out some bad examples
             if len(split_subsets) > 0:
                 first_keys = set(split_subsets[0].features)
                 current_keys = set(dataset.features)

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=qwen3_moe_merged_SFT_tulu_mix_freezed_experts
+#SBATCH --job-name=qwen3-0.6B_world_expert_SFT
 #SBATCH --partition=boost_usr_prod
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -17,7 +17,9 @@ module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
 
-TASK=qwen3_moe_merged_SFT_tulu_mix_freezed_experts
+TASK=world_expert_Qwen3-0.6B_SFT
+
+mkdir -p $WORK/experts/$TASK
 
 export HF_HOME=$WORK/hf_cache
 export WANDB_PROJECT=$TASK
@@ -33,36 +35,27 @@ export WANDB_DIR=$WORK
 # export PYTHONHASHSEED=42
 # export CUDA_LAUNCH_BLOCKING=1
 
-accelerate launch --config_file $WORK/scripts/multi_gpu.yaml moe_sft.py \
-  --model_name_or_path $WORK/moe_models/qwen3_moe_merged \
-  --dataset_name "allenai/tulu-v3.1-mix-preview-4096-OLMoE" \
+accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
+  --model_name_or_path $HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455 \
+  --dataset_mix_config $WORK/scripts/world_expert_mix.yaml \
   --cache_dir $HF_HOME \
   --train_split train \
-  --output_dir $WORK/moe_models/$TASK \
-  --per_device_train_batch_size 2 \
-  --gradient_accumulation_steps 8 \
+  --eval_split validation \
+  --output_dir $WORK/experts/$TASK \
+  --per_device_train_batch_size 24 \
+  --gradient_accumulation_steps 4 \
   --num_train_epochs 2 \
-  --learning_rate 5.0e-06 \
-  --lr_scheduler_type cosine \
+  --learning_rate 2.0e-05 \
   --optim adamw_torch_fused \
   --weight_decay 0.1 \
   --max_grad_norm 1.0 \
-  --warmup_ratio 0.05 \
+  --warmup_ratio 0.03 \
   --bf16 \
   --gradient_checkpointing \
   --logging_steps 10 \
   --save_steps 500 \
-  --eval_steps 500 \
+  --eval_steps 10 \
   --assistant_only_loss \
-  --instruction_format insert_system_message \
-  --max_length 4096 \
-  --freeze_experts \
+  --max_length 8192 \
   --use_liger \
-  --packing \
-  # --freeze_non_experts \
-  # --activation_offloading \
-  # --push_to_hub \
-  # --use_peft \
-  # --lora_r 16 \
-  # --lora_alpha 16 \
-  # --use_rslora
+  # --packing

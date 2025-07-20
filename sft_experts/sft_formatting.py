@@ -644,8 +644,9 @@ def map_moleculeqa_to_prompt_completion(example):
         options[label] = text
 
     answer_letter = example["answer"].strip().upper()
-    if answer_letter not in options:
+    if answer_letter not in options:  # FIXME
         raise ValueError(f"Answer letter {answer_letter} not found in options: {options.keys()}")
+        # return {"prompt": None, "completion": None}
 
     correct_text = options[answer_letter]
 
@@ -688,8 +689,9 @@ def map_moleculeqa_to_conversation(example):
         options[label] = text
 
     answer_letter = example["answer"].strip().upper()
-    if answer_letter not in options:
-        raise ValueError(f"Answer letter {answer_letter} not found in options: {options.keys()}")
+    if answer_letter not in options:  # FIXME
+        # raise ValueError(f"Answer letter {answer_letter} not found in options: {options.keys()}")
+        return {"messages": None}
 
     correct_text = options[answer_letter]
 
