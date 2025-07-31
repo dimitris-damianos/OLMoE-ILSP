@@ -1,0 +1,635 @@
+Loading cuda/12.2
+  Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
+    zlib-ng/2.1.6-jkgunjc libxml2/2.10.3-zbbe7lm
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_test', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name='allenai/tulu-v3.1-mix-preview-4096-OLMoE', dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config=None, instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_SFT_tulu_mix_test', per_device_train_batch_size=8, gradient_accumulation_steps=8, num_train_epochs=2, learning_rate=5e-06, logging_steps=10, save_steps=500, eval_steps=500, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=True, max_length=4096, packing=True, completion_only_loss=False, assistant_only_loss=True, resume_from_checkpoint=None, neftune_noise_alpha=None, activation_offloading=False, freeze_experts=True, freeze_non_experts=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, push_to_hub=False)
+
+Initializing tokenizer and model...
+Applied Liger kernels to Qwen3ModelWithRim.
+Applied Liger kernels to Qwen3ModelWithRim.
+Applied Liger kernels to Qwen3ModelWithRim.
+Applied Liger kernels to Qwen3ModelWithRim.
+Qwen3ForCausalLMWithRIM(
+  (model): Qwen3ModelWithRIM(
+    (embed_tokens): Embedding(151936, 1024)
+    (layers): ModuleList(
+      (0-27): 28 x Qwen3DecoderLayerWithRIM(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear(in_features=1024, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=1024, bias=False)
+          (q_norm): LigerRMSNorm((128,), eps=1e-06)
+          (k_norm): LigerRMSNorm((128,), eps=1e-06)
+        )
+        (mlp): Qwen3MoeBlockWithRIM(
+          (experts): ModuleList(
+            (0-3): 4 x LigerSwiGLUMLP(
+              (gate_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (up_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (down_proj): Linear(in_features=3072, out_features=1024, bias=False)
+              (act_fn): SiLU()
+            )
+          )
+          (key): Linear(in_features=1024, out_features=256, bias=False)
+          (value): Linear(in_features=1024, out_features=256, bias=False)
+          (expert_query): Linear(in_features=256, out_features=256, bias=False)
+          (expert_states_flat): Linear(in_features=1024, out_features=256, bias=False)
+        )
+        (input_layernorm): LigerRMSNorm((1024,), eps=1e-06, offset=0.0, in_place=True, row_mode=None)
+        (post_attention_layernorm): LigerRMSNorm((1024,), eps=1e-06, offset=0.0, in_place=True, row_mode=None)
+      )
+    )
+    (norm): LigerRMSNorm((1024,), eps=1e-06, offset=0.0, in_place=True, row_mode=None)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
+)
+Froze expert FFN param: model.layers.0.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.0.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.1.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.2.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.3.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.4.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.5.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.6.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.7.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.8.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.9.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.10.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.11.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.12.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.13.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.14.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.15.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.16.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.17.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.18.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.19.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.20.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.21.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.22.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.23.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.24.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.25.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.26.mlp.experts.3.down_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.0.gate_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.0.up_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.0.down_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.1.gate_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.1.up_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.1.down_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.2.gate_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.2.up_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.2.down_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.3.gate_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.3.up_proj.weight
+Froze expert FFN param: model.layers.27.mlp.experts.3.down_proj.weight
+
+Loading dataset...
+Loaded 608042 training samples.
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+activation_offloading=False,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+assistant_only_loss=True,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chat_template_path=None,
+completion_only_loss=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=18000,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=False,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=500,
+eval_strategy=no,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=8,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-06,
+length_column_name=length,
+liger_kernel_config=None,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_SFT_tulu_mix_test/runs/Jul22_12-42-22_lrdn0388.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=2,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_SFT_tulu_mix_test,
+overwrite_output_dir=False,
+packing=True,
+packing_strategy=ffd,
+pad_to_multiple_of=None,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=8,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['wandb', 'codecarbon'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_SFT_tulu_mix_test,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+[2025-07-22 12:42:36,572] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-22 12:42:36,587] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-22 12:42:36,623] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-22 12:42:36,634] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-07-22 12:42:39,479] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-07-22 12:42:39,479] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-07-22 12:42:39,479] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-07-22 12:42:39,479] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+
+Trainable parameters: 355663872 / 1412628480 (25.18%)
+Starting training from scratch...
+{'loss': 174.4, 'grad_norm': 29440.0, 'learning_rate': 1.8750000000000003e-06, 'epoch': 0.03}
+{'loss': 166.732, 'grad_norm': 31488.0, 'learning_rate': 3.958333333333333e-06, 'epoch': 0.05}
+{'loss': 152.849, 'grad_norm': 124416.0, 'learning_rate': 4.999474373794983e-06, 'epoch': 0.08}
+{'loss': 142.585, 'grad_norm': 31232.0, 'learning_rate': 4.995270690219858e-06, 'epoch': 0.1}
+{'loss': 128.8478, 'grad_norm': 13504.0, 'learning_rate': 4.986870392938291e-06, 'epoch': 0.13}
+{'loss': 112.8698, 'grad_norm': 7328.0, 'learning_rate': 4.974287609797352e-06, 'epoch': 0.15}
+{'loss': 104.0114, 'grad_norm': 10688.0, 'learning_rate': 4.957543502861904e-06, 'epoch': 0.18}
+{'loss': 99.1799, 'grad_norm': 5696.0, 'learning_rate': 4.936666232823667e-06, 'epoch': 0.2}
+{'loss': 93.9053, 'grad_norm': 6208.0, 'learning_rate': 4.9116909116398085e-06, 'epoch': 0.23}
+{'loss': 90.2221, 'grad_norm': 7936.0, 'learning_rate': 4.882659543480702e-06, 'epoch': 0.25}
+{'loss': 87.2362, 'grad_norm': 6048.0, 'learning_rate': 4.849620954086182e-06, 'epoch': 0.28}
+{'loss': 85.7386, 'grad_norm': 5216.0, 'learning_rate': 4.812630708649089e-06, 'epoch': 0.3}
+{'loss': 84.0117, 'grad_norm': 3920.0, 'learning_rate': 4.7717510183642316e-06, 'epoch': 0.33}
+{'loss': 82.6844, 'grad_norm': 5184.0, 'learning_rate': 4.7270506357999114e-06, 'epoch': 0.35}
+{'loss': 81.9047, 'grad_norm': 5312.0, 'learning_rate': 4.678604739268002e-06, 'epoch': 0.38}
+{'loss': 81.1969, 'grad_norm': 3936.0, 'learning_rate': 4.626494806387023e-06, 'epoch': 0.41}
+{'loss': 80.5506, 'grad_norm': 2704.0, 'learning_rate': 4.570808477050887e-06, 'epoch': 0.43}
+{'loss': 80.3775, 'grad_norm': 4160.0, 'learning_rate': 4.511639406033749e-06, 'epoch': 0.46}
+{'loss': 79.6775, 'grad_norm': 3680.0, 'learning_rate': 4.449087105478884e-06, 'epoch': 0.48}
+{'loss': 79.3051, 'grad_norm': 2592.0, 'learning_rate': 4.383256777536464e-06, 'epoch': 0.51}
+{'loss': 79.0022, 'grad_norm': 3584.0, 'learning_rate': 4.314259137431747e-06, 'epoch': 0.53}
+{'loss': 78.407, 'grad_norm': 3168.0, 'learning_rate': 4.24221022726121e-06, 'epoch': 0.56}
+{'loss': 78.2919, 'grad_norm': 2688.0, 'learning_rate': 4.167231220829822e-06, 'epoch': 0.58}
+{'loss': 77.9515, 'grad_norm': 4960.0, 'learning_rate': 4.089448219857654e-06, 'epoch': 0.61}
+{'loss': 77.6021, 'grad_norm': 21632.0, 'learning_rate': 4.008992041898605e-06, 'epoch': 0.63}
+{'loss': 77.2926, 'grad_norm': 3056.0, 'learning_rate': 3.9259980003279e-06, 'epoch': 0.66}
+{'loss': 77.2137, 'grad_norm': 2832.0, 'learning_rate': 3.8406056767683935e-06, 'epoch': 0.68}
+{'loss': 77.1792, 'grad_norm': 2544.0, 'learning_rate': 3.7529586863384313e-06, 'epoch': 0.71}
+{'loss': 76.9067, 'grad_norm': 4608.0, 'learning_rate': 3.6632044361160536e-06, 'epoch': 0.73}
+{'loss': 76.5144, 'grad_norm': 3008.0, 'learning_rate': 3.57149387722579e-06, 'epoch': 0.76}
+{'loss': 76.4557, 'grad_norm': 5248.0, 'learning_rate': 3.4779812509649767e-06, 'epoch': 0.79}
+{'loss': 76.4032, 'grad_norm': 17152.0, 'learning_rate': 3.3828238293965728e-06, 'epoch': 0.81}
+{'loss': 76.2291, 'grad_norm': 2896.0, 'learning_rate': 3.286181650844752e-06, 'epoch': 0.84}
+{'loss': 76.0505, 'grad_norm': 4960.0, 'learning_rate': 3.188217250738123e-06, 'epoch': 0.86}
+{'loss': 75.9068, 'grad_norm': 3248.0, 'learning_rate': 3.0890953882532535e-06, 'epoch': 0.89}
+{'loss': 75.755, 'grad_norm': 2816.0, 'learning_rate': 2.988982769218229e-06, 'epoch': 0.91}
+{'loss': 75.6771, 'grad_norm': 2024.0, 'learning_rate': 2.888047765742287e-06, 'epoch': 0.94}
+{'loss': 75.5556, 'grad_norm': 10240.0, 'learning_rate': 2.7864601330430492e-06, 'epoch': 0.96}
+{'loss': 75.4217, 'grad_norm': 7040.0, 'learning_rate': 2.6843907239476118e-06, 'epoch': 0.99}
+{'loss': 74.4922, 'grad_norm': 3248.0, 'learning_rate': 2.582011201547637e-06, 'epoch': 1.01}
+{'loss': 75.4754, 'grad_norm': 1952.0, 'learning_rate': 2.4794937504917273e-06, 'epoch': 1.04}
+{'loss': 75.3099, 'grad_norm': 2672.0, 'learning_rate': 2.3770107874006272e-06, 'epoch': 1.06}
+{'loss': 75.2634, 'grad_norm': 1992.0, 'learning_rate': 2.274734670892289e-06, 'epoch': 1.09}
+{'loss': 75.2133, 'grad_norm': 2592.0, 'learning_rate': 2.1728374117044913e-06, 'epoch': 1.11}
+{'loss': 74.9749, 'grad_norm': 2848.0, 'learning_rate': 2.0714903834025274e-06, 'epoch': 1.14}
+{'loss': 75.1554, 'grad_norm': 7136.0, 'learning_rate': 1.970864034158513e-06, 'epoch': 1.16}
+{'loss': 75.1867, 'grad_norm': 5504.0, 'learning_rate': 1.8711276000870391e-06, 'epoch': 1.19}
+{'loss': 75.4199, 'grad_norm': 1664.0, 'learning_rate': 1.7724488206192997e-06, 'epoch': 1.22}
+{'loss': 75.0249, 'grad_norm': 1936.0, 'learning_rate': 1.6749936563943863e-06, 'epoch': 1.24}
+{'loss': 74.9906, 'grad_norm': 3776.0, 'learning_rate': 1.5789260101421903e-06, 'epoch': 1.27}
+{'loss': 74.8375, 'grad_norm': 7328.0, 'learning_rate': 1.4844074510273676e-06, 'epoch': 1.29}
+{'loss': 74.8283, 'grad_norm': 2256.0, 'learning_rate': 1.391596942917947e-06, 'epoch': 1.32}
+{'loss': 74.9618, 'grad_norm': 3040.0, 'learning_rate': 1.3006505770355977e-06, 'epoch': 1.34}
+{'loss': 75.1789, 'grad_norm': 3072.0, 'learning_rate': 1.2117213094371947e-06, 'epoch': 1.37}
+{'loss': 74.9307, 'grad_norm': 6304.0, 'learning_rate': 1.1249587037691881e-06, 'epoch': 1.39}
+{'loss': 74.795, 'grad_norm': 5216.0, 'learning_rate': 1.0405086797274178e-06, 'epoch': 1.42}
+{'loss': 75.069, 'grad_norm': 3936.0, 'learning_rate': 9.585132676454213e-07, 'epoch': 1.44}
+{'loss': 74.8474, 'grad_norm': 1680.0, 'learning_rate': 8.791103696239842e-07, 'epoch': 1.47}
+{'loss': 75.0545, 'grad_norm': 1816.0, 'learning_rate': 8.024335276036562e-07, 'epoch': 1.49}
+{'loss': 75.0294, 'grad_norm': 1840.0, 'learning_rate': 7.286116987703051e-07, 'epoch': 1.52}
+{'loss': 75.0672, 'grad_norm': 4864.0, 'learning_rate': 6.577690386714358e-07, 'epoch': 1.54}
+{'loss': 74.9427, 'grad_norm': 4576.0, 'learning_rate': 5.900246924080333e-07, 'epoch': 1.57}
+{'loss': 75.0774, 'grad_norm': 1912.0, 'learning_rate': 5.254925942531114e-07, 'epoch': 1.6}
+{'loss': 74.9841, 'grad_norm': 2416.0, 'learning_rate': 4.6428127603397237e-07, 'epoch': 1.62}
+{'loss': 74.8701, 'grad_norm': 2848.0, 'learning_rate': 4.0649368460044414e-07, 'epoch': 1.65}
+{'loss': 74.8351, 'grad_norm': 6208.0, 'learning_rate': 3.5222700868608713e-07, 'epoch': 1.67}
+{'loss': 75.1821, 'grad_norm': 5376.0, 'learning_rate': 3.015725154535534e-07, 'epoch': 1.7}
+{'loss': 75.0156, 'grad_norm': 1672.0, 'learning_rate': 2.546153969990056e-07, 'epoch': 1.72}
+{'loss': 74.9156, 'grad_norm': 1664.0, 'learning_rate': 2.1143462707374606e-07, 'epoch': 1.75}
+{'loss': 74.8217, 'grad_norm': 2016.0, 'learning_rate': 1.7210282826402607e-07, 'epoch': 1.77}
+{'loss': 74.6321, 'grad_norm': 24832.0, 'learning_rate': 1.3668614985242052e-07, 'epoch': 1.8}
+{'loss': 74.9403, 'grad_norm': 12864.0, 'learning_rate': 1.0524415656617021e-07, 'epoch': 1.82}
+{'loss': 74.8588, 'grad_norm': 2096.0, 'learning_rate': 7.782972839961849e-08, 'epoch': 1.85}
+{'loss': 74.9764, 'grad_norm': 1984.0, 'learning_rate': 5.448897167920547e-08, 'epoch': 1.87}
+{'loss': 74.8417, 'grad_norm': 12800.0, 'learning_rate': 3.5261141520599726e-08, 'epoch': 1.9}
+{'loss': 74.8009, 'grad_norm': 1944.0, 'learning_rate': 2.0178575808386945e-08, 'epoch': 1.92}
+{'loss': 74.9217, 'grad_norm': 1728.0, 'learning_rate': 9.266640809338923e-09, 'epoch': 1.95}
+{'loss': 74.9363, 'grad_norm': 7328.0, 'learning_rate': 2.5436885107410493e-09, 'epoch': 1.97}
+{'loss': 73.9392, 'grad_norm': 2288.0, 'learning_rate': 2.1025755524151092e-11, 'epoch': 2.0}
+{'train_runtime': 13781.2116, 'train_samples_per_second': 14.669, 'train_steps_per_second': 0.057, 'train_loss': 82.86962118028086, 'epoch': 2.0}
+Training complete.
+Saving trainer state...
+Saving model...
+Model saved to /leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_SFT_tulu_mix_test
+Saving tokenizer...
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250722_124129-x1m0yuko[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../wandb/offline-run-20250722_124129-x1m0yuko/logs[0m

@@ -236,7 +236,7 @@ def main():
         device_map=get_kbit_device_map() if quantization_config is not None else None,
         quantization_config=quantization_config,
         torch_dtype=torch.bfloat16,
-        # attn_implementation="flash_attention_2",  # NOTE: add as param
+        # attn_implementation="flash_attention_2",  # TODO: add as param
     )
     # model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True

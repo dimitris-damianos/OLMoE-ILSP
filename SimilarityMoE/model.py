@@ -154,6 +154,7 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         self.expert_attn_size = config.expert_attn_size
         self.top_p = config.experts_top_p
         
+        
         self.experts = nn.ModuleList([OlmoeMLP(config) for _ in range(self.num_experts)])
         self.key = nn.Linear(config.hidden_size, 
                              self.num_experts*config.expert_attn_size, 
@@ -178,13 +179,28 @@ class OlmoeMoeBlockWithRIM(nn.Module):
         nn.init.xavier_uniform_(null_hidden_states) 
         # Following original RIM, we concatenate the null hidden states to batch size 
         hidden_states = torch.cat([hidden_states, null_hidden_states], dim=0) 
-
+        
         # keys, values shared between experts 
         keys = self.key(hidden_states) 
-        values = self.value(hidden_states)  
+        real_keys,   null_keys   = keys.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+        null_keys   = null_keys.detach()
+        keys   = torch.cat([real_keys,   null_keys],   dim=0)
         
-        experts_flat_states = self.expert_states_flat(hidden_states)    
-        experts_flat_query = self.expert_query(experts_flat_states)  
+        values = self.value(hidden_states)  
+        real_values, null_values = values.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+        null_values = null_values.detach()
+        values = torch.cat([real_values, null_values], dim=0)
+
+        experts_flat_states = self.expert_states_flat(hidden_states)  
+        real_flat_states,   null_flat_states   = experts_flat_states.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+        null_flat_states   = null_flat_states.detach()
+        experts_flat_states   = torch.cat([real_flat_states,   null_flat_states],   dim=0)
+          
+        experts_flat_query = self.expert_query(experts_flat_states) 
+        real_flat_query, null_flat_query = experts_flat_query.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+        null_flat_query = null_flat_query.detach()
+        experts_flat_query = torch.cat([real_flat_query, null_flat_query], dim=0)
+        
         experts_flat_query = experts_flat_query.view(2*batch_size*sequence_length,
                                                      self.num_experts,
                                                      self.expert_attn_size)
@@ -199,6 +215,7 @@ class OlmoeMoeBlockWithRIM(nn.Module):
                              self.expert_attn_size)  
         all_attn_weights = torch.matmul(attention_scores_flat, 
                                         values)
+        
 
         # Separate attention weights for real tokens and null tokens to check which expert prefers which tokens  
         all_attn_weights = all_attn_weights.view(batch_size*sequence_length, 
@@ -566,6 +583,9 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         self.expert_attn_size = config.expert_attn_size
         self.top_p = config.experts_top_p
         
+        self.detach_null_states = config.detach_null_states
+        self.use_latent_states = config.use_latent_states
+        
         self.experts = nn.ModuleList([Qwen3MLP(config) for _ in range(self.num_experts)])
         self.key = nn.Linear(config.hidden_size, 
                              self.num_experts*config.expert_attn_size, 
@@ -573,11 +593,15 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         self.value = nn.Linear(config.hidden_size, 
                              self.num_experts*config.expert_attn_size, 
                              bias=False)
-        self.expert_query = nn.Linear(self.num_experts*config.expert_attn_size, 
-                                      self.num_experts*config.expert_attn_size, bias=False)  # TODO check dimensions
-        self.expert_states_flat = nn.Linear(config.hidden_size, 
-                                            self.num_experts*config.expert_attn_size, 
-                                            bias=False)
+        if self.use_latent_states:
+            self.expert_query = nn.Linear(config.hidden_size, 
+                                          self.num_experts*config.expert_attn_size, bias=False)
+        else:
+            self.expert_query = nn.Linear(self.num_experts*config.expert_attn_size, 
+                                        self.num_experts*config.expert_attn_size, bias=False)  # TODO check dimensions
+            self.expert_states_flat = nn.Linear(config.hidden_size, 
+                                                self.num_experts*config.expert_attn_size, 
+                                                bias=False)
             
     def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
         batch_size, sequence_length, hidden_dim = hidden_states.shape
@@ -592,11 +616,28 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         hidden_states = torch.cat([hidden_states, null_hidden_states], dim=0) 
 
         # keys, values shared between experts 
-        keys = self.key(hidden_states) 
-        values = self.value(hidden_states)  
+        keys = self.key(hidden_states)
+        values = self.value(hidden_states) 
+        experts_flat_states = self.expert_states_flat(hidden_states)
+        experts_flat_query = self.expert_query(experts_flat_states)
         
-        experts_flat_states = self.expert_states_flat(hidden_states)    
-        experts_flat_query = self.expert_query(experts_flat_states)  
+        if self.detach_null_states:
+            real_keys,   null_keys   = keys.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+            null_keys   = null_keys.detach()
+            keys   = torch.cat([real_keys,   null_keys],   dim=0)
+            
+            real_values, null_values = values.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+            null_values = null_values.detach()
+            values = torch.cat([real_values, null_values], dim=0)
+
+            real_flat_states,   null_flat_states   = experts_flat_states.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+            null_flat_states   = null_flat_states.detach()
+            experts_flat_states   = torch.cat([real_flat_states,   null_flat_states],   dim=0)
+            
+            real_flat_query, null_flat_query = experts_flat_query.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
+            null_flat_query = null_flat_query.detach()
+            experts_flat_query = torch.cat([real_flat_query, null_flat_query], dim=0)
+            
         experts_flat_query = experts_flat_query.view(2*batch_size*sequence_length,
                                                      self.num_experts,
                                                      self.expert_attn_size)

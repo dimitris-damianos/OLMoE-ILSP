@@ -19,6 +19,8 @@ def main():
     parser.add_argument("--router_aux_loss_coef", type=float, default=0.1, help="Router auxiliary loss coefficient.")
     parser.add_argument("--output_expert_mask", action="store_true")
     parser.add_argument("--output_router_logits", action="store_true")
+    parser.add_argument("--detach_null_states", action="store_true", help="Detach null states in RIMs.")
+    parser.add_argument("--use_latent_states", action="store_true", help="Use latent states for experts.")
 
     args = parser.parse_args()
 
@@ -33,6 +35,8 @@ def main():
             output_router_logits=args.output_router_logits,
             router_aux_loss_coef=args.router_aux_loss_coef,
             experts_top_p=args.experts_top_p,
+            # detach_null_states=args.detach_null_states,
+            # use_latent_states=args.use_latent_states,  
         )
         base_class = Qwen2ForCausalLM
         moe_class = Qwen2ForCausalLMWithRIM
@@ -45,6 +49,8 @@ def main():
             output_router_logits=args.output_router_logits,
             router_aux_loss_coef=args.router_aux_loss_coef,
             experts_top_p=args.experts_top_p,
+            detach_null_states=args.detach_null_states,
+            use_latent_states=args.use_latent_states,
         )
         base_class = Qwen3ForCausalLM
         moe_class = Qwen3ForCausalLMWithRIM

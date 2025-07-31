@@ -18,6 +18,8 @@ class Qwen3WithRIMConfig(Qwen3Config):
         self.output_router_logits = kwargs.get("output_router_logits", False)
         self.router_aux_loss_coef = kwargs.get("router_aux_loss_coef", 0.1)  # Coefficient for router auxiliary loss
         self.experts_top_p = kwargs.get("experts_top_p", 0.5)
+        self.detach_null_states = kwargs.get("detach_null_states", True)
+        self.use_latent_states = kwargs.get("use_latent_states", False)  # Use latent states for experts
         
 class Qwen2WithRIMConfig(Qwen2Config):
     def __init__(self,**kwargs):

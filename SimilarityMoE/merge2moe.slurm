@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=merge_qwen3-0.6B_experts
+#SBATCH --job-name=merge_qwen3-0.6B_experts_test
 #SBATCH --partition=boost_usr_prod
 #SBATCH --gres=gpu:1
 #SBATCH --nodes=1
@@ -9,30 +9,32 @@
 #SBATCH --mem=128G
 #SBATCH --time=2:00:00
 #SBATCH --account=EUHPC_A06_067
-#SBATCH --output=%x-%j.out
-#SBATCH --error=%x-%j.err
+#SBATCH --output=merge.out
+#SBATCH --error=merge.err
 
 module load cuda/12.2
 module load anaconda3/2023.09-0
 
-source activate sft-experts-moe
+WORK=/leonardo_work/EUHPC_A06_067/ # Make life easier for all
+# Explicitly specify the conda environment path in your work directory
+source activate $WORK/.conda/envs/sft-experts-moe
 
 export HF_HOME=$WORK/hf_cache
 
 BASE_MODEL=$HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-MOE_SAVE_DIR=$WORK/moe_models/qwen3_moe_merged
+MOE_SAVE_DIR=$WORK/moe_models/base/qwen3_moe
 
 SPECIALISTS=(
-    $WORK/experts/Qwen3-0.6B-SFT/bio_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/bio_expert_Qwen3-0.6B_SFT
     $WORK/experts/Qwen3-0.6B-SFT/causalreasoning_expert_Qwen3-0.6B_SFT
     $WORK/experts/Qwen3-0.6B-SFT/code_expert_Qwen3-0.6B_SFT
-    $WORK/experts/Qwen3-0.6B-SFT/finance_expert_Qwen3-0.6B_SFT
-    $WORK/experts/Qwen3-0.6B-SFT/generalinstructionfollowing_expert_Qwen3-0.6B_SFT
-    $WORK/experts/Qwen3-0.6B-SFT/legal_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/finance_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/generalinstructionfollowing_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/legal_expert_Qwen3-0.6B_SFT
     $WORK/experts/Qwen3-0.6B-SFT/math_expert_Qwen3-0.6B_SFT
-    $WORK/experts/Qwen3-0.6B-SFT/medical_expert_Qwen3-0.6B_SFT
-    $WORK/experts/Qwen3-0.6B-SFT/multilingual_expert_Qwen3-0.6B_SFT
-    $WORK/experts/Qwen3-0.6B-SFT/physicalcommonsense_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/medical_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/multilingual_expert_Qwen3-0.6B_SFT
+    # $WORK/experts/Qwen3-0.6B-SFT/physicalcommonsense_expert_Qwen3-0.6B_SFT
     $WORK/experts/Qwen3-0.6B-SFT/socialreasoning_expert_Qwen3-0.6B_SFT
 )
 
@@ -42,4 +44,8 @@ python merge_experts.py \
   --output_dir $MOE_SAVE_DIR \
   --model_type qwen3 \
   --output_expert_mask \
-  --output_router_logits
+  --output_router_logits \
+  --key_size 64 \
+  # --use_latent_states \
+  # --detach_null_states 
+  # --router_aux_loss_coef 0.0

@@ -28,7 +28,7 @@ from accelerate import Accelerator
 from accelerate.state import PartialState
 
 import wandb
-
+from utils import GradientLoggingCallbackTensorboad
 from dataset_mixer import mix_datasets_with_mapping
 
 import multiprocessing
@@ -244,6 +244,8 @@ def main():
             torch_dtype="bfloat16",
             attn_implementation="flash_attention_2",
         )
+        model.config.detach_null_states = args.detach_null_states
+        model.config.use_latent_states = args.use_latent_states  
         if args.use_liger:  # custom liger kernel
             apply_liger_to_model(model=model, qwen_type='qwen2') 
         accelerator.print(model) 
@@ -284,7 +286,7 @@ def main():
                 param.requires_grad = False
                 accelerator.print(f"Froze non-FFN param: {name}")
         
-    model.config.attn_implementation = "flash_attention_2"
+    model.config.attn_implementation = "flash_attention_2"  # TODO: add as param
     model.config.use_cache = False if args.gradient_checkpointing else True
     gradient_checkpointing_kwargs = None
     if args.gradient_checkpointing:
@@ -482,7 +484,7 @@ def main():
         lr_scheduler_type=args.lr_scheduler_type,
         warmup_ratio=args.warmup_ratio,
         packing=args.packing,
-        padding_free=True,
+        padding_free=True,  # TODO: add as param - requires flash_attention_2
         model_init_kwargs={"attn_implementation": "flash_attention_2"},
         completion_only_loss=args.completion_only_loss,
         assistant_only_loss=args.assistant_only_loss,
@@ -502,6 +504,10 @@ def main():
         # data_collator=collator,
         processing_class=tokenizer,
         peft_config=peft_cfg,
+        callbacks=[
+            GradientLoggingCallbackTensorboad(
+                log_dir=os.path.join(args.output_dir, "logs"),
+            ),]
         # formatting_func=lambda examples: [
         #     ex["prompt"] + ex["completion"] for ex in examples
         # ],
