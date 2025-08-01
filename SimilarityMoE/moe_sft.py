@@ -18,7 +18,6 @@ from trl import (
     SFTTrainer,
     SFTConfig,
     DataCollatorForCompletionOnlyLM,
-    clone_chat_template,
     get_kbit_device_map,
     get_peft_config,
     get_quantization_config,
@@ -28,7 +27,6 @@ from accelerate import Accelerator
 from accelerate.state import PartialState
 
 import wandb
-from utils import GradientLoggingCallbackTensorboad
 from dataset_mixer import mix_datasets_with_mapping
 
 import multiprocessing
@@ -75,6 +73,8 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
     map_wikiqa_to_prompt_completion,
     map_wikiqa_to_conversation,
 )
+import sys
+sys.stdout.flush()
 
 
 def main():
@@ -82,6 +82,7 @@ def main():
 
     # Model
     parser.add_argument("--model_name_or_path", type=str, required=True)
+    parser.add_argument("--tokenizer_name_or_path", type=str, default=None, help="Tokenizer name or path.")
     parser.add_argument("--cache_dir", type=str, default="./hf_cache")
     # TODO: add model revision + quantization
 
@@ -211,7 +212,7 @@ def main():
 
     accelerator.print("Initializing tokenizer and model...")
     tokenizer = AutoTokenizer.from_pretrained(
-        args.model_name_or_path,
+        args.tokenizer_name_or_path or args.model_name_or_path,
         cache_dir=args.cache_dir,
         trust_remote_code=True,
         local_files_only=True
@@ -396,7 +397,7 @@ def main():
             "wikiqa_chat": map_wikiqa_to_conversation,
         }
         mapping_fn = map_functions[args.instruction_format]
-
+        print(f"Init dataset {dataset}")
         # convert dataset to prompt-completion (instruction) or conversational format
         # NOTE: internally the SFTTrainer uses tha apply_chat_template() method and tokenizes
         train_dataset = dataset[args.train_split].map(
@@ -413,6 +414,7 @@ def main():
         else:
             eval_dataset = None
 
+        print(f"Train dataset: {train_dataset}")
         # NOTE: uncomment just for testing
         # total = len(train_dataset)
         # subset_size = int(total * 0.1)
@@ -487,10 +489,10 @@ def main():
         padding_free=True,  # TODO: add as param - requires flash_attention_2
         model_init_kwargs={"attn_implementation": "flash_attention_2"},
         completion_only_loss=args.completion_only_loss,
-        assistant_only_loss=args.assistant_only_loss,
+        # assistant_only_loss=args.assistant_only_loss,
         max_length=args.max_length,
         neftune_noise_alpha=args.neftune_noise_alpha,
-        activation_offloading=args.activation_offloading,
+        # activation_offloading=args.activation_offloading,
         eos_token="<|im_end|>",  # uncomment for conversational format!
         ddp_timeout=18000,  # avoid nccl errors when tokenizing large datasets
     )
@@ -504,10 +506,7 @@ def main():
         # data_collator=collator,
         processing_class=tokenizer,
         peft_config=peft_cfg,
-        callbacks=[
-            GradientLoggingCallbackTensorboad(
-                log_dir=os.path.join(args.output_dir, "logs"),
-            ),]
+        
         # formatting_func=lambda examples: [
         #     ex["prompt"] + ex["completion"] for ex in examples
         # ],
@@ -523,12 +522,11 @@ def main():
 
     resume_checkpoint = args.resume_from_checkpoint
     latest = ""
-    if resume_checkpoint is None:
-        latest_ckpt = get_last_checkpoint(args.output_dir)
-        if latest_ckpt is not None:
-            resume_checkpoint = latest_ckpt
-            latest = "latest "
-
+    # if resume_checkpoint is None:
+    #     latest_ckpt = get_last_checkpoint(args.output_dir)
+    #     if latest_ckpt is not None:
+    #         resume_checkpoint = latest_ckpt
+    #         latest = "latest "
     if resume_checkpoint:
         accelerator.print(f"Resuming training from {latest}checkpoint: {resume_checkpoint}...")
         trainer.train(resume_from_checkpoint=resume_checkpoint)

@@ -1,6 +1,3 @@
-Loading cuda/12.2
-  Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
-    zlib-ng/2.1.6-jkgunjc libxml2/2.10.3-zbbe7lm
 Merging 4 expert models into a RIM-based MoE model...
 
 Base model: /leonardo_work/EUHPC_A06_067//hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
@@ -13,7 +10,7 @@ Model config: Qwen3WithRIMConfig {
   "attention_bias": false,
   "attention_dropout": 0.0,
   "bos_token_id": 151643,
-  "detach_null_states": false,
+  "detach_null_states": true,
   "eos_token_id": 151645,
   "expert_attn_size": 64,
   "experts_top_p": 0.5,
@@ -22,36 +19,6 @@ Model config: Qwen3WithRIMConfig {
   "hidden_size": 1024,
   "initializer_range": 0.02,
   "intermediate_size": 3072,
-  "layer_types": [
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention"
-  ],
   "max_position_embeddings": 40960,
   "max_window_layers": 28,
   "model_type": "qwen3",
@@ -68,9 +35,9 @@ Model config: Qwen3WithRIMConfig {
   "sliding_window": null,
   "tie_word_embeddings": true,
   "torch_dtype": "bfloat16",
-  "transformers_version": "4.53.1",
+  "transformers_version": "4.52.4",
   "use_cache": true,
-  "use_latent_states": false,
+  "use_latent_states": true,
   "use_sliding_window": false,
   "vocab_size": 151936
 }
@@ -87,6 +54,4 @@ Model merging complete. Stats:
   - Copied 487391232 non-expert parameters
   - Kept 23855104 RIM-specific parameters
 Saving merged MoE model to /leonardo_work/EUHPC_A06_067//moe_models/base/qwen3_moe...
-[2025-07-30 18:55:07,935] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-07-30 18:55:19,697] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
 Total parameters in merged MoE model: 1,568,210,944

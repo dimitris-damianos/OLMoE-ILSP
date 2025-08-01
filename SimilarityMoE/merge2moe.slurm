@@ -46,6 +46,6 @@ python merge_experts.py \
   --output_expert_mask \
   --output_router_logits \
   --key_size 64 \
-  # --use_latent_states \
-  # --detach_null_states 
+  --use_latent_states \
+  --detach_null_states 
   # --router_aux_loss_coef 0.0

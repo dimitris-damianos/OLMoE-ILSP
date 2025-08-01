@@ -1,34 +1,35 @@
-Qwen2ForCausalLMWithRIM(
-  (model): Qwen2ModelWithRIM(
-    (embed_tokens): Embedding(151936, 896)
+Qwen3ForCausalLMWithRIM(
+  (model): Qwen3ModelWithRIM(
+    (embed_tokens): Embedding(151936, 1024)
     (layers): ModuleList(
-      (0-23): 24 x Qwen2DecoderLayerWithRIM(
-        (self_attn): Qwen2Attention(
-          (q_proj): Linear(in_features=896, out_features=896, bias=True)
-          (k_proj): Linear(in_features=896, out_features=128, bias=True)
-          (v_proj): Linear(in_features=896, out_features=128, bias=True)
-          (o_proj): Linear(in_features=896, out_features=896, bias=False)
+      (0-27): 28 x Qwen3DecoderLayerWithRIM(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear(in_features=1024, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=1024, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
         )
-        (mlp): Qwen2MoeBlockWithRIM(
+        (mlp): Qwen3MoeBlockWithRIM(
           (experts): ModuleList(
-            (0-7): 8 x Qwen2MLP(
-              (gate_proj): Linear(in_features=896, out_features=4864, bias=False)
-              (up_proj): Linear(in_features=896, out_features=4864, bias=False)
-              (down_proj): Linear(in_features=4864, out_features=896, bias=False)
+            (0-7): 8 x Qwen3MLP(
+              (gate_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (up_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (down_proj): Linear(in_features=3072, out_features=1024, bias=False)
               (act_fn): SiLU()
             )
           )
-          (key): Linear(in_features=896, out_features=512, bias=False)
-          (value): Linear(in_features=896, out_features=512, bias=False)
-          (expert_query): Linear(in_features=512, out_features=512, bias=False)
-          (expert_states_flat): Linear(in_features=896, out_features=512, bias=False)
+          (key): Linear(in_features=1024, out_features=512, bias=False)
+          (value): Linear(in_features=1024, out_features=512, bias=False)
+          (expert_query): Linear(in_features=1024, out_features=512, bias=False)
         )
-        (input_layernorm): Qwen2RMSNorm((896,), eps=1e-06)
-        (post_attention_layernorm): Qwen2RMSNorm((896,), eps=1e-06)
+        (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
       )
     )
-    (norm): Qwen2RMSNorm((896,), eps=1e-06)
-    (rotary_emb): Qwen2RotaryEmbedding()
+    (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
   )
-  (lm_head): Linear(in_features=896, out_features=151936, bias=False)
+  (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
 )

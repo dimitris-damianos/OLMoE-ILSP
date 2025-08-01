@@ -1,235 +1,0 @@
-ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-[rank1]:[W722 13:53:10.245119794 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-[rank2]:[W722 13:53:10.254043480 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-[rank3]:[W722 13:53:10.255324567 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-wandb: Tracking run with wandb version 0.21.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-[rank0]:[W722 13:53:11.572366289 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:23<00:23, 23.14s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:23<00:23, 23.48s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:23<00:23, 23.61s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:23<00:23, 23.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 12.66s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 14.29s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 12.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 12.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 14.41s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 14.41s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 12.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:28<00:00, 14.34s/it]
-Using the latest cached version of the dataset since allenai/tulu-v3.1-mix-preview-4096-OLMoE couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___tulu-v3.1-mix-preview-4096-ol_mo_e/default/0.0.0/a16e10fdbec0b3430b4cc1e1716bec5ec39d08ce (last modified on Tue Jul 22 12:27:30 2025).
-Using the latest cached version of the dataset since allenai/tulu-v3.1-mix-preview-4096-OLMoE couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___tulu-v3.1-mix-preview-4096-ol_mo_e/default/0.0.0/a16e10fdbec0b3430b4cc1e1716bec5ec39d08ce (last modified on Tue Jul 22 12:27:30 2025).
-Using the latest cached version of the dataset since allenai/tulu-v3.1-mix-preview-4096-OLMoE couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___tulu-v3.1-mix-preview-4096-ol_mo_e/default/0.0.0/a16e10fdbec0b3430b4cc1e1716bec5ec39d08ce (last modified on Tue Jul 22 12:27:30 2025).
-Using the latest cached version of the dataset since allenai/tulu-v3.1-mix-preview-4096-OLMoE couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___tulu-v3.1-mix-preview-4096-ol_mo_e/default/0.0.0/a16e10fdbec0b3430b4cc1e1716bec5ec39d08ce (last modified on Tue Jul 22 12:27:30 2025).
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:373: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:373: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:373: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:373: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-[codecarbon WARNING @ 13:54:13] Multiple instances of codecarbon are allowed to run at the same time.
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-[codecarbon INFO @ 13:54:13] [setup] RAM Tracking...
-[codecarbon INFO @ 13:54:14] [setup] CPU Tracking...
-[codecarbon INFO @ 13:54:14] Tracking Intel CPU via RAPL interface
-[codecarbon INFO @ 13:54:14] [setup] GPU Tracking...
-[codecarbon INFO @ 13:54:14] Tracking Nvidia GPU via pynvml
-[codecarbon INFO @ 13:54:14] The below tracking methods have been set up:
-                RAM Tracking Method: RAM power estimation model
-                CPU Tracking Method: RAPL
-                GPU Tracking Method: pynvml
-            
-[codecarbon INFO @ 13:54:14] >>> Tracker's metadata:
-[codecarbon INFO @ 13:54:14]   Platform system: Linux-4.18.0-477.27.1.el8_8.x86_64-x86_64-with-glibc2.28
-[codecarbon INFO @ 13:54:14]   Python version: 3.10.18
-[codecarbon INFO @ 13:54:14]   CodeCarbon version: 3.0.2
-[codecarbon INFO @ 13:54:14]   Available RAM : 128.000 GB
-[codecarbon INFO @ 13:54:14]   CPU count: 32 thread(s) in 1 physical CPU(s)
-[codecarbon INFO @ 13:54:14]   CPU model: Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
-[codecarbon INFO @ 13:54:14]   GPU count: 4
-[codecarbon INFO @ 13:54:14]   GPU model: 4 x NVIDIA A100-SXM-64GB BUT only tracking these GPU ids : [0, 1, 2, 3]
-[codecarbon WARNING @ 13:54:16] Unable to access geographical location through primary API. Will resort to using the backup API - Exception : HTTPSConnectionPool(host='get.geojs.io', port=443): Max retries exceeded with url: /v1/ip/geo.json (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x14b0ab74a0b0>: Failed to establish a new connection: [Errno 101] Network is unreachable')) - url=https://get.geojs.io/v1/ip/geo.json
-[codecarbon WARNING @ 13:54:16] Unable to access geographical location. Using 'Canada' as the default value - Exception : HTTPSConnectionPool(host='ip-api.com', port=443): Max retries exceeded with url: /json/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x14b0ab74a890>, 'Connection to ip-api.com timed out. (connect timeout=0.5)')) - url=https://get.geojs.io/v1/ip/geo.json
-[codecarbon INFO @ 13:54:16] Emissions data (if any) will be saved to file /leonardo_work/EUHPC_A06_067/moe_models/qwen3_moe_merged_SFT_tulu_mix_test_trainable_router/emissions.csv
-/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
-  warnings.warn(  # warn only once
-wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
-  0%|          | 0/3160 [00:00<?, ?it/s]  0%|          | 1/3160 [00:07<6:52:11,  7.83s/it]  0%|          | 2/3160 [00:14<6:15:00,  7.12s/it][codecarbon INFO @ 13:54:32] Energy consumed for RAM : 0.000159 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:54:32] Delta energy consumed for CPU with intel_rapl : 0.000546 kWh, power : 8.691807201345405 W
-[codecarbon INFO @ 13:54:32] Energy consumed for All CPU : 0.000546 kWh
-[codecarbon INFO @ 13:54:32] Energy consumed for all GPUs : 0.003725 kWh. Total GPU Power : 883.2708687023684 W
-[codecarbon INFO @ 13:54:32] 0.004430 kWh of electricity used since the beginning.
-  0%|          | 3/3160 [00:20<5:57:01,  6.79s/it]  0%|          | 4/3160 [00:27<5:55:15,  6.75s/it][codecarbon INFO @ 13:54:47] Energy consumed for RAM : 0.000313 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:54:47] Delta energy consumed for CPU with intel_rapl : 0.000539 kWh, power : 130.53280090435535 W
-[codecarbon INFO @ 13:54:47] Energy consumed for All CPU : 0.001085 kWh
-[codecarbon INFO @ 13:54:47] Energy consumed for all GPUs : 0.007725 kWh. Total GPU Power : 985.8052396796168 W
-[codecarbon INFO @ 13:54:47] 0.009123 kWh of electricity used since the beginning.
-  0%|          | 5/3160 [00:34<5:53:29,  6.72s/it]  0%|          | 6/3160 [00:40<5:54:06,  6.74s/it][codecarbon INFO @ 13:55:02] Energy consumed for RAM : 0.000472 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:55:02] Delta energy consumed for CPU with intel_rapl : 0.000538 kWh, power : 132.64110635285306 W
-[codecarbon INFO @ 13:55:02] Energy consumed for All CPU : 0.001623 kWh
-[codecarbon INFO @ 13:55:02] Energy consumed for all GPUs : 0.011807 kWh. Total GPU Power : 980.2577972362526 W
-[codecarbon INFO @ 13:55:02] 0.013902 kWh of electricity used since the beginning.
-  0%|          | 7/3160 [00:47<5:53:19,  6.72s/it]  0%|          | 8/3160 [00:54<5:47:38,  6.62s/it][codecarbon INFO @ 13:55:17] Energy consumed for RAM : 0.000630 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:55:17] Delta energy consumed for CPU with intel_rapl : 0.000547 kWh, power : 129.37369029162966 W
-[codecarbon INFO @ 13:55:17] Energy consumed for All CPU : 0.002171 kWh
-[codecarbon INFO @ 13:55:17] Energy consumed for all GPUs : 0.016001 kWh. Total GPU Power : 1007.3732082359514 W
-[codecarbon INFO @ 13:55:17] 0.018802 kWh of electricity used since the beginning.
-  0%|          | 9/3160 [01:00<5:47:44,  6.62s/it]  0%|          | 10/3160 [01:07<5:47:33,  6.62s/it]                                                     0%|          | 10/3160 [01:07<5:47:33,  6.62s/it]  0%|          | 11/3160 [01:13<5:43:17,  6.54s/it][codecarbon INFO @ 13:55:32] Energy consumed for RAM : 0.000788 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:55:32] Delta energy consumed for CPU with intel_rapl : 0.000542 kWh, power : 131.37191936582693 W
-[codecarbon INFO @ 13:55:32] Energy consumed for All CPU : 0.002712 kWh
-[codecarbon INFO @ 13:55:32] Energy consumed for all GPUs : 0.019918 kWh. Total GPU Power : 940.413436345109 W
-[codecarbon INFO @ 13:55:32] 0.023418 kWh of electricity used since the beginning.
-  0%|          | 12/3160 [01:20<5:47:01,  6.61s/it]  0%|          | 13/3160 [01:27<5:48:41,  6.65s/it][codecarbon INFO @ 13:55:47] Energy consumed for RAM : 0.000946 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:55:47] Delta energy consumed for CPU with intel_rapl : 0.000540 kWh, power : 130.0715431290604 W
-[codecarbon INFO @ 13:55:47] Energy consumed for All CPU : 0.003253 kWh
-[codecarbon INFO @ 13:55:47] Energy consumed for all GPUs : 0.023990 kWh. Total GPU Power : 978.041020320102 W
-[codecarbon INFO @ 13:55:47] 0.028189 kWh of electricity used since the beginning.
-  0%|          | 14/3160 [01:33<5:49:09,  6.66s/it]  0%|          | 15/3160 [01:40<5:45:56,  6.60s/it][codecarbon INFO @ 13:56:02] Energy consumed for RAM : 0.001104 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:56:02] Delta energy consumed for CPU with intel_rapl : 0.000540 kWh, power : 129.76513107595758 W
-[codecarbon INFO @ 13:56:02] Energy consumed for All CPU : 0.003792 kWh
-[codecarbon INFO @ 13:56:02] Energy consumed for all GPUs : 0.028182 kWh. Total GPU Power : 1006.4605177211745 W
-[codecarbon INFO @ 13:56:02] 0.033079 kWh of electricity used since the beginning.
-  1%|          | 16/3160 [01:46<5:46:47,  6.62s/it]  1%|          | 17/3160 [01:53<5:42:46,  6.54s/it]  1%|          | 18/3160 [01:59<5:42:16,  6.54s/it][codecarbon INFO @ 13:56:17] Energy consumed for RAM : 0.001263 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:56:17] Delta energy consumed for CPU with intel_rapl : 0.000543 kWh, power : 129.63266199420906 W
-[codecarbon INFO @ 13:56:17] Energy consumed for All CPU : 0.004336 kWh
-[codecarbon INFO @ 13:56:17] Energy consumed for all GPUs : 0.032408 kWh. Total GPU Power : 1013.0322178246613 W
-[codecarbon INFO @ 13:56:17] 0.038007 kWh of electricity used since the beginning.
-[codecarbon INFO @ 13:56:17] 0.000751 g.CO2eq/s mean an estimation of 23.688301021603394 kg.CO2eq/year
-  1%|          | 19/3160 [02:06<5:37:39,  6.45s/it]  1%|          | 20/3160 [02:12<5:41:27,  6.52s/it]                                                     1%|          | 20/3160 [02:12<5:41:27,  6.52s/it][codecarbon INFO @ 13:56:32] Energy consumed for RAM : 0.001419 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:56:32] Delta energy consumed for CPU with intel_rapl : 0.000538 kWh, power : 130.3014709525497 W
-[codecarbon INFO @ 13:56:32] Energy consumed for All CPU : 0.004874 kWh
-[codecarbon INFO @ 13:56:32] Energy consumed for all GPUs : 0.036420 kWh. Total GPU Power : 974.4887188822014 W
-[codecarbon INFO @ 13:56:32] 0.042714 kWh of electricity used since the beginning.
-  1%|          | 21/3160 [02:19<5:39:18,  6.49s/it]  1%|          | 22/3160 [02:25<5:41:10,  6.52s/it][codecarbon INFO @ 13:56:47] Energy consumed for RAM : 0.001578 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:56:47] Delta energy consumed for CPU with intel_rapl : 0.000540 kWh, power : 130.70386125201964 W
-[codecarbon INFO @ 13:56:47] Energy consumed for All CPU : 0.005414 kWh
-[codecarbon INFO @ 13:56:47] Energy consumed for all GPUs : 0.040612 kWh. Total GPU Power : 1006.4464941771649 W
-[codecarbon INFO @ 13:56:47] 0.047603 kWh of electricity used since the beginning.
-  1%|          | 23/3160 [02:32<5:42:18,  6.55s/it]  1%|          | 24/3160 [02:39<5:45:23,  6.61s/it][codecarbon INFO @ 13:57:02] Energy consumed for RAM : 0.001736 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:57:02] Delta energy consumed for CPU with intel_rapl : 0.000538 kWh, power : 129.60123479645193 W
-[codecarbon INFO @ 13:57:02] Energy consumed for All CPU : 0.005952 kWh
-[codecarbon INFO @ 13:57:02] Energy consumed for all GPUs : 0.044689 kWh. Total GPU Power : 978.9451106077626 W
-[codecarbon INFO @ 13:57:02] 0.052377 kWh of electricity used since the beginning.
-  1%|          | 25/3160 [02:46<5:50:07,  6.70s/it]  1%|          | 26/3160 [02:52<5:47:54,  6.66s/it]  1%|          | 27/3160 [02:59<5:50:36,  6.71s/it][codecarbon INFO @ 13:57:17] Energy consumed for RAM : 0.001894 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:57:17] Delta energy consumed for CPU with intel_rapl : 0.000537 kWh, power : 129.17335223557274 W
-[codecarbon INFO @ 13:57:17] Energy consumed for All CPU : 0.006489 kWh
-[codecarbon INFO @ 13:57:17] Energy consumed for all GPUs : 0.048672 kWh. Total GPU Power : 955.9371072259179 W
-[codecarbon INFO @ 13:57:17] 0.057055 kWh of electricity used since the beginning.
-  1%|          | 28/3160 [03:05<5:45:32,  6.62s/it]  1%|          | 29/3160 [03:12<5:46:45,  6.64s/it][codecarbon INFO @ 13:57:32] Energy consumed for RAM : 0.002048 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:57:32] Delta energy consumed for CPU with intel_rapl : 0.000537 kWh, power : 129.07345070178033 W
-[codecarbon INFO @ 13:57:32] Energy consumed for All CPU : 0.007026 kWh
-[codecarbon INFO @ 13:57:32] Energy consumed for all GPUs : 0.052708 kWh. Total GPU Power : 995.052053205157 W
-[codecarbon INFO @ 13:57:32] 0.061782 kWh of electricity used since the beginning.
-  1%|          | 30/3160 [03:19<5:47:49,  6.67s/it]                                                     1%|          | 30/3160 [03:19<5:47:49,  6.67s/it]  1%|          | 31/3160 [03:26<5:47:59,  6.67s/it][codecarbon INFO @ 13:57:47] Energy consumed for RAM : 0.002207 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:57:47] Delta energy consumed for CPU with intel_rapl : 0.000537 kWh, power : 132.30124416233846 W
-[codecarbon INFO @ 13:57:47] Energy consumed for All CPU : 0.007563 kWh
-[codecarbon INFO @ 13:57:47] Energy consumed for all GPUs : 0.056806 kWh. Total GPU Power : 984.2113594258503 W
-[codecarbon INFO @ 13:57:47] 0.066576 kWh of electricity used since the beginning.
-  1%|          | 32/3160 [03:32<5:50:26,  6.72s/it]  1%|          | 33/3160 [03:39<5:42:44,  6.58s/it][codecarbon INFO @ 13:58:02] Energy consumed for RAM : 0.002365 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:58:02] Delta energy consumed for CPU with intel_rapl : 0.000541 kWh, power : 129.02716933709368 W
-[codecarbon INFO @ 13:58:02] Energy consumed for All CPU : 0.008104 kWh
-[codecarbon INFO @ 13:58:02] Energy consumed for all GPUs : 0.060963 kWh. Total GPU Power : 998.3000824757937 W
-[codecarbon INFO @ 13:58:02] 0.071432 kWh of electricity used since the beginning.
-  1%|          | 34/3160 [03:45<5:45:38,  6.63s/it]  1%|          | 35/3160 [03:52<5:42:48,  6.58s/it]  1%|          | 36/3160 [03:58<5:43:49,  6.60s/it][codecarbon INFO @ 13:58:17] Energy consumed for RAM : 0.002523 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:58:17] Delta energy consumed for CPU with intel_rapl : 0.000539 kWh, power : 129.86705337052945 W
-[codecarbon INFO @ 13:58:17] Energy consumed for All CPU : 0.008643 kWh
-[codecarbon INFO @ 13:58:17] Energy consumed for all GPUs : 0.064897 kWh. Total GPU Power : 944.7167155210701 W
-[codecarbon INFO @ 13:58:17] 0.076063 kWh of electricity used since the beginning.
-[codecarbon INFO @ 13:58:17] 0.000755 g.CO2eq/s mean an estimation of 23.806619678504227 kg.CO2eq/year
-  1%|          | 37/3160 [04:05<5:45:50,  6.64s/it]  1%|          | 38/3160 [04:12<5:44:33,  6.62s/it][codecarbon INFO @ 13:58:32] Energy consumed for RAM : 0.002681 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:58:32] Delta energy consumed for CPU with intel_rapl : 0.000539 kWh, power : 129.37891205433837 W
-[codecarbon INFO @ 13:58:32] Energy consumed for All CPU : 0.009182 kWh
-[codecarbon INFO @ 13:58:32] Energy consumed for all GPUs : 0.069002 kWh. Total GPU Power : 985.7306751913253 W
-[codecarbon INFO @ 13:58:32] 0.080865 kWh of electricity used since the beginning.
-  1%|          | 39/3160 [04:19<5:46:05,  6.65s/it]  1%|▏         | 40/3160 [04:25<5:46:37,  6.67s/it]                                                     1%|▏         | 40/3160 [04:25<5:46:37,  6.67s/it][codecarbon INFO @ 13:58:47] Energy consumed for RAM : 0.002839 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:58:47] Delta energy consumed for CPU with intel_rapl : 0.000539 kWh, power : 129.36213589733072 W
-[codecarbon INFO @ 13:58:47] Energy consumed for All CPU : 0.009721 kWh
-[codecarbon INFO @ 13:58:47] Energy consumed for all GPUs : 0.073099 kWh. Total GPU Power : 984.1651767943431 W
-[codecarbon INFO @ 13:58:47] 0.085660 kWh of electricity used since the beginning.
-  1%|▏         | 41/3160 [04:32<5:45:15,  6.64s/it]  1%|▏         | 42/3160 [04:39<5:46:16,  6.66s/it][rank1]: Traceback (most recent call last):
-[rank1]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 585, in <module>
-[rank1]:     main()
-[rank1]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 531, in main
-[rank1]:     trainer.train()
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/transformers/trainer.py", line 2206, in train
-[rank1]:     return inner_training_loop(
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
-[rank1]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py", line 864, in training_step
-[rank1]:     return super().training_step(*args, **kwargs)
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/transformers/trainer.py", line 3797, in training_step
-[rank1]:     self.accelerator.backward(loss, **kwargs)
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/accelerate/accelerator.py", line 2553, in backward
-[rank1]:     loss.backward(**kwargs)
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
-[rank1]:     torch.autograd.backward(
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
-[rank1]:     _engine_run_backward(
-[rank1]:   File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
-[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 34.00 MiB. GPU 1 has a total capacity of 63.42 GiB of which 24.06 MiB is free. Including non-PyTorch memory, this process has 63.39 GiB memory in use. Of the allocated memory 57.85 GiB is allocated by PyTorch, and 4.37 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[codecarbon INFO @ 13:59:02] Energy consumed for RAM : 0.002998 kWh. RAM Power : 38.0 W
-[codecarbon INFO @ 13:59:02] Delta energy consumed for CPU with intel_rapl : 0.000539 kWh, power : 129.53554360331285 W
-[codecarbon INFO @ 13:59:02] Energy consumed for All CPU : 0.010260 kWh
-[codecarbon INFO @ 13:59:02] Energy consumed for all GPUs : 0.077170 kWh. Total GPU Power : 977.5641522597932 W
-[codecarbon INFO @ 13:59:02] 0.090428 kWh of electricity used since the beginning.
-W0722 13:59:03.517000 3570551 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3570633 closing signal SIGTERM
-W0722 13:59:03.519000 3570551 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3570635 closing signal SIGTERM
-W0722 13:59:03.527000 3570551 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3570636 closing signal SIGTERM
-E0722 13:59:04.250000 3570551 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 3570634) of binary: /leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/bin/python3.10
-Traceback (most recent call last):
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/bin/accelerate", line 8, in <module>
-    sys.exit(main())
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
-    args.func(args)
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
-    multi_gpu_launcher(args)
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
-    distrib_run.run(args)
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-moe_sft.py FAILED
-------------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-07-22_13:59:03
-  host      : lrdn1312.leonardo.local
-  rank      : 1 (local_rank: 1)
-  exitcode  : 1 (pid: 3570634)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================

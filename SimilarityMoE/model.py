@@ -7,7 +7,9 @@ from transformers.models.olmoe.modeling_olmoe import (
 from transformers.models.qwen3.modeling_qwen3 import (
     Qwen3MLP, Qwen3DecoderLayer, Qwen3Model, Qwen3ForCausalLM,
 )
-from transformers.masking_utils import create_causal_mask, create_sliding_window_causal_mask
+# TODO FIX MASKING
+# from transformers.modeling_attn_mask_utils import _make_causal_mask, _expand_mask
+# from transformers.masking_utils import create_causal_mask, create_sliding_window_causal_mask
 from transformers.models.qwen2.modeling_qwen2 import (
     Qwen2MLP, Qwen2DecoderLayer, Qwen2Model, Qwen2ForCausalLM,   
 )
@@ -22,7 +24,8 @@ from outputs import (
     MoeModelOutputWithPastAndExpertMask, MoeCausalLMOutputWithPastAndExpertMask,
     BaseModelOutputWithPastandMoe, CausalLMOutputWithPastandMoe,
 )
-
+import torch
+torch.autograd.set_detect_anomaly(True)
 from transformers.utils import logging
 logger = logging.get_logger(__name__)
 
@@ -593,7 +596,7 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         self.value = nn.Linear(config.hidden_size, 
                              self.num_experts*config.expert_attn_size, 
                              bias=False)
-        if self.use_latent_states:
+        if not self.use_latent_states:
             self.expert_query = nn.Linear(config.hidden_size, 
                                           self.num_experts*config.expert_attn_size, bias=False)
         else:
@@ -618,26 +621,12 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         # keys, values shared between experts 
         keys = self.key(hidden_states)
         values = self.value(hidden_states) 
-        experts_flat_states = self.expert_states_flat(hidden_states)
-        experts_flat_query = self.expert_query(experts_flat_states)
+        if self.use_latent_states:
+            experts_flat_states = self.expert_states_flat(hidden_states)
+            experts_flat_query = self.expert_query(experts_flat_states)
+        else:
+            experts_flat_query = self.expert_query(hidden_states) 
         
-        if self.detach_null_states:
-            real_keys,   null_keys   = keys.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
-            null_keys   = null_keys.detach()
-            keys   = torch.cat([real_keys,   null_keys],   dim=0)
-            
-            real_values, null_values = values.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
-            null_values = null_values.detach()
-            values = torch.cat([real_values, null_values], dim=0)
-
-            real_flat_states,   null_flat_states   = experts_flat_states.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
-            null_flat_states   = null_flat_states.detach()
-            experts_flat_states   = torch.cat([real_flat_states,   null_flat_states],   dim=0)
-            
-            real_flat_query, null_flat_query = experts_flat_query.split([batch_size*sequence_length, batch_size*sequence_length], dim=0)
-            null_flat_query = null_flat_query.detach()
-            experts_flat_query = torch.cat([real_flat_query, null_flat_query], dim=0)
-            
         experts_flat_query = experts_flat_query.view(2*batch_size*sequence_length,
                                                      self.num_experts,
                                                      self.expert_attn_size)
@@ -657,10 +646,15 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         all_attn_weights = all_attn_weights.view(batch_size*sequence_length, 
                                                  self.num_experts, 
                                                  2*self.expert_attn_size)  # (batch*sequence_length, num_experts, 2*expert_attn_size)
-        attention_to_real_flat = all_attn_weights[:, :, :self.expert_attn_size].sum(dim=-1)  
-        attention_to_null_flat = all_attn_weights[:, :, self.expert_attn_size:].sum(dim=-1)  
-       
-            
+        
+
+        attention_to_real_flat = all_attn_weights[:, :, :self.expert_attn_size].sum(dim=-1).to(hidden_states.dtype)
+        attention_to_null_flat = all_attn_weights[:, :, self.expert_attn_size:].sum(dim=-1).to(hidden_states.dtype)
+        
+        # Detach null states to avoid gradients optimization based null states
+        if self.detach_null_states:
+            attention_to_null_flat = attention_to_null_flat.detach()         
+
         # Top-p selection using top-k on all experts
         # Attn diff is used to regulate each experts attn to real and null part
         attn_diff_normalized = nn.functional.softmax(attention_to_real_flat - attention_to_null_flat,dim=-1)
@@ -671,19 +665,17 @@ class Qwen3MoeBlockWithRIM(nn.Module):
         experts_mask = torch.zeros_like(attn_diff_normalized, dtype=torch.bool)
         experts_mask.scatter_(dim=1, index=sorted_indices, src=top_p_mask) 
         
-        # Normalize the attention weights
         hidden_states = hidden_states[:batch_size*sequence_length,:]
         
-        # Add process states to residual
+        # DO this to avoid in-place operations
+        output = torch.zeros_like(hidden_states, dtype=hidden_states.dtype, device=hidden_states.device)
         for expert_idx in range(self.num_experts):
-            token_idx = torch.where(experts_mask[:, expert_idx])[0]        # Get token indices (in tuple) where the expert is selected in the batch*sequence_length range
+            token_idx = torch.where(experts_mask[:, expert_idx])[0]
             selected_tokens = hidden_states[token_idx]
-            # the resulting hidden states are the weighted sum of the selected expert's output 
-            hidden_states[token_idx] += self.experts[expert_idx](selected_tokens) * attn_diff_normalized[token_idx, expert_idx].unsqueeze(-1)
-            
-        hidden_states = hidden_states.view(batch_size, sequence_length, hidden_dim)  # Reshape back to (batch, 2*sequence_length, hidden_dim)
-        
-        return hidden_states, attn_diff_normalized, experts_mask  
+            update = self.experts[expert_idx](selected_tokens) * attn_diff_normalized[token_idx, expert_idx].unsqueeze(-1)
+            update = update.to(output.dtype)  # Ensure the update is in the same dtype as output
+            output[token_idx] = output[token_idx] + update
+        return output.contiguous().view(batch_size, sequence_length, -1), attn_diff_normalized, experts_mask
 
 class Qwen3DecoderLayerWithRIM(Qwen3DecoderLayer):
     def __init__(self, config,layer_idx=None):
@@ -725,9 +717,8 @@ class Qwen3DecoderLayerWithRIM(Qwen3DecoderLayer):
         residual = hidden_states
         hidden_states = self.post_attention_layernorm(hidden_states)
         # Pass through the MoE block
-        # MoE block returns residual + hidden_states
         hidden_states, router_logits, expert_mask = self.mlp(hidden_states)
-        # hidden_states = residual + hidden_states
+        hidden_states = residual + hidden_states
 
         outputs = (hidden_states,)
         if output_attentions:
@@ -807,36 +798,36 @@ class Qwen3ModelWithRIM(Qwen3Model):
         if position_ids is None:
             position_ids = cache_position.unsqueeze(0)
 
-        # FIXME: this works for Olmoe but not for Qwen
-        # causal_mask = self._update_causal_mask(
-        #     attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions
-        # )
+        
+        causal_mask = self._update_causal_mask(
+            attention_mask, inputs_embeds, cache_position, past_key_values, output_attentions
+        )
 
-        # NOTE: alt approach
-        # mask_function = create_causal_mask if self.config.sliding_window is None else create_sliding_window_causal_mask
-        # causal_mask = mask_function(
-        #     config=self.config,
-        #     input_embeds=inputs_embeds,
-        #     attention_mask=attention_mask,
-        #     cache_position=cache_position,
-        #     past_key_values=past_key_values,
-        #     position_ids=position_ids,
-        # )
+        # # NOTE: alt approach
+        # # mask_function = create_causal_mask if self.config.sliding_window is None else create_sliding_window_causal_mask
+        # # causal_mask = mask_function(
+        # #     config=self.config,
+        # #     input_embeds=inputs_embeds,
+        # #     attention_mask=attention_mask,
+        # #     cache_position=cache_position,
+        # #     past_key_values=past_key_values,
+        # #     position_ids=position_ids,
+        # # )
 
-        if not isinstance(causal_mask_mapping := attention_mask, dict):
-            mask_kwargs = {
-                "config": self.config,
-                "input_embeds": inputs_embeds,
-                "attention_mask": attention_mask,
-                "cache_position": cache_position,
-                "past_key_values": past_key_values,
-                "position_ids": position_ids,
-            }
-            causal_mask_mapping = {
-                "full_attention": create_causal_mask(**mask_kwargs),
-            }
-            if self.has_sliding_layers:
-                causal_mask_mapping["sliding_attention"] = create_sliding_window_causal_mask(**mask_kwargs)
+        # if not isinstance(causal_mask_mapping := attention_mask, dict):
+        #     mask_kwargs = {
+        #         "config": self.config,
+        #         "input_embeds": inputs_embeds,
+        #         "attention_mask": attention_mask,
+        #         "cache_position": cache_position,
+        #         "past_key_values": past_key_values,
+        #         "position_ids": position_ids,
+        #     }
+        #     causal_mask_mapping = {
+        #         "full_attention": create_causal_mask(**mask_kwargs),
+        #     }
+        #     if self.has_sliding_layers:
+        #         causal_mask_mapping["sliding_attention"] = create_sliding_window_causal_mask(**mask_kwargs)
 
         hidden_states = inputs_embeds
 
@@ -855,8 +846,8 @@ class Qwen3ModelWithRIM(Qwen3Model):
 
             layer_outputs = decoder_layer(
                 hidden_states,
-                # attention_mask=causal_mask,
-                attention_mask=causal_mask_mapping[decoder_layer.attention_type],
+                attention_mask=causal_mask,
+                # attention_mask=causal_mask_mapping[decoder_layer.attention_type],
                 position_ids=position_ids,
                 past_key_value=past_key_values,
                 output_attentions=output_attentions,

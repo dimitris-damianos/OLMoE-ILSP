@@ -82,8 +82,8 @@ def test_custom_moe():
     from transformers import AutoConfig
     from config import OlmoeWithRIMConfig, Qwen3WithRIMConfig, Qwen2WithRIMConfig
     
-    config = Qwen2WithRIMConfig.from_pretrained("Qwen/Qwen2.5-0.5B")
-    # config = Qwen3WithRIMConfig.from_pretrained("Qwen/Qwen3-0.6B")
+    # config = Qwen2WithRIMConfig.from_pretrained("Qwen/Qwen2.5-0.5B")
+    config = Qwen3WithRIMConfig.from_pretrained("Qwen/Qwen3-0.6B")
     # config = OlmoeWithRIMConfig.from_pretrained("allenai/OLMoE-1B-7B-0924")
     config.num_experts = 8  # Set the number of experts for the MoE block
     config.num_experts_per_tok = 2 
@@ -108,7 +108,7 @@ def test_custom_moe():
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     # model = OlmoeForCausalLMWithRIM(config).to(DEVICE)
     # model = Qwen3ForCausalLMWithRIM(config).to(DEVICE)
-    model = Qwen2ForCausalLMWithRIM(config).to(DEVICE)
+    model = Qwen3ForCausalLMWithRIM(config).to(DEVICE)
     with open('model.txt', 'w') as f:
         f.write(str(model))
     inputs = {
@@ -161,5 +161,5 @@ if __name__ == "__main__":
     # test_olmoe()
     # test_router()
     # test_hf_moe_block()
-    # test_custom_moe()
-    test_merging()
+    test_custom_moe()
+    # test_merging()
