@@ -1,0 +1,721 @@
+Loading gcc/12.2.0
+  Loading requirement: zlib-ng/2.1.6-jkgunjc zstd/1.5.6-uq5yyux binutils/2.42
+Loading cuda/12.2
+  Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
+    libxml2/2.10.3-zbbe7lm
+Starting training for ddam_qwen3_moe-11_aux-1_bal-mix
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3_moe_0.6B_11_coef-1', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=1, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=True, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3_moe_0.6B_11_coef-1', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=1, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=True, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3_moe_0.6B_11_coef-1', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=1, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=True, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3_moe_0.6B_11_coef-1', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=1, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=True, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+Initializing tokenizer and model...
+
+Loading dataset...
+
+Loading dataset...
+
+Loading dataset...
+Loading dataset...
+
+Loaded 275967 training samples.
+Loaded 14782 evaluation samples.
+Loaded 275967 training samples.
+Loaded 14782 evaluation samples.
+Loaded 275967 training samples.
+Loaded 14782 evaluation samples.
+Loaded 275967 training samples.
+Loaded 14782 evaluation samples.
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=steps,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=1,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix/runs/Sep19_14-16-28_lrdn3365.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=1,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=steps,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=2,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix/runs/Sep19_14-16-28_lrdn3365.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=1,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=steps,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=3,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix/runs/Sep19_14-16-28_lrdn3365.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=1,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=steps,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix/runs/Sep19_14-16-28_lrdn3365.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=1,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-11_aux-1_bal-mix,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+All params: 3238776832, Trainable params: 332124160, Frozen params: 924
+All params: 3238776832, Trainable params: 332124160, Frozen params: 924
+All params: 3238776832, Trainable params: 332124160, Frozen params: 924
+All params: 3238776832, Trainable params: 332124160, Frozen params: 924
+Training started...
+Training started...
+Training started...
+Training started...
+{'loss': 14.6584, 'grad_norm': 149.0, 'learning_rate': 0.0, 'num_tokens': 15339.0, 'mean_token_accuracy': 0.14119408279657364, 'epoch': 0.00023191094619666049}
+{'loss': 14.2485, 'grad_norm': 137.0, 'learning_rate': 1.2853470437017995e-06, 'num_tokens': 37096.0, 'mean_token_accuracy': 0.16950087808072567, 'epoch': 0.00046382189239332097}
+{'loss': 14.7453, 'grad_norm': 141.0, 'learning_rate': 2.570694087403599e-06, 'num_tokens': 54632.0, 'mean_token_accuracy': 0.13447719626128674, 'epoch': 0.0006957328385899814}
+{'loss': 14.747, 'grad_norm': 133.0, 'learning_rate': 3.856041131105398e-06, 'num_tokens': 73668.0, 'mean_token_accuracy': 0.1318236105144024, 'epoch': 0.0009276437847866419}
+{'loss': 14.2776, 'grad_norm': 136.0, 'learning_rate': 5.141388174807198e-06, 'num_tokens': 90691.0, 'mean_token_accuracy': 0.16986201703548431, 'epoch': 0.0011595547309833025}
+{'loss': 14.4299, 'grad_norm': 118.5, 'learning_rate': 6.426735218508998e-06, 'num_tokens': 117698.0, 'mean_token_accuracy': 0.15150459855794907, 'epoch': 0.0013914656771799629}
+{'loss': 14.0625, 'grad_norm': 120.5, 'learning_rate': 7.712082262210796e-06, 'num_tokens': 135675.0, 'mean_token_accuracy': 0.19948583468794823, 'epoch': 0.0016233766233766235}
+{'loss': 13.5727, 'grad_norm': 114.5, 'learning_rate': 8.997429305912597e-06, 'num_tokens': 153314.0, 'mean_token_accuracy': 0.23023610189557076, 'epoch': 0.0018552875695732839}
+{'loss': 14.1796, 'grad_norm': 75.0, 'learning_rate': 1.0282776349614396e-05, 'num_tokens': 170069.0, 'mean_token_accuracy': 0.18736199289560318, 'epoch': 0.0020871985157699443}
+{'loss': 13.8324, 'grad_norm': 122.5, 'learning_rate': 1.1568123393316195e-05, 'epoch': 0.002319109461966605}
+{'eval_loss': 6.951714515686035, 'eval_runtime': 127.6915, 'eval_samples_per_second': 115.763, 'eval_steps_per_second': 7.236, 'eval_num_tokens': 190056.0, 'eval_mean_token_accuracy': 0.3054059317004887, 'epoch': 0.002319109461966605}
+{'loss': 13.107, 'grad_norm': 72.5, 'learning_rate': 1.2853470437017995e-05, 'num_tokens': 213153.0, 'mean_token_accuracy': 0.2522270977497101, 'epoch': 0.002551020408163265}
+{'loss': 13.1293, 'grad_norm': 42.25, 'learning_rate': 1.4138817480719794e-05, 'num_tokens': 225531.0, 'mean_token_accuracy': 0.28633247315883636, 'epoch': 0.0027829313543599257}
+{'loss': 12.7672, 'grad_norm': 42.5, 'learning_rate': 1.5424164524421593e-05, 'num_tokens': 248277.0, 'mean_token_accuracy': 0.3158121779561043, 'epoch': 0.0030148423005565863}
+{'loss': 12.3225, 'grad_norm': 30.375, 'learning_rate': 1.6709511568123392e-05, 'num_tokens': 270278.0, 'mean_token_accuracy': 0.3393096923828125, 'epoch': 0.003246753246753247}
+{'loss': 11.9882, 'grad_norm': 28.0, 'learning_rate': 1.7994858611825194e-05, 'num_tokens': 288637.0, 'mean_token_accuracy': 0.3763500079512596, 'epoch': 0.003478664192949907}
+{'loss': 12.0247, 'grad_norm': 42.25, 'learning_rate': 1.9280205655526993e-05, 'num_tokens': 310434.0, 'mean_token_accuracy': 0.36053580045700073, 'epoch': 0.0037105751391465678}
+{'loss': 11.8815, 'grad_norm': 22.25, 'learning_rate': 2.0565552699228792e-05, 'num_tokens': 328224.0, 'mean_token_accuracy': 0.4028649553656578, 'epoch': 0.003942486085343228}
+{'loss': 11.7257, 'grad_norm': 17.5, 'learning_rate': 2.1850899742930594e-05, 'num_tokens': 350308.0, 'mean_token_accuracy': 0.39367052912712097, 'epoch': 0.004174397031539889}
+{'loss': 11.4728, 'grad_norm': 21.375, 'learning_rate': 2.313624678663239e-05, 'num_tokens': 374357.0, 'mean_token_accuracy': 0.41265594959259033, 'epoch': 0.004406307977736549}
+{'loss': 11.8712, 'grad_norm': 14.1875, 'learning_rate': 2.442159383033419e-05, 'epoch': 0.00463821892393321}
+{'eval_loss': 5.474578380584717, 'eval_runtime': 127.2732, 'eval_samples_per_second': 116.144, 'eval_steps_per_second': 7.26, 'eval_num_tokens': 397648.0, 'eval_mean_token_accuracy': 0.4184541110094492, 'epoch': 0.00463821892393321}
+{'loss': 11.2505, 'grad_norm': 13.8125, 'learning_rate': 2.570694087403599e-05, 'num_tokens': 417457.0, 'mean_token_accuracy': 0.39111825823783875, 'epoch': 0.00487012987012987}
+{'loss': 11.6942, 'grad_norm': 11.3125, 'learning_rate': 2.699228791773779e-05, 'num_tokens': 437475.0, 'mean_token_accuracy': 0.3816080614924431, 'epoch': 0.00510204081632653}
+{'loss': 11.1794, 'grad_norm': 10.5625, 'learning_rate': 2.8277634961439588e-05, 'num_tokens': 460479.0, 'mean_token_accuracy': 0.4334178566932678, 'epoch': 0.005333951762523191}
+{'loss': 11.027, 'grad_norm': 10.6875, 'learning_rate': 2.956298200514139e-05, 'num_tokens': 477251.0, 'mean_token_accuracy': 0.460107184946537, 'epoch': 0.0055658627087198514}
+{'loss': 11.2807, 'grad_norm': 8.9375, 'learning_rate': 3.0848329048843186e-05, 'num_tokens': 504511.0, 'mean_token_accuracy': 0.4261479377746582, 'epoch': 0.005797773654916512}
+{'loss': 10.8831, 'grad_norm': 10.9375, 'learning_rate': 3.2133676092544985e-05, 'num_tokens': 524132.0, 'mean_token_accuracy': 0.46640845388174057, 'epoch': 0.006029684601113173}
+{'loss': 10.8305, 'grad_norm': 7.15625, 'learning_rate': 3.3419023136246784e-05, 'num_tokens': 542120.0, 'mean_token_accuracy': 0.46773938834667206, 'epoch': 0.006261595547309833}
+{'loss': 10.3747, 'grad_norm': 7.375, 'learning_rate': 3.470437017994859e-05, 'num_tokens': 564267.0, 'mean_token_accuracy': 0.5006745010614395, 'epoch': 0.006493506493506494}
+{'loss': 10.3552, 'grad_norm': 5.90625, 'learning_rate': 3.598971722365039e-05, 'num_tokens': 584341.0, 'mean_token_accuracy': 0.5444490611553192, 'epoch': 0.006725417439703154}
+{'loss': 10.547, 'grad_norm': 5.59375, 'learning_rate': 3.727506426735219e-05, 'epoch': 0.006957328385899814}
+{'eval_loss': 4.636520862579346, 'eval_runtime': 127.6093, 'eval_samples_per_second': 115.838, 'eval_steps_per_second': 7.241, 'eval_num_tokens': 604185.0, 'eval_mean_token_accuracy': 0.5001185245457149, 'epoch': 0.006957328385899814}
+{'loss': 10.4494, 'grad_norm': 5.1875, 'learning_rate': 3.8560411311053986e-05, 'num_tokens': 620933.0, 'mean_token_accuracy': 0.5155389793217182, 'epoch': 0.007189239332096475}
+{'loss': 10.6254, 'grad_norm': 4.25, 'learning_rate': 3.9845758354755785e-05, 'num_tokens': 640581.0, 'mean_token_accuracy': 0.4750620275735855, 'epoch': 0.0074211502782931356}
+{'loss': 10.5431, 'grad_norm': 4.28125, 'learning_rate': 4.1131105398457584e-05, 'num_tokens': 659231.0, 'mean_token_accuracy': 0.5004719644784927, 'epoch': 0.007653061224489796}
+{'loss': 10.4115, 'grad_norm': 4.53125, 'learning_rate': 4.241645244215939e-05, 'num_tokens': 682455.0, 'mean_token_accuracy': 0.5258033648133278, 'epoch': 0.007884972170686457}
+{'loss': 10.5736, 'grad_norm': 6.875, 'learning_rate': 4.370179948586119e-05, 'num_tokens': 700310.0, 'mean_token_accuracy': 0.5060578361153603, 'epoch': 0.008116883116883116}
+{'loss': 10.6289, 'grad_norm': 3.8125, 'learning_rate': 4.498714652956298e-05, 'num_tokens': 721270.0, 'mean_token_accuracy': 0.49905136972665787, 'epoch': 0.008348794063079777}
+{'loss': 10.1111, 'grad_norm': 3.5, 'learning_rate': 4.627249357326478e-05, 'num_tokens': 739542.0, 'mean_token_accuracy': 0.5867772698402405, 'epoch': 0.008580705009276438}
+{'loss': 10.381, 'grad_norm': 2.875, 'learning_rate': 4.755784061696658e-05, 'num_tokens': 764202.0, 'mean_token_accuracy': 0.5305939987301826, 'epoch': 0.008812615955473098}
+{'loss': 10.3786, 'grad_norm': 4.03125, 'learning_rate': 4.884318766066838e-05, 'num_tokens': 785090.0, 'mean_token_accuracy': 0.5348617359995842, 'epoch': 0.009044526901669759}
+{'loss': 10.255, 'grad_norm': 2.96875, 'learning_rate': 5.012853470437018e-05, 'epoch': 0.00927643784786642}
+{'eval_loss': 4.304328441619873, 'eval_runtime': 128.8775, 'eval_samples_per_second': 114.698, 'eval_steps_per_second': 7.17, 'eval_num_tokens': 802960.0, 'eval_mean_token_accuracy': 0.5423146412421614, 'epoch': 0.00927643784786642}
+{'loss': 10.4367, 'grad_norm': 4.3125, 'learning_rate': 5.141388174807198e-05, 'num_tokens': 822385.0, 'mean_token_accuracy': 0.5379520207643509, 'epoch': 0.009508348794063079}
+{'loss': 10.0021, 'grad_norm': 3.1875, 'learning_rate': 5.269922879177378e-05, 'num_tokens': 841337.0, 'mean_token_accuracy': 0.5925147831439972, 'epoch': 0.00974025974025974}
+{'loss': 10.2191, 'grad_norm': 3.328125, 'learning_rate': 5.398457583547558e-05, 'num_tokens': 867399.0, 'mean_token_accuracy': 0.533811055123806, 'epoch': 0.009972170686456401}
+{'loss': 10.1702, 'grad_norm': 3.03125, 'learning_rate': 5.526992287917738e-05, 'num_tokens': 891743.0, 'mean_token_accuracy': 0.5445633083581924, 'epoch': 0.01020408163265306}
+{'loss': 10.2491, 'grad_norm': 3.265625, 'learning_rate': 5.6555269922879177e-05, 'num_tokens': 910901.0, 'mean_token_accuracy': 0.5568934977054596, 'epoch': 0.010435992578849721}
+{'loss': 10.0855, 'grad_norm': 3.71875, 'learning_rate': 5.784061696658098e-05, 'num_tokens': 936317.0, 'mean_token_accuracy': 0.5589431375265121, 'epoch': 0.010667903525046383}
+{'loss': 10.0862, 'grad_norm': 3.5, 'learning_rate': 5.912596401028278e-05, 'num_tokens': 952400.0, 'mean_token_accuracy': 0.581612765789032, 'epoch': 0.010899814471243042}
+{'loss': 9.9999, 'grad_norm': 2.234375, 'learning_rate': 6.041131105398458e-05, 'num_tokens': 977077.0, 'mean_token_accuracy': 0.6015158295631409, 'epoch': 0.011131725417439703}
+{'loss': 10.2479, 'grad_norm': 2.5625, 'learning_rate': 6.169665809768637e-05, 'num_tokens': 997649.0, 'mean_token_accuracy': 0.5514360815286636, 'epoch': 0.011363636363636364}
+{'loss': 10.2393, 'grad_norm': 2.4375, 'learning_rate': 6.298200514138817e-05, 'epoch': 0.011595547309833023}
+{'eval_loss': 4.069169044494629, 'eval_runtime': 129.9141, 'eval_samples_per_second': 113.783, 'eval_steps_per_second': 7.112, 'eval_num_tokens': 1018886.0, 'eval_mean_token_accuracy': 0.5778143373983247, 'epoch': 0.011595547309833023}
+{'loss': 10.3865, 'grad_norm': 2.6875, 'learning_rate': 6.426735218508997e-05, 'num_tokens': 1036739.0, 'mean_token_accuracy': 0.5448375940322876, 'epoch': 0.011827458256029684}
+{'loss': 10.3664, 'grad_norm': 2.875, 'learning_rate': 6.555269922879177e-05, 'num_tokens': 1057910.0, 'mean_token_accuracy': 0.5270970836281776, 'epoch': 0.012059369202226345}
+{'loss': 10.194, 'grad_norm': 2.65625, 'learning_rate': 6.683804627249357e-05, 'num_tokens': 1078447.0, 'mean_token_accuracy': 0.5559781342744827, 'epoch': 0.012291280148423005}
+{'loss': 9.8761, 'grad_norm': 2.703125, 'learning_rate': 6.812339331619537e-05, 'num_tokens': 1100389.0, 'mean_token_accuracy': 0.6078433990478516, 'epoch': 0.012523191094619666}
+{'loss': 9.8841, 'grad_norm': 2.671875, 'learning_rate': 6.940874035989718e-05, 'num_tokens': 1118869.0, 'mean_token_accuracy': 0.6093834489583969, 'epoch': 0.012755102040816327}
+{'loss': 9.8665, 'grad_norm': 2.328125, 'learning_rate': 7.069408740359898e-05, 'num_tokens': 1137242.0, 'mean_token_accuracy': 0.5952461361885071, 'epoch': 0.012987012987012988}
+{'loss': 10.0871, 'grad_norm': 2.390625, 'learning_rate': 7.197943444730078e-05, 'num_tokens': 1158569.0, 'mean_token_accuracy': 0.5729978382587433, 'epoch': 0.013218923933209647}
+{'loss': 9.8832, 'grad_norm': 2.234375, 'learning_rate': 7.326478149100258e-05, 'num_tokens': 1183567.0, 'mean_token_accuracy': 0.5846389383077621, 'epoch': 0.013450834879406308}
+{'loss': 9.991, 'grad_norm': 2.109375, 'learning_rate': 7.455012853470437e-05, 'num_tokens': 1206827.0, 'mean_token_accuracy': 0.573162391781807, 'epoch': 0.01368274582560297}
+{'loss': 9.7605, 'grad_norm': 2.40625, 'learning_rate': 7.583547557840617e-05, 'epoch': 0.013914656771799629}
+{'eval_loss': 3.961665630340576, 'eval_runtime': 130.0511, 'eval_samples_per_second': 113.663, 'eval_steps_per_second': 7.105, 'eval_num_tokens': 1221902.0, 'eval_mean_token_accuracy': 0.5916563162813971, 'epoch': 0.013914656771799629}
+{'loss': 10.104, 'grad_norm': 2.4375, 'learning_rate': 7.712082262210797e-05, 'num_tokens': 1243321.0, 'mean_token_accuracy': 0.6006104499101639, 'epoch': 0.01414656771799629}
+{'loss': 9.8908, 'grad_norm': 2.375, 'learning_rate': 7.840616966580977e-05, 'num_tokens': 1259775.0, 'mean_token_accuracy': 0.5815114080905914, 'epoch': 0.01437847866419295}
+{'loss': 10.0982, 'grad_norm': 2.40625, 'learning_rate': 7.969151670951157e-05, 'num_tokens': 1276861.0, 'mean_token_accuracy': 0.5684600472450256, 'epoch': 0.01461038961038961}
+{'loss': 10.0922, 'grad_norm': 2.375, 'learning_rate': 8.097686375321337e-05, 'num_tokens': 1299188.0, 'mean_token_accuracy': 0.5984713286161423, 'epoch': 0.014842300556586271}
+{'loss': 9.9321, 'grad_norm': 2.25, 'learning_rate': 8.226221079691517e-05, 'num_tokens': 1319888.0, 'mean_token_accuracy': 0.5802199095487595, 'epoch': 0.015074211502782932}
+{'loss': 10.0658, 'grad_norm': 2.359375, 'learning_rate': 8.354755784061698e-05, 'num_tokens': 1341422.0, 'mean_token_accuracy': 0.5860938131809235, 'epoch': 0.015306122448979591}
+{'loss': 10.1353, 'grad_norm': 2.140625, 'learning_rate': 8.483290488431878e-05, 'num_tokens': 1362788.0, 'mean_token_accuracy': 0.5594393610954285, 'epoch': 0.015538033395176253}
+{'loss': 9.9672, 'grad_norm': 1.9765625, 'learning_rate': 8.611825192802058e-05, 'num_tokens': 1382328.0, 'mean_token_accuracy': 0.6073829233646393, 'epoch': 0.015769944341372914}
+{'loss': 9.8089, 'grad_norm': 1.96875, 'learning_rate': 8.740359897172238e-05, 'num_tokens': 1403866.0, 'mean_token_accuracy': 0.6128038018941879, 'epoch': 0.016001855287569575}
+{'loss': 9.8907, 'grad_norm': 2.03125, 'learning_rate': 8.868894601542417e-05, 'epoch': 0.016233766233766232}
+{'eval_loss': 3.8940882682800293, 'eval_runtime': 130.648, 'eval_samples_per_second': 113.144, 'eval_steps_per_second': 7.072, 'eval_num_tokens': 1425007.0, 'eval_mean_token_accuracy': 0.600483400545595, 'epoch': 0.016233766233766232}
+{'loss': 9.9379, 'grad_norm': 2.171875, 'learning_rate': 8.997429305912596e-05, 'num_tokens': 1443875.0, 'mean_token_accuracy': 0.6015629172325134, 'epoch': 0.016465677179962893}
+{'loss': 9.8717, 'grad_norm': 1.84375, 'learning_rate': 9.125964010282776e-05, 'num_tokens': 1466596.0, 'mean_token_accuracy': 0.6053940206766129, 'epoch': 0.016697588126159554}
+{'loss': 9.7829, 'grad_norm': 1.921875, 'learning_rate': 9.254498714652956e-05, 'num_tokens': 1488497.0, 'mean_token_accuracy': 0.6167607456445694, 'epoch': 0.016929499072356215}
+{'loss': 9.8765, 'grad_norm': 2.109375, 'learning_rate': 9.383033419023136e-05, 'num_tokens': 1506180.0, 'mean_token_accuracy': 0.6034492701292038, 'epoch': 0.017161410018552876}
+{'loss': 9.5856, 'grad_norm': 1.9765625, 'learning_rate': 9.511568123393316e-05, 'num_tokens': 1524470.0, 'mean_token_accuracy': 0.6409126818180084, 'epoch': 0.017393320964749538}
+{'loss': 10.1095, 'grad_norm': 2.34375, 'learning_rate': 9.640102827763495e-05, 'num_tokens': 1542238.0, 'mean_token_accuracy': 0.561329111456871, 'epoch': 0.017625231910946195}
+{'loss': 9.7734, 'grad_norm': 2.109375, 'learning_rate': 9.768637532133675e-05, 'num_tokens': 1565088.0, 'mean_token_accuracy': 0.6268881559371948, 'epoch': 0.017857142857142856}
+{'loss': 9.9326, 'grad_norm': 2.6875, 'learning_rate': 9.897172236503857e-05, 'num_tokens': 1582265.0, 'mean_token_accuracy': 0.5840182304382324, 'epoch': 0.018089053803339517}
+{'loss': 9.6024, 'grad_norm': 4.5625, 'learning_rate': 0.00010025706940874036, 'num_tokens': 1601144.0, 'mean_token_accuracy': 0.6509358882904053, 'epoch': 0.018320964749536178}
+{'loss': 9.8234, 'grad_norm': 6.0, 'learning_rate': 0.00010154241645244216, 'epoch': 0.01855287569573284}

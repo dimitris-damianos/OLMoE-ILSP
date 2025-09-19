@@ -1,0 +1,551 @@
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+[rank2]:[W919 14:04:57.581482432 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W919 14:04:57.581613110 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W919 14:04:57.581682596 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W919 14:04:59.145977312 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:25<00:50, 25.05s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:25<00:50, 25.23s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:25<00:50, 25.24s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:25<00:50, 25.24s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:57<00:29, 29.69s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:58<00:29, 29.76s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:58<00:29, 29.77s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:58<00:29, 29.77s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 24.01s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 25.08s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 24.09s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 24.08s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 25.17s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 25.17s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 24.08s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:15<00:00, 25.17s/it]
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Aug 11 15:06:05 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Aug 11 15:06:05 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Aug 11 15:06:05 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Wed Aug  6 11:44:24 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Aug 11 15:06:05 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Wed Aug  6 11:44:24 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Wed Aug  6 11:44:24 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Wed Aug  6 11:44:24 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Wed Aug  6 11:44:35 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Wed Aug  6 11:44:35 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Wed Aug  6 11:44:35 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Wed Aug  6 11:44:35 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Wed Aug  6 11:45:38 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Wed Aug  6 11:45:38 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Wed Aug  6 11:46:06 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Wed Aug  6 11:46:06 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Wed Aug  6 11:46:30 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Wed Aug  6 11:46:30 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Wed Aug  6 11:45:38 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Wed Aug  6 11:45:38 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Wed Aug  6 11:46:06 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Wed Aug  6 11:46:30 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Wed Aug  6 11:46:06 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Wed Aug  6 11:46:30 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Wed Aug  6 12:33:21 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Wed Aug  6 12:33:21 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Wed Aug  6 12:33:21 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Wed Aug  6 12:33:21 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Wed Aug  6 12:35:11 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Mon Aug 11 15:06:21 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Wed Aug  6 12:36:44 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since casehold/casehold couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'all' at /leonardo_work/EUHPC_A06_067/hf_cache/casehold___casehold/all/1.1.0/a42bd9b26cf4f67c31437d5a542ec6efe65003b1d8a4afe8042d059e9f976f6f (last modified on Wed Aug  6 12:37:24 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Wed Aug  6 12:38:19 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+No expert_mask found in model outputs at step 1
+No expert_mask found in model outputs at step 1
+No expert_mask found in model outputs at step 1
+No expert_mask found in model outputs at step 1
+No expert_mask found in model outputs at step 2
+No expert_mask found in model outputs at step 2
+No expert_mask found in model outputs at step 2
+No expert_mask found in model outputs at step 2
+No expert_mask found in model outputs at step 3
+No expert_mask found in model outputs at step 3
+No expert_mask found in model outputs at step 3
+No expert_mask found in model outputs at step 3
+No expert_mask found in model outputs at step 4
+No expert_mask found in model outputs at step 4
+No expert_mask found in model outputs at step 4
+No expert_mask found in model outputs at step 4
+No expert_mask found in model outputs at step 5
+No expert_mask found in model outputs at step 5
+No expert_mask found in model outputs at step 5
+No expert_mask found in model outputs at step 5
+No expert_mask found in model outputs at step 6
+No expert_mask found in model outputs at step 6
+No expert_mask found in model outputs at step 6
+No expert_mask found in model outputs at step 6
+No expert_mask found in model outputs at step 7
+No expert_mask found in model outputs at step 7
+No expert_mask found in model outputs at step 7
+No expert_mask found in model outputs at step 7
+No expert_mask found in model outputs at step 8
+No expert_mask found in model outputs at step 8
+No expert_mask found in model outputs at step 8
+No expert_mask found in model outputs at step 8
+No expert_mask found in model outputs at step 9
+No expert_mask found in model outputs at step 9
+No expert_mask found in model outputs at step 9
+No expert_mask found in model outputs at step 9
+No expert_mask found in model outputs at step 10
+No expert_mask found in model outputs at step 10
+No expert_mask found in model outputs at step 10
+No expert_mask found in model outputs at step 10
+No expert_mask found in model outputs at step 11
+No expert_mask found in model outputs at step 11
+No expert_mask found in model outputs at step 11
+No expert_mask found in model outputs at step 11
+No expert_mask found in model outputs at step 12
+No expert_mask found in model outputs at step 12
+No expert_mask found in model outputs at step 12
+No expert_mask found in model outputs at step 12
+No expert_mask found in model outputs at step 13
+No expert_mask found in model outputs at step 13
+No expert_mask found in model outputs at step 13
+No expert_mask found in model outputs at step 13
+No expert_mask found in model outputs at step 14
+No expert_mask found in model outputs at step 14
+No expert_mask found in model outputs at step 14
+No expert_mask found in model outputs at step 14
+No expert_mask found in model outputs at step 15
+No expert_mask found in model outputs at step 15
+No expert_mask found in model outputs at step 15
+No expert_mask found in model outputs at step 15
+No expert_mask found in model outputs at step 16
+No expert_mask found in model outputs at step 16
+No expert_mask found in model outputs at step 16
+No expert_mask found in model outputs at step 16
+No expert_mask found in model outputs at step 17
+No expert_mask found in model outputs at step 17
+No expert_mask found in model outputs at step 17
+No expert_mask found in model outputs at step 17
+No expert_mask found in model outputs at step 18
+No expert_mask found in model outputs at step 18
+No expert_mask found in model outputs at step 18
+No expert_mask found in model outputs at step 18
+No expert_mask found in model outputs at step 19
+No expert_mask found in model outputs at step 19
+No expert_mask found in model outputs at step 19
+No expert_mask found in model outputs at step 19
+No expert_mask found in model outputs at step 20
+No expert_mask found in model outputs at step 20
+No expert_mask found in model outputs at step 20
+No expert_mask found in model outputs at step 20
+No expert_mask found in model outputs at step 21
+No expert_mask found in model outputs at step 21
+No expert_mask found in model outputs at step 21
+No expert_mask found in model outputs at step 21
+No expert_mask found in model outputs at step 22
+No expert_mask found in model outputs at step 22
+No expert_mask found in model outputs at step 22
+No expert_mask found in model outputs at step 22
+No expert_mask found in model outputs at step 23
+No expert_mask found in model outputs at step 23
+No expert_mask found in model outputs at step 23
+No expert_mask found in model outputs at step 23
+No expert_mask found in model outputs at step 24
+No expert_mask found in model outputs at step 24
+No expert_mask found in model outputs at step 24
+No expert_mask found in model outputs at step 24
+No expert_mask found in model outputs at step 25
+No expert_mask found in model outputs at step 25
+No expert_mask found in model outputs at step 25
+No expert_mask found in model outputs at step 25
+No expert_mask found in model outputs at step 26
+No expert_mask found in model outputs at step 26
+No expert_mask found in model outputs at step 26
+No expert_mask found in model outputs at step 26
+No expert_mask found in model outputs at step 27
+No expert_mask found in model outputs at step 27
+No expert_mask found in model outputs at step 27
+No expert_mask found in model outputs at step 27
+No expert_mask found in model outputs at step 28
+No expert_mask found in model outputs at step 28
+No expert_mask found in model outputs at step 28
+No expert_mask found in model outputs at step 28
+No expert_mask found in model outputs at step 29
+No expert_mask found in model outputs at step 29
+No expert_mask found in model outputs at step 29
+No expert_mask found in model outputs at step 29
+No expert_mask found in model outputs at step 30
+No expert_mask found in model outputs at step 30
+No expert_mask found in model outputs at step 30
+No expert_mask found in model outputs at step 30
+No expert_mask found in model outputs at step 31
+No expert_mask found in model outputs at step 31
+No expert_mask found in model outputs at step 31
+No expert_mask found in model outputs at step 31
+No expert_mask found in model outputs at step 32
+No expert_mask found in model outputs at step 32
+No expert_mask found in model outputs at step 32
+No expert_mask found in model outputs at step 32
+No expert_mask found in model outputs at step 33
+No expert_mask found in model outputs at step 33
+No expert_mask found in model outputs at step 33
+No expert_mask found in model outputs at step 33
+No expert_mask found in model outputs at step 34
+No expert_mask found in model outputs at step 34
+No expert_mask found in model outputs at step 34
+No expert_mask found in model outputs at step 34
+No expert_mask found in model outputs at step 35
+No expert_mask found in model outputs at step 35
+No expert_mask found in model outputs at step 35
+No expert_mask found in model outputs at step 35
+No expert_mask found in model outputs at step 36
+No expert_mask found in model outputs at step 36
+No expert_mask found in model outputs at step 36
+No expert_mask found in model outputs at step 36
+No expert_mask found in model outputs at step 37
+No expert_mask found in model outputs at step 37
+No expert_mask found in model outputs at step 37
+No expert_mask found in model outputs at step 37
+No expert_mask found in model outputs at step 38
+No expert_mask found in model outputs at step 38
+No expert_mask found in model outputs at step 38
+No expert_mask found in model outputs at step 38
+No expert_mask found in model outputs at step 39
+No expert_mask found in model outputs at step 39
+No expert_mask found in model outputs at step 39
+No expert_mask found in model outputs at step 39
+No expert_mask found in model outputs at step 40
+No expert_mask found in model outputs at step 40
+No expert_mask found in model outputs at step 40
+No expert_mask found in model outputs at step 40
+No expert_mask found in model outputs at step 41
+No expert_mask found in model outputs at step 41
+No expert_mask found in model outputs at step 41
+No expert_mask found in model outputs at step 41
+No expert_mask found in model outputs at step 42
+No expert_mask found in model outputs at step 42
+No expert_mask found in model outputs at step 42
+No expert_mask found in model outputs at step 42
+No expert_mask found in model outputs at step 43
+No expert_mask found in model outputs at step 43
+No expert_mask found in model outputs at step 43
+No expert_mask found in model outputs at step 43
+No expert_mask found in model outputs at step 44
+No expert_mask found in model outputs at step 44
+No expert_mask found in model outputs at step 44
+No expert_mask found in model outputs at step 44
+No expert_mask found in model outputs at step 45
+No expert_mask found in model outputs at step 45
+No expert_mask found in model outputs at step 45
+No expert_mask found in model outputs at step 45
+No expert_mask found in model outputs at step 46
+No expert_mask found in model outputs at step 46
+No expert_mask found in model outputs at step 46
+No expert_mask found in model outputs at step 46
+No expert_mask found in model outputs at step 47
+No expert_mask found in model outputs at step 47
+No expert_mask found in model outputs at step 47
+No expert_mask found in model outputs at step 47
+No expert_mask found in model outputs at step 48
+No expert_mask found in model outputs at step 48
+No expert_mask found in model outputs at step 48
+No expert_mask found in model outputs at step 48
+No expert_mask found in model outputs at step 49
+No expert_mask found in model outputs at step 49
+No expert_mask found in model outputs at step 49
+No expert_mask found in model outputs at step 49
+No expert_mask found in model outputs at step 50
+No expert_mask found in model outputs at step 50
+No expert_mask found in model outputs at step 50
+No expert_mask found in model outputs at step 50
+No expert_mask found in model outputs at step 51
+No expert_mask found in model outputs at step 51
+No expert_mask found in model outputs at step 51
+No expert_mask found in model outputs at step 51
+No expert_mask found in model outputs at step 52
+No expert_mask found in model outputs at step 52
+No expert_mask found in model outputs at step 52
+No expert_mask found in model outputs at step 52
+No expert_mask found in model outputs at step 53
+No expert_mask found in model outputs at step 53
+No expert_mask found in model outputs at step 53
+No expert_mask found in model outputs at step 53
+No expert_mask found in model outputs at step 54
+No expert_mask found in model outputs at step 54
+No expert_mask found in model outputs at step 54
+No expert_mask found in model outputs at step 54
+No expert_mask found in model outputs at step 55
+No expert_mask found in model outputs at step 55
+No expert_mask found in model outputs at step 55
+No expert_mask found in model outputs at step 55
+No expert_mask found in model outputs at step 56
+No expert_mask found in model outputs at step 56
+No expert_mask found in model outputs at step 56
+No expert_mask found in model outputs at step 56
+No expert_mask found in model outputs at step 57
+No expert_mask found in model outputs at step 57
+No expert_mask found in model outputs at step 57
+No expert_mask found in model outputs at step 57
+No expert_mask found in model outputs at step 58
+No expert_mask found in model outputs at step 58
+No expert_mask found in model outputs at step 58
+No expert_mask found in model outputs at step 58
+No expert_mask found in model outputs at step 59
+No expert_mask found in model outputs at step 59
+No expert_mask found in model outputs at step 59
+No expert_mask found in model outputs at step 59
+No expert_mask found in model outputs at step 60
+No expert_mask found in model outputs at step 60
+No expert_mask found in model outputs at step 60
+No expert_mask found in model outputs at step 60
+No expert_mask found in model outputs at step 61
+No expert_mask found in model outputs at step 61
+No expert_mask found in model outputs at step 61
+No expert_mask found in model outputs at step 61
+No expert_mask found in model outputs at step 62
+No expert_mask found in model outputs at step 62
+No expert_mask found in model outputs at step 62
+No expert_mask found in model outputs at step 62
+No expert_mask found in model outputs at step 63
+No expert_mask found in model outputs at step 63
+No expert_mask found in model outputs at step 63
+No expert_mask found in model outputs at step 63
+No expert_mask found in model outputs at step 64
+No expert_mask found in model outputs at step 64
+No expert_mask found in model outputs at step 64
+No expert_mask found in model outputs at step 64
+No expert_mask found in model outputs at step 65
+No expert_mask found in model outputs at step 65
+No expert_mask found in model outputs at step 65
+No expert_mask found in model outputs at step 65
+No expert_mask found in model outputs at step 66
+No expert_mask found in model outputs at step 66
+No expert_mask found in model outputs at step 66
+No expert_mask found in model outputs at step 66
+No expert_mask found in model outputs at step 67
+No expert_mask found in model outputs at step 67
+No expert_mask found in model outputs at step 67
+No expert_mask found in model outputs at step 67
+No expert_mask found in model outputs at step 68
+No expert_mask found in model outputs at step 68
+No expert_mask found in model outputs at step 68
+No expert_mask found in model outputs at step 68
+No expert_mask found in model outputs at step 69
+No expert_mask found in model outputs at step 69
+No expert_mask found in model outputs at step 69
+No expert_mask found in model outputs at step 69
+No expert_mask found in model outputs at step 70
+No expert_mask found in model outputs at step 70
+No expert_mask found in model outputs at step 70
+No expert_mask found in model outputs at step 70
+No expert_mask found in model outputs at step 71
+No expert_mask found in model outputs at step 71
+No expert_mask found in model outputs at step 71
+No expert_mask found in model outputs at step 71
+No expert_mask found in model outputs at step 72
+No expert_mask found in model outputs at step 72
+No expert_mask found in model outputs at step 72
+No expert_mask found in model outputs at step 72
+No expert_mask found in model outputs at step 73
+No expert_mask found in model outputs at step 73
+No expert_mask found in model outputs at step 73
+No expert_mask found in model outputs at step 73
+No expert_mask found in model outputs at step 74
+No expert_mask found in model outputs at step 74
+No expert_mask found in model outputs at step 74
+No expert_mask found in model outputs at step 74
+No expert_mask found in model outputs at step 75
+No expert_mask found in model outputs at step 75
+No expert_mask found in model outputs at step 75
+No expert_mask found in model outputs at step 75
+No expert_mask found in model outputs at step 76
+No expert_mask found in model outputs at step 76
+No expert_mask found in model outputs at step 76
+No expert_mask found in model outputs at step 76
+No expert_mask found in model outputs at step 77
+No expert_mask found in model outputs at step 77
+No expert_mask found in model outputs at step 77
+No expert_mask found in model outputs at step 77
+No expert_mask found in model outputs at step 78
+No expert_mask found in model outputs at step 78
+No expert_mask found in model outputs at step 78
+No expert_mask found in model outputs at step 78
+No expert_mask found in model outputs at step 79
+No expert_mask found in model outputs at step 79
+No expert_mask found in model outputs at step 79
+No expert_mask found in model outputs at step 79
+No expert_mask found in model outputs at step 80
+No expert_mask found in model outputs at step 80
+No expert_mask found in model outputs at step 80
+No expert_mask found in model outputs at step 80
+srun: Job step aborted: Waiting up to 182 seconds for job step to finish.
+slurmstepd: error: *** STEP 20344704.0 ON lrdn3365 CANCELLED AT 2025-09-19T14:50:37 ***
+W0919 14:50:37.529000 695052 site-packages/torch/distributed/elastic/agent/server/api.py:719] Received Signals.SIGTERM death signal, shutting down workers
+W0919 14:50:37.531000 695052 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 695144 closing signal SIGTERM
+slurmstepd: error: *** JOB 20344704 ON lrdn3365 CANCELLED AT 2025-09-19T14:50:37 ***

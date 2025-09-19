@@ -1,0 +1,30 @@
+Loading cuda/12.2
+  Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
+    zlib-ng/2.1.6-jkgunjc libxml2/2.10.3-zbbe7lm
+Merging 4 expert models into a RIM-based MoE model...
+
+Base model:         /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
+Specialists:        ['/leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/social_expert_Qwen3-0.6B_SFT', '/leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/logic_expert_Qwen3-0.6B_SFT', '/leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/language_expert_Qwen3-0.6B_SFT', '/leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/world_expert_Qwen3-0.6B_SFT']
+Saving to:          /leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_0.6B-moe-grouped_top-p_aux-0.5
+Config model_type:  qwen3moe_with_rim
+Architectures:      ['Qwen3ForCausalLMWithRIM']
+Auto-map:           {'AutoConfig': 'config.Qwen3WithRIMConfig', 'AutoModelForCausalLM': 'model.Qwen3ForCausalLMWithRIM'}
+Loading base model: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
+Copying non-MLP parameters from base model...
+Copying MLP parameters from specialists...
+Loading specialist 1/4: /leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/social_expert_Qwen3-0.6B_SFT
+Loading specialist 2/4: /leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/logic_expert_Qwen3-0.6B_SFT
+Loading specialist 3/4: /leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/language_expert_Qwen3-0.6B_SFT
+Loading specialist 4/4: /leonardo_work/EUHPC_A06_067/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/world_expert_Qwen3-0.6B_SFT
+Model merging complete. Stats:
+  - Replaced 1056964608 expert parameters
+  - Copied 487391232 non-expert parameters
+  - Kept 23855104 RIM-specific parameters
+
+Saving merged MoE model to /leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_0.6B-moe-grouped_top-p_aux-0.5...
+Total parameters in merged MoE model: 1,568,210,944
+
+Reload test hint (in a fresh process):
+  from transformers import AutoModelForCausalLM, AutoTokenizer
+  model = AutoModelForCausalLM.from_pretrained('/leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_0.6B-moe-grouped_top-p_aux-0.5', trust_remote_code=True)
+  tok   = AutoTokenizer.from_pretrained('/leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_0.6B-moe-grouped_top-p_aux-0.5', use_fast=True)

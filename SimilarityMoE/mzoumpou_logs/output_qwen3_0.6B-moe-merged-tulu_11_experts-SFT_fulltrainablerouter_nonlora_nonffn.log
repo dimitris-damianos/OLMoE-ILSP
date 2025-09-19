@@ -1,0 +1,9 @@
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/mzoumpou_qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=1, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=True, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250917_152852-awwzonk8[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../wandb/offline-run-20250917_152852-awwzonk8/logs[0m

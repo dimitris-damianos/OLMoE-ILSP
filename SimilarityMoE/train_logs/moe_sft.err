@@ -1,48 +1,77 @@
-Traceback (most recent call last):
-  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/anaconda3-2023.09-0-zcre7pfofz45c3btxpdk5zvcicdq5evx/bin/conda", line 12, in <module>
-    from conda.cli import main
-ModuleNotFoundError: No module named 'conda'
 ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+[W804 20:53:10.179739203 Utils.hpp:136] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[W804 20:53:10.179741323 Utils.hpp:136] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[W804 20:53:10.179736732 Utils.hpp:136] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
+[W804 20:53:10.179741931 Utils.hpp:136] Warning: Environment variable NCCL_ASYNC_ERROR_HANDLING is deprecated; use TORCH_NCCL_ASYNC_ERROR_HANDLING instead (function operator())
 Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-[rank3]:[W801 17:59:12.848736212 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
-[rank2]:[W801 17:59:12.848739420 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
-[rank1]:[W801 17:59:12.848858948 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
 wandb: Tracking run with wandb version 0.21.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-[rank0]:[W801 17:59:15.016087962 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.17s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.57s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.57s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.40s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.08s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.46s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.13s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.13s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.46s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.13s/it]
-Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Aug  1 16:37:53 2025).
-Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Aug  1 16:37:53 2025).
-Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Aug  1 16:37:53 2025).
-Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
-Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Aug  1 16:37:53 2025).
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:281: UserWarning: You are passing `packing=True` and `padding_free=True` which is not recommended. Please refer to the documentation to understand why this is not recommended.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:281: UserWarning: You are passing `packing=True` and `padding_free=True` which is not recommended. Please refer to the documentation to understand why this is not recommended.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:281: UserWarning: You are passing `packing=True` and `padding_free=True` which is not recommended. Please refer to the documentation to understand why this is not recommended.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
-  warnings.warn(
-/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:281: UserWarning: You are passing `packing=True` and `padding_free=True` which is not recommended. Please refer to the documentation to understand why this is not recommended.
-  warnings.warn(
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
-  0%|          | 0/40 [00:00<?, ?it/s]  2%|▎         | 1/40 [00:35<23:17, 35.82s/it]                                                2%|▎         | 1/40 [00:35<23:17, 35.82s/it]  5%|▌         | 2/40 [00:56<16:57, 26.77s/it]                                                5%|▌         | 2/40 [00:56<16:57, 26.77s/it]  8%|▊         | 3/40 [01:17<14:49, 24.04s/it]                                                8%|▊         | 3/40 [01:17<14:49, 24.04s/it] 10%|█         | 4/40 [01:37<13:35, 22.66s/it]                                               10%|█         | 4/40 [01:37<13:35, 22.66s/it] 12%|█▎        | 5/40 [01:50<11:10, 19.14s/it]                                               12%|█▎        | 5/40 [01:50<11:10, 19.14s/it] 15%|█▌        | 6/40 [02:11<11:09, 19.69s/it]                                               15%|█▌        | 6/40 [02:11<11:09, 19.69s/it] 18%|█▊        | 7/40 [02:31<10:58, 19.96s/it]                                               18%|█▊        | 7/40 [02:31<10:58, 19.96s/it] 20%|██        | 8/40 [02:52<10:45, 20.17s/it]                                               20%|██        | 8/40 [02:52<10:45, 20.17s/it] 22%|██▎       | 9/40 [03:12<10:28, 20.26s/it]                                               22%|██▎       | 9/40 [03:12<10:28, 20.26s/it] 25%|██▌       | 10/40 [03:25<08:58, 17.94s/it]                                                25%|██▌       | 10/40 [03:25<08:58, 17.94s/it] 28%|██▊       | 11/40 [03:49<09:30, 19.69s/it]                                                28%|██▊       | 11/40 [03:49<09:30, 19.69s/it] 30%|███       | 12/40 [04:09<09:16, 19.89s/it]                                                30%|███       | 12/40 [04:09<09:16, 19.89s/it] 32%|███▎      | 13/40 [04:29<09:00, 20.03s/it]                                                32%|███▎      | 13/40 [04:29<09:00, 20.03s/it] 35%|███▌      | 14/40 [04:50<08:44, 20.18s/it]                                                35%|███▌      | 14/40 [04:50<08:44, 20.18s/it] 38%|███▊      | 15/40 [05:03<07:28, 17.96s/it]                                                38%|███▊      | 15/40 [05:03<07:28, 17.96s/it] 40%|████      | 16/40 [05:23<07:29, 18.73s/it]                                                40%|████      | 16/40 [05:23<07:29, 18.73s/it] 42%|████▎     | 17/40 [05:44<07:23, 19.26s/it]                                                42%|████▎     | 17/40 [05:44<07:23, 19.26s/it] 45%|████▌     | 18/40 [06:05<07:13, 19.72s/it]                                                45%|████▌     | 18/40 [06:05<07:13, 19.72s/it] 48%|████▊     | 19/40 [06:25<06:58, 19.91s/it]                                                48%|████▊     | 19/40 [06:25<06:58, 19.91s/it] 50%|█████     | 20/40 [06:38<05:55, 17.77s/it]                                                50%|█████     | 20/40 [06:38<05:55, 17.77s/it] 52%|█████▎    | 21/40 [07:01<06:08, 19.42s/it]                                                52%|█████▎    | 21/40 [07:01<06:08, 19.42s/it] 55%|█████▌    | 22/40 [07:21<05:55, 19.74s/it]                                                55%|█████▌    | 22/40 [07:21<05:55, 19.74s/it] 57%|█████▊    | 23/40 [07:42<05:39, 19.97s/it]                                                57%|█████▊    | 23/40 [07:42<05:39, 19.97s/it] 60%|██████    | 24/40 [08:02<05:21, 20.10s/it]                                                60%|██████    | 24/40 [08:02<05:21, 20.10s/it] 62%|██████▎   | 25/40 [08:15<04:28, 17.91s/it]                                                62%|██████▎   | 25/40 [08:15<04:28, 17.91s/it] 65%|██████▌   | 26/40 [08:36<04:21, 18.69s/it]                                                65%|██████▌   | 26/40 [08:36<04:21, 18.69s/it] 68%|██████▊   | 27/40 [08:56<04:09, 19.18s/it]                                                68%|██████▊   | 27/40 [08:56<04:09, 19.18s/it] 70%|███████   | 28/40 [09:16<03:54, 19.56s/it]                                                70%|███████   | 28/40 [09:16<03:54, 19.56s/it] 72%|███████▎  | 29/40 [09:37<03:38, 19.88s/it]                                                72%|███████▎  | 29/40 [09:37<03:38, 19.88s/it] 75%|███████▌  | 30/40 [09:50<02:57, 17.75s/it]                                                75%|███████▌  | 30/40 [09:50<02:57, 17.75s/it] 78%|███████▊  | 31/40 [10:14<02:55, 19.55s/it]                                                78%|███████▊  | 31/40 [10:14<02:55, 19.55s/it] 80%|████████  | 32/40 [10:34<02:38, 19.83s/it]                                                80%|████████  | 32/40 [10:34<02:38, 19.83s/it] 82%|████████▎ | 33/40 [10:55<02:20, 20.03s/it]                                                82%|████████▎ | 33/40 [10:55<02:20, 20.03s/it] 85%|████████▌ | 34/40 [11:15<02:00, 20.16s/it]                                                85%|████████▌ | 34/40 [11:15<02:00, 20.16s/it] 88%|████████▊ | 35/40 [11:28<01:29, 17.95s/it]                                                88%|████████▊ | 35/40 [11:28<01:29, 17.95s/it] 90%|█████████ | 36/40 [11:48<01:14, 18.66s/it]                                                90%|█████████ | 36/40 [11:48<01:14, 18.66s/it] 92%|█████████▎| 37/40 [12:09<00:57, 19.21s/it]                                                92%|█████████▎| 37/40 [12:09<00:57, 19.21s/it] 95%|█████████▌| 38/40 [12:29<00:39, 19.55s/it]                                                95%|█████████▌| 38/40 [12:29<00:39, 19.55s/it] 98%|█████████▊| 39/40 [12:49<00:19, 19.83s/it]                                                98%|█████████▊| 39/40 [12:49<00:19, 19.83s/it]100%|██████████| 40/40 [13:02<00:00, 17.71s/it]                                               100%|██████████| 40/40 [13:02<00:00, 17.71s/it]                                               100%|██████████| 40/40 [13:05<00:00, 17.71s/it]100%|██████████| 40/40 [13:05<00:00, 19.64s/it]
-[rank0]:[W801 18:13:31.599966119 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[rank2]:[W804 20:53:13.121859967 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W804 20:53:13.121865655 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W804 20:53:13.122040740 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W804 20:53:13.838425735 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 597, in <module>
+    main()
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 227, in main
+    PartialState().wait_for_everyone()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/state.py", line 403, in wait_for_everyone
+    torch.distributed.barrier()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 4551, in barrier
+    work = group.barrier(opts=opts)
+torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:2588, internal error - please report this issue to the NCCL developers, NCCL version 2.21.5
+ncclInternalError: Internal check failed.
+Last error:
+Bootstrap : no socket interface found
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 597, in <module>
+[rank0]:     main()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 227, in main
+[rank0]:     PartialState().wait_for_everyone()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/state.py", line 403, in wait_for_everyone
+[rank0]:     torch.distributed.barrier()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 4551, in barrier
+[rank0]:     work = group.barrier(opts=opts)
+[rank0]: torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:2588, internal error - please report this issue to the NCCL developers, NCCL version 2.21.5
+[rank0]: ncclInternalError: Internal check failed.
+[rank0]: Last error:
+[rank0]: Bootstrap : no socket interface found
+W0804 20:53:24.951000 3086722 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 3087029 closing signal SIGTERM
+W0804 20:53:25.016000 3086722 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 3087030 closing signal SIGTERM
+W0804 20:53:25.016000 3086722 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 3087031 closing signal SIGTERM
+E0804 20:53:25.795000 3086722 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 3087028) of binary: /leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/python3.10
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+moe_sft.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-04_20:53:24
+  host      : lrdn0522.leonardo.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3087028)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

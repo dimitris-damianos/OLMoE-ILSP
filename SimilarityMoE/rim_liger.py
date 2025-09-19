@@ -107,6 +107,7 @@ def apply_liger_kernel_to_qwen3_rim(
     if fused_linear_cross_entropy:
         if model is not None:
             model.forward = MethodType(qwen3_lce_forward, model)
+            # TODO: wrap model.forward and inject the full output manually (expert masks, etc.)
         else:
             modeling_qwen3.Qwen3ForCausalLM.forward = qwen3_lce_forward
 

@@ -1,0 +1,234 @@
+Traceback (most recent call last):
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/anaconda3-2023.09-0-zcre7pfofz45c3btxpdk5zvcicdq5evx/bin/conda", line 12, in <module>
+    from conda.cli import main
+ModuleNotFoundError: No module named 'conda'
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+[rank1]:[W917 15:28:52.493846625 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank2]:[W917 15:28:52.494530013 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W917 15:28:52.494538324 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W917 15:28:53.976078008 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+    hf_hub_download(
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 602, in <module>
+    main()
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 472, in main
+    model = make_model(args, accelerator, quantization_config)
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 315, in make_model
+    model = Qwen3ForCausalLMWithRIM.from_pretrained(
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4213, in from_pretrained
+    resolved_config_file = cached_file(
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 312, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 522, in cached_files
+    resolved_files = [
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 523, in <listcomp>
+    _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+    resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank3]:     hf_hub_download(
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank3]:     validate_repo_id(arg_value)
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank3]:     raise HFValidationError(
+[rank3]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+
+[rank3]: During handling of the above exception, another exception occurred:
+
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 602, in <module>
+[rank3]:     main()
+[rank3]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 472, in main
+[rank3]:     model = make_model(args, accelerator, quantization_config)
+[rank3]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 315, in make_model
+[rank3]:     model = Qwen3ForCausalLMWithRIM.from_pretrained(
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
+[rank3]:     return func(*args, **kwargs)
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4213, in from_pretrained
+[rank3]:     resolved_config_file = cached_file(
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 312, in cached_file
+[rank3]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 522, in cached_files
+[rank3]:     resolved_files = [
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 523, in <listcomp>
+[rank3]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+[rank3]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank3]:     validate_repo_id(arg_value)
+[rank3]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank3]:     raise HFValidationError(
+[rank3]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank2]:     hf_hub_download(
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank2]:     validate_repo_id(arg_value)
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank2]:     raise HFValidationError(
+[rank2]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+
+[rank2]: During handling of the above exception, another exception occurred:
+
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 602, in <module>
+[rank2]:     main()
+[rank2]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 472, in main
+[rank2]:     model = make_model(args, accelerator, quantization_config)
+[rank2]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 315, in make_model
+[rank2]:     model = Qwen3ForCausalLMWithRIM.from_pretrained(
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
+[rank2]:     return func(*args, **kwargs)
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4213, in from_pretrained
+[rank2]:     resolved_config_file = cached_file(
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 312, in cached_file
+[rank2]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 522, in cached_files
+[rank2]:     resolved_files = [
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 523, in <listcomp>
+[rank2]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+[rank2]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank2]:     validate_repo_id(arg_value)
+[rank2]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank2]:     raise HFValidationError(
+[rank2]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank1]:     hf_hub_download(
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank1]:     validate_repo_id(arg_value)
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank1]:     raise HFValidationError(
+[rank1]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+
+[rank1]: During handling of the above exception, another exception occurred:
+
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 602, in <module>
+[rank1]:     main()
+[rank1]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 472, in main
+[rank1]:     model = make_model(args, accelerator, quantization_config)
+[rank1]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 315, in make_model
+[rank1]:     model = Qwen3ForCausalLMWithRIM.from_pretrained(
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
+[rank1]:     return func(*args, **kwargs)
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4213, in from_pretrained
+[rank1]:     resolved_config_file = cached_file(
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 312, in cached_file
+[rank1]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 522, in cached_files
+[rank1]:     resolved_files = [
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 523, in <listcomp>
+[rank1]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+[rank1]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank1]:     validate_repo_id(arg_value)
+[rank1]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank1]:     raise HFValidationError(
+[rank1]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 470, in cached_files
+[rank0]:     hf_hub_download(
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank0]:     validate_repo_id(arg_value)
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank0]:     raise HFValidationError(
+[rank0]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+
+[rank0]: During handling of the above exception, another exception occurred:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 602, in <module>
+[rank0]:     main()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 472, in main
+[rank0]:     model = make_model(args, accelerator, quantization_config)
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 315, in make_model
+[rank0]:     model = Qwen3ForCausalLMWithRIM.from_pretrained(
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 309, in _wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/modeling_utils.py", line 4213, in from_pretrained
+[rank0]:     resolved_config_file = cached_file(
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 312, in cached_file
+[rank0]:     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 522, in cached_files
+[rank0]:     resolved_files = [
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 523, in <listcomp>
+[rank0]:     _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision) for filename in full_filenames
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/transformers/utils/hub.py", line 140, in _get_cache_file_to_return
+[rank0]:     resolved_file = try_to_load_from_cache(path_or_repo_id, full_filename, cache_dir=cache_dir, revision=revision)
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+[rank0]:     validate_repo_id(arg_value)
+[rank0]:   File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+[rank0]:     raise HFValidationError(
+[rank0]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/leonardo_work/EUHPC_A06_067/leonardo_work/EUHPC_A06_067/moe_models/qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn'. Use `repo_type` argument if needed.
+[rank0]:[W917 15:28:54.728917619 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0917 15:28:55.523000 1140184 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1140266 closing signal SIGTERM
+E0917 15:28:55.638000 1140184 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 1 (pid: 1140267) of binary: /leonardo/home/userexternal/mzoumpou/.conda/envs/sft/bin/python3.10
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo/home/userexternal/mzoumpou/.conda/envs/sft/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+moe_sft.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-09-17_15:28:55
+  host      : lrdn0246.leonardo.local
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 1140268)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2025-09-17_15:28:55
+  host      : lrdn0246-net1-3.leonardo.local
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 1140269)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-09-17_15:28:55
+  host      : lrdn0246-net1-3.leonardo.local
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1140267)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

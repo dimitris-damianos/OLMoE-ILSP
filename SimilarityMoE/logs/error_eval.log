@@ -1,0 +1,215 @@
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.25s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.25s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.25s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.25s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.68s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.68s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.68s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.23s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.68s/it]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /leonardo_work/EUHPC_A06_067/hf_cache/openai___gsm8k/main/0.0.0/e53f048856ff4f594e959d75785d2c2d37b678ee (last modified on Wed Jul  9 16:54:51 2025).
+Found the latest cached dataset configuration 'main' at /leonardo_work/EUHPC_A06_067/hf_cache/openai___gsm8k/main/0.0.0/e53f048856ff4f594e959d75785d2c2d37b678ee (last modified on Wed Jul  9 16:54:51 2025).
+Found the latest cached dataset configuration 'main' at /leonardo_work/EUHPC_A06_067/hf_cache/openai___gsm8k/main/0.0.0/e53f048856ff4f594e959d75785d2c2d37b678ee (last modified on Wed Jul  9 16:54:51 2025).
+Found the latest cached dataset configuration 'main' at /leonardo_work/EUHPC_A06_067/hf_cache/openai___gsm8k/main/0.0.0/e53f048856ff4f594e959d75785d2c2d37b678ee (last modified on Wed Jul  9 16:54:51 2025).
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/eval.py", line 14, in <module>
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/eval.py", line 14, in <module>
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/eval.py", line 14, in <module>
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/eval.py", line 14, in <module>
+            results = lm_eval.simple_evaluate(results = lm_eval.simple_evaluate(results = lm_eval.simple_evaluate(
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/utils.py", line 439, in _wrapper
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/utils.py", line 439, in _wrapper
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/utils.py", line 439, in _wrapper
+    results = lm_eval.simple_evaluate(
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/utils.py", line 439, in _wrapper
+        return fn(*args, **kwargs)return fn(*args, **kwargs)    
+
+return fn(*args, **kwargs)  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/evaluator.py", line 269, in simple_evaluate
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/evaluator.py", line 269, in simple_evaluate
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/evaluator.py", line 269, in simple_evaluate
+    return fn(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/evaluator.py", line 269, in simple_evaluate
+            task_dict = get_task_dict(task_dict = get_task_dict(task_dict = get_task_dict(
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 635, in get_task_dict
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 635, in get_task_dict
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 635, in get_task_dict
+    task_dict = get_task_dict(
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 635, in get_task_dict
+            task_name_from_string_dict = task_manager.load_task_or_group(task_name_from_string_dict = task_manager.load_task_or_group(task_name_from_string_dict = task_manager.load_task_or_group(
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 426, in load_task_or_group
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 426, in load_task_or_group
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 426, in load_task_or_group
+    task_name_from_string_dict = task_manager.load_task_or_group(
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 426, in load_task_or_group
+            collections.ChainMap(collections.ChainMap(collections.ChainMap(
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 428, in <lambda>
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 428, in <lambda>
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 428, in <lambda>
+    collections.ChainMap(
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 428, in <lambda>
+            lambda task: self._load_individual_task_or_group(task),lambda task: self._load_individual_task_or_group(task),lambda task: self._load_individual_task_or_group(task),
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 326, in _load_individual_task_or_group
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 326, in _load_individual_task_or_group
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 326, in _load_individual_task_or_group
+    lambda task: self._load_individual_task_or_group(task),
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 326, in _load_individual_task_or_group
+            return _load_task(task_config, task=name_or_config)return _load_task(task_config, task=name_or_config)return _load_task(task_config, task=name_or_config)
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 286, in _load_task
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 286, in _load_task
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 286, in _load_task
+    return _load_task(task_config, task=name_or_config)
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/tasks/__init__.py", line 286, in _load_task
+    task_object = ConfigurableTask(config=config)
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 865, in __init__
+        task_object = ConfigurableTask(config=config)task_object = ConfigurableTask(config=config)
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 865, in __init__
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 865, in __init__
+    task_object = ConfigurableTask(config=config)
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 865, in __init__
+            self.download(self.config.dataset_kwargs)self.download(self.config.dataset_kwargs)self.download(self.config.dataset_kwargs)
+
+
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 993, in download
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 993, in download
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 993, in download
+    self.download(self.config.dataset_kwargs)
+  File "/leonardo_work/EUHPC_A06_067/lm-evaluation-harness/lm_eval/api/task.py", line 993, in download
+        self.dataset = datasets.load_dataset(self.dataset = datasets.load_dataset(
+    
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1392, in load_dataset
+self.dataset = datasets.load_dataset(  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1392, in load_dataset
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1392, in load_dataset
+    self.dataset = datasets.load_dataset(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1392, in load_dataset
+            builder_instance = load_dataset_builder(builder_instance = load_dataset_builder(builder_instance = load_dataset_builder(
+
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+    builder_instance = load_dataset_builder(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+        builder_instance: DatasetBuilder = builder_cls(builder_instance: DatasetBuilder = builder_cls(
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/packaged_modules/cache/cache.py", line 133, in __init__
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/packaged_modules/cache/cache.py", line 133, in __init__
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/packaged_modules/cache/cache.py", line 133, in __init__
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/packaged_modules/cache/cache.py", line 133, in __init__
+            super().__init__(super().__init__(super().__init__(
+
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/builder.py", line 388, in __init__
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/builder.py", line 388, in __init__
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/builder.py", line 388, in __init__
+    super().__init__(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/builder.py", line 388, in __init__
+            with FileLock(lock_path):with FileLock(lock_path):with FileLock(lock_path):
+
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 376, in __enter__
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 376, in __enter__
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 376, in __enter__
+    with FileLock(lock_path):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 376, in __enter__
+            self.acquire()self.acquire()self.acquire()
+
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 332, in acquire
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 332, in acquire
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 332, in acquire
+    self.acquire()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 332, in acquire
+    self._acquire()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_unix.py", line 44, in _acquire
+        self._acquire()self._acquire()
+
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_unix.py", line 44, in _acquire
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_unix.py", line 44, in _acquire
+    self._acquire()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_unix.py", line 44, in _acquire
+            fd = os.open(self.lock_file, open_flags, self._context.mode)fd = os.open(self.lock_file, open_flags, self._context.mode)fd = os.open(self.lock_file, open_flags, self._context.mode)
+
+PermissionError
+PermissionError: PermissionError: [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_openai___gsm8k_main_0.0.0_e53f048856ff4f594e959d75785d2c2d37b678ee.lock': [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_openai___gsm8k_main_0.0.0_e53f048856ff4f594e959d75785d2c2d37b678ee.lock'
+[Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_openai___gsm8k_main_0.0.0_e53f048856ff4f594e959d75785d2c2d37b678ee.lock'
+
+    fd = os.open(self.lock_file, open_flags, self._context.mode)
+PermissionError: [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_openai___gsm8k_main_0.0.0_e53f048856ff4f594e959d75785d2c2d37b678ee.lock'
+W0808 17:16:13.124000 2525692 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2525752 closing signal SIGTERM
+E0808 17:16:13.189000 2525692 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 2525751) of binary: /leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/python3.10
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+eval.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-08-08_17:16:13
+  host      : lrdn0729-net3-3.leonardo.local
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2525753)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2025-08-08_17:16:13
+  host      : lrdn0729-net3-3.leonardo.local
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2525754)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-08-08_17:16:13
+  host      : lrdn0729.leonardo.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2525751)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,1 @@
+You are using a model of type qwen3 to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.

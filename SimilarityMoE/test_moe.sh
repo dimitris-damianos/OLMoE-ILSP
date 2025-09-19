@@ -9,12 +9,12 @@
 #SBATCH --mem=128G
 #SBATCH --time=2:00:00
 #SBATCH --account=EUHPC_A06_067
-#SBATCH --output=test_moe.out
-#SBATCH --error=test_moe.err
+#SBATCH --output=./trash/test_moe.out
+#SBATCH --error=./trash/test_moe.err
 
 module load cuda/12.2
 module load anaconda3/2023.09-0
 
 source activate /leonardo_work/EUHPC_A06_067/.conda/envs/moe
 
-python test.py 
+python test_moe.py 

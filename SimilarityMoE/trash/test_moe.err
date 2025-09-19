@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/leonardo/prod/spack/5.2/install/0.21/linux-rhel8-icelake/gcc-8.5.0/anaconda3-2023.09-0-zcre7pfofz45c3btxpdk5zvcicdq5evx/bin/conda", line 12, in <module>
+    from conda.cli import main
+ModuleNotFoundError: No module named 'conda'
+You are using a model of type qwen3moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.23s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.72s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.27s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.34s/it]

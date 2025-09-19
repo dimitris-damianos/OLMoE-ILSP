@@ -2,16 +2,20 @@
 
 import sys
 sys.path.append("../sft_experts")
+sys.stdout.flush()
 
 import argparse
 import os
 import datetime
 import yaml
 
+from transformers import Qwen3MoeForCausalLM, Qwen3MoeConfig
+
 import torch
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling, BitsAndBytesConfig
 from model import Qwen2ForCausalLMWithRIM, Qwen3ForCausalLMWithRIM
+from config import Qwen2WithRIMConfig, Qwen3WithRIMConfig
 from rim_liger import apply_liger_to_model, monkey_patch_trainer_for_liger
 from transformers.trainer_utils import get_last_checkpoint
 from trl import (
@@ -30,6 +34,7 @@ import wandb
 from dataset_mixer import mix_datasets_with_mapping
 
 import multiprocessing
+from utils import GradientLoggingCallbackTensorboard, SaveExpertMaskCallback
 
 from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
     map_to_conversation_with_system_message,
@@ -73,18 +78,18 @@ from sft_formatting import (  # format functions to convert datasets to prompt-c
     map_wikiqa_to_prompt_completion,
     map_wikiqa_to_conversation,
 )
-import sys
-sys.stdout.flush()
+
+torch.distributed.init_process_group(backend="nccl", timeout=datetime.timedelta(seconds=1800000))
 
 
-def main():
+def make_parser():
     parser = argparse.ArgumentParser(description="SFT Qwen RIM-based MoE models.")
 
     # Model
     parser.add_argument("--model_name_or_path", type=str, required=True)
-    parser.add_argument("--tokenizer_name_or_path", type=str, default=None, help="Tokenizer name or path.")
+    parser.add_argument("--tokenizer_name_or_path", type=str, default=None)
     parser.add_argument("--cache_dir", type=str, default="./hf_cache")
-    # TODO: add model revision + quantization
+    # TODO: add model revision + quantization param here
 
     # Dataset
     parser.add_argument("--dataset_name", type=str, required=False)
@@ -158,11 +163,12 @@ def main():
     parser.add_argument("--packing", action="store_true")
     parser.add_argument("--completion_only_loss", action="store_true")
     parser.add_argument("--assistant_only_loss", action="store_true")
-    parser.add_argument("--resume_from_checkpoint", type=str, default=None)
+    parser.add_argument("--resume_from_checkpoint", action="store_true")
     parser.add_argument("--neftune_noise_alpha", type=float, default=None)
     parser.add_argument("--activation_offloading", action="store_true")
-    parser.add_argument("--freeze_experts", action="store_true")
-    parser.add_argument("--freeze_non_experts", action="store_true")
+    parser.add_argument("--detach_null_states", action="store_true")
+    parser.add_argument("--use_latent_states", action="store_true")
+    parser.add_argument("--use_dynamic_routing", action="store_true")
 
     # Optimizer and scheduler
     parser.add_argument("--optim", type=str, default="adamw_torch_fused")
@@ -180,147 +186,20 @@ def main():
     parser.add_argument("--lora_alpha", type=float, default=16)
     parser.add_argument("--lora_dropout", type=float, default=0.05)
     parser.add_argument("--use_rslora", action="store_true")
+    
+    parser.add_argument('--lora_experts', action='store_true', help='Apply LoRA to expert FFN layers')
+    parser.add_argument('--lora_base', action='store_true', help='Apply LoRA to base model layers')
+    parser.add_argument("--freeze_experts", action="store_true", help="Freeze expert FFN layers during training")
+    parser.add_argument("--freeze_base", action="store_true", help="Freeze base FFN layers during training")
 
     # Other settings
     parser.add_argument("--push_to_hub", action="store_true")
+    parser.add_argument("--disable_tqdm", action="store_true")
 
-    args = parser.parse_args()
+    return parser
 
-    # NOTE: packing is compatible now with masking
-    # if args.packing and (args.completion_only_loss or args.assistant_only_loss):
-    #     raise ValueError("Cannot use --packing together with --completion_only_loss or --assistant_only_loss.")
-
-    if args.dataset_mix_config:
-        if not os.path.exists(args.dataset_mix_config):
-            raise ValueError(f"Dataset mix config file not found: {args.dataset_mix_config}")
-    elif not args.dataset_name or not args.instruction_format:
-        raise ValueError("You must provide either --dataset_mix_config or both --dataset_name and --instruction_format.")
-
-    accelerator = Accelerator()
-    accelerator.print(f"Training config:\n{args}\n")
-
-    # Initialize wandb
-    project_name = os.environ.get("WANDB_PROJECT", "default_project_name")
-    run_name = f"{project_name}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    if accelerator.is_main_process:
-        wandb.init(
-            project=project_name,
-            name=run_name,
-            # tags=["math", "sft", "qwen2"],
-            mode="offline",
-        )
-
-    accelerator.print("Initializing tokenizer and model...")
-    tokenizer = AutoTokenizer.from_pretrained(
-        args.tokenizer_name_or_path or args.model_name_or_path,
-        cache_dir=args.cache_dir,
-        trust_remote_code=True,
-        local_files_only=True
-    )
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "left" if args.packing else "right"
-    tokenizer.truncation_side = "right"
-
-    PartialState().wait_for_everyone()
-
-    quantization_config = None
-    # quantization_config = BitsAndBytesConfig(  # 8-bit
-    #     load_in_8bit=True,
-    #     llm_int8_threshold=6.0,
-    # )
-    # quantization_config = BitsAndBytesConfig(  # 4-bit
-    #     load_in_4bit=True,
-    #     bnb_4bit_use_double_quant=True,
-    #     bnb_4bit_quant_type="nf4",
-    #     bnb_4bit_compute_dtype=torch.bfloat16,
-    # )
-
-    if "qwen2" in args.model_name_or_path.lower():
-        model = Qwen2ForCausalLMWithRIM.from_pretrained(
-            args.model_name_or_path,
-            local_files_only=True,
-            device_map=get_kbit_device_map() if quantization_config is not None else None,
-            quantization_config=quantization_config,
-            torch_dtype="bfloat16",
-            attn_implementation="flash_attention_2",
-        )
-        model.config.detach_null_states = args.detach_null_states
-        model.config.use_latent_states = args.use_latent_states  
-        if args.use_liger:  # custom liger kernel
-            apply_liger_to_model(model=model, qwen_type='qwen2') 
-        accelerator.print(model) 
-    elif "qwen3" in args.model_name_or_path.lower():
-        model = Qwen3ForCausalLMWithRIM.from_pretrained(
-            args.model_name_or_path,
-            local_files_only=True,
-            device_map=get_kbit_device_map() if quantization_config is not None else None,
-            quantization_config=quantization_config,
-            torch_dtype="bfloat16",
-            attn_implementation="flash_attention_2",
-        )
-        if args.use_liger:
-            apply_liger_to_model(model=model, qwen_type='qwen3')
-        accelerator.print(model) 
-    else:
-        raise ValueError("MoE model must be Qwen2 or Qwen3.")
-    
-    assert hasattr(model.config, "num_experts"), "Loaded model is not a MoE model with RIM routing."  # FIXME
-
-    # freeze expert FFNs
-    if args.freeze_experts:
-        for name, param in model.named_parameters():
-            if "mlp.experts" in name and any(p in name for p in ["gate_proj", "up_proj", "down_proj"]):
-                param.requires_grad = False
-                accelerator.print(f"Froze expert FFN param: {name}")
-
-    # freeze non-FFN params (NOTE: router params remain always trainable)
-    if args.freeze_non_experts:
-        for name, param in model.named_parameters():
-            is_expert_ffn = (
-                "mlp.experts" in name and any(p in name for p in ["gate_proj", "up_proj", "down_proj"])
-            )
-            is_router = any(r in name for r in [
-                "key", "value", "expert_query", "expert_states_flat"
-            ])
-            if not (is_expert_ffn or is_router):
-                param.requires_grad = False
-                accelerator.print(f"Froze non-FFN param: {name}")
-        
-    model.config.attn_implementation = "flash_attention_2"  # TODO: add as param
-    model.config.use_cache = False if args.gradient_checkpointing else True
-    gradient_checkpointing_kwargs = None
-    if args.gradient_checkpointing:
-        gradient_checkpointing_kwargs = {'use_reentrant':False}
-
-    # if tokenizer.chat_template is None: # set default chat template if needed
-    # model, tokenizer = clone_chat_template(model, tokenizer, "Qwen/Qwen3-0.6B")
-
-    # NOTE: uncommment - necessary for Qwen!, FIXME: give as param - or do it with chat_template_path?
-    tokenizer.chat_template = "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {{- messages[0].content + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0].content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = '' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n\n        {{- '<|im_start|>' + message.role }}\n        {% generation %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- '<think>\\n' + reasoning_content.strip('\\n') + '\\n</think>\\n\\n' + content.lstrip('\\n') }}\n            {%- else %}\n                {{- content }}\n            {%- endif %}\n        {%- else %}\n            {{- content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>' }}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}"
-
-    # NOTE: data collator is used when we pass 'text'
-    # if args.completion_only_loss:
-    #     accelerator.print("Using DataCollatorForCompletionOnlyLM (completions only)")
-    #     collator = DataCollatorForCompletionOnlyLM(
-    #         tokenizer=tokenizer,
-    #         mlm=False,
-    #         response_template="### Response:\n",
-    #         # instruction_template="<|user|>\n",
-    #         # response_template="<|assistant|>\n",
-    #         pad_to_multiple_of=8, # needed?
-    #     )
-    # else:
-    #     accelerator.print("Using classic causal LM DataCollator (full loss)")
-    #     collator = DataCollatorForLanguageModeling(
-    #         tokenizer=tokenizer,
-    #         mlm=False,
-    #     )
-
-    PartialState().wait_for_everyone()
-
-    accelerator.print("\nLoading dataset...")
-
+def make_dataset(args, accelerator):
+    print("\nLoading dataset...",flush=True)
     if args.dataset_mix_config:  # datamix
         with open(args.dataset_mix_config, "r") as f:
             config = yaml.safe_load(f)
@@ -338,7 +217,6 @@ def main():
             eval_dataset = dataset[args.eval_split]
         else:
             eval_dataset = None
-
     else:  # single dataset
         if args.data_files:
             import json
@@ -396,9 +274,9 @@ def main():
             "wikiqa": map_wikiqa_to_prompt_completion,
             "wikiqa_chat": map_wikiqa_to_conversation,
         }
-        mapping_fn = map_functions[args.instruction_format]
-        print(f"Init dataset {dataset}")
         # convert dataset to prompt-completion (instruction) or conversational format
+        mapping_fn = map_functions[args.instruction_format]
+
         # NOTE: internally the SFTTrainer uses tha apply_chat_template() method and tokenizes
         train_dataset = dataset[args.train_split].map(
             mapping_fn,
@@ -414,55 +292,216 @@ def main():
         else:
             eval_dataset = None
 
-        print(f"Train dataset: {train_dataset}")
-        # NOTE: uncomment just for testing
-        # total = len(train_dataset)
-        # subset_size = int(total * 0.1)
-        # train_dataset = train_dataset.select(range(subset_size))
-
-        # convert dataset from prompt-completion to language modeling format (text) - or use formatting_func
-        # def concat_prompt_completion(example):
-        #     text = example["prompt"] + example["completion"]
-        #     if "### Response:\n" not in text:
-        #         accelerator.print("[WARNING] Response template missing in example.")
-        #     return {"text": text}
-        
-        # train_dataset = train_dataset.map(
-        #     concat_prompt_completion,
-        #     remove_columns=["prompt", "completion"]
-        # )
-        # if eval_dataset is not None:
-        #     eval_dataset = eval_dataset.map(
-        #         concat_prompt_completion,
-        #         remove_columns=["prompt", "completion"]
-        #     )
-
-        # TODO: same for chat/conversational format
-        # apply_chat_template(example, tokenizer)  # NOTE: no need, the SFTTrainer does it for us
-
-    accelerator.print(f"Loaded {len(train_dataset)} training samples.")
+    print(f"Loaded {len(train_dataset)} training samples.",flush=True)
     if eval_dataset:
-        accelerator.print(f"Loaded {len(eval_dataset)} evaluation samples.\n")
+        print(f"Loaded {len(eval_dataset)} evaluation samples.",flush=True)
 
-    PartialState().wait_for_everyone()
+    return train_dataset, eval_dataset
 
-    peft_cfg = None
-    if args.use_peft:  # qLoRA -> quantize model
-        accelerator.print("Using LoRA")
-        peft_cfg = LoraConfig(
+
+def make_model(args, accelerator, quantization_config):
+    # Traditional MoE models (non-RIM)
+    if "qwen3_moe" in args.model_name_or_path.lower():
+        model = Qwen3MoeForCausalLM.from_pretrained(
+            args.model_name_or_path,
+            local_files_only=True,
+            device_map=get_kbit_device_map() if quantization_config is not None else None,
+            quantization_config=quantization_config,
+            torch_dtype="bfloat16",
+            attn_implementation="flash_attention_2",
+        )
+    # RIM-based MoE models
+    elif "qwen3" in args.model_name_or_path.lower():
+        model = Qwen3ForCausalLMWithRIM.from_pretrained(
+            args.model_name_or_path,
+            local_files_only=True,
+            device_map=get_kbit_device_map() if quantization_config is not None else None,
+            quantization_config=quantization_config,
+            torch_dtype="bfloat16",
+            attn_implementation="flash_attention_2",
+        )
+        model.config.detach_null_states = args.detach_null_states
+        model.config.use_latent_states = args.use_latent_states 
+        model.config.use_dynamic_routing = args.use_dynamic_routing
+        if args.use_liger:
+            apply_liger_to_model(model=model, qwen_type='qwen3')
+        print(model,flush=True) 
+        print(model.config,flush=True)
+    else:
+        raise ValueError("MoE model must be Qwen2 or Qwen3.",flush=True)
+
+    with open(os.path.join(args.output_dir, "model_config.txt"), "w") as f:
+        f.write(str(model.config))
+
+    return model
+
+def get_lora_config(args):
+    base_modules = ["q_proj", "k_proj", "v_proj", "o_proj",]
+    expert_modules = ['gate_proj','up_proj','down_proj']
+    trainable_modules = ['key', 'value', 'expert_query', 'expert_states_flat', 'lm_head', 'embed_tokens']
+    
+    target_modules = []
+    if args.lora_experts:
+        target_modules.extend(expert_modules)
+    if args.lora_base:
+        target_modules.extend(base_modules) 
+    
+    peft_cfg = LoraConfig(
             r=args.lora_r,
             lora_alpha=args.lora_alpha,
             lora_dropout=args.lora_dropout,
             use_rslora=args.use_rslora,
-            target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-            # target_modules = ["gate_proj", "up_proj", "down_proj"],
+            target_modules = target_modules,
+            modules_to_save = trainable_modules,
             bias="none",
             task_type="CAUSAL_LM",
         )
+    return peft_cfg
+          
+def freeze_modules(model, args):
+    if args.freeze_experts:
+        for name, param in model.named_parameters():
+            if "mlp.experts" in name and any(p in name for p in ["gate_proj", "up_proj", "down_proj"]):
+                param.requires_grad = False
+    if args.freeze_base:
+        for name, param in model.named_parameters():
+            is_expert_ffn = (
+                "mlp.experts" in name and any(p in name for p in ["gate_proj", "up_proj", "down_proj"])
+            )
+            is_router = any(r in name for r in [
+                "key", "value", "expert_query", "expert_states_flat"
+            ])
+            if not (is_expert_ffn or is_router):
+                param.requires_grad = False   
+    return model
 
+def get_trainable_parameters(model, args):
+    trainable_params = []
+    frozen_params = []
+    
+    all_params = 0
+    trainable = 0
+    
+    trainable_modules = {
+        "self_attn": 0,
+        "mlp.experts": 0,
+        "router": 0,
+        "lm_head": 0, 
+        "other": 0
+    }
+    
+    for name, param in model.named_parameters():
+        all_params += param.numel()
+        if param.requires_grad:
+            if "self_attn" in name:
+                trainable_modules["self_attn"] += param.numel()
+            elif "mlp.experts" in name:
+                trainable_modules["mlp.experts"] += param.numel()
+            elif any(x in name for x in ["key", "value", "expert_query", "expert_states_flat"]):
+                trainable_modules["router"] += param.numel()
+            elif "lm_head" in name:
+                trainable_modules["lm_head"] += param.numel()
+            else:
+                trainable_modules["other"] += param.numel()
+            trainable_params.append(name)
+            trainable += param.numel()
+        else:
+            frozen_params.append(name)
+
+    print(f"All params: {all_params}, Trainable params: {trainable}, Frozen params: {len(frozen_params)}",flush=True)
+    with open(os.path.join(args.output_dir, "trainable_params.txt"), 'w') as f:
+        f.write("\n".join(trainable_params))
+    with open(os.path.join(args.output_dir, "frozen_params.txt"), 'w') as f:
+        f.write("\n".join(frozen_params))
+    with open(os.path.join(args.output_dir, "params_stats.txt"), 'w') as f:
+        f.write(f"All params: {all_params}, Trainable params: {trainable}, Frozen params: {len(frozen_params)}")
+        f.write("\n\nTrainable parameters by module type:\n")
+        for module_type, num_params in trainable_modules.items():
+            f.write(f"{module_type}: {num_params}\n")
+
+
+def main():
+    args = make_parser().parse_args()
+
+    os.makedirs(args.output_dir, exist_ok=True)
+    
+    if args.dataset_mix_config:
+        if not os.path.exists(args.dataset_mix_config):
+            raise ValueError(f"Dataset mix config file not found: {args.dataset_mix_config}")
+    elif not args.dataset_name or not args.instruction_format:
+        raise ValueError("You must provide either --dataset_mix_config or both --dataset_name and --instruction_format.")
+
+    accelerator = Accelerator()
+    print(f"\nTraining config:\n{args}\n",flush=True)
+
+    # Initialize wandb
+    project_name = os.environ.get("WANDB_PROJECT", "default_project_name")
+    run_name = f"{project_name}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    if accelerator.is_main_process:
+        wandb.init(
+            project=project_name,
+            name=run_name,
+            mode="offline",
+        )
+
+    print("Initializing tokenizer and model...",flush=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.tokenizer_name_or_path or args.model_name_or_path,
+        cache_dir=args.cache_dir,
+        trust_remote_code=True,
+        local_files_only=True
+    )
+    
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left" if args.packing else "right"
+    tokenizer.truncation_side = "right"
+
+    PartialState().wait_for_everyone()
+
+    quantization_config = None
+    # quantization_config = BitsAndBytesConfig(  # 8-bit
+    #     load_in_8bit=True,
+    #     llm_int8_threshold=6.0,
+    # )
+    # quantization_config = BitsAndBytesConfig(  # 4-bit
+    #     load_in_4bit=True,
+    #     bnb_4bit_use_double_quant=True,
+    #     bnb_4bit_quant_type="nf4",
+    #     bnb_4bit_compute_dtype=torch.bfloat16,
+    # )
+
+    model = make_model(args, accelerator, quantization_config)
+    assert hasattr(model.config, "num_experts"), "Loaded model is not a MoE model."  # FIXME
+        
+    model.config.attn_implementation = "flash_attention_2"  # TODO: add as param
+    model.config.use_cache = False if args.gradient_checkpointing else True 
+    gradient_checkpointing_kwargs = None
+    if args.gradient_checkpointing:
+        gradient_checkpointing_kwargs = {'use_reentrant':False}
+
+    # NOTE: uncommment - necessary for Qwen!, FIXME: give as param - or do it with chat_template_path?
+    tokenizer.chat_template = "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {{- messages[0].content + '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' + messages[0].content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith('<tool_response>') and message.content.endswith('</tool_response>')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = '' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n\n        {{- '<|im_start|>' + message.role }}\n        {% generation %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- '<think>\\n' + reasoning_content.strip('\\n') + '\\n</think>\\n\\n' + content.lstrip('\\n') }}\n            {%- else %}\n                {{- content }}\n            {%- endif %}\n        {%- else %}\n            {{- content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>' }}\n        {% endgeneration %}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}"
+
+
+    PartialState().wait_for_everyone()
+
+    train_dataset, eval_dataset = make_dataset(args, accelerator)
+   
+    PartialState().wait_for_everyone()
+    
+    # if required, freeze modules
+    model = freeze_modules(model, args)
+
+    peft_cfg = None
+    if args.use_peft:  # qLoRA -> quantize model
+        print("Using LoRA adapters.\n",flush=True)
+        peft_cfg = get_lora_config(args)
+        
     sft_config = SFTConfig(
         output_dir=args.output_dir,
         per_device_train_batch_size=args.per_device_train_batch_size,
+        per_device_eval_batch_size = args.per_device_train_batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.learning_rate,
         num_train_epochs=args.num_train_epochs,
@@ -474,7 +513,7 @@ def main():
         fp16=args.fp16,
         gradient_checkpointing=args.gradient_checkpointing,
         gradient_checkpointing_kwargs=gradient_checkpointing_kwargs,
-        # use_liger_kernel=args.use_liger,
+        # use_liger_kernel=args.use_liger,  # NOTE: applied custom liger kernel
         eval_strategy="steps" if eval_dataset else "no",
         push_to_hub=False,
         optim=args.optim,
@@ -488,87 +527,63 @@ def main():
         packing=args.packing,
         padding_free=True,  # TODO: add as param - requires flash_attention_2
         model_init_kwargs={"attn_implementation": "flash_attention_2"},
-        completion_only_loss=args.completion_only_loss,
+        # completion_only_loss=args.completion_only_loss,  # TODO: upgrade transformers to >4.53
         # assistant_only_loss=args.assistant_only_loss,
         max_length=args.max_length,
         neftune_noise_alpha=args.neftune_noise_alpha,
         # activation_offloading=args.activation_offloading,
         eos_token="<|im_end|>",  # uncomment for conversational format!
-        ddp_timeout=18000,  # avoid nccl errors when tokenizing large datasets
+        ddp_timeout=1800000,  # avoid nccl errors when tokenizing large datasets
+        disable_tqdm=args.disable_tqdm,
+        dataloader_num_workers=multiprocessing.cpu_count(),
+        dataloader_persistent_workers=True,
     )
-    accelerator.print(f"SFT config:\n{sft_config}")
+    print(f"SFT config:\n{sft_config}",flush=True)
+
+    with open(os.path.join(args.output_dir, "sft_config.txt"), "w") as f:
+        f.write(str(sft_config))
 
     trainer = SFTTrainer(
         model=model,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         args=sft_config,
-        # data_collator=collator,
         processing_class=tokenizer,
         peft_config=peft_cfg,
-        
-        # formatting_func=lambda examples: [
-        #     ex["prompt"] + ex["completion"] for ex in examples
-        # ],
+        callbacks=[
+            GradientLoggingCallbackTensorboard(log_dir=os.path.join(args.output_dir,'tensorboard_logs'),
+                                               log_every=args.logging_steps),
+            SaveExpertMaskCallback(save_dir=os.path.join(args.output_dir,'expert_masks'),
+                                   save_every_n_steps=args.logging_steps,),
+        ]
     )
     if args.use_liger:
-        monkey_patch_trainer_for_liger(trainer)  # TODO: better solution
+        monkey_patch_trainer_for_liger(trainer)
 
-    trainable_params = sum(p.numel() for p in trainer.model.parameters() if p.requires_grad)
-    total_params = sum(p.numel() for p in trainer.model.parameters())
-    accelerator.print(f"\nTrainable parameters: {trainable_params} / {total_params} ({100*trainable_params/total_params:.2f}%)")
-
+    get_trainable_parameters(trainer.model, args)  
+    
     PartialState().wait_for_everyone()  # FIXME: nccl crashes for large datasets?
 
-    resume_checkpoint = args.resume_from_checkpoint
-    latest = ""
-    # if resume_checkpoint is None:
-    #     latest_ckpt = get_last_checkpoint(args.output_dir)
-    #     if latest_ckpt is not None:
-    #         resume_checkpoint = latest_ckpt
-    #         latest = "latest "
-    if resume_checkpoint:
-        accelerator.print(f"Resuming training from {latest}checkpoint: {resume_checkpoint}...")
-        trainer.train(resume_from_checkpoint=resume_checkpoint)
-    else:
-        accelerator.print("Starting training from scratch...")
-        trainer.train()
+    print("Training started...",flush=True)
+    trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)
 
-    accelerator.print("Training complete.")
-
-    accelerator.print("Saving trainer state...")
+    print("Training complete.",flush=True)
+    print("Saving trainer state...",flush=True)
     trainer.save_state()
 
     trainer.accelerator.wait_for_everyone()  # save model on main process
-    accelerator.print("Saving model...")
+    print("Saving model...",flush=True)
     trainer.save_model()
-    accelerator.print(f"Model saved to {args.output_dir}")
+    print(f"Model saved to {args.output_dir}",flush=True)
 
     if args.push_to_hub:
-        accelerator.print("Pushing to hub...")
+        print("Pushing to hub...",flush=True)
         trainer.push_to_hub()
 
     trainer.accelerator.wait_for_everyone()  # save tokenizer and info on main process
-    if trainer.accelerator.is_main_process:
-        accelerator.print("Saving tokenizer...")
-        tokenizer.save_pretrained(args.output_dir)
-
-        # save SFT info
-        if args.dataset_mix_config:
-            dataset_names = [dataset["name"] for dataset in config["datasets"]]
-        else:
-            dataset_names = [args.dataset_name]
-        kwargs = {
-            "finetuned_from": args.model_name_or_path,
-            "dataset": dataset_names,
-        }
-        # trainer.create_model_card(**kwargs)  # deprecated
-        # restore k,v cache for fast inference
-        trainer.model.config.use_cache = True
-        trainer.model.config.save_pretrained(args.output_dir)
-
     if args.use_peft:
-        accelerator.print("Merging LoRA adapters into base model...")
+        path = os.path.join(args.output_dir, "merged_final")
+        print("Merging LoRA adapters into base model...",flush=True)
         model = AutoPeftModelForCausalLM.from_pretrained(
             args.output_dir,
             torch_dtype="auto",
@@ -576,11 +591,11 @@ def main():
         )
         merged_model = model.merge_and_unload()
         merged_model.save_pretrained(
-            args.output_dir,
+            path,
             safe_serialization=True,
             max_shard_size="5GB",
         )
-        accelerator.print(f"Merged model saved to {args.output_dir}")
+        print(f"Merged model saved to {args.output_dir}",flush=True)
 
     # TODO: evaluate?
 
