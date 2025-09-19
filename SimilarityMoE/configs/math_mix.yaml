@@ -1,0 +1,15 @@
+datasets:
+  - name: TIGER-Lab/MathInstruct
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: mathinstruct_chat
+
+  - name: meta-math/MetaMathQA
+    splits:
+      - train
+    fraction: 1.0
+    map_fn: metamathqa_chat
+
+shuffle_init: true
+shuffle_post: true

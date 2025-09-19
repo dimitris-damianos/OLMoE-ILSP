@@ -1,0 +1,17 @@
+datasets:
+  - name: 12ml/e-CARE  # causal reasoning
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: e-care_causal_reasoning_chat
+
+  - name: 12ml/e-CARE  # causal reasoning - explanation generation
+    splits:
+      - train
+      - validation
+    fraction: 1.0
+    map_fn: e-care_explanation_generation_chat
+
+shuffle_init: true
+shuffle_post: true

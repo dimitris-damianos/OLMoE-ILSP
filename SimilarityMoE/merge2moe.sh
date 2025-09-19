@@ -9,8 +9,8 @@
 #SBATCH --mem=128G
 #SBATCH --time=2:00:00
 #SBATCH --account=EUHPC_A06_067
-#SBATCH --output=ddam_logs/merge.out
-#SBATCH --error=ddam_logs/merge.err
+#SBATCH --output=ddam_log/merge.out
+#SBATCH --error=ddam_log/merge.err
 
 module load cuda/12.2
 module load anaconda3/2023.09-0
@@ -21,7 +21,7 @@ source activate /leonardo_work/EUHPC_A06_067/.conda/envs/moe
 export HF_HOME=$WORK/hf_cache
 
 BASE_MODEL=$HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-MOE_SAVE_DIR=$WORK/moe_models/base/ddam_qwen3moe_0.6B_11_coef-1
+MOE_SAVE_DIR=$WORK/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent
 
 SPECIALISTS=(
     $WORK/experts/Qwen3-0.6B-SFT/bio_expert_Qwen3-0.6B_SFT
@@ -41,10 +41,25 @@ SPECIALISTS=(
     # $WORK/experts/Qwen3-0.6B-SFT/balanced_grouped_experts/world_expert_Qwen3-0.6B_SFT
 )
 
+# 12 experts, all based on the same base model
+BASE_SPECIALISTS=(
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+    $BASE_MODEL
+)
 
 python merge_experts.py \
   --base_model $BASE_MODEL \
-  --specialists ${SPECIALISTS[@]} \
+  --specialists ${BASE_SPECIALISTS[@]} \
   --output_dir $MOE_SAVE_DIR \
   --model_type qwen3_moe \
   --output_expert_mask \

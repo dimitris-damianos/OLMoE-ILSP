@@ -1,0 +1,128 @@
+# 20k samples per dataset - data mix for stage 1
+
+datasets:
+  - name: TIGER-Lab/MathInstruct  # math
+    splits:
+      - train
+    fraction: 0.0381
+    map_fn: mathinstruct_chat
+
+  - name: meta-math/MetaMathQA  # math
+    splits:
+      - train
+    fraction: 0.0253
+    map_fn: metamathqa_chat
+
+  - name: Vezora/Tested-143k-Python-Alpaca  # code
+    splits:
+      - train
+    fraction: 0.1398
+    map_fn: pythonalpaca_chat
+
+  - name: 12ml/e-CARE  # causal reasoning
+    splits:
+      - train
+      - validation
+    fraction: 0.4761
+    map_fn: e-care_causal_reasoning_chat
+
+  - name: 12ml/e-CARE  # causal reasoning - explanation generation
+    splits:
+      - train
+      - validation
+    fraction: 0.4761
+    map_fn: e-care_explanation_generation_chat
+
+  - name: ybisk/piqa  # physical commonsense
+    splits:
+      - train
+      - validation
+    fraction: 1
+    map_fn: piqa_chat
+
+  - name: CohereForAI/aya_dataset  # multilingual
+    splits:
+      - train
+    fraction: 0.098
+    map_fn: aya_with_language_chat
+
+  - name: tatsu-lab/alpaca  # general instruction following
+    splits:
+      - train
+    fraction: 0.3846
+    map_fn: alpaca_chat
+
+  - name: qwedsacf/story-generation  # story generation
+    splits:
+      - train
+    fraction: 0.0468
+    map_fn: story_chat
+
+  - name: EdinburghNLP/xsum  # news summarization
+    splits:
+      - train
+      - validation
+    fraction: 0.098
+    map_fn: news_chat
+
+  - name: json  # bio
+    splits:
+      - train
+      - validation
+    data_files:
+      train: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/train.json
+      validation: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/valid.json
+    fraction: 0.3225
+    map_fn: moleculeqa_chat
+
+  - name: casehold/casehold  # legal
+    splits:
+      - train
+      - validation
+    fraction: 0.3773
+    map_fn: casehold_chat
+
+  - name: qiaojin/PubMedQA  # medical
+    splits:
+      - train
+    config_name: pqa_artificial
+    fraction: 0.0947
+    map_fn: pubmedqa_chat
+
+  - name: ibm-research/finqa  # finance
+    splits:
+      - train
+      - validation
+    fraction: 2.5
+    map_fn: finqa_chat
+
+  - name: microsoft/wiki_qa  # world knowledge
+    splits:
+      - train
+      - validation
+    fraction: 0.9803
+    map_fn: wikiqa_chat
+
+  - name: allenai/social_i_qa  # social reasoning
+    splits:
+      - train
+      - validation
+    fraction: 0.5405
+    map_fn: socialiqa_chat
+
+  - name: demelin/moral_stories  # moral reasoning (moral actions)
+    splits:
+      - train
+    config_name: full
+    fraction: 0.8333
+    map_fn: moral_actions_chat
+
+  - name: demelin/moral_stories  # moral reasoning (immoral actions)
+    splits:
+      - train
+    config_name: full
+    fraction: 0.8333
+    map_fn: immoral_actions_chat
+
+shuffle_init: true
+shuffle_post: true
