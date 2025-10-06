@@ -32,6 +32,7 @@ def main():
 
     
     if args.model_type == "qwen3":
+        print('Creating Qwen3WithRIM Config...')
         config = Qwen3WithRIMConfig.from_pretrained(
             args.base_model,
             num_experts=num_experts,
@@ -48,6 +49,7 @@ def main():
         base_class = Qwen3ForCausalLM
         moe_class = Qwen3ForCausalLMWithRIM
     elif args.model_type == "qwen3_moe":
+        print('Creating Qwen3MoE Config...')
         config = Qwen3MoeConfig.from_pretrained(
             args.base_model,
             num_experts=num_experts,
@@ -71,12 +73,14 @@ def main():
     print("Model config:", config)
 
     if args.model_type == "qwen3_moe":
+        print('Creating Qwen3MoE model from specialists...')
         moe_model = create_qwen3_moe_from_specialists(
             base_model_path=args.base_model,
             specialists=args.specialists,
             moe_config=config
         )
     else: 
+        print('Creating Qwen3WithRIM model from specialists...')
         moe_model = create_moe_from_specialists(
             base_model=args.base_model,
             specialists=args.specialists,
@@ -84,8 +88,8 @@ def main():
             base_class=base_class,
             moe_class=moe_class,
         )
-    
-    with open('merged_model.txt','w') as f: 
+
+    with open(f'{args.output_dir}/model_architecture.txt','w') as f:
         f.write(str(moe_model))
 
     print(f"Saving merged MoE model to {args.output_dir}...")

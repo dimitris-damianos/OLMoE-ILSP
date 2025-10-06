@@ -75,12 +75,12 @@ datasets:
     fraction: 1
     map_fn: moleculeqa_chat
 
-  - name: casehold/casehold  # legal
-    splits:
-      - train
-      - validation
-    fraction: 1
-    map_fn: casehold_chat
+  # - name: casehold/casehold  # legal
+  #   splits:
+  #     - train
+  #     - validation
+  #   fraction: 1
+  #   map_fn: casehold_chat
 
   - name: qiaojin/PubMedQA  # medical
     splits:

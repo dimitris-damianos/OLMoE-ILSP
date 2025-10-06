@@ -1,0 +1,938 @@
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+wandb: Tracking run with wandb version 0.21.0
+wandb: Tracking run with wandb version 0.21.0
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+2025-09-26:09:10:30 INFO     [__main__:438] Passed `--trust_remote_code`, setting environment variable `HF_DATASETS_TRUST_REMOTE_CODE=true`
+2025-09-26:09:10:30 INFO     [__main__:438] Passed `--trust_remote_code`, setting environment variable `HF_DATASETS_TRUST_REMOTE_CODE=true`
+2025-09-26:09:10:30 INFO     [__main__:438] Passed `--trust_remote_code`, setting environment variable `HF_DATASETS_TRUST_REMOTE_CODE=true`
+2025-09-26:09:10:30 INFO     [__main__:438] Passed `--trust_remote_code`, setting environment variable `HF_DATASETS_TRUST_REMOTE_CODE=true`
+2025-09-26:09:10:30 INFO     [__main__:450] Selected Tasks: ['gsm8k']
+2025-09-26:09:10:30 INFO     [__main__:450] Selected Tasks: ['gsm8k']
+2025-09-26:09:10:30 INFO     [__main__:450] Selected Tasks: ['gsm8k']
+2025-09-26:09:10:30 INFO     [__main__:450] Selected Tasks: ['gsm8k']
+2025-09-26:09:10:30 INFO     [__main__:460] Using custom model
+2025-09-26:09:10:30 INFO     [__main__:460] Using custom model
+2025-09-26:09:10:30 INFO     [__main__:460] Using custom model
+2025-09-26:09:10:30 INFO     [__main__:460] Using custom model
+2025-09-26:09:10:31 INFO     [evaluator:190] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-09-26:09:10:31 INFO     [evaluator:190] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-09-26:09:10:31 INFO     [evaluator:190] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-09-26:09:10:31 INFO     [evaluator:190] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-09-26:09:10:31 INFO     [evaluator:230] Initializing qwen3moe_with_rim model, with arguments: {'pretrained': '/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400', 'dtype': 'auto', 'trust_remote_code': True}
+2025-09-26:09:10:31 INFO     [evaluator:230] Initializing qwen3moe_with_rim model, with arguments: {'pretrained': '/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400', 'dtype': 'auto', 'trust_remote_code': True}
+2025-09-26:09:10:31 INFO     [evaluator:230] Initializing qwen3moe_with_rim model, with arguments: {'pretrained': '/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400', 'dtype': 'auto', 'trust_remote_code': True}
+2025-09-26:09:10:31 INFO     [evaluator:234] [THIS IS CUSTOM DEV LOG] <class 'lm_eval.models.custom.CustomQwen3MoeModel'>
+2025-09-26:09:10:31 INFO     [evaluator:230] Initializing qwen3moe_with_rim model, with arguments: {'pretrained': '/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400', 'dtype': 'auto', 'trust_remote_code': True}
+2025-09-26:09:10:31 INFO     [evaluator:234] [THIS IS CUSTOM DEV LOG] <class 'lm_eval.models.custom.CustomQwen3MoeModel'>
+2025-09-26:09:10:31 INFO     [evaluator:235] pretrained=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400,dtype=auto,trust_remote_code=True
+2025-09-26:09:10:31 INFO     [evaluator:234] [THIS IS CUSTOM DEV LOG] <class 'lm_eval.models.custom.CustomQwen3MoeModel'>
+2025-09-26:09:10:31 INFO     [evaluator:235] pretrained=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400,dtype=auto,trust_remote_code=True
+2025-09-26:09:10:31 INFO     [evaluator:234] [THIS IS CUSTOM DEV LOG] <class 'lm_eval.models.custom.CustomQwen3MoeModel'>
+2025-09-26:09:10:31 INFO     [evaluator:235] pretrained=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400,dtype=auto,trust_remote_code=True
+2025-09-26:09:10:31 INFO     [evaluator:235] pretrained=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400,dtype=auto,trust_remote_code=True
+2025-09-26:09:10:31 WARNING  [accelerate.utils.other:512] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-09-26:09:10:31 INFO     [models.huggingface:155] Using `accelerate launch` or `parallelize=True`, device 'auto' will be overridden when placing model.
+2025-09-26:09:10:31 INFO     [models.custom:626] Config loaded: Qwen3WithRIMConfig {
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "detach_null_states": true,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "max_position_embeddings": 32768,
+  "max_window_layers": 28,
+  "model_type": "qwen3moe_with_rim",
+  "num_attention_heads": 32,
+  "num_experts": 8,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 32,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 10000.0,
+  "router_aux_loss_coef": 0.1,
+  "sliding_window": 4096,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": true,
+  "use_latent_states": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+2025-09-26:09:10:31 INFO     [models.huggingface:518] Model type cannot be determined. Using default model type 'causal'
+2025-09-26:09:10:32 INFO     [models.huggingface:155] Using `accelerate launch` or `parallelize=True`, device 'auto' will be overridden when placing model.
+2025-09-26:09:10:32 INFO     [models.custom:626] Config loaded: Qwen3WithRIMConfig {
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "detach_null_states": true,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "max_position_embeddings": 32768,
+  "max_window_layers": 28,
+  "model_type": "qwen3moe_with_rim",
+  "num_attention_heads": 32,
+  "num_experts": 8,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 32,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 10000.0,
+  "router_aux_loss_coef": 0.1,
+  "sliding_window": 4096,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": true,
+  "use_latent_states": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+2025-09-26:09:10:32 INFO     [models.huggingface:518] Model type cannot be determined. Using default model type 'causal'
+2025-09-26:09:10:32 INFO     [models.huggingface:155] Using `accelerate launch` or `parallelize=True`, device 'auto' will be overridden when placing model.
+2025-09-26:09:10:32 INFO     [models.custom:626] Config loaded: Qwen3WithRIMConfig {
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "detach_null_states": true,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "max_position_embeddings": 32768,
+  "max_window_layers": 28,
+  "model_type": "qwen3moe_with_rim",
+  "num_attention_heads": 32,
+  "num_experts": 8,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 32,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 10000.0,
+  "router_aux_loss_coef": 0.1,
+  "sliding_window": 4096,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": true,
+  "use_latent_states": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+2025-09-26:09:10:32 INFO     [models.huggingface:518] Model type cannot be determined. Using default model type 'causal'
+2025-09-26:09:10:32 INFO     [models.huggingface:155] Using `accelerate launch` or `parallelize=True`, device 'auto' will be overridden when placing model.
+2025-09-26:09:10:32 INFO     [models.custom:626] Config loaded: Qwen3WithRIMConfig {
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "detach_null_states": true,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 22016,
+  "max_position_embeddings": 32768,
+  "max_window_layers": 28,
+  "model_type": "qwen3moe_with_rim",
+  "num_attention_heads": 32,
+  "num_experts": 8,
+  "num_hidden_layers": 32,
+  "num_key_value_heads": 32,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 10000.0,
+  "router_aux_loss_coef": 0.1,
+  "sliding_window": 4096,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": true,
+  "use_latent_states": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+2025-09-26:09:10:32 INFO     [models.huggingface:518] Model type cannot be determined. Using default model type 'causal'
+2025-09-26:09:10:32 INFO     [models.huggingface:391] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:3'}
+2025-09-26:09:10:32 INFO     [models.huggingface:391] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:1'}
+2025-09-26:09:10:32 INFO     [models.huggingface:391] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:2'}
+2025-09-26:09:10:32 INFO     [models.huggingface:391] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+You are using a model of type qwen3_moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are using a model of type qwen3_moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are using a model of type qwen3_moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are using a model of type qwen3_moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:20<00:41, 20.88s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:21<00:42, 21.05s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:21<00:42, 21.06s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:21<00:42, 21.06s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:48<00:25, 25.11s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:49<00:25, 25.17s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:49<00:25, 25.17s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:49<00:25, 25.17s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.53s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.83s/it]
+Some weights of Qwen3ForCausalLMWithRIM were not initialized from the model checkpoint at /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent and are newly initialized: ['model.layers.0.mlp.expert_query.weight', 'model.layers.0.mlp.expert_states_flat.weight', 'model.layers.0.mlp.key.weight', 'model.layers.0.mlp.value.weight', 'model.layers.1.mlp.expert_query.weight', 'model.layers.1.mlp.expert_states_flat.weight', 'model.layers.1.mlp.key.weight', 'model.layers.1.mlp.value.weight', 'model.layers.10.mlp.expert_query.weight', 'model.layers.10.mlp.expert_states_flat.weight', 'model.layers.10.mlp.key.weight', 'model.layers.10.mlp.value.weight', 'model.layers.11.mlp.expert_query.weight', 'model.layers.11.mlp.expert_states_flat.weight', 'model.layers.11.mlp.key.weight', 'model.layers.11.mlp.value.weight', 'model.layers.12.mlp.expert_query.weight', 'model.layers.12.mlp.expert_states_flat.weight', 'model.layers.12.mlp.key.weight', 'model.layers.12.mlp.value.weight', 'model.layers.13.mlp.expert_query.weight', 'model.layers.13.mlp.expert_states_flat.weight', 'model.layers.13.mlp.key.weight', 'model.layers.13.mlp.value.weight', 'model.layers.14.mlp.expert_query.weight', 'model.layers.14.mlp.expert_states_flat.weight', 'model.layers.14.mlp.key.weight', 'model.layers.14.mlp.value.weight', 'model.layers.15.mlp.expert_query.weight', 'model.layers.15.mlp.expert_states_flat.weight', 'model.layers.15.mlp.key.weight', 'model.layers.15.mlp.value.weight', 'model.layers.16.mlp.expert_query.weight', 'model.layers.16.mlp.expert_states_flat.weight', 'model.layers.16.mlp.key.weight', 'model.layers.16.mlp.value.weight', 'model.layers.17.mlp.expert_query.weight', 'model.layers.17.mlp.expert_states_flat.weight', 'model.layers.17.mlp.key.weight', 'model.layers.17.mlp.value.weight', 'model.layers.18.mlp.expert_query.weight', 'model.layers.18.mlp.expert_states_flat.weight', 'model.layers.18.mlp.key.weight', 'model.layers.18.mlp.value.weight', 'model.layers.19.mlp.expert_query.weight', 'model.layers.19.mlp.expert_states_flat.weight', 'model.layers.19.mlp.key.weight', 'model.layers.19.mlp.value.weight', 'model.layers.2.mlp.expert_query.weight', 'model.layers.2.mlp.expert_states_flat.weight', 'model.layers.2.mlp.key.weight', 'model.layers.2.mlp.value.weight', 'model.layers.20.mlp.expert_query.weight', 'model.layers.20.mlp.expert_states_flat.weight', 'model.layers.20.mlp.key.weight', 'model.layers.20.mlp.value.weight', 'model.layers.21.mlp.expert_query.weight', 'model.layers.21.mlp.expert_states_flat.weight', 'model.layers.21.mlp.key.weight', 'model.layers.21.mlp.value.weight', 'model.layers.22.mlp.expert_query.weight', 'model.layers.22.mlp.expert_states_flat.weight', 'model.layers.22.mlp.key.weight', 'model.layers.22.mlp.value.weight', 'model.layers.23.mlp.expert_query.weight', 'model.layers.23.mlp.expert_states_flat.weight', 'model.layers.23.mlp.key.weight', 'model.layers.23.mlp.value.weight', 'model.layers.24.mlp.expert_query.weight', 'model.layers.24.mlp.expert_states_flat.weight', 'model.layers.24.mlp.key.weight', 'model.layers.24.mlp.value.weight', 'model.layers.25.mlp.expert_query.weight', 'model.layers.25.mlp.expert_states_flat.weight', 'model.layers.25.mlp.key.weight', 'model.layers.25.mlp.value.weight', 'model.layers.26.mlp.expert_query.weight', 'model.layers.26.mlp.expert_states_flat.weight', 'model.layers.26.mlp.key.weight', 'model.layers.26.mlp.value.weight', 'model.layers.27.mlp.expert_query.weight', 'model.layers.27.mlp.expert_states_flat.weight', 'model.layers.27.mlp.key.weight', 'model.layers.27.mlp.value.weight', 'model.layers.3.mlp.expert_query.weight', 'model.layers.3.mlp.expert_states_flat.weight', 'model.layers.3.mlp.key.weight', 'model.layers.3.mlp.value.weight', 'model.layers.4.mlp.expert_query.weight', 'model.layers.4.mlp.expert_states_flat.weight', 'model.layers.4.mlp.key.weight', 'model.layers.4.mlp.value.weight', 'model.layers.5.mlp.expert_query.weight', 'model.layers.5.mlp.expert_states_flat.weight', 'model.layers.5.mlp.key.weight', 'model.layers.5.mlp.value.weight', 'model.layers.6.mlp.expert_query.weight', 'model.layers.6.mlp.expert_states_flat.weight', 'model.layers.6.mlp.key.weight', 'model.layers.6.mlp.value.weight', 'model.layers.7.mlp.expert_query.weight', 'model.layers.7.mlp.expert_states_flat.weight', 'model.layers.7.mlp.key.weight', 'model.layers.7.mlp.value.weight', 'model.layers.8.mlp.expert_query.weight', 'model.layers.8.mlp.expert_states_flat.weight', 'model.layers.8.mlp.key.weight', 'model.layers.8.mlp.value.weight', 'model.layers.9.mlp.expert_query.weight', 'model.layers.9.mlp.expert_states_flat.weight', 'model.layers.9.mlp.key.weight', 'model.layers.9.mlp.value.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.59s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.87s/it]
+Some weights of Qwen3ForCausalLMWithRIM were not initialized from the model checkpoint at /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent and are newly initialized: ['model.layers.0.mlp.expert_query.weight', 'model.layers.0.mlp.expert_states_flat.weight', 'model.layers.0.mlp.key.weight', 'model.layers.0.mlp.value.weight', 'model.layers.1.mlp.expert_query.weight', 'model.layers.1.mlp.expert_states_flat.weight', 'model.layers.1.mlp.key.weight', 'model.layers.1.mlp.value.weight', 'model.layers.10.mlp.expert_query.weight', 'model.layers.10.mlp.expert_states_flat.weight', 'model.layers.10.mlp.key.weight', 'model.layers.10.mlp.value.weight', 'model.layers.11.mlp.expert_query.weight', 'model.layers.11.mlp.expert_states_flat.weight', 'model.layers.11.mlp.key.weight', 'model.layers.11.mlp.value.weight', 'model.layers.12.mlp.expert_query.weight', 'model.layers.12.mlp.expert_states_flat.weight', 'model.layers.12.mlp.key.weight', 'model.layers.12.mlp.value.weight', 'model.layers.13.mlp.expert_query.weight', 'model.layers.13.mlp.expert_states_flat.weight', 'model.layers.13.mlp.key.weight', 'model.layers.13.mlp.value.weight', 'model.layers.14.mlp.expert_query.weight', 'model.layers.14.mlp.expert_states_flat.weight', 'model.layers.14.mlp.key.weight', 'model.layers.14.mlp.value.weight', 'model.layers.15.mlp.expert_query.weight', 'model.layers.15.mlp.expert_states_flat.weight', 'model.layers.15.mlp.key.weight', 'model.layers.15.mlp.value.weight', 'model.layers.16.mlp.expert_query.weight', 'model.layers.16.mlp.expert_states_flat.weight', 'model.layers.16.mlp.key.weight', 'model.layers.16.mlp.value.weight', 'model.layers.17.mlp.expert_query.weight', 'model.layers.17.mlp.expert_states_flat.weight', 'model.layers.17.mlp.key.weight', 'model.layers.17.mlp.value.weight', 'model.layers.18.mlp.expert_query.weight', 'model.layers.18.mlp.expert_states_flat.weight', 'model.layers.18.mlp.key.weight', 'model.layers.18.mlp.value.weight', 'model.layers.19.mlp.expert_query.weight', 'model.layers.19.mlp.expert_states_flat.weight', 'model.layers.19.mlp.key.weight', 'model.layers.19.mlp.value.weight', 'model.layers.2.mlp.expert_query.weight', 'model.layers.2.mlp.expert_states_flat.weight', 'model.layers.2.mlp.key.weight', 'model.layers.2.mlp.value.weight', 'model.layers.20.mlp.expert_query.weight', 'model.layers.20.mlp.expert_states_flat.weight', 'model.layers.20.mlp.key.weight', 'model.layers.20.mlp.value.weight', 'model.layers.21.mlp.expert_query.weight', 'model.layers.21.mlp.expert_states_flat.weight', 'model.layers.21.mlp.key.weight', 'model.layers.21.mlp.value.weight', 'model.layers.22.mlp.expert_query.weight', 'model.layers.22.mlp.expert_states_flat.weight', 'model.layers.22.mlp.key.weight', 'model.layers.22.mlp.value.weight', 'model.layers.23.mlp.expert_query.weight', 'model.layers.23.mlp.expert_states_flat.weight', 'model.layers.23.mlp.key.weight', 'model.layers.23.mlp.value.weight', 'model.layers.24.mlp.expert_query.weight', 'model.layers.24.mlp.expert_states_flat.weight', 'model.layers.24.mlp.key.weight', 'model.layers.24.mlp.value.weight', 'model.layers.25.mlp.expert_query.weight', 'model.layers.25.mlp.expert_states_flat.weight', 'model.layers.25.mlp.key.weight', 'model.layers.25.mlp.value.weight', 'model.layers.26.mlp.expert_query.weight', 'model.layers.26.mlp.expert_states_flat.weight', 'model.layers.26.mlp.key.weight', 'model.layers.26.mlp.value.weight', 'model.layers.27.mlp.expert_query.weight', 'model.layers.27.mlp.expert_states_flat.weight', 'model.layers.27.mlp.key.weight', 'model.layers.27.mlp.value.weight', 'model.layers.3.mlp.expert_query.weight', 'model.layers.3.mlp.expert_states_flat.weight', 'model.layers.3.mlp.key.weight', 'model.layers.3.mlp.value.weight', 'model.layers.4.mlp.expert_query.weight', 'model.layers.4.mlp.expert_states_flat.weight', 'model.layers.4.mlp.key.weight', 'model.layers.4.mlp.value.weight', 'model.layers.5.mlp.expert_query.weight', 'model.layers.5.mlp.expert_states_flat.weight', 'model.layers.5.mlp.key.weight', 'model.layers.5.mlp.value.weight', 'model.layers.6.mlp.expert_query.weight', 'model.layers.6.mlp.expert_states_flat.weight', 'model.layers.6.mlp.key.weight', 'model.layers.6.mlp.value.weight', 'model.layers.7.mlp.expert_query.weight', 'model.layers.7.mlp.expert_states_flat.weight', 'model.layers.7.mlp.key.weight', 'model.layers.7.mlp.value.weight', 'model.layers.8.mlp.expert_query.weight', 'model.layers.8.mlp.expert_states_flat.weight', 'model.layers.8.mlp.key.weight', 'model.layers.8.mlp.value.weight', 'model.layers.9.mlp.expert_query.weight', 'model.layers.9.mlp.expert_states_flat.weight', 'model.layers.9.mlp.key.weight', 'model.layers.9.mlp.value.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.63s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.59s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.88s/it]
+Some weights of Qwen3ForCausalLMWithRIM were not initialized from the model checkpoint at /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent and are newly initialized: ['model.layers.0.mlp.expert_query.weight', 'model.layers.0.mlp.expert_states_flat.weight', 'model.layers.0.mlp.key.weight', 'model.layers.0.mlp.value.weight', 'model.layers.1.mlp.expert_query.weight', 'model.layers.1.mlp.expert_states_flat.weight', 'model.layers.1.mlp.key.weight', 'model.layers.1.mlp.value.weight', 'model.layers.10.mlp.expert_query.weight', 'model.layers.10.mlp.expert_states_flat.weight', 'model.layers.10.mlp.key.weight', 'model.layers.10.mlp.value.weight', 'model.layers.11.mlp.expert_query.weight', 'model.layers.11.mlp.expert_states_flat.weight', 'model.layers.11.mlp.key.weight', 'model.layers.11.mlp.value.weight', 'model.layers.12.mlp.expert_query.weight', 'model.layers.12.mlp.expert_states_flat.weight', 'model.layers.12.mlp.key.weight', 'model.layers.12.mlp.value.weight', 'model.layers.13.mlp.expert_query.weight', 'model.layers.13.mlp.expert_states_flat.weight', 'model.layers.13.mlp.key.weight', 'model.layers.13.mlp.value.weight', 'model.layers.14.mlp.expert_query.weight', 'model.layers.14.mlp.expert_states_flat.weight', 'model.layers.14.mlp.key.weight', 'model.layers.14.mlp.value.weight', 'model.layers.15.mlp.expert_query.weight', 'model.layers.15.mlp.expert_states_flat.weight', 'model.layers.15.mlp.key.weight', 'model.layers.15.mlp.value.weight', 'model.layers.16.mlp.expert_query.weight', 'model.layers.16.mlp.expert_states_flat.weight', 'model.layers.16.mlp.key.weight', 'model.layers.16.mlp.value.weight', 'model.layers.17.mlp.expert_query.weight', 'model.layers.17.mlp.expert_states_flat.weight', 'model.layers.17.mlp.key.weight', 'model.layers.17.mlp.value.weight', 'model.layers.18.mlp.expert_query.weight', 'model.layers.18.mlp.expert_states_flat.weight', 'model.layers.18.mlp.key.weight', 'model.layers.18.mlp.value.weight', 'model.layers.19.mlp.expert_query.weight', 'model.layers.19.mlp.expert_states_flat.weight', 'model.layers.19.mlp.key.weight', 'model.layers.19.mlp.value.weight', 'model.layers.2.mlp.expert_query.weight', 'model.layers.2.mlp.expert_states_flat.weight', 'model.layers.2.mlp.key.weight', 'model.layers.2.mlp.value.weight', 'model.layers.20.mlp.expert_query.weight', 'model.layers.20.mlp.expert_states_flat.weight', 'model.layers.20.mlp.key.weight', 'model.layers.20.mlp.value.weight', 'model.layers.21.mlp.expert_query.weight', 'model.layers.21.mlp.expert_states_flat.weight', 'model.layers.21.mlp.key.weight', 'model.layers.21.mlp.value.weight', 'model.layers.22.mlp.expert_query.weight', 'model.layers.22.mlp.expert_states_flat.weight', 'model.layers.22.mlp.key.weight', 'model.layers.22.mlp.value.weight', 'model.layers.23.mlp.expert_query.weight', 'model.layers.23.mlp.expert_states_flat.weight', 'model.layers.23.mlp.key.weight', 'model.layers.23.mlp.value.weight', 'model.layers.24.mlp.expert_query.weight', 'model.layers.24.mlp.expert_states_flat.weight', 'model.layers.24.mlp.key.weight', 'model.layers.24.mlp.value.weight', 'model.layers.25.mlp.expert_query.weight', 'model.layers.25.mlp.expert_states_flat.weight', 'model.layers.25.mlp.key.weight', 'model.layers.25.mlp.value.weight', 'model.layers.26.mlp.expert_query.weight', 'model.layers.26.mlp.expert_states_flat.weight', 'model.layers.26.mlp.key.weight', 'model.layers.26.mlp.value.weight', 'model.layers.27.mlp.expert_query.weight', 'model.layers.27.mlp.expert_states_flat.weight', 'model.layers.27.mlp.key.weight', 'model.layers.27.mlp.value.weight', 'model.layers.3.mlp.expert_query.weight', 'model.layers.3.mlp.expert_states_flat.weight', 'model.layers.3.mlp.key.weight', 'model.layers.3.mlp.value.weight', 'model.layers.4.mlp.expert_query.weight', 'model.layers.4.mlp.expert_states_flat.weight', 'model.layers.4.mlp.key.weight', 'model.layers.4.mlp.value.weight', 'model.layers.5.mlp.expert_query.weight', 'model.layers.5.mlp.expert_states_flat.weight', 'model.layers.5.mlp.key.weight', 'model.layers.5.mlp.value.weight', 'model.layers.6.mlp.expert_query.weight', 'model.layers.6.mlp.expert_states_flat.weight', 'model.layers.6.mlp.key.weight', 'model.layers.6.mlp.value.weight', 'model.layers.7.mlp.expert_query.weight', 'model.layers.7.mlp.expert_states_flat.weight', 'model.layers.7.mlp.key.weight', 'model.layers.7.mlp.value.weight', 'model.layers.8.mlp.expert_query.weight', 'model.layers.8.mlp.expert_states_flat.weight', 'model.layers.8.mlp.key.weight', 'model.layers.8.mlp.value.weight', 'model.layers.9.mlp.expert_query.weight', 'model.layers.9.mlp.expert_states_flat.weight', 'model.layers.9.mlp.key.weight', 'model.layers.9.mlp.value.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Loading checkpoint shards: 100%|██████████| 3/3 [01:08<00:00, 22.88s/it]
+Some weights of Qwen3ForCausalLMWithRIM were not initialized from the model checkpoint at /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent and are newly initialized: ['model.layers.0.mlp.expert_query.weight', 'model.layers.0.mlp.expert_states_flat.weight', 'model.layers.0.mlp.key.weight', 'model.layers.0.mlp.value.weight', 'model.layers.1.mlp.expert_query.weight', 'model.layers.1.mlp.expert_states_flat.weight', 'model.layers.1.mlp.key.weight', 'model.layers.1.mlp.value.weight', 'model.layers.10.mlp.expert_query.weight', 'model.layers.10.mlp.expert_states_flat.weight', 'model.layers.10.mlp.key.weight', 'model.layers.10.mlp.value.weight', 'model.layers.11.mlp.expert_query.weight', 'model.layers.11.mlp.expert_states_flat.weight', 'model.layers.11.mlp.key.weight', 'model.layers.11.mlp.value.weight', 'model.layers.12.mlp.expert_query.weight', 'model.layers.12.mlp.expert_states_flat.weight', 'model.layers.12.mlp.key.weight', 'model.layers.12.mlp.value.weight', 'model.layers.13.mlp.expert_query.weight', 'model.layers.13.mlp.expert_states_flat.weight', 'model.layers.13.mlp.key.weight', 'model.layers.13.mlp.value.weight', 'model.layers.14.mlp.expert_query.weight', 'model.layers.14.mlp.expert_states_flat.weight', 'model.layers.14.mlp.key.weight', 'model.layers.14.mlp.value.weight', 'model.layers.15.mlp.expert_query.weight', 'model.layers.15.mlp.expert_states_flat.weight', 'model.layers.15.mlp.key.weight', 'model.layers.15.mlp.value.weight', 'model.layers.16.mlp.expert_query.weight', 'model.layers.16.mlp.expert_states_flat.weight', 'model.layers.16.mlp.key.weight', 'model.layers.16.mlp.value.weight', 'model.layers.17.mlp.expert_query.weight', 'model.layers.17.mlp.expert_states_flat.weight', 'model.layers.17.mlp.key.weight', 'model.layers.17.mlp.value.weight', 'model.layers.18.mlp.expert_query.weight', 'model.layers.18.mlp.expert_states_flat.weight', 'model.layers.18.mlp.key.weight', 'model.layers.18.mlp.value.weight', 'model.layers.19.mlp.expert_query.weight', 'model.layers.19.mlp.expert_states_flat.weight', 'model.layers.19.mlp.key.weight', 'model.layers.19.mlp.value.weight', 'model.layers.2.mlp.expert_query.weight', 'model.layers.2.mlp.expert_states_flat.weight', 'model.layers.2.mlp.key.weight', 'model.layers.2.mlp.value.weight', 'model.layers.20.mlp.expert_query.weight', 'model.layers.20.mlp.expert_states_flat.weight', 'model.layers.20.mlp.key.weight', 'model.layers.20.mlp.value.weight', 'model.layers.21.mlp.expert_query.weight', 'model.layers.21.mlp.expert_states_flat.weight', 'model.layers.21.mlp.key.weight', 'model.layers.21.mlp.value.weight', 'model.layers.22.mlp.expert_query.weight', 'model.layers.22.mlp.expert_states_flat.weight', 'model.layers.22.mlp.key.weight', 'model.layers.22.mlp.value.weight', 'model.layers.23.mlp.expert_query.weight', 'model.layers.23.mlp.expert_states_flat.weight', 'model.layers.23.mlp.key.weight', 'model.layers.23.mlp.value.weight', 'model.layers.24.mlp.expert_query.weight', 'model.layers.24.mlp.expert_states_flat.weight', 'model.layers.24.mlp.key.weight', 'model.layers.24.mlp.value.weight', 'model.layers.25.mlp.expert_query.weight', 'model.layers.25.mlp.expert_states_flat.weight', 'model.layers.25.mlp.key.weight', 'model.layers.25.mlp.value.weight', 'model.layers.26.mlp.expert_query.weight', 'model.layers.26.mlp.expert_states_flat.weight', 'model.layers.26.mlp.key.weight', 'model.layers.26.mlp.value.weight', 'model.layers.27.mlp.expert_query.weight', 'model.layers.27.mlp.expert_states_flat.weight', 'model.layers.27.mlp.key.weight', 'model.layers.27.mlp.value.weight', 'model.layers.3.mlp.expert_query.weight', 'model.layers.3.mlp.expert_states_flat.weight', 'model.layers.3.mlp.key.weight', 'model.layers.3.mlp.value.weight', 'model.layers.4.mlp.expert_query.weight', 'model.layers.4.mlp.expert_states_flat.weight', 'model.layers.4.mlp.key.weight', 'model.layers.4.mlp.value.weight', 'model.layers.5.mlp.expert_query.weight', 'model.layers.5.mlp.expert_states_flat.weight', 'model.layers.5.mlp.key.weight', 'model.layers.5.mlp.value.weight', 'model.layers.6.mlp.expert_query.weight', 'model.layers.6.mlp.expert_states_flat.weight', 'model.layers.6.mlp.key.weight', 'model.layers.6.mlp.value.weight', 'model.layers.7.mlp.expert_query.weight', 'model.layers.7.mlp.expert_states_flat.weight', 'model.layers.7.mlp.key.weight', 'model.layers.7.mlp.value.weight', 'model.layers.8.mlp.expert_query.weight', 'model.layers.8.mlp.expert_states_flat.weight', 'model.layers.8.mlp.key.weight', 'model.layers.8.mlp.value.weight', 'model.layers.9.mlp.expert_query.weight', 'model.layers.9.mlp.expert_states_flat.weight', 'model.layers.9.mlp.key.weight', 'model.layers.9.mlp.value.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/peft/tuners/tuners_utils.py:190: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/peft/tuners/tuners_utils.py:190: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/peft/tuners/tuners_utils.py:190: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/peft/tuners/tuners_utils.py:190: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!
+  warnings.warn(
+2025-09-26:09:12:06 INFO     [models.custom:595] Loaded PEFT adapter from /leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400 into base RIM model
+2025-09-26:09:12:06 INFO     [models.custom:608] Model loaded: PeftModelForCausalLM(
+  (base_model): LoraModel(
+    (model): Qwen3ForCausalLMWithRIM(
+      (model): Qwen3ModelWithRIM(
+        (embed_tokens): ModulesToSaveWrapper(
+          (original_module): Embedding(151936, 1024)
+          (modules_to_save): ModuleDict(
+            (default): Embedding(151936, 1024)
+          )
+        )
+        (layers): ModuleList(
+          (0-27): 28 x Qwen3DecoderLayerWithRIM(
+            (self_attn): Qwen3Attention(
+              (q_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=2048, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=2048, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (k_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (v_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (o_proj): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+              (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+            )
+            (mlp): Qwen3MoeBlockWithRIM(
+              (experts): ModuleList(
+                (0-11): 12 x Qwen3MLP(
+                  (gate_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (up_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (down_proj): lora.Linear(
+                    (base_layer): Linear(in_features=3072, out_features=1024, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=3072, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=1024, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (act_fn): SiLU()
+                )
+              )
+              (key): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (value): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (expert_query): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=768, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=768, out_features=768, bias=False)
+                )
+              )
+              (expert_states_flat): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+            )
+            (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+            (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+          )
+        )
+        (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (rotary_emb): Qwen3RotaryEmbedding()
+      )
+      (lm_head): ModulesToSaveWrapper(
+        (original_module): Linear(in_features=1024, out_features=151936, bias=False)
+        (modules_to_save): ModuleDict(
+          (default): Linear(in_features=1024, out_features=151936, bias=False)
+        )
+      )
+    )
+  )
+)
+2025-09-26:09:12:06 INFO     [models.custom:610] Total number of weights and biases: 4261609472
+2025-09-26:09:12:07 INFO     [models.custom:595] Loaded PEFT adapter from /leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400 into base RIM model
+2025-09-26:09:12:07 INFO     [models.custom:595] Loaded PEFT adapter from /leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400 into base RIM model
+2025-09-26:09:12:07 INFO     [models.custom:608] Model loaded: PeftModelForCausalLM(
+  (base_model): LoraModel(
+    (model): Qwen3ForCausalLMWithRIM(
+      (model): Qwen3ModelWithRIM(
+        (embed_tokens): ModulesToSaveWrapper(
+          (original_module): Embedding(151936, 1024)
+          (modules_to_save): ModuleDict(
+            (default): Embedding(151936, 1024)
+          )
+        )
+        (layers): ModuleList(
+          (0-27): 28 x Qwen3DecoderLayerWithRIM(
+            (self_attn): Qwen3Attention(
+              (q_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=2048, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=2048, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (k_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (v_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (o_proj): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+              (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+            )
+            (mlp): Qwen3MoeBlockWithRIM(
+              (experts): ModuleList(
+                (0-11): 12 x Qwen3MLP(
+                  (gate_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (up_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (down_proj): lora.Linear(
+                    (base_layer): Linear(in_features=3072, out_features=1024, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=3072, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=1024, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (act_fn): SiLU()
+                )
+              )
+              (key): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (value): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (expert_query): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=768, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=768, out_features=768, bias=False)
+                )
+              )
+              (expert_states_flat): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+            )
+            (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+            (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+          )
+        )
+        (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (rotary_emb): Qwen3RotaryEmbedding()
+      )
+      (lm_head): ModulesToSaveWrapper(
+        (original_module): Linear(in_features=1024, out_features=151936, bias=False)
+        (modules_to_save): ModuleDict(
+          (default): Linear(in_features=1024, out_features=151936, bias=False)
+        )
+      )
+    )
+  )
+)
+2025-09-26:09:12:07 INFO     [models.custom:595] Loaded PEFT adapter from /leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400 into base RIM model
+2025-09-26:09:12:07 INFO     [models.custom:610] Total number of weights and biases: 4261609472
+2025-09-26:09:12:07 INFO     [models.custom:608] Model loaded: PeftModelForCausalLM(
+  (base_model): LoraModel(
+    (model): Qwen3ForCausalLMWithRIM(
+      (model): Qwen3ModelWithRIM(
+        (embed_tokens): ModulesToSaveWrapper(
+          (original_module): Embedding(151936, 1024)
+          (modules_to_save): ModuleDict(
+            (default): Embedding(151936, 1024)
+          )
+        )
+        (layers): ModuleList(
+          (0-27): 28 x Qwen3DecoderLayerWithRIM(
+            (self_attn): Qwen3Attention(
+              (q_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=2048, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=2048, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (k_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (v_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (o_proj): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+              (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+            )
+            (mlp): Qwen3MoeBlockWithRIM(
+              (experts): ModuleList(
+                (0-11): 12 x Qwen3MLP(
+                  (gate_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (up_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (down_proj): lora.Linear(
+                    (base_layer): Linear(in_features=3072, out_features=1024, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=3072, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=1024, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (act_fn): SiLU()
+                )
+              )
+              (key): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (value): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (expert_query): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=768, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=768, out_features=768, bias=False)
+                )
+              )
+              (expert_states_flat): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+            )
+            (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+            (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+          )
+        )
+        (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (rotary_emb): Qwen3RotaryEmbedding()
+      )
+      (lm_head): ModulesToSaveWrapper(
+        (original_module): Linear(in_features=1024, out_features=151936, bias=False)
+        (modules_to_save): ModuleDict(
+          (default): Linear(in_features=1024, out_features=151936, bias=False)
+        )
+      )
+    )
+  )
+)
+2025-09-26:09:12:07 INFO     [models.custom:608] Model loaded: PeftModelForCausalLM(
+  (base_model): LoraModel(
+    (model): Qwen3ForCausalLMWithRIM(
+      (model): Qwen3ModelWithRIM(
+        (embed_tokens): ModulesToSaveWrapper(
+          (original_module): Embedding(151936, 1024)
+          (modules_to_save): ModuleDict(
+            (default): Embedding(151936, 1024)
+          )
+        )
+        (layers): ModuleList(
+          (0-27): 28 x Qwen3DecoderLayerWithRIM(
+            (self_attn): Qwen3Attention(
+              (q_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=2048, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=2048, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (k_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (v_proj): lora.Linear(
+                (base_layer): Linear(in_features=1024, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (o_proj): lora.Linear(
+                (base_layer): Linear(in_features=2048, out_features=1024, bias=False)
+                (lora_dropout): ModuleDict(
+                  (default): Dropout(p=0.05, inplace=False)
+                )
+                (lora_A): ModuleDict(
+                  (default): Linear(in_features=2048, out_features=64, bias=False)
+                )
+                (lora_B): ModuleDict(
+                  (default): Linear(in_features=64, out_features=1024, bias=False)
+                )
+                (lora_embedding_A): ParameterDict()
+                (lora_embedding_B): ParameterDict()
+                (lora_magnitude_vector): ModuleDict()
+              )
+              (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+              (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+            )
+            (mlp): Qwen3MoeBlockWithRIM(
+              (experts): ModuleList(
+                (0-11): 12 x Qwen3MLP(
+                  (gate_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (up_proj): lora.Linear(
+                    (base_layer): Linear(in_features=1024, out_features=3072, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=1024, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=3072, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (down_proj): lora.Linear(
+                    (base_layer): Linear(in_features=3072, out_features=1024, bias=False)
+                    (lora_dropout): ModuleDict(
+                      (default): Dropout(p=0.05, inplace=False)
+                    )
+                    (lora_A): ModuleDict(
+                      (default): Linear(in_features=3072, out_features=64, bias=False)
+                    )
+                    (lora_B): ModuleDict(
+                      (default): Linear(in_features=64, out_features=1024, bias=False)
+                    )
+                    (lora_embedding_A): ParameterDict()
+                    (lora_embedding_B): ParameterDict()
+                    (lora_magnitude_vector): ModuleDict()
+                  )
+                  (act_fn): SiLU()
+                )
+              )
+              (key): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (value): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+              (expert_query): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=768, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=768, out_features=768, bias=False)
+                )
+              )
+              (expert_states_flat): ModulesToSaveWrapper(
+                (original_module): Linear(in_features=1024, out_features=768, bias=False)
+                (modules_to_save): ModuleDict(
+                  (default): Linear(in_features=1024, out_features=768, bias=False)
+                )
+              )
+            )
+            (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+            (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+          )
+        )
+        (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (rotary_emb): Qwen3RotaryEmbedding()
+      )
+      (lm_head): ModulesToSaveWrapper(
+        (original_module): Linear(in_features=1024, out_features=151936, bias=False)
+        (modules_to_save): ModuleDict(
+          (default): Linear(in_features=1024, out_features=151936, bias=False)
+        )
+      )
+    )
+  )
+)
+2025-09-26:09:12:07 INFO     [models.custom:610] Total number of weights and biases: 4261609472
+2025-09-26:09:12:07 INFO     [models.custom:610] Total number of weights and biases: 4261609472
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1000 examples [00:00, 3863.41 examples/s]Generating train split: 7473 examples [00:00, 28374.55 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 1319 examples [00:00, 493689.72 examples/s]
+2025-09-26:09:12:08 INFO     [evaluator:296] gsm8k: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0, 'max_new_tokens': 2048, 'max_length': None}
+2025-09-26:09:12:08 WARNING  [evaluator:471] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2025-09-26:09:12:08 INFO     [evaluator:296] gsm8k: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0, 'max_new_tokens': 2048, 'max_length': None}
+2025-09-26:09:12:08 INFO     [api.task:434] Building contexts for gsm8k on rank 3...
+2025-09-26:09:12:08 WARNING  [evaluator:471] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2025-09-26:09:12:08 INFO     [api.task:434] Building contexts for gsm8k on rank 2...
+2025-09-26:09:12:08 INFO     [evaluator:296] gsm8k: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0, 'max_new_tokens': 2048, 'max_length': None}
+2025-09-26:09:12:08 WARNING  [evaluator:471] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2025-09-26:09:12:08 INFO     [api.task:434] Building contexts for gsm8k on rank 1...
+  0%|          | 0/329 [00:00<?, ?it/s]  0%|          | 0/330 [00:00<?, ?it/s]2025-09-26:09:12:08 INFO     [evaluator:296] gsm8k: Using gen_kwargs: {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0.0, 'max_new_tokens': 2048, 'max_length': None}
+2025-09-26:09:12:08 WARNING  [evaluator:471] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2025-09-26:09:12:08 INFO     [api.task:434] Building contexts for gsm8k on rank 0...
+  0%|          | 0/330 [00:00<?, ?it/s]  0%|          | 0/330 [00:00<?, ?it/s]  8%|▊         | 27/330 [00:00<00:01, 267.35it/s]  9%|▊         | 28/329 [00:00<00:01, 272.85it/s]  8%|▊         | 27/330 [00:00<00:01, 265.98it/s]  8%|▊         | 27/330 [00:00<00:01, 267.79it/s] 18%|█▊        | 59/330 [00:00<00:00, 296.16it/s] 19%|█▊        | 61/329 [00:00<00:00, 303.68it/s] 18%|█▊        | 59/330 [00:00<00:00, 295.78it/s] 18%|█▊        | 59/330 [00:00<00:00, 297.85it/s] 29%|██▊       | 94/329 [00:00<00:00, 313.95it/s] 28%|██▊       | 92/330 [00:00<00:00, 307.52it/s] 28%|██▊       | 91/330 [00:00<00:00, 306.29it/s] 28%|██▊       | 92/330 [00:00<00:00, 309.08it/s] 38%|███▊      | 125/330 [00:00<00:00, 314.63it/s] 39%|███▉      | 128/329 [00:00<00:00, 321.04it/s] 38%|███▊      | 124/330 [00:00<00:00, 313.25it/s] 38%|███▊      | 125/330 [00:00<00:00, 315.93it/s] 48%|████▊     | 158/330 [00:00<00:00, 318.33it/s] 49%|████▉     | 162/329 [00:00<00:00, 324.56it/s] 48%|████▊     | 157/330 [00:00<00:00, 317.51it/s] 48%|████▊     | 158/330 [00:00<00:00, 320.41it/s] 58%|█████▊    | 191/330 [00:00<00:00, 319.97it/s] 60%|█████▉    | 196/329 [00:00<00:00, 326.80it/s] 58%|█████▊    | 190/330 [00:00<00:00, 319.43it/s] 58%|█████▊    | 191/330 [00:00<00:00, 322.27it/s] 68%|██████▊   | 224/330 [00:00<00:00, 321.28it/s] 70%|██████▉   | 230/329 [00:00<00:00, 328.57it/s] 68%|██████▊   | 223/330 [00:00<00:00, 320.54it/s] 68%|██████▊   | 224/330 [00:00<00:00, 323.68it/s] 78%|███████▊  | 257/330 [00:00<00:00, 322.62it/s] 80%|████████  | 264/329 [00:00<00:00, 330.18it/s] 78%|███████▊  | 256/330 [00:00<00:00, 321.36it/s] 78%|███████▊  | 257/330 [00:00<00:00, 324.71it/s] 88%|████████▊ | 290/330 [00:00<00:00, 322.85it/s] 91%|█████████ | 298/329 [00:00<00:00, 330.03it/s] 88%|████████▊ | 289/330 [00:00<00:00, 321.36it/s] 88%|████████▊ | 290/330 [00:00<00:00, 324.38it/s]100%|██████████| 329/329 [00:01<00:00, 324.12it/s]
+ 98%|█████████▊| 323/330 [00:01<00:00, 318.02it/s] 98%|█████████▊| 322/330 [00:01<00:00, 321.06it/s] 98%|█████████▊| 323/330 [00:01<00:00, 323.89it/s]100%|██████████| 330/330 [00:01<00:00, 315.72it/s]
+100%|██████████| 330/330 [00:01<00:00, 315.96it/s]
+100%|██████████| 330/330 [00:01<00:00, 318.86it/s]
+2025-09-26:09:12:11 INFO     [evaluator:565] Running generate_until requests
+2025-09-26:09:12:11 INFO     [evaluator:565] Running generate_until requests
+2025-09-26:09:12:11 INFO     [evaluator:565] Running generate_until requests
+2025-09-26:09:12:11 INFO     [evaluator:565] Running generate_until requests
+Running generate_until requests:   0%|          | 0/330 [00:00<?, ?it/s]Running generate_until requests:   0%|          | 1/330 [06:24<35:08:54, 384.60s/it]Running generate_until requests:   2%|▏         | 5/330 [12:37<12:20:29, 136.71s/it]Running generate_until requests:   3%|▎         | 9/330 [18:52<10:05:10, 113.12s/it]Running generate_until requests:   4%|▍         | 13/330 [25:07<9:12:33, 104.59s/it]Running generate_until requests:   5%|▌         | 17/330 [31:20<8:42:45, 100.21s/it]Running generate_until requests:   6%|▋         | 21/330 [37:34<8:23:54, 97.85s/it] Running generate_until requests:   8%|▊         | 25/330 [43:48<8:09:54, 96.38s/it]Running generate_until requests:   9%|▉         | 29/330 [50:02<7:58:43, 95.43s/it]Running generate_until requests:  10%|█         | 33/330 [56:15<7:49:06, 94.77s/it]Running generate_until requests:  11%|█         | 37/330 [1:02:29<7:40:45, 94.35s/it]Running generate_until requests:  12%|█▏        | 41/330 [1:08:42<7:32:54, 94.03s/it]Running generate_until requests:  14%|█▎        | 45/330 [1:14:55<7:25:30, 93.79s/it]Running generate_until requests:  15%|█▍        | 49/330 [1:21:09<7:18:34, 93.65s/it]Running generate_until requests:  16%|█▌        | 53/330 [1:27:23<7:12:21, 93.65s/it]Running generate_until requests:  17%|█▋        | 57/330 [1:33:38<7:06:06, 93.65s/it]Running generate_until requests:  18%|█▊        | 61/330 [1:39:52<6:59:41, 93.61s/it]Running generate_until requests:  20%|█▉        | 65/330 [1:46:04<6:52:46, 93.46s/it]Running generate_until requests:  21%|██        | 69/330 [1:52:16<6:45:57, 93.32s/it]Running generate_until requests:  22%|██▏       | 73/330 [1:58:29<6:39:40, 93.31s/it]Running generate_until requests:  23%|██▎       | 77/330 [2:04:43<6:33:35, 93.34s/it]Running generate_until requests:  25%|██▍       | 81/330 [2:10:56<6:27:21, 93.34s/it]Running generate_until requests:  26%|██▌       | 85/330 [2:17:11<6:21:21, 93.39s/it]Running generate_until requests:  27%|██▋       | 89/330 [2:23:24<6:15:10, 93.40s/it]Running generate_until requests:  28%|██▊       | 93/330 [2:29:38<6:08:55, 93.40s/it]Running generate_until requests:  29%|██▉       | 97/330 [2:35:52<6:02:43, 93.41s/it]Running generate_until requests:  31%|███       | 101/330 [2:42:05<5:56:29, 93.41s/it]Running generate_until requests:  32%|███▏      | 105/330 [2:48:17<5:49:52, 93.30s/it]Running generate_until requests:  33%|███▎      | 109/330 [2:54:27<5:42:41, 93.04s/it]Running generate_until requests:  34%|███▍      | 113/330 [3:00:38<5:36:14, 92.97s/it]Running generate_until requests:  35%|███▌      | 117/330 [3:06:49<5:29:47, 92.90s/it]Running generate_until requests:  37%|███▋      | 121/330 [3:07:38<3:59:08, 68.65s/it]Running generate_until requests:  38%|███▊      | 125/330 [3:13:49<4:19:15, 75.88s/it]Running generate_until requests:  39%|███▉      | 129/330 [3:19:59<4:31:01, 80.90s/it]Running generate_until requests:  40%|████      | 133/330 [3:20:25<3:12:26, 58.61s/it]Running generate_until requests:  42%|████▏     | 137/330 [3:26:35<3:41:14, 68.78s/it]Running generate_until requests:  43%|████▎     | 141/330 [3:32:46<3:59:06, 75.91s/it]Running generate_until requests:  44%|████▍     | 145/330 [3:38:56<4:09:28, 80.91s/it]Running generate_until requests:  45%|████▌     | 149/330 [3:39:28<2:58:12, 59.08s/it]Running generate_until requests:  46%|████▋     | 153/330 [3:45:39<3:23:51, 69.11s/it]Running generate_until requests:  48%|████▊     | 157/330 [3:46:05<2:25:12, 50.36s/it]Running generate_until requests:  49%|████▉     | 161/330 [3:52:16<2:57:40, 63.08s/it]Running generate_until requests:  50%|█████     | 165/330 [3:58:25<3:17:35, 71.85s/it]Running generate_until requests:  51%|█████     | 169/330 [4:04:33<3:28:52, 77.84s/it]Running generate_until requests:  52%|█████▏    | 173/330 [4:10:42<3:35:03, 82.19s/it]Running generate_until requests:  54%|█████▎    | 177/330 [4:16:51<3:37:16, 85.20s/it]Running generate_until requests:  55%|█████▍    | 181/330 [4:23:00<3:36:50, 87.32s/it]Running generate_until requests:  56%|█████▌    | 185/330 [4:23:33<2:33:42, 63.60s/it]Running generate_until requests:  57%|█████▋    | 189/330 [4:29:43<2:49:49, 72.26s/it]Running generate_until requests:  58%|█████▊    | 193/330 [4:30:05<1:59:17, 52.25s/it]Running generate_until requests:  60%|█████▉    | 197/330 [4:36:18<2:23:09, 64.58s/it]Running generate_until requests:  61%|██████    | 201/330 [4:42:29<2:36:52, 72.96s/it]Running generate_until requests:  62%|██████▏   | 205/330 [4:48:38<2:44:07, 78.78s/it]Running generate_until requests:  63%|██████▎   | 209/330 [4:54:48<2:47:11, 82.90s/it]Running generate_until requests:  65%|██████▍   | 213/330 [5:00:58<2:47:14, 85.77s/it]Running generate_until requests:  66%|██████▌   | 217/330 [5:07:07<2:45:11, 87.71s/it]Running generate_until requests:  67%|██████▋   | 221/330 [5:13:16<2:41:50, 89.08s/it]Running generate_until requests:  68%|██████▊   | 225/330 [5:19:28<2:37:54, 90.24s/it]Running generate_until requests:  69%|██████▉   | 229/330 [5:25:40<2:33:18, 91.08s/it]Running generate_until requests:  71%|███████   | 233/330 [5:31:52<2:28:08, 91.63s/it]Running generate_until requests:  72%|███████▏  | 237/330 [5:32:25<1:43:20, 66.67s/it]Running generate_until requests:  73%|███████▎  | 241/330 [5:38:33<1:50:09, 74.26s/it]Running generate_until requests:  74%|███████▍  | 245/330 [5:44:43<1:52:53, 79.69s/it]Running generate_until requests:  75%|███████▌  | 249/330 [5:50:53<1:52:46, 83.54s/it]Running generate_until requests:  77%|███████▋  | 253/330 [5:56:58<1:50:13, 85.88s/it]Running generate_until requests:  78%|███████▊  | 257/330 [6:03:03<1:46:25, 87.47s/it]Running generate_until requests:  79%|███████▉  | 261/330 [6:09:09<1:41:58, 88.67s/it]Running generate_until requests:  80%|████████  | 265/330 [6:15:15<1:36:58, 89.51s/it]Running generate_until requests:  82%|████████▏ | 269/330 [6:21:20<1:31:32, 90.05s/it]Running generate_until requests:  83%|████████▎ | 273/330 [6:27:23<1:25:47, 90.30s/it]Running generate_until requests:  84%|████████▍ | 277/330 [6:27:43<57:09, 64.70s/it]  Running generate_until requests:  85%|████████▌ | 281/330 [6:33:46<59:13, 72.52s/it]Running generate_until requests:  86%|████████▋ | 285/330 [6:34:10<39:23, 52.51s/it]Running generate_until requests:  88%|████████▊ | 289/330 [6:40:13<43:43, 63.99s/it]Running generate_until requests:  89%|████████▉ | 293/330 [6:46:17<44:27, 72.09s/it]Running generate_until requests:  90%|█████████ | 297/330 [6:52:19<42:42, 77.64s/it]Running generate_until requests:  91%|█████████ | 301/330 [6:58:23<39:27, 81.63s/it]Running generate_until requests:  92%|█████████▏| 305/330 [7:04:25<35:07, 84.30s/it]Running generate_until requests:  94%|█████████▎| 309/330 [7:10:31<30:15, 86.47s/it]Running generate_until requests:  95%|█████████▍| 313/330 [7:16:34<24:51, 87.74s/it]Running generate_until requests:  96%|█████████▌| 317/330 [7:22:36<19:11, 88.60s/it]Running generate_until requests:  97%|█████████▋| 321/330 [7:28:40<13:23, 89.30s/it]Running generate_until requests:  98%|█████████▊| 325/330 [7:34:43<07:28, 89.77s/it]Running generate_until requests: 100%|█████████▉| 329/330 [7:35:16<01:05, 65.31s/it]Running generate_until requests: 100%|██████████| 330/330 [7:35:16<00:00, 82.78s/it]
+2025-09-26:17:03:15 INFO     [loggers.evaluation_tracker:209] Saving results aggregated
+2025-09-26:17:03:15 INFO     [loggers.evaluation_tracker:298] Saving per-sample results for: gsm8k
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:        gsm8k/exact_match,flexible-extract ▁
+wandb:            gsm8k/exact_match,strict-match ▁
+wandb: gsm8k/exact_match_stderr,flexible-extract ▁
+wandb:     gsm8k/exact_match_stderr,strict-match ▁
+wandb: 
+wandb: Run summary:
+wandb:                               gsm8k/alias gsm8k
+wandb:        gsm8k/exact_match,flexible-extract 0.15466
+wandb:            gsm8k/exact_match,strict-match 0.1486
+wandb: gsm8k/exact_match_stderr,flexible-extract 0.00996
+wandb:     gsm8k/exact_match_stderr,strict-match 0.0098
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250926_090830-sc9i1bjj
+wandb: Find logs at: /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250926_090830-sc9i1bjj/logs
+[rank0]:[W926 17:03:22.569339786 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

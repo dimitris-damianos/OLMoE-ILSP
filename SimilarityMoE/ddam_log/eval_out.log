@@ -1,0 +1,18 @@
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250926_090830-2ikcykfp[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../wandb/offline-run-20250926_090830-2ikcykfp/logs[0m
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250926_090830-ochuqfmx[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../wandb/offline-run-20250926_090830-ochuqfmx/logs[0m
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250926_090830-arkrbalu[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../wandb/offline-run-20250926_090830-arkrbalu/logs[0m
+qwen3moe_with_rim (pretrained=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400,dtype=auto,trust_remote_code=True), gen_kwargs: (None), limit: None, num_fewshot: None, batch_size: 4
+|Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
+|-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
+|gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.1547|±  |0.0100|
+|     |       |strict-match    |     5|exact_match|↑  |0.1486|±  |0.0098|
+

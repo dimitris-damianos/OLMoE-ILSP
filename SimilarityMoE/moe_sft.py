@@ -34,7 +34,8 @@ import wandb
 from dataset_mixer import mix_datasets_with_mapping
 
 import multiprocessing
-from utils import GradientLoggingCallbackTensorboard, SaveExpertMaskCallback
+from utils import GradientLoggingCallbackTensorboard, SaveExpertMaskCallback, MemoryUsageCallback
+
 
 from sft_formatting import (  # format functions to convert datasets to prompt-completion and conversation format
     map_to_conversation_with_system_message,
@@ -302,6 +303,7 @@ def make_dataset(args, accelerator):
 def make_model(args, accelerator, quantization_config):
     # Traditional MoE models (non-RIM)
     if "qwen3_moe" in args.model_name_or_path.lower():
+        print("Loading Qwen3MoE model...",flush=True)
         model = Qwen3MoeForCausalLM.from_pretrained(
             args.model_name_or_path,
             local_files_only=True,
@@ -312,6 +314,7 @@ def make_model(args, accelerator, quantization_config):
         )
     # RIM-based MoE models
     elif "qwen3" in args.model_name_or_path.lower():
+        print("Loading Qwen3withRIM MoE model...",flush=True)
         model = Qwen3ForCausalLMWithRIM.from_pretrained(
             args.model_name_or_path,
             local_files_only=True,
@@ -356,6 +359,8 @@ def get_lora_config(args):
             bias="none",
             task_type="CAUSAL_LM",
         )
+    with open(os.path.join(args.output_dir, "lora_config.txt"), "w") as f:
+            f.write(str(peft_cfg))
     return peft_cfg
           
 def freeze_modules(model, args):
@@ -377,7 +382,7 @@ def freeze_modules(model, args):
 
 def get_trainable_parameters(model, args):
     trainable_params = []
-    frozen_params = []
+    frozen_params = [] 
     
     all_params = 0
     trainable = 0
@@ -390,6 +395,9 @@ def get_trainable_parameters(model, args):
         "other": 0
     }
     
+    with open(os.path.join(args.output_dir, "model.txt"), 'w') as f:
+        f.write(str(model))
+
     for name, param in model.named_parameters():
         all_params += param.numel()
         if param.requires_grad:
@@ -555,6 +563,7 @@ def main():
                                                log_every=args.logging_steps),
             SaveExpertMaskCallback(save_dir=os.path.join(args.output_dir,'expert_masks'),
                                    save_every_n_steps=args.logging_steps,),
+            MemoryUsageCallback(step_interval=args.logging_steps),
         ]
     )
     if args.use_liger:

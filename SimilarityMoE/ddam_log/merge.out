@@ -1,45 +1,7 @@
 Loading cuda/12.2
   Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
     zlib-ng/2.1.6-jkgunjc libxml2/2.10.3-zbbe7lm
-Qwen3MoeConfig: Qwen3MoeConfig {
-  "architectures": [
-    "Qwen3ForCausalLM"
-  ],
-  "attention_bias": false,
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "decoder_sparse_step": 1,
-  "eos_token_id": 151645,
-  "head_dim": 128,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 3072,
-  "max_position_embeddings": 40960,
-  "max_window_layers": 28,
-  "mlp_only_layers": [],
-  "model_type": "qwen3_moe",
-  "moe_intermediate_size": 768,
-  "norm_topk_prob": false,
-  "num_attention_heads": 16,
-  "num_experts": 12,
-  "num_experts_per_tok": 2,
-  "num_hidden_layers": 28,
-  "num_key_value_heads": 8,
-  "output_router_logits": true,
-  "rms_norm_eps": 1e-06,
-  "rope_scaling": null,
-  "rope_theta": 1000000,
-  "router_aux_loss_coef": 1.0,
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "torch_dtype": "bfloat16",
-  "transformers_version": "4.52.4",
-  "use_cache": true,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
+Creating Qwen3WithRIM Config...
 Base config: Qwen3Config {
   "architectures": [
     "Qwen3ForCausalLM"
@@ -75,16 +37,19 @@ Merging 12 expert models into a RIM-based MoE model...
 
 Base model: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
 Specialists: ['/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455', '/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455']
-Saving to: /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent
-Model config: Qwen3MoeConfig {
+Saving to: /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null
+Model config: Qwen3WithRIMConfig {
   "architectures": [
     "Qwen3ForCausalLM"
   ],
   "attention_bias": false,
   "attention_dropout": 0.0,
   "bos_token_id": 151643,
-  "decoder_sparse_step": 1,
+  "detach_null_states": true,
   "eos_token_id": 151645,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
   "head_dim": 128,
   "hidden_act": "silu",
   "hidden_size": 1024,
@@ -92,15 +57,12 @@ Model config: Qwen3MoeConfig {
   "intermediate_size": 3072,
   "max_position_embeddings": 40960,
   "max_window_layers": 28,
-  "mlp_only_layers": [],
-  "model_type": "qwen3_moe",
-  "moe_intermediate_size": 768,
-  "norm_topk_prob": false,
+  "model_type": "qwen3moe_with_rim",
   "num_attention_heads": 16,
   "num_experts": 12,
-  "num_experts_per_tok": 2,
   "num_hidden_layers": 28,
   "num_key_value_heads": 8,
+  "output_expert_mask": true,
   "output_router_logits": true,
   "rms_norm_eps": 1e-06,
   "rope_scaling": null,
@@ -111,14 +73,16 @@ Model config: Qwen3MoeConfig {
   "torch_dtype": "bfloat16",
   "transformers_version": "4.52.4",
   "use_cache": true,
+  "use_dynamic_routing": true,
+  "use_latent_states": true,
   "use_sliding_window": false,
   "vocab_size": 151936
 }
 
-Loading base model from /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-Creating empty MoE model with config: num_experts=12, num_experts_per_tok=2, hidden_size=1024, intermediate_size=3072
-Copying non-MoE weights from base model...
-Copying MLP parameters from 12 specialists...
+Creating Qwen3WithRIM model from specialists...
+Loading base model: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
+Copying non-MLP parameters from base model...
+Copying MLP parameters from specialists...
 Loading specialist 1/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
 Loading specialist 2/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
 Loading specialist 3/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
@@ -131,87 +95,9 @@ Loading specialist 9/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwe
 Loading specialist 10/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
 Loading specialist 11/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
 Loading specialist 12/12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-Loading state dictionary into model...
-==================================================
-MODEL WEIGHT STATISTICS
-==================================================
-Total parameters: 3,658,629,120
-Copied from base model: 487,391,232 (13.32%)
-Copied from specialists: 3,170,893,824 (86.67%)
-Random router parameters: 344,064 (0.01%)
-Other random parameters: 0 (0.00%)
-
-Parameter breakdown by type:
-  - attention: 28,672 (0.00%)
-  - mlp: 3,171,237,888 (86.68%)
-  - router: 0 (0.00%)
-  - other: 176,196,608 (4.82%)
-
-Specialist contributions:
-  - Specialist 1: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 2: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 3: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 4: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 5: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 6: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 7: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 8: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 9: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 10: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 11: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-  - Specialist 12: /leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-    * Params copied: 264,241,152 (7.22%)
-==================================================
-
-Final model structure:
-- model: Qwen3MoeModel
-  First layer components:
-    - self_attn: Qwen3MoeAttention
-    - mlp: Qwen3MoeSparseMoeBlock
-      * Number of experts: 12
-      * Expert type: Qwen3MoeMLP
-    - input_layernorm: Qwen3MoeRMSNorm
-    - post_attention_layernorm: Qwen3MoeRMSNorm
-- lm_head: Linear
-Router parameter: model.layers.0.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000132, std: 0.020056
-Router parameter: model.layers.1.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000026, std: 0.019957
-Router parameter: model.layers.2.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000109, std: 0.019791
-Router parameter: model.layers.3.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000205, std: 0.019835
-Router parameter: model.layers.4.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000077, std: 0.019901
-Router parameter: model.layers.5.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000074, std: 0.020156
-Router parameter: model.layers.6.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000094, std: 0.020009
-Router parameter: model.layers.7.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000017, std: 0.019956
-Router parameter: model.layers.8.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000208, std: 0.019967
-Router parameter: model.layers.9.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000014, std: 0.019652
-Router parameter: model.layers.10.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000088, std: 0.019819
-Router parameter: model.layers.11.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000244, std: 0.019842
-Router parameter: model.layers.12.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000235, std: 0.019984
-Router parameter: model.layers.13.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000156, std: 0.020011
-Router parameter: model.layers.14.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000163, std: 0.019870
-Router parameter: model.layers.15.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000068, std: 0.020038
-Router parameter: model.layers.16.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000033, std: 0.020020
-Router parameter: model.layers.17.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000202, std: 0.019785
-Router parameter: model.layers.18.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000004, std: 0.019984
-Router parameter: model.layers.19.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000057, std: 0.020287
-Router parameter: model.layers.20.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000161, std: 0.020047
-Router parameter: model.layers.21.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000163, std: 0.020053
-Router parameter: model.layers.22.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000304, std: 0.020157
-Router parameter: model.layers.23.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000380, std: 0.019802
-Router parameter: model.layers.24.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000047, std: 0.020242
-Router parameter: model.layers.25.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000176, std: 0.019957
-Router parameter: model.layers.26.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: -0.000057, std: 0.019507
-Router parameter: model.layers.27.mlp.gate.weight, shape: torch.Size([12, 1024]), mean: 0.000020, std: 0.019906
-Cosine similarity between model.layers.0.mlp.gate.weight and model.layers.1.mlp.gate.weight: -0.066989 (should be near 0 for random)
-Saving merged MoE model to /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent...
-Total parameters in merged MoE model: 3,503,046,656
+Model merging complete. Stats:
+  - Replaced 3170893824 expert parameters
+  - Copied 487391232 non-expert parameters
+  - Kept 82575360 RIM-specific parameters
+Saving merged MoE model to /leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null...
+Total parameters in merged MoE model: 3,740,860,416

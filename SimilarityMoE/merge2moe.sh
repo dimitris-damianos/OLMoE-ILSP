@@ -20,9 +20,6 @@ source activate /leonardo_work/EUHPC_A06_067/.conda/envs/moe
 
 export HF_HOME=$WORK/hf_cache
 
-BASE_MODEL=$HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
-MOE_SAVE_DIR=$WORK/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent
-
 SPECIALISTS=(
     $WORK/experts/Qwen3-0.6B-SFT/bio_expert_Qwen3-0.6B_SFT
     $WORK/experts/Qwen3-0.6B-SFT/causalreasoning_expert_Qwen3-0.6B_SFT
@@ -42,6 +39,7 @@ SPECIALISTS=(
 )
 
 # 12 experts, all based on the same base model
+BASE_MODEL=$HF_HOME/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455
 BASE_SPECIALISTS=(
     $BASE_MODEL
     $BASE_MODEL
@@ -57,11 +55,14 @@ BASE_SPECIALISTS=(
     $BASE_MODEL
 )
 
-python merge_experts.py \
+MOE_SAVE_DIR=$WORK/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null
+mkdir -p $MOE_SAVE_DIR
+
+srun python merge_experts.py \
   --base_model $BASE_MODEL \
   --specialists ${BASE_SPECIALISTS[@]} \
   --output_dir $MOE_SAVE_DIR \
-  --model_type qwen3_moe \
+  --model_type qwen3 \
   --output_expert_mask \
   --output_router_logits \
   --key_size 64 \

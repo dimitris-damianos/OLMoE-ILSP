@@ -1,0 +1,1011 @@
+Loading gcc/12.2.0
+  Loading requirement: zlib-ng/2.1.6-jkgunjc zstd/1.5.6-uq5yyux binutils/2.42
+Loading cuda/12.2
+  Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
+    libxml2/2.10.3-zbbe7lm
+Starting training for ddam_qwen3_moe-base_12_math
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+Initializing tokenizer and model...
+Qwen3ForCausalLMWithRIM(
+  (model): Qwen3ModelWithRIM(
+    (embed_tokens): Embedding(151936, 1024)
+    (layers): ModuleList(
+      (0-27): 28 x Qwen3DecoderLayerWithRIM(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear(in_features=1024, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=1024, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        )
+        (mlp): Qwen3MoeBlockWithRIM(
+          (experts): ModuleList(
+            (0-11): 12 x Qwen3MLP(
+              (gate_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (up_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (down_proj): Linear(in_features=3072, out_features=1024, bias=False)
+              (act_fn): SiLU()
+            )
+          )
+          (key): Linear(in_features=1024, out_features=768, bias=False)
+          (value): Linear(in_features=1024, out_features=768, bias=False)
+          (expert_query): Linear(in_features=768, out_features=768, bias=False)
+          (expert_states_flat): Linear(in_features=1024, out_features=768, bias=False)
+        )
+        (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
+)
+Qwen3WithRIMConfig {
+  "architectures": [
+    "Qwen3MoeForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "decoder_sparse_step": 1,
+  "detach_null_states": false,
+  "eos_token_id": 151645,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 28,
+  "mlp_only_layers": [],
+  "model_type": "qwen3moe_with_rim",
+  "moe_intermediate_size": 3072,
+  "norm_topk_prob": false,
+  "num_attention_heads": 16,
+  "num_experts": 12,
+  "num_experts_per_tok": 2,
+  "num_hidden_layers": 28,
+  "num_key_value_heads": 8,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "router_aux_loss_coef": 1.0,
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": false,
+  "use_latent_states": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+Qwen3ForCausalLMWithRIM(
+  (model): Qwen3ModelWithRIM(
+    (embed_tokens): Embedding(151936, 1024)
+    (layers): ModuleList(
+      (0-27): 28 x Qwen3DecoderLayerWithRIM(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear(in_features=1024, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=1024, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        )
+        (mlp): Qwen3MoeBlockWithRIM(
+          (experts): ModuleList(
+            (0-11): 12 x Qwen3MLP(
+              (gate_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (up_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (down_proj): Linear(in_features=3072, out_features=1024, bias=False)
+              (act_fn): SiLU()
+            )
+          )
+          (key): Linear(in_features=1024, out_features=768, bias=False)
+          (value): Linear(in_features=1024, out_features=768, bias=False)
+          (expert_query): Linear(in_features=768, out_features=768, bias=False)
+          (expert_states_flat): Linear(in_features=1024, out_features=768, bias=False)
+        )
+        (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
+)
+Qwen3WithRIMConfig {
+  "architectures": [
+    "Qwen3MoeForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "decoder_sparse_step": 1,
+  "detach_null_states": false,
+  "eos_token_id": 151645,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 28,
+  "mlp_only_layers": [],
+  "model_type": "qwen3moe_with_rim",
+  "moe_intermediate_size": 3072,
+  "norm_topk_prob": false,
+  "num_attention_heads": 16,
+  "num_experts": 12,
+  "num_experts_per_tok": 2,
+  "num_hidden_layers": 28,
+  "num_key_value_heads": 8,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "router_aux_loss_coef": 1.0,
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": false,
+  "use_latent_states": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+Qwen3ForCausalLMWithRIM(
+  (model): Qwen3ModelWithRIM(
+    (embed_tokens): Embedding(151936, 1024)
+    (layers): ModuleList(
+      (0-27): 28 x Qwen3DecoderLayerWithRIM(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear(in_features=1024, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=1024, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        )
+        (mlp): Qwen3MoeBlockWithRIM(
+          (experts): ModuleList(
+            (0-11): 12 x Qwen3MLP(
+              (gate_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (up_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (down_proj): Linear(in_features=3072, out_features=1024, bias=False)
+              (act_fn): SiLU()
+            )
+          )
+          (key): Linear(in_features=1024, out_features=768, bias=False)
+          (value): Linear(in_features=1024, out_features=768, bias=False)
+          (expert_query): Linear(in_features=768, out_features=768, bias=False)
+          (expert_states_flat): Linear(in_features=1024, out_features=768, bias=False)
+        )
+        (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
+)
+Qwen3ForCausalLMWithRIM(
+  (model): Qwen3ModelWithRIM(
+    (embed_tokens): Embedding(151936, 1024)
+    (layers): ModuleList(
+      (0-27): 28 x Qwen3DecoderLayerWithRIM(
+        (self_attn): Qwen3Attention(
+          (q_proj): Linear(in_features=1024, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=1024, bias=False)
+          (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+          (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+        )
+        (mlp): Qwen3MoeBlockWithRIM(
+          (experts): ModuleList(
+            (0-11): 12 x Qwen3MLP(
+              (gate_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (up_proj): Linear(in_features=1024, out_features=3072, bias=False)
+              (down_proj): Linear(in_features=3072, out_features=1024, bias=False)
+              (act_fn): SiLU()
+            )
+          )
+          (key): Linear(in_features=1024, out_features=768, bias=False)
+          (value): Linear(in_features=1024, out_features=768, bias=False)
+          (expert_query): Linear(in_features=768, out_features=768, bias=False)
+          (expert_states_flat): Linear(in_features=1024, out_features=768, bias=False)
+        )
+        (input_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+        (post_attention_layernorm): Qwen3RMSNorm((1024,), eps=1e-06)
+      )
+    )
+    (norm): Qwen3RMSNorm((1024,), eps=1e-06)
+    (rotary_emb): Qwen3RotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
+)
+Qwen3WithRIMConfig {
+  "architectures": [
+    "Qwen3MoeForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "decoder_sparse_step": 1,
+  "detach_null_states": false,
+  "eos_token_id": 151645,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 28,
+  "mlp_only_layers": [],
+  "model_type": "qwen3moe_with_rim",
+  "moe_intermediate_size": 3072,
+  "norm_topk_prob": false,
+  "num_attention_heads": 16,
+  "num_experts": 12,
+  "num_experts_per_tok": 2,
+  "num_hidden_layers": 28,
+  "num_key_value_heads": 8,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "router_aux_loss_coef": 1.0,
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": false,
+  "use_latent_states": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+Qwen3WithRIMConfig {
+  "architectures": [
+    "Qwen3MoeForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "decoder_sparse_step": 1,
+  "detach_null_states": false,
+  "eos_token_id": 151645,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 28,
+  "mlp_only_layers": [],
+  "model_type": "qwen3moe_with_rim",
+  "moe_intermediate_size": 3072,
+  "norm_topk_prob": false,
+  "num_attention_heads": 16,
+  "num_experts": 12,
+  "num_experts_per_tok": 2,
+  "num_hidden_layers": 28,
+  "num_key_value_heads": 8,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "router_aux_loss_coef": 1.0,
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": false,
+  "use_latent_states": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+
+Loading dataset...
+
+Loading dataset...
+
+Loading dataset...
+
+Loading dataset...
+Loaded 657039 training samples.
+Loaded 657039 training samples.
+Loaded 657039 training samples.
+Loaded 657039 training samples.
+Using LoRA adapters.
+
+Using LoRA adapters.
+
+Using LoRA adapters.
+Using LoRA adapters.
+
+
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=False,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=no,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=1,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=False,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=no,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=2,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=False,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=no,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=3,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=False,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=no,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+All params: 4261609472, Trainable params: 676331520, Frozen params: 1346
+All params: 4261609472, Trainable params: 676331520, Frozen params: 1346
+All params: 4261609472, Trainable params: 676331520, Frozen params: 1346
+All params: 4261609472, Trainable params: 676331520, Frozen params: 1346
+Training started...
+Training started...
+Training started...Training started...
+
+[2025-10-06 14:23:04.968740][Step 10] Torch max mem: 21059.07 MB | Nvidia-smi: 30848 MB
+[2025-10-06 14:23:04.979571][Step 10] Torch max mem: 20820.49 MB | Nvidia-smi: 30848 MB
+[2025-10-06 14:23:04.979836][Step 10] Torch max mem: 20482.53 MB | Nvidia-smi: 30848 MB
+[2025-10-06 14:23:04.999659][Step 10] Torch max mem: 21774.84 MB | Nvidia-smi: 30848 MB
+{'loss': 4.5364, 'grad_norm': 26.495946884155273, 'learning_rate': 4.864864864864865e-06, 'num_tokens': 159100.0, 'mean_token_accuracy': 0.49092509001493456, 'epoch': 0.0009740655059052721}
+[2025-10-06 14:30:43.545476][Step 20] Torch max mem: 19801.86 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:30:43.555842][Step 20] Torch max mem: 20029.04 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:30:43.567719][Step 20] Torch max mem: 21633.62 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:30:43.575816][Step 20] Torch max mem: 22132.12 MB | Nvidia-smi: 36624 MB
+{'loss': 3.5686, 'grad_norm': 9.995664596557617, 'learning_rate': 1.027027027027027e-05, 'num_tokens': 321141.0, 'mean_token_accuracy': 0.6059352636337281, 'epoch': 0.0019481310118105442}
+[2025-10-06 14:38:23.696175][Step 30] Torch max mem: 20485.12 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:38:23.699736][Step 30] Torch max mem: 20835.88 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:38:23.707458][Step 30] Torch max mem: 20772.96 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:38:23.716585][Step 30] Torch max mem: 21658.11 MB | Nvidia-smi: 36624 MB
+{'loss': 2.8826, 'grad_norm': 9.105796813964844, 'learning_rate': 1.5675675675675676e-05, 'num_tokens': 487362.0, 'mean_token_accuracy': 0.6890474811196328, 'epoch': 0.0029221965177158166}
+[2025-10-06 14:46:04.899291][Step 40] Torch max mem: 20613.40 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:46:04.909044][Step 40] Torch max mem: 20858.23 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:46:04.910979][Step 40] Torch max mem: 20755.54 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:46:04.928234][Step 40] Torch max mem: 20635.54 MB | Nvidia-smi: 36624 MB
+{'loss': 2.5267, 'grad_norm': 6.1528778076171875, 'learning_rate': 2.1081081081081082e-05, 'num_tokens': 653436.0, 'mean_token_accuracy': 0.7293582707643509, 'epoch': 0.0038962620236210883}
+[2025-10-06 14:53:45.405193][Step 50] Torch max mem: 20576.70 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:53:45.407530][Step 50] Torch max mem: 24025.71 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:53:45.418845][Step 50] Torch max mem: 20846.97 MB | Nvidia-smi: 36624 MB
+[2025-10-06 14:53:45.429825][Step 50] Torch max mem: 21519.34 MB | Nvidia-smi: 36624 MB
+{'loss': 2.3453, 'grad_norm': 6.830225467681885, 'learning_rate': 2.6486486486486488e-05, 'num_tokens': 819631.0, 'mean_token_accuracy': 0.75584616959095, 'epoch': 0.004870327529526361}
+[2025-10-06 15:01:27.768266][Step 60] Torch max mem: 21195.81 MB | Nvidia-smi: 36624 MB
+[2025-10-06 15:01:27.778871][Step 60] Torch max mem: 20124.58 MB | Nvidia-smi: 36624 MB
+[2025-10-06 15:01:27.788786][Step 60] Torch max mem: 21955.21 MB | Nvidia-smi: 36624 MB
+[2025-10-06 15:01:27.814089][Step 60] Torch max mem: 20095.97 MB | Nvidia-smi: 36624 MB
+{'loss': 2.2442, 'grad_norm': 7.733977794647217, 'learning_rate': 3.1891891891891894e-05, 'num_tokens': 985563.0, 'mean_token_accuracy': 0.7642592698335647, 'epoch': 0.005844393035431633}
+[2025-10-06 15:09:12.418387][Step 70] Torch max mem: 20436.85 MB | Nvidia-smi: 36626 MB
+[2025-10-06 15:09:12.429387][Step 70] Torch max mem: 20939.04 MB | Nvidia-smi: 36626 MB
+[2025-10-06 15:09:12.429711][Step 70] Torch max mem: 19821.62 MB | Nvidia-smi: 36626 MB[2025-10-06 15:09:12.429764][Step 70] Torch max mem: 22077.68 MB | Nvidia-smi: 36626 MB
+
+{'loss': 2.1289, 'grad_norm': 7.035658836364746, 'learning_rate': 3.72972972972973e-05, 'num_tokens': 1150951.0, 'mean_token_accuracy': 0.764706788957119, 'epoch': 0.006818458541336905}
+[2025-10-06 15:16:51.701261][Step 80] Torch max mem: 20296.67 MB | Nvidia-smi: 36626 MB
+[2025-10-06 15:16:51.712379][Step 80] Torch max mem: 19243.15 MB | Nvidia-smi: 36626 MB
+[2025-10-06 15:16:51.719078][Step 80] Torch max mem: 21497.17 MB | Nvidia-smi: 36626 MB
+[2025-10-06 15:16:51.746241][Step 80] Torch max mem: 19710.83 MB | Nvidia-smi: 36626 MB
+{'loss': 1.9917, 'grad_norm': 5.078913688659668, 'learning_rate': 4.2702702702702706e-05, 'num_tokens': 1304480.0, 'mean_token_accuracy': 0.7692786291241646, 'epoch': 0.007792524047242177}
+[2025-10-06 15:24:32.242921][Step 90] Torch max mem: 20758.55 MB | Nvidia-smi: 36654 MB
+[2025-10-06 15:24:32.243076][Step 90] Torch max mem: 20292.60 MB | Nvidia-smi: 36654 MB
+[2025-10-06 15:24:32.253174][Step 90] Torch max mem: 20674.39 MB | Nvidia-smi: 36654 MB
+[2025-10-06 15:24:32.286035][Step 90] Torch max mem: 20547.34 MB | Nvidia-smi: 36654 MB
+{'loss': 1.866, 'grad_norm': 20.133535385131836, 'learning_rate': 4.810810810810811e-05, 'num_tokens': 1470404.0, 'mean_token_accuracy': 0.7731306433677674, 'epoch': 0.00876658955314745}

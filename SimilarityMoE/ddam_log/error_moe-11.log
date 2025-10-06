@@ -1,0 +1,260 @@
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+[rank3]:[W921 16:59:02.014535785 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W921 16:59:02.014539682 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank2]:[W921 16:59:02.014535429 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W921 16:59:04.568984945 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+You are using a model of type qwen3moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are using a model of type qwen3moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are using a model of type qwen3moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are using a model of type qwen3moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:22<00:45, 22.87s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:23<00:46, 23.24s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:23<00:46, 23.24s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:23<00:46, 23.24s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:55<00:28, 28.32s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:55<00:28, 28.35s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:55<00:28, 28.37s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:55<00:28, 28.37s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.47s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.46s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.60s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.60s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.57s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.57s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.66s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:19<00:00, 26.57s/it]
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Fri Sep 19 19:28:47 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Fri Sep 19 19:28:47 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Fri Sep 19 19:28:47 2025).
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Fri Sep 19 19:28:47 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Fri Sep 19 15:30:34 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Fri Sep 19 15:30:34 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Fri Sep 19 15:31:16 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Fri Sep 19 15:31:16 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Fri Sep 19 15:30:34 2025).
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Fri Sep 19 15:30:34 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Fri Sep 19 15:31:16 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since Vezora/Tested-143k-Python-Alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/Vezora___tested-143k-python-alpaca/default/0.0.0/4cde7d9aa634ddecc3ecc796fa99e6a114b7edfe (last modified on Fri Sep 19 15:31:16 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Fri Sep 19 15:55:08 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Fri Sep 19 15:55:08 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Fri Sep 19 15:55:16 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Fri Sep 19 15:55:08 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Fri Sep 19 15:55:16 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Fri Sep 19 15:55:16 2025).
+Using the latest cached version of the dataset since CohereForAI/aya_dataset couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/CohereForAI___aya_dataset/default/0.0.0/f9ea04583f02a8f86404ff6c58bf75fe637df8a2 (last modified on Fri Sep 19 15:55:08 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Fri Sep 19 15:56:12 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Fri Sep 19 15:56:12 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Fri Sep 19 15:56:12 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Fri Sep 19 15:55:16 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since qwedsacf/story-generation couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/qwedsacf___story-generation/default/0.0.0/c4add321635d370291289f1a7eff19632f30f700 (last modified on Fri Sep 19 15:56:12 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Fri Sep 19 18:29:42 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Fri Sep 19 18:29:42 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Fri Sep 19 18:29:42 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since qiaojin/PubMedQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'pqa_artificial' at /leonardo_work/EUHPC_A06_067/hf_cache/qiaojin___pub_med_qa/pqa_artificial/0.0.0/9001f2853fb87cab8d220904e0de81ac6973b318 (last modified on Fri Sep 19 18:29:42 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since demelin/moral_stories couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'full' at /leonardo_work/EUHPC_A06_067/hf_cache/demelin___moral_stories/full/1.1.0/b830cf56eb00bc4edd1860dd544a192216eb3587 (last modified on Fri Sep 19 18:31:15 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since 12ml/e-CARE couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/12ml___e-care/default/0.0.0/a9c788710144e6edd31f925345fa107c0634e223 (last modified on Fri Sep 19 19:29:53 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since ybisk/piqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'plain_text' at /leonardo_work/EUHPC_A06_067/hf_cache/ybisk___piqa/plain_text/1.1.0/6c611c1a9bf220943c4174e117d3b660859665baf1d43156230116185312d011 (last modified on Wed Aug  6 12:36:23 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since EdinburghNLP/xsum couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/EdinburghNLP___xsum/default/1.2.0/40db7604fedb616a9d2b0673d11838fa5be8451c (last modified on Fri Sep 19 18:32:38 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Wed Aug  6 12:37:56 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since microsoft/wiki_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/microsoft___wiki_qa/default/0.0.0/3f104672b5de699878fe7907afc486f0de325eb5 (last modified on Fri Sep 19 18:33:45 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+Using the latest cached version of the dataset since allenai/social_i_qa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/allenai___social_i_qa/default/0.1.0/674d85e42ac7430d3dcd4de7007feaffcb1527c535121e09bab2803fbcc925f8 (last modified on Wed Aug  6 12:38:30 2025).
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/trl/trainer/sft_trainer.py:265: UserWarning: You passed model_init_kwargs to the `SFTConfig`, but your model is already instantiated. The `model_init_kwargs` will be ignored.
+  warnings.warn(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+[rank0]:[W921 17:12:41.797110386 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank1]:[W921 17:12:41.945923241 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank3]:[W921 17:12:41.988446744 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+[rank2]:[W921 17:12:41.003862161 reducer.cpp:1400] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+You are using a model of type qwen3moe to instantiate a model of type qwen3moe_with_rim. This is not supported for all configurations of models and can yield errors.
+W0921 22:23:50.935000 2931639 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2931738 closing signal SIGTERM
+W0921 22:23:51.338000 2931639 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2931739 closing signal SIGTERM
+W0921 22:23:51.344000 2931639 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2931740 closing signal SIGTERM
+E0921 22:24:06.192000 2931639 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: -9) local_rank: 3 (pid: 2931741) of binary: /leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/python3.10
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+========================================================
+moe_sft.py FAILED
+--------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+--------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-09-21_22:23:50
+  host      : lrdn2270.leonardo.local
+  rank      : 3 (local_rank: 3)
+  exitcode  : -9 (pid: 2931741)
+  error_file: <N/A>
+  traceback : Signal 9 (SIGKILL) received by PID 2931741
+========================================================
+slurmstepd: error: Detected 1 oom_kill event in StepId=20537117.0. Some of the step tasks have been OOM Killed.
+srun: error: lrdn2270: task 0: Out Of Memory

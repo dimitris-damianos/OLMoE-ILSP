@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=ddam_11s
+#SBATCH --job-name=ddam-11
 #SBATCH --partition=boost_usr_prod
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -9,8 +9,8 @@
 #SBATCH --mem=256G
 #SBATCH --time=24:00:00
 #SBATCH --account=EUHPC_A06_067
-#SBATCH --output=ddam_log/output_moe-11_top-p_aux-1_lora_bal-mix.log
-#SBATCH --error=ddam_log/error_moe-11_top-p_aux-1_lora_bal-mix.log
+#SBATCH --output=ddam_log/output_moe-11.log
+#SBATCH --error=ddam_log/error_moe-11.log
 
 module load gcc/12.2.0
 module load cuda/12.2
@@ -22,8 +22,11 @@ source activate /leonardo_work/EUHPC_A06_067/.conda/envs/moe
 export PYTHONUNBUFFERED=TRUE  
 
 # TASK=qwen3_0.6B-moe-merged-balanced_grouped_experts-SFT_fulltrainablerouter_loranonffn
-TASK="ddam_qwen3_moe-11_aux-1_bal-mix"
+TASK="ddam_qwen3_moe-11_aux-1_all-mix"
 WORK_MOE="/leonardo_work/EUHPC_A06_067"
+DATASET_CONFIG="/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/all_mix_for_moe.yaml"
+MODEL_PATH="/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3_0.6B-moe-11_top-p_aux-1"
+
 export HF_HOME="/leonardo_work/EUHPC_A06_067/hf_cache"
 export WANDB_PROJECT=$TASK
 export WANDB_MODE="offline"
@@ -44,10 +47,10 @@ export TORCH_DISTRIBUTED_TIMEOUT=1800000
 # export PYTHONHASHSEED=42
 # export CUDA_LAUNCH_BLOCKING=1
 echo "Starting training for $TASK"
-srun accelerate launch --config_file $WORK_MOE/scripts/multi_gpu.yaml moe_sft.py \
-  --model_name_or_path $WORK_MOE/moe_models/base/ddam_qwen3_moe_0.6B_11_coef-1 \
+srun accelerate launch --config_file configs/multi_gpu.yaml moe_sft.py \
+  --model_name_or_path $MODEL_PATH \
   --tokenizer_name_or_path Qwen/Qwen3-0.6B \
-  --dataset_mix_config $WORK_MOE/scripts/balanced_mix_for_moe.yaml \
+  --dataset_mix_config $DATASET_CONFIG \
   --cache_dir $HF_HOME \
   --train_split train \
   --eval_split validation \
@@ -68,16 +71,16 @@ srun accelerate launch --config_file $WORK_MOE/scripts/multi_gpu.yaml moe_sft.py
   --eval_steps 10 \
   --instruction_format insert_system_message \
   --max_length 4096 \
-  --freeze_experts \
   --disable_tqdm \
-  # --resume_from_checkpoint \
-  # --use_dynamic_routing \
-  # --use_latent_states \
-  # --detach_null_states \
-  # --use_peft \
-  # --lora_r 64 \
-  # --lora_alpha 32 \
-  # --use_rslora \
+  --use_peft \
+  --lora_r 64 \
+  --lora_alpha 32 \
+  --use_rslora \
+  --lora_experts \
+  --lora_base \
+  --disable_tqdm  \
+  --resume_from_checkpoint
+
 
   # --use_liger \
   # --assistant_only_loss \

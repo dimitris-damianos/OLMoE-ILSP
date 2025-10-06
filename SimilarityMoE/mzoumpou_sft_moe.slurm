@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=256G
-#SBATCH --time=24:00:00
+#SBATCH --time=2:00:00
 #SBATCH --account=EUHPC_A06_067
 #SBATCH --output=mzoumpou_logs/output_qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn.log
 #SBATCH --error=mzoumpou_logs/error_qwen3_0.6B-moe-merged-tulu_11_experts-SFT_fulltrainablerouter_nonlora_nonffn.log

@@ -5,6 +5,7 @@ import torch
 from torch import nn
 # from megablocks.layers import common
 
+from safetensors import safe_open
 
 def const_weight_init(model,val=1.0):
     for name, param in model.named_parameters():
@@ -93,6 +94,12 @@ def test_merging():
                                             moe_class=Qwen3ForCausalLMWithRIM)
     print("MoE model created with specialists merged successfully.")
     # print(moe_model)
+    
+def check_dapater():
+    print('checking adapters...')
+    with safe_open("/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400/adapter_model.safetensors", framework="pt") as f:
+        print(f.keys())
 
 if __name__ == "__main__":
-    test_custom_moe()
+    # test_custom_moe()
+    check_dapater()
