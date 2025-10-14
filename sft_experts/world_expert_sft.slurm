@@ -6,12 +6,13 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=128G
+#SBATCH --mem=256G
 #SBATCH --time=24:00:00
 #SBATCH --account=EUHPC_A06_067
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
+module load gcc/12.2.0
 module load cuda/12.2
 module load anaconda3/2023.09-0
 

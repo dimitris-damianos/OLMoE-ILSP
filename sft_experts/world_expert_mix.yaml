@@ -6,21 +6,21 @@ datasets:
     data_files:
       train: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/train.json
       validation: /leonardo_work/EUHPC_A06_067/hf_cache/moleculeqa/valid.json
-    fraction: 1.0
+    fraction: 0.1612
     map_fn: moleculeqa_chat
 
   - name: casehold/casehold  # legal
     splits:
       - train
       - validation
-    fraction: 1.0
+    fraction: 0.1886
     map_fn: casehold_chat
 
   - name: qiaojin/PubMedQA  # medical
     splits:
       - train
     config_name: pqa_artificial
-    fraction: 1.0
+    fraction: 0.047
     map_fn: pubmedqa_chat
 
   - name: ibm-research/finqa  # finance
@@ -34,7 +34,7 @@ datasets:
     splits:
       - train
       - validation
-    fraction: 1.0
+    fraction: 0.49
     map_fn: wikiqa_chat
  
 shuffle_init: true

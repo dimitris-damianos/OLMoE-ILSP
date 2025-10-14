@@ -13,6 +13,7 @@
 #SBATCH --error=%x-%j.err
 
 module load cuda/12.2
+module load gcc/12.2.0
 module load anaconda3/2023.09-0
 
 source activate sft-experts-moe

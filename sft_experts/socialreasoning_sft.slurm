@@ -12,7 +12,8 @@
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.err
 
-module load cuda/12.1
+module load cuda/12.2
+module load gcc/12.2.0
 module load anaconda3/2023.09-0
 
 source activate sft-experts-moe
@@ -47,6 +48,7 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
   --warmup_ratio 0.03 \
   --bf16 \
   --gradient_checkpointing \
+  --packing \
   --logging_steps 10 \
   --save_steps 500 \
   --eval_steps 10 \
@@ -56,7 +58,6 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
   # --use_liger \
   # --activation_offloading \
   # --push_to_hub \
-  # --packing \
   # --use_peft \
   # --lora_r 16 \
   # --lora_alpha 16 \

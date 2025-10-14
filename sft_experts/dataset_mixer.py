@@ -113,7 +113,8 @@ def mix_datasets_with_mapping(
 
         for entry in dataset_configs:
             dataset_id = entry["name"]
-            frac = entry.get("fraction", 1.0)
+            num_samples = entry.get("num_samples", None)
+            frac = entry.get("fraction", None)
             map_fn_key = entry["map_fn"]
             config_name = entry.get("config_name", None)
             data_files = entry.get("data_files", None)
@@ -152,24 +153,36 @@ def mix_datasets_with_mapping(
             if shuffle_init:
                 dataset = dataset.shuffle(seed=42)
 
-            if frac < 0:
-                raise ValueError(f"Invalid fraction {frac} for dataset {dataset_id}. Must be >= 0.")
-            if frac < 1.0:
-                dataset = dataset.select(range(int(frac * len(dataset))))
-            elif frac > 1.0:
-                concat_times = math.floor(frac)
-                extra = frac - concat_times
-                dataset = concatenate_datasets([dataset] * concat_times + [
-                    dataset.select(range(int(extra * len(dataset))))
-                ])
+            if num_samples is not None and frac is not None:
+                raise ValueError(f"Cannot set both 'num_samples' and 'fraction' for dataset {dataset_id}")
+            if num_samples is not None:
+                if num_samples <= 0:
+                    raise ValueError(f"Invalid num_samples={num_samples} for {dataset_id}. Must be > 0.")
+                dataset = dataset.select(range(min(num_samples, len(dataset))))
+                logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {num_samples} samples")
+            elif frac is not None:
+                if frac < 0:
+                    raise ValueError(f"Invalid fraction {frac} for dataset {dataset_id}. Must be >= 0.")
+                if frac < 1.0:
+                    dataset = dataset.select(range(int(frac * len(dataset))))
+                elif frac > 1.0:
+                    concat_times = math.floor(frac)
+                    extra = frac - concat_times
+                    dataset = concatenate_datasets([dataset] * concat_times + [
+                        dataset.select(range(int(extra * len(dataset))))
+                    ])
+                logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
+            else:
+                logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples (full dataset)")
 
-            logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")  # FIXME: or pass the accelerator from sft.py
+            # FIXME: or pass the accelerator from sft.py
             # if accelerator is not None:
             #     accelerator.print(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
             # else:
             #     logger.info(f"[{dataset_id}][{split}]: loaded {len(dataset)} samples, using {frac*100:.1f}%")
             dataset = dataset.map(map_fn, remove_columns=list(dataset.features), num_proc=multiprocessing.cpu_count())
             dataset = dataset.filter(lambda x: x["messages"] is not None)  # NOTE: for conversational format - added to quickly filter out some bad examples
+            logger.info(f"{len(dataset)} samples after filtering")
             if len(split_subsets) > 0:
                 first_keys = set(split_subsets[0].features)
                 current_keys = set(dataset.features)

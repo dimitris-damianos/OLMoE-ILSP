@@ -42,8 +42,8 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
   --train_split train \
   --eval_split validation \
   --output_dir $WORK/experts/$TASK \
-  --per_device_train_batch_size 24 \
-  --gradient_accumulation_steps 4 \
+  --per_device_train_batch_size 4 \
+  --gradient_accumulation_steps 8 \
   --num_train_epochs 2 \
   --learning_rate 2.0e-05 \
   --optim adamw_torch_fused \
@@ -56,6 +56,6 @@ accelerate launch --config_file $WORK/scripts/multi_gpu.yaml sft.py \
   --save_steps 500 \
   --eval_steps 10 \
   --assistant_only_loss \
-  --max_length 8192 \
+  --max_length 4096 \
   --use_liger \
-  # --packing
+  --packing

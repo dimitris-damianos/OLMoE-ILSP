@@ -1,0 +1,202 @@
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen2-1.5B/snapshots/8a16abf2848eda07cc5253dec660bf1ce007ad7a', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name='ibm-research/finqa', dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, output_dir='/leonardo_work/EUHPC_A06_067/experts/finance_expert_Qwen2-1.5B_SFT', per_device_train_batch_size=2, gradient_accumulation_steps=8, num_train_epochs=2, learning_rate=2e-05, logging_steps=10, save_steps=500, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, max_length=8192, packing=False, completion_only_loss=True, resume_from_checkpoint=None, neftune_noise_alpha=None, activation_offloading=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.95, adam_epsilon=1e-05, lr_scheduler_type='linear', warmup_ratio=0.03, use_lora=False, lora_r=8, lora_alpha=32, lora_dropout=0.1, push_to_hub=False, instruction_format='finqa')
+
+Initializing tokenizer and model...
+Loading dataset...
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+activation_offloading=False,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.95,
+adam_epsilon=1e-05,
+assistant_only_loss=False,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chat_template_path=None,
+completion_only_loss=True,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=steps,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=8,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=2e-05,
+length_column_name=length,
+liger_kernel_config=None,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/experts/finance_expert_Qwen2-1.5B_SFT/runs/Jul07_18-14-00_lrdn2476.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_length=8192,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=2,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/experts/finance_expert_Qwen2-1.5B_SFT,
+overwrite_output_dir=False,
+packing=False,
+packing_strategy=ffd,
+pad_to_multiple_of=None,
+pad_token=<PAD_TOKEN>,
+padding_free=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=2,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['wandb', 'codecarbon'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/experts/finance_expert_Qwen2-1.5B_SFT,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+
+Trainable parameters: 1543714304 / 1543714304 (100.00%)
+Starting training...
+{'loss': 2.0472, 'grad_norm': 11.140237808227539, 'learning_rate': 1.968421052631579e-05, 'num_tokens': 681616.0, 'mean_token_accuracy': 0.40527966171503066, 'epoch': 0.1}
+{'eval_loss': 1.586789608001709, 'eval_runtime': 17.2703, 'eval_samples_per_second': 51.128, 'eval_steps_per_second': 1.621, 'eval_num_tokens': 681616.0, 'eval_mean_token_accuracy': 0.4846456465976579, 'epoch': 0.1}
+{'loss': 1.5603, 'grad_norm': 11.359515190124512, 'learning_rate': 1.8631578947368424e-05, 'num_tokens': 1338463.0, 'mean_token_accuracy': 0.4825904104858637, 'epoch': 0.2}
+{'eval_loss': 1.5021716356277466, 'eval_runtime': 12.2459, 'eval_samples_per_second': 72.106, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 1338463.0, 'eval_mean_token_accuracy': 0.49640785476991106, 'epoch': 0.2}
+{'loss': 1.4485, 'grad_norm': 9.605758666992188, 'learning_rate': 1.7578947368421054e-05, 'num_tokens': 2000494.0, 'mean_token_accuracy': 0.5234520573168993, 'epoch': 0.31}
+{'eval_loss': 1.4273847341537476, 'eval_runtime': 12.2446, 'eval_samples_per_second': 72.113, 'eval_steps_per_second': 2.287, 'eval_num_tokens': 2000494.0, 'eval_mean_token_accuracy': 0.5283084352101598, 'epoch': 0.31}
+{'loss': 1.4041, 'grad_norm': 10.842002868652344, 'learning_rate': 1.6526315789473686e-05, 'num_tokens': 2661286.0, 'mean_token_accuracy': 0.5364448159933091, 'epoch': 0.41}
+{'eval_loss': 1.4316819906234741, 'eval_runtime': 12.2451, 'eval_samples_per_second': 72.11, 'eval_steps_per_second': 2.287, 'eval_num_tokens': 2661286.0, 'eval_mean_token_accuracy': 0.5269228368997574, 'epoch': 0.41}
+{'loss': 1.3237, 'grad_norm': 13.91357707977295, 'learning_rate': 1.5473684210526316e-05, 'num_tokens': 3315040.0, 'mean_token_accuracy': 0.5739005476236343, 'epoch': 0.51}
+{'eval_loss': 1.3861298561096191, 'eval_runtime': 12.25, 'eval_samples_per_second': 72.082, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 3315040.0, 'eval_mean_token_accuracy': 0.540422970695155, 'epoch': 0.51}
+{'loss': 1.3792, 'grad_norm': 8.212628364562988, 'learning_rate': 1.4421052631578948e-05, 'num_tokens': 3987748.0, 'mean_token_accuracy': 0.5414041969925165, 'epoch': 0.61}
+{'eval_loss': 1.3742825984954834, 'eval_runtime': 12.2474, 'eval_samples_per_second': 72.097, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 3987748.0, 'eval_mean_token_accuracy': 0.5448819718190602, 'epoch': 0.61}
+{'loss': 1.3282, 'grad_norm': 13.180704116821289, 'learning_rate': 1.336842105263158e-05, 'num_tokens': 4654242.0, 'mean_token_accuracy': 0.5576786216348409, 'epoch': 0.72}
+{'eval_loss': 1.366500735282898, 'eval_runtime': 12.2481, 'eval_samples_per_second': 72.093, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 4654242.0, 'eval_mean_token_accuracy': 0.5467142292431423, 'epoch': 0.72}
+{'loss': 1.346, 'grad_norm': 11.036189079284668, 'learning_rate': 1.2315789473684212e-05, 'num_tokens': 5307688.0, 'mean_token_accuracy': 0.553218450024724, 'epoch': 0.82}
+{'eval_loss': 1.335795521736145, 'eval_runtime': 12.2495, 'eval_samples_per_second': 72.085, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 5307688.0, 'eval_mean_token_accuracy': 0.5568741474832807, 'epoch': 0.82}
+{'loss': 1.3177, 'grad_norm': 8.241331100463867, 'learning_rate': 1.1263157894736843e-05, 'num_tokens': 5972759.0, 'mean_token_accuracy': 0.5535017985850572, 'epoch': 0.92}
+{'eval_loss': 1.3301926851272583, 'eval_runtime': 12.2492, 'eval_samples_per_second': 72.086, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 5972759.0, 'eval_mean_token_accuracy': 0.5560049840382167, 'epoch': 0.92}
+{'loss': 1.2508, 'grad_norm': 8.373050689697266, 'learning_rate': 1.0210526315789476e-05, 'num_tokens': 6619176.0, 'mean_token_accuracy': 0.5842403421799341, 'epoch': 1.02}
+{'eval_loss': 1.2974861860275269, 'eval_runtime': 12.2498, 'eval_samples_per_second': 72.083, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 6619176.0, 'eval_mean_token_accuracy': 0.5704118758440018, 'epoch': 1.02}
+{'loss': 1.0709, 'grad_norm': 11.659112930297852, 'learning_rate': 9.157894736842105e-06, 'num_tokens': 7287348.0, 'mean_token_accuracy': 0.6379015527665615, 'epoch': 1.12}
+{'eval_loss': 1.3176316022872925, 'eval_runtime': 12.2559, 'eval_samples_per_second': 72.047, 'eval_steps_per_second': 2.285, 'eval_num_tokens': 7287348.0, 'eval_mean_token_accuracy': 0.5743467009493283, 'epoch': 1.12}
+{'loss': 1.0856, 'grad_norm': 9.71794605255127, 'learning_rate': 8.105263157894736e-06, 'num_tokens': 7946920.0, 'mean_token_accuracy': 0.6328514542430639, 'epoch': 1.23}
+{'eval_loss': 1.307299256324768, 'eval_runtime': 12.2495, 'eval_samples_per_second': 72.084, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 7946920.0, 'eval_mean_token_accuracy': 0.5715296715497971, 'epoch': 1.23}
+{'loss': 1.0711, 'grad_norm': 9.753458023071289, 'learning_rate': 7.052631578947369e-06, 'num_tokens': 8623447.0, 'mean_token_accuracy': 0.6438180852681399, 'epoch': 1.33}
+{'eval_loss': 1.2921284437179565, 'eval_runtime': 12.2496, 'eval_samples_per_second': 72.084, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 8623447.0, 'eval_mean_token_accuracy': 0.572938685970647, 'epoch': 1.33}
+{'loss': 1.0298, 'grad_norm': 9.158585548400879, 'learning_rate': 6e-06, 'num_tokens': 9292996.0, 'mean_token_accuracy': 0.6508345738053322, 'epoch': 1.43}
+{'eval_loss': 1.2821310758590698, 'eval_runtime': 12.2495, 'eval_samples_per_second': 72.085, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 9292996.0, 'eval_mean_token_accuracy': 0.582948380282947, 'epoch': 1.43}
+{'loss': 1.0452, 'grad_norm': 9.04592514038086, 'learning_rate': 4.947368421052632e-06, 'num_tokens': 9953072.0, 'mean_token_accuracy': 0.6427388202399016, 'epoch': 1.53}
+{'eval_loss': 1.2668507099151611, 'eval_runtime': 12.2542, 'eval_samples_per_second': 72.057, 'eval_steps_per_second': 2.285, 'eval_num_tokens': 9953072.0, 'eval_mean_token_accuracy': 0.5857740810939244, 'epoch': 1.53}
+{'loss': 1.0339, 'grad_norm': 8.639184951782227, 'learning_rate': 3.894736842105263e-06, 'num_tokens': 10611469.0, 'mean_token_accuracy': 0.6482520014047622, 'epoch': 1.63}
+{'eval_loss': 1.256218433380127, 'eval_runtime': 12.2505, 'eval_samples_per_second': 72.079, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 10611469.0, 'eval_mean_token_accuracy': 0.5831658627305712, 'epoch': 1.63}
+{'loss': 1.0492, 'grad_norm': 10.120552062988281, 'learning_rate': 2.842105263157895e-06, 'num_tokens': 11260474.0, 'mean_token_accuracy': 0.6403157845139503, 'epoch': 1.74}
+{'eval_loss': 1.2508214712142944, 'eval_runtime': 12.249, 'eval_samples_per_second': 72.088, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 11260474.0, 'eval_mean_token_accuracy': 0.5862751219953809, 'epoch': 1.74}
+{'loss': 1.0543, 'grad_norm': 10.730714797973633, 'learning_rate': 1.7894736842105265e-06, 'num_tokens': 11930218.0, 'mean_token_accuracy': 0.6422568626701832, 'epoch': 1.84}
+{'eval_loss': 1.2539997100830078, 'eval_runtime': 12.2485, 'eval_samples_per_second': 72.091, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 11930218.0, 'eval_mean_token_accuracy': 0.5867524189608437, 'epoch': 1.84}
+{'loss': 1.0639, 'grad_norm': 11.758418083190918, 'learning_rate': 7.368421052631579e-07, 'num_tokens': 12583008.0, 'mean_token_accuracy': 0.6391094416379929, 'epoch': 1.94}
+{'eval_loss': 1.2529064416885376, 'eval_runtime': 12.2504, 'eval_samples_per_second': 72.079, 'eval_steps_per_second': 2.286, 'eval_num_tokens': 12583008.0, 'eval_mean_token_accuracy': 0.5833645441702434, 'epoch': 1.94}
+{'train_runtime': 878.7169, 'train_samples_per_second': 14.228, 'train_steps_per_second': 0.223, 'train_loss': 1.2521586831735105, 'num_tokens': 12961175.0, 'mean_token_accuracy': 0.6699209174384242, 'epoch': 2.0}
+Training complete. Saving model...
+Model saved to /leonardo_work/EUHPC_A06_067/experts/finance_expert_Qwen2-1.5B_SFT
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250707_181317-dek20e2f[0m
+[1;34mwandb[0m: Find logs at: [1;35m../wandb/offline-run-20250707_181317-dek20e2f/logs[0m

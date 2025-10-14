@@ -1,0 +1,960 @@
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `4`
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Mon Jul  7 17:58:51 2025).
+/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[rank2]:[W707 18:13:47.165088428 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Mon Jul  7 17:58:51 2025).
+/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[rank3]:[W707 18:13:53.108936600 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Mon Jul  7 17:58:51 2025).
+Tokenizing train dataset:   0%|          | 0/6251 [00:00<?, ? examples/s]Tokenizing train dataset:   0%|          | 17/6251 [00:00<00:38, 160.69 examples/s]Tokenizing train dataset:   1%|          | 43/6251 [00:00<00:29, 212.64 examples/s]Tokenizing train dataset:   1%|          | 68/6251 [00:00<00:27, 227.55 examples/s]Tokenizing train dataset:   2%|▏         | 94/6251 [00:00<00:25, 239.05 examples/s]Tokenizing train dataset:   2%|▏         | 132/6251 [00:00<00:25, 240.44 examples/s]Tokenizing train dataset:   3%|▎         | 158/6251 [00:00<00:24, 244.79 examples/s]Tokenizing train dataset:   3%|▎         | 185/6251 [00:00<00:24, 249.10 examples/s]Tokenizing train dataset:   3%|▎         | 212/6251 [00:00<00:23, 251.72 examples/s]Tokenizing train dataset:   4%|▍         | 249/6251 [00:01<00:24, 246.66 examples/s]Tokenizing train dataset:   5%|▍         | 282/6251 [00:01<00:22, 265.64 examples/s]Tokenizing train dataset:   5%|▍         | 312/6251 [00:01<00:21, 271.52 examples/s]Tokenizing train dataset:   6%|▌         | 355/6251 [00:01<00:25, 234.91 examples/s]Tokenizing train dataset:   6%|▌         | 385/6251 [00:01<00:23, 248.68 examples/s]Tokenizing train dataset:   7%|▋         | 420/6251 [00:01<00:24, 238.52 examples/s]Tokenizing train dataset:   7%|▋         | 456/6251 [00:01<00:25, 230.73 examples/s]Tokenizing train dataset:   8%|▊         | 485/6251 [00:02<00:23, 240.49 examples/s]Tokenizing train dataset:   8%|▊         | 519/6251 [00:02<00:24, 234.18 examples/s]Tokenizing train dataset:   9%|▊         | 546/6251 [00:02<00:23, 241.39 examples/s]Tokenizing train dataset:   9%|▉         | 574/6251 [00:02<00:22, 246.97 examples/s]Tokenizing train dataset:  10%|▉         | 605/6251 [00:02<00:21, 259.80 examples/s]Tokenizing train dataset:  10%|█         | 635/6251 [00:02<00:20, 268.12 examples/s]Tokenizing train dataset:  11%|█         | 666/6251 [00:02<00:23, 241.47 examples/s]Tokenizing train dataset:  11%|█         | 692/6251 [00:02<00:22, 244.44 examples/s]Tokenizing train dataset:  12%|█▏        | 726/6251 [00:02<00:23, 233.64 examples/s]Tokenizing train dataset:  12%|█▏        | 760/6251 [00:03<00:24, 228.40 examples/s]Tokenizing train dataset:  13%|█▎        | 789/6251 [00:03<00:22, 241.16 examples/s]Tokenizing train dataset:  13%|█▎        | 818/6251 [00:03<00:21, 250.28 examples/s]Using the latest cached version of the dataset since ibm-research/finqa couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/ibm-research___finqa/default/1.0.0/cfe59fea65be3620d448d2fff5132c4fc2428c4281a1acca406bb656ce7c8426 (last modified on Mon Jul  7 18:14:00 2025).
+Tokenizing train dataset:  14%|█▎        | 850/6251 [00:03<00:20, 266.29 examples/s]Tokenizing train dataset:  14%|█▍        | 881/6251 [00:03<00:19, 275.34 examples/s]Tokenizing train dataset:  15%|█▍        | 911/6251 [00:03<00:19, 280.68 examples/s]/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[rank1]:[W707 18:14:04.947979257 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Tokenizing train dataset:  15%|█▌        | 943/6251 [00:03<00:18, 288.94 examples/s]Tokenizing train dataset:  16%|█▌        | 986/6251 [00:03<00:19, 271.97 examples/s]Tokenizing train dataset:  16%|█▋        | 1017/6251 [00:04<00:27, 188.36 examples/s]Tokenizing train dataset:  17%|█▋        | 1050/6251 [00:04<00:24, 214.34 examples/s]Tokenizing train dataset:  17%|█▋        | 1080/6251 [00:04<00:22, 229.15 examples/s]Tokenizing train dataset:  18%|█▊        | 1111/6251 [00:04<00:20, 245.07 examples/s]Tokenizing train dataset:  18%|█▊        | 1141/6251 [00:04<00:19, 256.25 examples/s]Tokenizing train dataset:  19%|█▉        | 1173/6251 [00:04<00:18, 271.26 examples/s]Tokenizing train dataset:  19%|█▉        | 1217/6251 [00:04<00:18, 276.43 examples/s]Tokenizing train dataset:  20%|█▉        | 1249/6251 [00:05<00:17, 286.32 examples/s]Tokenizing train dataset:  21%|██        | 1293/6251 [00:05<00:17, 284.82 examples/s]Tokenizing train dataset:  21%|██        | 1324/6251 [00:05<00:17, 285.40 examples/s]Tokenizing train dataset:  22%|██▏       | 1371/6251 [00:05<00:16, 291.16 examples/s]Tokenizing train dataset:  22%|██▏       | 1405/6251 [00:05<00:16, 301.50 examples/s]Tokenizing train dataset:  23%|██▎       | 1450/6251 [00:05<00:16, 298.68 examples/s]Tokenizing train dataset:  24%|██▎       | 1483/6251 [00:05<00:15, 305.20 examples/s]Tokenizing train dataset:  24%|██▍       | 1514/6251 [00:05<00:15, 304.21 examples/s]Tokenizing train dataset:  25%|██▍       | 1546/6251 [00:06<00:15, 305.40 examples/s]Tokenizing train dataset:  25%|██▌       | 1579/6251 [00:06<00:15, 305.74 examples/s]Tokenizing train dataset:  26%|██▌       | 1622/6251 [00:06<00:15, 297.56 examples/s]Tokenizing train dataset:  26%|██▋       | 1653/6251 [00:06<00:15, 299.85 examples/s]Tokenizing train dataset:  27%|██▋       | 1698/6251 [00:06<00:15, 296.55 examples/s]Tokenizing train dataset:  28%|██▊       | 1732/6251 [00:06<00:14, 304.77 examples/s]Tokenizing train dataset:  28%|██▊       | 1766/6251 [00:06<00:14, 310.76 examples/s]Tokenizing train dataset:  29%|██▉       | 1798/6251 [00:06<00:14, 308.88 examples/s]Tokenizing train dataset:  29%|██▉       | 1842/6251 [00:06<00:14, 298.91 examples/s]Tokenizing train dataset:  30%|███       | 1887/6251 [00:07<00:14, 295.96 examples/s]Tokenizing train dataset:  31%|███       | 1920/6251 [00:07<00:14, 302.18 examples/s]Tokenizing train dataset:  31%|███▏      | 1964/6251 [00:07<00:14, 294.53 examples/s]Tokenizing train dataset:  32%|███▏      | 1996/6251 [00:07<00:14, 299.22 examples/s]Tokenizing train dataset:  33%|███▎      | 2032/6251 [00:07<00:19, 212.96 examples/s]Tokenizing train dataset:  33%|███▎      | 2063/6251 [00:07<00:18, 230.01 examples/s]Tokenizing train dataset:  33%|███▎      | 2093/6251 [00:07<00:17, 242.86 examples/s]Tokenizing train dataset:  34%|███▍      | 2126/6251 [00:08<00:15, 261.67 examples/s]Tokenizing train dataset:  35%|███▍      | 2158/6251 [00:08<00:14, 273.90 examples/s]Tokenizing train dataset:  35%|███▌      | 2204/6251 [00:08<00:14, 282.99 examples/s]Tokenizing train dataset:  36%|███▌      | 2236/6251 [00:08<00:13, 290.51 examples/s]Tokenizing train dataset:  36%|███▋      | 2281/6251 [00:08<00:13, 290.82 examples/s]Tokenizing train dataset:  37%|███▋      | 2312/6251 [00:08<00:13, 293.03 examples/s]Tokenizing train dataset:  37%|███▋      | 2342/6251 [00:08<00:13, 291.75 examples/s]Tokenizing train dataset:  38%|███▊      | 2375/6251 [00:08<00:12, 299.37 examples/s]Tokenizing train dataset:  39%|███▊      | 2410/6251 [00:09<00:12, 312.27 examples/s]Tokenizing train dataset:  39%|███▉      | 2444/6251 [00:09<00:11, 317.64 examples/s]Tokenizing train dataset:  40%|███▉      | 2491/6251 [00:09<00:12, 312.28 examples/s]Tokenizing train dataset:  41%|████      | 2538/6251 [00:09<00:12, 309.20 examples/s]Tokenizing train dataset:  41%|████▏     | 2580/6251 [00:09<00:12, 293.40 examples/s]Tokenizing train dataset:  42%|████▏     | 2613/6251 [00:09<00:12, 297.43 examples/s]Tokenizing train dataset:  43%|████▎     | 2659/6251 [00:09<00:12, 297.24 examples/s]Tokenizing train dataset:  43%|████▎     | 2691/6251 [00:09<00:12, 296.13 examples/s]Tokenizing train dataset:  44%|████▎     | 2721/6251 [00:10<00:12, 293.52 examples/s]Tokenizing train dataset:  44%|████▍     | 2766/6251 [00:10<00:11, 292.49 examples/s]Tokenizing train dataset:  45%|████▍     | 2799/6251 [00:10<00:11, 299.26 examples/s]Tokenizing train dataset:  45%|████▌     | 2830/6251 [00:10<00:11, 300.32 examples/s]Tokenizing train dataset:  46%|████▌     | 2865/6251 [00:10<00:10, 311.64 examples/s]Tokenizing train dataset:  46%|████▋     | 2900/6251 [00:10<00:10, 318.71 examples/s]Tokenizing train dataset:  47%|████▋     | 2946/6251 [00:10<00:10, 311.20 examples/s]Tokenizing train dataset:  48%|████▊     | 2980/6251 [00:10<00:10, 314.87 examples/s]Tokenizing train dataset:  48%|████▊     | 3017/6251 [00:11<00:14, 217.85 examples/s]Tokenizing train dataset:  49%|████▉     | 3049/6251 [00:11<00:13, 235.47 examples/s]Tokenizing train dataset:  49%|████▉     | 3078/6251 [00:11<00:12, 246.38 examples/s]Tokenizing train dataset:  50%|████▉     | 3111/6251 [00:11<00:11, 263.24 examples/s]Tokenizing train dataset:  50%|█████     | 3146/6251 [00:11<00:10, 282.48 examples/s]Tokenizing train dataset:  51%|█████     | 3178/6251 [00:11<00:10, 290.49 examples/s]Tokenizing train dataset:  51%|█████▏    | 3213/6251 [00:11<00:10, 302.84 examples/s]Tokenizing train dataset:  52%|█████▏    | 3246/6251 [00:11<00:09, 306.40 examples/s]Tokenizing train dataset:  53%|█████▎    | 3290/6251 [00:12<00:09, 298.99 examples/s]Tokenizing train dataset:  53%|█████▎    | 3321/6251 [00:12<00:09, 299.81 examples/s]Tokenizing train dataset:  54%|█████▎    | 3354/6251 [00:12<00:09, 306.16 examples/s]Tokenizing train dataset:  54%|█████▍    | 3398/6251 [00:12<00:09, 298.54 examples/s]Tokenizing train dataset:  55%|█████▍    | 3430/6251 [00:12<00:09, 301.68 examples/s]Tokenizing train dataset:  55%|█████▌    | 3461/6251 [00:12<00:09, 302.17 examples/s]Tokenizing train dataset:  56%|█████▌    | 3495/6251 [00:12<00:08, 310.00 examples/s]Tokenizing train dataset:  56%|█████▋    | 3527/6251 [00:12<00:08, 309.50 examples/s]Tokenizing train dataset:  57%|█████▋    | 3573/6251 [00:13<00:08, 300.68 examples/s]Tokenizing train dataset:  58%|█████▊    | 3619/6251 [00:13<00:08, 299.03 examples/s]Tokenizing train dataset:  59%|█████▊    | 3663/6251 [00:13<00:08, 295.92 examples/s]Tokenizing train dataset:  59%|█████▉    | 3693/6251 [00:13<00:08, 296.07 examples/s]Tokenizing train dataset:  60%|█████▉    | 3725/6251 [00:13<00:08, 300.07 examples/s]Tokenizing train dataset:  60%|██████    | 3758/6251 [00:13<00:08, 307.21 examples/s]Tokenizing train dataset:  61%|██████    | 3789/6251 [00:13<00:08, 303.75 examples/s]Tokenizing train dataset:  61%|██████    | 3820/6251 [00:13<00:08, 303.46 examples/s]Tokenizing train dataset:  62%|██████▏   | 3852/6251 [00:13<00:07, 306.12 examples/s]Tokenizing train dataset:  62%|██████▏   | 3887/6251 [00:14<00:07, 317.06 examples/s]Tokenizing train dataset:  63%|██████▎   | 3935/6251 [00:14<00:07, 314.65 examples/s]Tokenizing train dataset:  64%|██████▎   | 3982/6251 [00:14<00:07, 309.42 examples/s]Tokenizing train dataset:  64%|██████▍   | 4015/6251 [00:14<00:10, 216.07 examples/s]Tokenizing train dataset:  65%|██████▍   | 4044/6251 [00:14<00:09, 228.47 examples/s]Tokenizing train dataset:  65%|██████▌   | 4074/6251 [00:14<00:08, 242.63 examples/s]Tokenizing train dataset:  66%|██████▌   | 4104/6251 [00:14<00:08, 255.06 examples/s]Tokenizing train dataset:  66%|██████▌   | 4133/6251 [00:15<00:08, 261.71 examples/s]Tokenizing train dataset:  67%|██████▋   | 4162/6251 [00:15<00:07, 267.65 examples/s]Tokenizing train dataset:  67%|██████▋   | 4193/6251 [00:15<00:07, 276.70 examples/s]Tokenizing train dataset:  68%|██████▊   | 4223/6251 [00:15<00:07, 282.57 examples/s]Tokenizing train dataset:  68%|██████▊   | 4254/6251 [00:15<00:06, 288.50 examples/s]Tokenizing train dataset:  69%|██████▊   | 4284/6251 [00:15<00:06, 287.59 examples/s]Tokenizing train dataset:  69%|██████▉   | 4328/6251 [00:15<00:06, 287.41 examples/s]Tokenizing train dataset:  70%|██████▉   | 4357/6251 [00:15<00:06, 287.42 examples/s]Tokenizing train dataset:  70%|███████   | 4389/6251 [00:15<00:06, 291.81 examples/s]Tokenizing train dataset:  71%|███████   | 4419/6251 [00:16<00:06, 290.65 examples/s]Tokenizing train dataset:  71%|███████   | 4450/6251 [00:16<00:06, 286.96 examples/s]Tokenizing train dataset:  72%|███████▏  | 4481/6251 [00:16<00:06, 292.18 examples/s]Tokenizing train dataset:  72%|███████▏  | 4516/6251 [00:16<00:05, 303.32 examples/s]Tokenizing train dataset:  73%|███████▎  | 4560/6251 [00:16<00:05, 296.89 examples/s]Tokenizing train dataset:  73%|███████▎  | 4591/6251 [00:16<00:05, 297.46 examples/s]Tokenizing train dataset:  74%|███████▍  | 4625/6251 [00:16<00:05, 305.32 examples/s]Tokenizing train dataset:  75%|███████▍  | 4657/6251 [00:16<00:05, 306.07 examples/s]Tokenizing train dataset:  75%|███████▌  | 4700/6251 [00:16<00:05, 296.08 examples/s]Tokenizing train dataset:  76%|███████▌  | 4731/6251 [00:17<00:05, 298.74 examples/s]Tokenizing train dataset:  76%|███████▌  | 4763/6251 [00:17<00:04, 300.91 examples/s]Tokenizing train dataset:  77%|███████▋  | 4809/6251 [00:17<00:04, 300.08 examples/s]Tokenizing train dataset:  77%|███████▋  | 4841/6251 [00:17<00:04, 301.80 examples/s]Tokenizing train dataset:  78%|███████▊  | 4875/6251 [00:17<00:04, 310.67 examples/s]Tokenizing train dataset:  78%|███████▊  | 4907/6251 [00:17<00:04, 311.94 examples/s]Tokenizing train dataset:  79%|███████▉  | 4954/6251 [00:17<00:04, 309.06 examples/s]Tokenizing train dataset:  80%|███████▉  | 4986/6251 [00:17<00:04, 310.81 examples/s]Tokenizing train dataset:  81%|████████  | 5033/6251 [00:18<00:05, 221.24 examples/s]Tokenizing train dataset:  81%|████████  | 5069/6251 [00:18<00:04, 245.88 examples/s]Tokenizing train dataset:  82%|████████▏ | 5102/6251 [00:18<00:04, 260.77 examples/s]Tokenizing train dataset:  82%|████████▏ | 5135/6251 [00:18<00:04, 275.37 examples/s]Tokenizing train dataset:  83%|████████▎ | 5167/6251 [00:18<00:03, 283.15 examples/s]Tokenizing train dataset:  83%|████████▎ | 5214/6251 [00:18<00:03, 290.40 examples/s]Tokenizing train dataset:  84%|████████▍ | 5245/6251 [00:18<00:03, 291.30 examples/s]Tokenizing train dataset:  85%|████████▍ | 5291/6251 [00:19<00:03, 293.39 examples/s]Tokenizing train dataset:  85%|████████▌ | 5334/6251 [00:19<00:03, 288.52 examples/s]Tokenizing train dataset:  86%|████████▌ | 5364/6251 [00:19<00:03, 288.64 examples/s]Tokenizing train dataset:  86%|████████▋ | 5397/6251 [00:19<00:02, 294.58 examples/s]Tokenizing train dataset:  87%|████████▋ | 5430/6251 [00:19<00:02, 301.62 examples/s]Tokenizing train dataset:  88%|████████▊ | 5475/6251 [00:19<00:02, 298.89 examples/s]Tokenizing train dataset:  88%|████████▊ | 5520/6251 [00:19<00:02, 294.36 examples/s]Tokenizing train dataset:  89%|████████▉ | 5554/6251 [00:19<00:02, 302.21 examples/s]Tokenizing train dataset:  89%|████████▉ | 5586/6251 [00:20<00:02, 302.16 examples/s]Tokenizing train dataset:  90%|█████████ | 5631/6251 [00:20<00:02, 299.42 examples/s]Tokenizing train dataset:  91%|█████████ | 5675/6251 [00:20<00:01, 294.69 examples/s]Tokenizing train dataset:  91%|█████████▏| 5705/6251 [00:20<00:01, 294.86 examples/s]Tokenizing train dataset:  92%|█████████▏| 5746/6251 [00:20<00:01, 285.74 examples/s]Tokenizing train dataset:  93%|█████████▎| 5787/6251 [00:20<00:01, 280.21 examples/s]Tokenizing train dataset:  93%|█████████▎| 5830/6251 [00:20<00:01, 278.89 examples/s]Tokenizing train dataset:  94%|█████████▎| 5859/6251 [00:20<00:01, 278.21 examples/s]Tokenizing train dataset:  94%|█████████▍| 5889/6251 [00:21<00:01, 280.31 examples/s]Tokenizing train dataset:  95%|█████████▍| 5919/6251 [00:21<00:01, 282.66 examples/s]Tokenizing train dataset:  95%|█████████▌| 5948/6251 [00:21<00:01, 282.26 examples/s]Tokenizing train dataset:  96%|█████████▌| 5978/6251 [00:21<00:00, 286.02 examples/s]Tokenizing train dataset:  96%|█████████▌| 6015/6251 [00:21<00:01, 196.14 examples/s]Tokenizing train dataset:  97%|█████████▋| 6041/6251 [00:21<00:01, 206.96 examples/s]Tokenizing train dataset:  97%|█████████▋| 6069/6251 [00:21<00:00, 222.87 examples/s]Tokenizing train dataset:  98%|█████████▊| 6099/6251 [00:22<00:00, 239.96 examples/s]Tokenizing train dataset:  98%|█████████▊| 6128/6251 [00:22<00:00, 248.77 examples/s]Tokenizing train dataset:  98%|█████████▊| 6156/6251 [00:22<00:00, 256.21 examples/s]Tokenizing train dataset:  99%|█████████▉| 6187/6251 [00:22<00:00, 268.76 examples/s]Tokenizing train dataset:  99%|█████████▉| 6217/6251 [00:22<00:00, 275.15 examples/s]Tokenizing train dataset: 100%|█████████▉| 6246/6251 [00:22<00:00, 275.61 examples/s]Tokenizing train dataset: 100%|██████████| 6251/6251 [00:22<00:00, 276.52 examples/s]
+Truncating train dataset:   0%|          | 0/6251 [00:00<?, ? examples/s]Truncating train dataset:  96%|█████████▌| 6000/6251 [00:00<00:00, 57808.48 examples/s]Truncating train dataset: 100%|██████████| 6251/6251 [00:00<00:00, 55778.78 examples/s]
+/leonardo/home/userexternal/akanatas/.conda/envs/sft-experts-moe/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:4631: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[rank0]:[W707 18:14:24.032970044 ProcessGroupNCCL.cpp:4718] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 as device used by this process is currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. You can pecify device_id in init_process_group() to force use of a particular device.
+Tokenizing eval dataset:   0%|          | 0/883 [00:00<?, ? examples/s]Tokenizing eval dataset:   3%|▎         | 30/883 [00:00<00:02, 294.34 examples/s]Tokenizing eval dataset:   7%|▋         | 60/883 [00:00<00:03, 271.32 examples/s]Tokenizing eval dataset:  10%|█         | 90/883 [00:00<00:02, 280.55 examples/s]Tokenizing eval dataset:  14%|█▍        | 122/883 [00:00<00:02, 291.71 examples/s]Tokenizing eval dataset:  17%|█▋        | 154/883 [00:00<00:02, 296.47 examples/s]Tokenizing eval dataset:  21%|██        | 186/883 [00:00<00:02, 299.46 examples/s]Tokenizing eval dataset:  25%|██▍       | 219/883 [00:00<00:02, 304.75 examples/s]Tokenizing eval dataset:  30%|███       | 265/883 [00:00<00:02, 301.26 examples/s]Tokenizing eval dataset:  34%|███▎      | 298/883 [00:00<00:01, 304.34 examples/s]Tokenizing eval dataset:  37%|███▋      | 330/883 [00:01<00:01, 304.57 examples/s]Tokenizing eval dataset:  41%|████      | 361/883 [00:01<00:01, 305.19 examples/s]Tokenizing eval dataset:  46%|████▋     | 409/883 [00:01<00:01, 303.95 examples/s]Tokenizing eval dataset:  52%|█████▏    | 455/883 [00:01<00:01, 301.55 examples/s]Tokenizing eval dataset:  55%|█████▌    | 488/883 [00:01<00:01, 305.14 examples/s]Tokenizing eval dataset:  59%|█████▉    | 519/883 [00:01<00:01, 303.49 examples/s]Tokenizing eval dataset:  63%|██████▎   | 552/883 [00:01<00:01, 309.69 examples/s]Tokenizing eval dataset:  66%|██████▌   | 584/883 [00:01<00:00, 309.14 examples/s]Tokenizing eval dataset:  70%|██████▉   | 617/883 [00:02<00:00, 311.46 examples/s]Tokenizing eval dataset:  75%|███████▌  | 664/883 [00:02<00:00, 308.61 examples/s]Tokenizing eval dataset:  80%|████████  | 710/883 [00:02<00:00, 303.30 examples/s]Tokenizing eval dataset:  84%|████████▍ | 743/883 [00:02<00:00, 306.36 examples/s]Tokenizing eval dataset:  89%|████████▉ | 790/883 [00:02<00:00, 305.17 examples/s]Tokenizing eval dataset:  95%|█████████▍| 835/883 [00:02<00:00, 301.09 examples/s]Tokenizing eval dataset: 100%|█████████▉| 879/883 [00:02<00:00, 294.35 examples/s]Tokenizing eval dataset: 100%|██████████| 883/883 [00:03<00:00, 285.94 examples/s]
+Truncating eval dataset:   0%|          | 0/883 [00:00<?, ? examples/s]Truncating eval dataset: 100%|██████████| 883/883 [00:00<00:00, 41998.69 examples/s]
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+[codecarbon WARNING @ 18:14:29] Multiple instances of codecarbon are allowed to run at the same time.
+[codecarbon INFO @ 18:14:30] [setup] RAM Tracking...
+[codecarbon INFO @ 18:14:32] [setup] CPU Tracking...
+[codecarbon INFO @ 18:14:32] Tracking Intel CPU via RAPL interface
+[codecarbon INFO @ 18:14:32] [setup] GPU Tracking...
+[codecarbon INFO @ 18:14:32] Tracking Nvidia GPU via pynvml
+[codecarbon INFO @ 18:14:32] The below tracking methods have been set up:
+                RAM Tracking Method: RAM power estimation model
+                CPU Tracking Method: RAPL
+                GPU Tracking Method: pynvml
+            
+[codecarbon INFO @ 18:14:32] >>> Tracker's metadata:
+[codecarbon INFO @ 18:14:32]   Platform system: Linux-4.18.0-425.19.2.el8_7.x86_64-x86_64-with-glibc2.28
+[codecarbon INFO @ 18:14:32]   Python version: 3.10.18
+[codecarbon INFO @ 18:14:32]   CodeCarbon version: 3.0.2
+[codecarbon INFO @ 18:14:32]   Available RAM : 128.000 GB
+[codecarbon INFO @ 18:14:32]   CPU count: 8 thread(s) in 1 physical CPU(s)
+[codecarbon INFO @ 18:14:32]   CPU model: Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+[codecarbon INFO @ 18:14:32]   GPU count: 4
+[codecarbon INFO @ 18:14:32]   GPU model: 4 x NVIDIA A100-SXM-64GB BUT only tracking these GPU ids : [0, 1, 2, 3]
+[codecarbon WARNING @ 18:14:34] Unable to access geographical location through primary API. Will resort to using the backup API - Exception : HTTPSConnectionPool(host='get.geojs.io', port=443): Max retries exceeded with url: /v1/ip/geo.json (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x14777d02f760>: Failed to establish a new connection: [Errno 101] Network is unreachable')) - url=https://get.geojs.io/v1/ip/geo.json
+[codecarbon WARNING @ 18:14:34] Unable to access geographical location. Using 'Canada' as the default value - Exception : HTTPSConnectionPool(host='ip-api.com', port=443): Max retries exceeded with url: /json/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x14777d02f640>, 'Connection to ip-api.com timed out. (connect timeout=0.5)')) - url=https://get.geojs.io/v1/ip/geo.json
+[codecarbon INFO @ 18:14:34] Emissions data (if any) will be saved to file /leonardo_work/EUHPC_A06_067/experts/finance_expert_Qwen2-1.5B_SFT/emissions.csv
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+  0%|          | 0/196 [00:00<?, ?it/s]`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+  1%|          | 1/196 [00:04<14:33,  4.48s/it]  1%|          | 2/196 [00:08<12:44,  3.94s/it]  2%|▏         | 3/196 [00:11<11:21,  3.53s/it]  2%|▏         | 4/196 [00:14<10:40,  3.33s/it][codecarbon INFO @ 18:14:49] Energy consumed for RAM : 0.000158 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:14:49] Delta energy consumed for CPU with intel_rapl : 0.000577 kWh, power : 9.22038627334353 W
+[codecarbon INFO @ 18:14:49] Energy consumed for All CPU : 0.000577 kWh
+[codecarbon INFO @ 18:14:49] Energy consumed for all GPUs : 0.004552 kWh. Total GPU Power : 1091.808693114461 W
+[codecarbon INFO @ 18:14:49] 0.005287 kWh of electricity used since the beginning.
+  3%|▎         | 5/196 [00:17<10:10,  3.20s/it]  3%|▎         | 6/196 [00:20<09:56,  3.14s/it]  4%|▎         | 7/196 [00:23<09:55,  3.15s/it]  4%|▍         | 8/196 [00:27<10:50,  3.46s/it][codecarbon INFO @ 18:15:04] Energy consumed for RAM : 0.000317 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:15:04] Delta energy consumed for CPU with intel_rapl : 0.000574 kWh, power : 138.29143914069266 W
+[codecarbon INFO @ 18:15:04] Energy consumed for All CPU : 0.001151 kWh
+[codecarbon INFO @ 18:15:04] Energy consumed for all GPUs : 0.009140 kWh. Total GPU Power : 1102.6081360759329 W
+[codecarbon INFO @ 18:15:04] 0.010607 kWh of electricity used since the beginning.
+  5%|▍         | 9/196 [00:31<11:17,  3.63s/it]  5%|▌         | 10/196 [00:35<11:14,  3.62s/it]                                                  5%|▌         | 10/196 [00:35<11:14,  3.62s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:01<00:25,  1.02it/s][A
+ 11%|█         | 3/28 [00:02<00:24,  1.03it/s][A
+ 14%|█▍        | 4/28 [00:03<00:18,  1.29it/s][A
+ 18%|█▊        | 5/28 [00:03<00:15,  1.53it/s][A
+ 21%|██▏       | 6/28 [00:04<00:12,  1.81it/s][A
+ 25%|██▌       | 7/28 [00:05<00:15,  1.40it/s][A
+ 29%|██▊       | 8/28 [00:05<00:11,  1.68it/s][A
+ 32%|███▏      | 9/28 [00:06<00:13,  1.40it/s][A
+ 36%|███▌      | 10/28 [00:06<00:10,  1.68it/s][A
+ 39%|███▉      | 11/28 [00:07<00:11,  1.42it/s][A
+ 43%|████▎     | 12/28 [00:08<00:09,  1.65it/s][A
+ 46%|████▋     | 13/28 [00:08<00:08,  1.78it/s][A[codecarbon INFO @ 18:15:19] Energy consumed for RAM : 0.000475 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:15:19] Delta energy consumed for CPU with intel_rapl : 0.000572 kWh, power : 138.0258857827448 W
+[codecarbon INFO @ 18:15:19] Energy consumed for All CPU : 0.001723 kWh
+
+ 50%|█████     | 14/28 [00:09<00:09,  1.46it/s][A[codecarbon INFO @ 18:15:19] Energy consumed for all GPUs : 0.013270 kWh. Total GPU Power : 991.8034277338696 W
+[codecarbon INFO @ 18:15:19] 0.015467 kWh of electricity used since the beginning.
+
+ 54%|█████▎    | 15/28 [00:10<00:07,  1.64it/s][A
+ 57%|█████▋    | 16/28 [00:10<00:06,  1.86it/s][A
+ 61%|██████    | 17/28 [00:10<00:05,  1.90it/s][A
+ 64%|██████▍   | 18/28 [00:11<00:04,  2.08it/s][A
+ 68%|██████▊   | 19/28 [00:11<00:03,  2.27it/s][A
+ 71%|███████▏  | 20/28 [00:12<00:03,  2.19it/s][A
+ 75%|███████▌  | 21/28 [00:12<00:03,  2.19it/s][A
+ 79%|███████▊  | 22/28 [00:13<00:03,  1.60it/s][A
+ 82%|████████▏ | 23/28 [00:14<00:02,  1.77it/s][A
+ 86%|████████▌ | 24/28 [00:14<00:02,  1.91it/s][A
+ 89%|████████▉ | 25/28 [00:15<00:02,  1.48it/s][A
+ 93%|█████████▎| 26/28 [00:15<00:01,  1.64it/s][A
+ 96%|█████████▋| 27/28 [00:16<00:00,  1.73it/s][A
+100%|██████████| 28/28 [00:16<00:00,  1.82it/s][A                                                
+                                               [A  5%|▌         | 10/196 [00:52<11:14,  3.62s/it]
+100%|██████████| 28/28 [00:16<00:00,  1.82it/s][A
+                                               [A  6%|▌         | 11/196 [00:55<27:22,  8.88s/it]  6%|▌         | 12/196 [00:59<22:06,  7.21s/it][codecarbon INFO @ 18:15:34] Energy consumed for RAM : 0.000633 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:15:34] Delta energy consumed for CPU with intel_rapl : 0.000575 kWh, power : 137.33236241561136 W
+[codecarbon INFO @ 18:15:34] Energy consumed for All CPU : 0.002298 kWh
+[codecarbon INFO @ 18:15:34] Energy consumed for all GPUs : 0.017995 kWh. Total GPU Power : 1135.0944743982716 W
+[codecarbon INFO @ 18:15:34] 0.020926 kWh of electricity used since the beginning.
+  7%|▋         | 13/196 [01:02<18:01,  5.91s/it]  7%|▋         | 14/196 [01:05<15:30,  5.11s/it]  8%|▊         | 15/196 [01:08<13:27,  4.46s/it]  8%|▊         | 16/196 [01:11<12:04,  4.03s/it]  9%|▊         | 17/196 [01:14<11:16,  3.78s/it][codecarbon INFO @ 18:15:49] Energy consumed for RAM : 0.000791 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:15:49] Delta energy consumed for CPU with intel_rapl : 0.000574 kWh, power : 138.20135614613554 W
+[codecarbon INFO @ 18:15:49] Energy consumed for All CPU : 0.002872 kWh
+[codecarbon INFO @ 18:15:49] Energy consumed for all GPUs : 0.022868 kWh. Total GPU Power : 1170.2009086578478 W
+[codecarbon INFO @ 18:15:49] 0.026531 kWh of electricity used since the beginning.
+  9%|▉         | 18/196 [01:17<10:29,  3.54s/it] 10%|▉         | 19/196 [01:20<09:50,  3.34s/it] 10%|█         | 20/196 [01:23<09:10,  3.13s/it]                                                 10%|█         | 20/196 [01:23<09:10,  3.13s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A[codecarbon INFO @ 18:16:04] Energy consumed for RAM : 0.000949 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:16:04] Delta energy consumed for CPU with intel_rapl : 0.000575 kWh, power : 137.77505242965728 W
+[codecarbon INFO @ 18:16:04] Energy consumed for All CPU : 0.003447 kWh
+[codecarbon INFO @ 18:16:04] Energy consumed for all GPUs : 0.028022 kWh. Total GPU Power : 1237.4296826599746 W
+[codecarbon INFO @ 18:16:04] 0.032418 kWh of electricity used since the beginning.
+
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                
+                                               [A 10%|█         | 20/196 [01:35<09:10,  3.13s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 11%|█         | 21/196 [01:38<20:13,  6.94s/it] 11%|█         | 22/196 [01:41<16:33,  5.71s/it] 12%|█▏        | 23/196 [01:44<14:17,  4.96s/it][codecarbon INFO @ 18:16:19] Energy consumed for RAM : 0.001108 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:16:19] Delta energy consumed for CPU with intel_rapl : 0.000575 kWh, power : 138.0582254473696 W
+[codecarbon INFO @ 18:16:19] Energy consumed for All CPU : 0.004021 kWh
+[codecarbon INFO @ 18:16:19] Energy consumed for all GPUs : 0.032965 kWh. Total GPU Power : 1187.9302542081289 W
+[codecarbon INFO @ 18:16:19] 0.038093 kWh of electricity used since the beginning.
+ 12%|█▏        | 24/196 [01:48<12:50,  4.48s/it] 13%|█▎        | 25/196 [01:51<11:26,  4.01s/it] 13%|█▎        | 26/196 [01:54<10:44,  3.79s/it] 14%|█▍        | 27/196 [01:57<10:06,  3.59s/it][codecarbon INFO @ 18:16:34] Energy consumed for RAM : 0.001266 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:16:34] Delta energy consumed for CPU with intel_rapl : 0.000573 kWh, power : 138.04701933790355 W
+[codecarbon INFO @ 18:16:34] Energy consumed for All CPU : 0.004594 kWh
+[codecarbon INFO @ 18:16:34] Energy consumed for all GPUs : 0.037843 kWh. Total GPU Power : 1171.4780123667965 W
+[codecarbon INFO @ 18:16:34] 0.043703 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:16:34] 0.000866 g.CO2eq/s mean an estimation of 27.29784023076673 kg.CO2eq/year
+ 14%|█▍        | 28/196 [02:00<09:36,  3.43s/it] 15%|█▍        | 29/196 [02:03<09:14,  3.32s/it] 15%|█▌        | 30/196 [02:07<09:19,  3.37s/it]                                                 15%|█▌        | 30/196 [02:07<09:19,  3.37s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A[codecarbon INFO @ 18:16:49] Energy consumed for RAM : 0.001424 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:16:49] Delta energy consumed for CPU with intel_rapl : 0.000573 kWh, power : 137.59620513280748 W
+[codecarbon INFO @ 18:16:49] Energy consumed for All CPU : 0.005167 kWh
+[codecarbon INFO @ 18:16:49] Energy consumed for all GPUs : 0.042950 kWh. Total GPU Power : 1226.5605219194215 W
+[codecarbon INFO @ 18:16:49] 0.049542 kWh of electricity used since the beginning.
+
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.23it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                
+                                               [A 15%|█▌        | 30/196 [02:19<09:19,  3.37s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 16%|█▌        | 31/196 [02:22<19:07,  6.96s/it] 16%|█▋        | 32/196 [02:25<15:47,  5.78s/it] 17%|█▋        | 33/196 [02:28<13:20,  4.91s/it][codecarbon INFO @ 18:17:04] Energy consumed for RAM : 0.001582 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:17:04] Delta energy consumed for CPU with intel_rapl : 0.000574 kWh, power : 137.681295251121 W
+[codecarbon INFO @ 18:17:04] Energy consumed for All CPU : 0.005742 kWh
+[codecarbon INFO @ 18:17:04] Energy consumed for all GPUs : 0.047958 kWh. Total GPU Power : 1203.1618372252524 W
+[codecarbon INFO @ 18:17:04] 0.055282 kWh of electricity used since the beginning.
+ 17%|█▋        | 34/196 [02:31<12:06,  4.48s/it] 18%|█▊        | 35/196 [02:35<11:31,  4.30s/it] 18%|█▊        | 36/196 [02:38<10:32,  3.95s/it] 19%|█▉        | 37/196 [02:41<09:37,  3.63s/it] 19%|█▉        | 38/196 [02:44<09:06,  3.46s/it][codecarbon INFO @ 18:17:19] Energy consumed for RAM : 0.001740 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:17:19] Delta energy consumed for CPU with intel_rapl : 0.000575 kWh, power : 137.96293923280285 W
+[codecarbon INFO @ 18:17:19] Energy consumed for All CPU : 0.006316 kWh
+[codecarbon INFO @ 18:17:19] Energy consumed for all GPUs : 0.052739 kWh. Total GPU Power : 1148.161486031555 W
+[codecarbon INFO @ 18:17:19] 0.060796 kWh of electricity used since the beginning.
+ 20%|█▉        | 39/196 [02:48<08:47,  3.36s/it] 20%|██        | 40/196 [02:51<08:33,  3.29s/it]                                                 20%|██        | 40/196 [02:51<08:33,  3.29s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A[codecarbon INFO @ 18:17:34] Energy consumed for RAM : 0.001898 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:17:34] Delta energy consumed for CPU with intel_rapl : 0.000575 kWh, power : 138.02844131721739 W
+[codecarbon INFO @ 18:17:34] Energy consumed for All CPU : 0.006891 kWh
+[codecarbon INFO @ 18:17:34] Energy consumed for all GPUs : 0.057899 kWh. Total GPU Power : 1240.4956453016748 W
+[codecarbon INFO @ 18:17:34] 0.066689 kWh of electricity used since the beginning.
+
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                
+                                               [A 20%|██        | 40/196 [03:03<08:33,  3.29s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 21%|██        | 41/196 [03:06<17:49,  6.90s/it] 21%|██▏       | 42/196 [03:09<14:36,  5.69s/it] 22%|██▏       | 43/196 [03:12<12:43,  4.99s/it][codecarbon INFO @ 18:17:49] Energy consumed for RAM : 0.002057 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:17:49] Delta energy consumed for CPU with intel_rapl : 0.000586 kWh, power : 138.41895094965048 W
+[codecarbon INFO @ 18:17:49] Energy consumed for All CPU : 0.007477 kWh
+[codecarbon INFO @ 18:17:49] Energy consumed for all GPUs : 0.062821 kWh. Total GPU Power : 1182.14876213111 W
+[codecarbon INFO @ 18:17:49] 0.072355 kWh of electricity used since the beginning.
+ 22%|██▏       | 44/196 [03:15<10:59,  4.34s/it] 23%|██▎       | 45/196 [03:18<09:56,  3.95s/it] 23%|██▎       | 46/196 [03:21<09:17,  3.72s/it] 24%|██▍       | 47/196 [03:25<08:57,  3.60s/it] 24%|██▍       | 48/196 [03:27<08:14,  3.34s/it][codecarbon INFO @ 18:18:04] Energy consumed for RAM : 0.002215 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:18:04] Delta energy consumed for CPU with intel_rapl : 0.000607 kWh, power : 141.0933003804026 W
+[codecarbon INFO @ 18:18:04] Energy consumed for All CPU : 0.008085 kWh
+[codecarbon INFO @ 18:18:04] Energy consumed for all GPUs : 0.067727 kWh. Total GPU Power : 1178.0136585939395 W
+[codecarbon INFO @ 18:18:04] 0.078027 kWh of electricity used since the beginning.
+ 25%|██▌       | 49/196 [03:30<08:02,  3.28s/it] 26%|██▌       | 50/196 [03:34<07:58,  3.28s/it]                                                 26%|██▌       | 50/196 [03:34<07:58,  3.28s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.52it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A[codecarbon INFO @ 18:18:19] Energy consumed for RAM : 0.002373 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:18:19] Delta energy consumed for CPU with intel_rapl : 0.000582 kWh, power : 145.49649795716215 W
+[codecarbon INFO @ 18:18:19] Energy consumed for All CPU : 0.008667 kWh
+[codecarbon INFO @ 18:18:19] Energy consumed for all GPUs : 0.072897 kWh. Total GPU Power : 1241.6571706745974 W
+[codecarbon INFO @ 18:18:19] 0.083937 kWh of electricity used since the beginning.
+
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A                                                
+                                               [A 26%|██▌       | 50/196 [03:46<07:58,  3.28s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A
+                                               [A 26%|██▌       | 51/196 [03:49<16:35,  6.87s/it] 27%|██▋       | 52/196 [03:52<13:46,  5.74s/it] 27%|██▋       | 53/196 [03:55<11:45,  4.93s/it] 28%|██▊       | 54/196 [03:58<10:24,  4.40s/it][codecarbon INFO @ 18:18:34] Energy consumed for RAM : 0.002531 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:18:34] Delta energy consumed for CPU with intel_rapl : 0.000580 kWh, power : 139.65365840604792 W
+[codecarbon INFO @ 18:18:34] Energy consumed for All CPU : 0.009246 kWh
+[codecarbon INFO @ 18:18:34] Energy consumed for all GPUs : 0.077844 kWh. Total GPU Power : 1189.3899573757342 W
+[codecarbon INFO @ 18:18:34] 0.089621 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:18:34] 0.000910 g.CO2eq/s mean an estimation of 28.686553153898135 kg.CO2eq/year
+ 28%|██▊       | 55/196 [04:01<09:11,  3.91s/it] 29%|██▊       | 56/196 [04:04<08:34,  3.67s/it] 29%|██▉       | 57/196 [04:07<08:10,  3.53s/it] 30%|██▉       | 58/196 [04:11<08:04,  3.51s/it] 30%|███       | 59/196 [04:14<07:37,  3.34s/it][codecarbon INFO @ 18:18:49] Energy consumed for RAM : 0.002689 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:18:49] Delta energy consumed for CPU with intel_rapl : 0.000584 kWh, power : 139.40512460756335 W
+[codecarbon INFO @ 18:18:49] Energy consumed for All CPU : 0.009830 kWh
+[codecarbon INFO @ 18:18:49] Energy consumed for all GPUs : 0.082775 kWh. Total GPU Power : 1184.0504618952993 W
+[codecarbon INFO @ 18:18:49] 0.095294 kWh of electricity used since the beginning.
+ 31%|███       | 60/196 [04:17<07:19,  3.23s/it]                                                 31%|███       | 60/196 [04:17<07:19,  3.23s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.23it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                
+                                               [A 31%|███       | 60/196 [04:29<07:19,  3.23s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A[codecarbon INFO @ 18:19:04] Energy consumed for RAM : 0.002848 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:19:04] Delta energy consumed for CPU with intel_rapl : 0.000582 kWh, power : 140.13669919116887 W
+[codecarbon INFO @ 18:19:04] Energy consumed for All CPU : 0.010412 kWh
+[codecarbon INFO @ 18:19:04] Energy consumed for all GPUs : 0.088011 kWh. Total GPU Power : 1257.4867265940043 W
+[codecarbon INFO @ 18:19:04] 0.101270 kWh of electricity used since the beginning.
+ 31%|███       | 61/196 [04:32<15:23,  6.84s/it] 32%|███▏      | 62/196 [04:35<12:49,  5.74s/it] 32%|███▏      | 63/196 [04:38<10:49,  4.88s/it] 33%|███▎      | 64/196 [04:41<09:41,  4.41s/it][codecarbon INFO @ 18:19:19] Energy consumed for RAM : 0.003006 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:19:19] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 139.67062995560994 W
+[codecarbon INFO @ 18:19:19] Energy consumed for All CPU : 0.010990 kWh
+[codecarbon INFO @ 18:19:19] Energy consumed for all GPUs : 0.092878 kWh. Total GPU Power : 1169.1051806217322 W
+[codecarbon INFO @ 18:19:19] 0.106873 kWh of electricity used since the beginning.
+ 33%|███▎      | 65/196 [04:45<09:04,  4.16s/it] 34%|███▎      | 66/196 [04:48<08:27,  3.90s/it] 34%|███▍      | 67/196 [04:51<07:50,  3.65s/it] 35%|███▍      | 68/196 [04:54<07:18,  3.43s/it] 35%|███▌      | 69/196 [04:57<07:02,  3.33s/it][codecarbon INFO @ 18:19:34] Energy consumed for RAM : 0.003164 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:19:34] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 138.97397672068738 W
+[codecarbon INFO @ 18:19:34] Energy consumed for All CPU : 0.011569 kWh
+[codecarbon INFO @ 18:19:34] Energy consumed for all GPUs : 0.097804 kWh. Total GPU Power : 1183.1499899874004 W
+[codecarbon INFO @ 18:19:34] 0.112537 kWh of electricity used since the beginning.
+ 36%|███▌      | 70/196 [05:00<06:49,  3.25s/it]                                                 36%|███▌      | 70/196 [05:00<06:49,  3.25s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.23it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A                                                
+                                               [A 36%|███▌      | 70/196 [05:13<06:49,  3.25s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A
+                                               [A[codecarbon INFO @ 18:19:49] Energy consumed for RAM : 0.003322 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:19:49] Delta energy consumed for CPU with intel_rapl : 0.000580 kWh, power : 138.96978031428117 W
+[codecarbon INFO @ 18:19:49] Energy consumed for All CPU : 0.012148 kWh
+[codecarbon INFO @ 18:19:49] Energy consumed for all GPUs : 0.103030 kWh. Total GPU Power : 1255.1154376714412 W
+[codecarbon INFO @ 18:19:49] 0.118501 kWh of electricity used since the beginning.
+ 36%|███▌      | 71/196 [05:16<14:15,  6.84s/it] 37%|███▋      | 72/196 [05:19<11:55,  5.77s/it] 37%|███▋      | 73/196 [05:22<10:06,  4.93s/it] 38%|███▊      | 74/196 [05:25<08:50,  4.35s/it] 38%|███▊      | 75/196 [05:28<08:01,  3.98s/it][codecarbon INFO @ 18:20:04] Energy consumed for RAM : 0.003480 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:20:04] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 139.18502466593438 W
+[codecarbon INFO @ 18:20:04] Energy consumed for All CPU : 0.012727 kWh
+[codecarbon INFO @ 18:20:04] Energy consumed for all GPUs : 0.107909 kWh. Total GPU Power : 1173.3534847359674 W
+[codecarbon INFO @ 18:20:04] 0.124116 kWh of electricity used since the beginning.
+ 39%|███▉      | 76/196 [05:31<07:27,  3.73s/it] 39%|███▉      | 77/196 [05:34<07:02,  3.55s/it] 40%|███▉      | 78/196 [05:37<06:47,  3.45s/it] 40%|████      | 79/196 [05:41<06:32,  3.35s/it] 41%|████      | 80/196 [05:44<06:19,  3.27s/it]                                                 41%|████      | 80/196 [05:44<06:19,  3.27s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A[codecarbon INFO @ 18:20:19] Energy consumed for RAM : 0.003638 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:20:19] Delta energy consumed for CPU with intel_rapl : 0.000584 kWh, power : 139.16717246282136 W
+[codecarbon INFO @ 18:20:19] Energy consumed for All CPU : 0.013311 kWh
+[codecarbon INFO @ 18:20:19] Energy consumed for all GPUs : 0.112865 kWh. Total GPU Power : 1190.200699746807 W
+[codecarbon INFO @ 18:20:19] 0.129815 kWh of electricity used since the beginning.
+
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.38it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A                                                
+                                               [A 41%|████      | 80/196 [05:56<06:19,  3.27s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A
+                                               [A 41%|████▏     | 81/196 [05:59<13:10,  6.87s/it][codecarbon INFO @ 18:20:34] Energy consumed for RAM : 0.003797 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:20:34] Delta energy consumed for CPU with intel_rapl : 0.000580 kWh, power : 140.31731406227075 W
+[codecarbon INFO @ 18:20:34] Energy consumed for All CPU : 0.013891 kWh
+[codecarbon INFO @ 18:20:34] Energy consumed for all GPUs : 0.118054 kWh. Total GPU Power : 1246.005589437891 W
+[codecarbon INFO @ 18:20:34] 0.135742 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:20:34] 0.000914 g.CO2eq/s mean an estimation of 28.811523150615912 kg.CO2eq/year
+ 42%|████▏     | 82/196 [06:02<11:01,  5.80s/it] 42%|████▏     | 83/196 [06:05<09:17,  4.94s/it] 43%|████▎     | 84/196 [06:08<08:06,  4.34s/it] 43%|████▎     | 85/196 [06:11<07:31,  4.07s/it] 44%|████▍     | 86/196 [06:14<06:48,  3.71s/it][codecarbon INFO @ 18:20:49] Energy consumed for RAM : 0.003955 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:20:49] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 139.33603058982922 W
+[codecarbon INFO @ 18:20:49] Energy consumed for All CPU : 0.014470 kWh
+[codecarbon INFO @ 18:20:49] Energy consumed for all GPUs : 0.122937 kWh. Total GPU Power : 1173.015980024135 W
+[codecarbon INFO @ 18:20:49] 0.141362 kWh of electricity used since the beginning.
+ 44%|████▍     | 87/196 [06:17<06:20,  3.49s/it] 45%|████▍     | 88/196 [06:20<05:57,  3.31s/it] 45%|████▌     | 89/196 [06:24<05:53,  3.31s/it] 46%|████▌     | 90/196 [06:27<05:52,  3.33s/it]                                                 46%|████▌     | 90/196 [06:27<05:52,  3.33s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A[codecarbon INFO @ 18:21:04] Energy consumed for RAM : 0.004113 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:21:04] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 138.87876518458737 W
+[codecarbon INFO @ 18:21:04] Energy consumed for All CPU : 0.015048 kWh
+[codecarbon INFO @ 18:21:04] Energy consumed for all GPUs : 0.127909 kWh. Total GPU Power : 1194.1494718983292 W
+[codecarbon INFO @ 18:21:04] 0.147070 kWh of electricity used since the beginning.
+
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.38it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                
+                                               [A 46%|████▌     | 90/196 [06:39<05:52,  3.33s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 46%|████▋     | 91/196 [06:42<12:05,  6.91s/it][codecarbon INFO @ 18:21:19] Energy consumed for RAM : 0.004271 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:21:19] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 138.924410800434 W
+[codecarbon INFO @ 18:21:19] Energy consumed for All CPU : 0.015627 kWh
+[codecarbon INFO @ 18:21:19] Energy consumed for all GPUs : 0.133039 kWh. Total GPU Power : 1233.0471020660577 W
+[codecarbon INFO @ 18:21:19] 0.152938 kWh of electricity used since the beginning.
+ 47%|████▋     | 92/196 [06:46<10:14,  5.91s/it] 47%|████▋     | 93/196 [06:49<08:46,  5.11s/it] 48%|████▊     | 94/196 [06:52<07:48,  4.59s/it] 48%|████▊     | 95/196 [06:55<06:56,  4.12s/it] 49%|████▉     | 96/196 [06:59<06:24,  3.84s/it][codecarbon INFO @ 18:21:34] Energy consumed for RAM : 0.004429 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:21:34] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 139.2535133723974 W
+[codecarbon INFO @ 18:21:34] Energy consumed for All CPU : 0.016206 kWh
+[codecarbon INFO @ 18:21:34] Energy consumed for all GPUs : 0.137884 kWh. Total GPU Power : 1163.3896847900082 W
+[codecarbon INFO @ 18:21:34] 0.158519 kWh of electricity used since the beginning.
+ 49%|████▉     | 97/196 [07:02<05:59,  3.64s/it] 50%|█████     | 98/196 [07:05<05:38,  3.45s/it] 51%|█████     | 99/196 [07:08<05:20,  3.31s/it] 51%|█████     | 100/196 [07:11<05:22,  3.36s/it]                                                  51%|█████     | 100/196 [07:11<05:22,  3.36s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A[codecarbon INFO @ 18:21:49] Energy consumed for RAM : 0.004587 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:21:49] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 138.96656321270666 W
+[codecarbon INFO @ 18:21:49] Energy consumed for All CPU : 0.016785 kWh
+[codecarbon INFO @ 18:21:49] Energy consumed for all GPUs : 0.142813 kWh. Total GPU Power : 1185.0057249029308 W
+[codecarbon INFO @ 18:21:49] 0.164185 kWh of electricity used since the beginning.
+
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.38it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 51%|█████     | 100/196 [07:24<05:22,  3.36s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 52%|█████▏    | 101/196 [07:26<10:56,  6.91s/it][codecarbon INFO @ 18:22:04] Energy consumed for RAM : 0.004745 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:22:04] Delta energy consumed for CPU with intel_rapl : 0.000580 kWh, power : 139.1149290359099 W
+[codecarbon INFO @ 18:22:04] Energy consumed for All CPU : 0.017364 kWh
+[codecarbon INFO @ 18:22:04] Energy consumed for all GPUs : 0.147922 kWh. Total GPU Power : 1228.8825781834967 W
+[codecarbon INFO @ 18:22:04] 0.170031 kWh of electricity used since the beginning.
+ 52%|█████▏    | 102/196 [07:30<09:09,  5.84s/it] 53%|█████▎    | 103/196 [07:33<07:50,  5.06s/it] 53%|█████▎    | 104/196 [07:36<06:52,  4.48s/it] 54%|█████▎    | 105/196 [07:39<06:06,  4.03s/it] 54%|█████▍    | 106/196 [07:42<05:40,  3.78s/it][codecarbon INFO @ 18:22:19] Energy consumed for RAM : 0.004904 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:22:19] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 139.39447284364206 W
+[codecarbon INFO @ 18:22:19] Energy consumed for All CPU : 0.017943 kWh
+[codecarbon INFO @ 18:22:19] Energy consumed for all GPUs : 0.152894 kWh. Total GPU Power : 1194.740749468361 W
+[codecarbon INFO @ 18:22:19] 0.175741 kWh of electricity used since the beginning.
+ 55%|█████▍    | 107/196 [07:45<05:17,  3.57s/it] 55%|█████▌    | 108/196 [07:49<05:11,  3.55s/it] 56%|█████▌    | 109/196 [07:52<04:57,  3.42s/it] 56%|█████▌    | 110/196 [07:55<04:37,  3.23s/it]                                                  56%|█████▌    | 110/196 [07:55<04:37,  3.23s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.54it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.52it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.38it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A[codecarbon INFO @ 18:22:34] Energy consumed for RAM : 0.005062 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:22:34] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 139.08303320503936 W
+[codecarbon INFO @ 18:22:34] Energy consumed for All CPU : 0.018522 kWh
+[codecarbon INFO @ 18:22:34] Energy consumed for all GPUs : 0.157969 kWh. Total GPU Power : 1218.742439707401 W
+[codecarbon INFO @ 18:22:34] 0.181553 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:22:34] 0.000907 g.CO2eq/s mean an estimation of 28.618818050597067 kg.CO2eq/year
+
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.30it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.41it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.26it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 56%|█████▌    | 110/196 [08:07<04:37,  3.23s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 57%|█████▋    | 111/196 [08:10<09:34,  6.76s/it] 57%|█████▋    | 112/196 [08:13<08:05,  5.78s/it][codecarbon INFO @ 18:22:49] Energy consumed for RAM : 0.005220 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:22:49] Delta energy consumed for CPU with intel_rapl : 0.000582 kWh, power : 139.17055918655146 W
+[codecarbon INFO @ 18:22:49] Energy consumed for All CPU : 0.019104 kWh
+[codecarbon INFO @ 18:22:49] Energy consumed for all GPUs : 0.162993 kWh. Total GPU Power : 1206.9396354105509 W
+[codecarbon INFO @ 18:22:49] 0.187317 kWh of electricity used since the beginning.
+ 58%|█████▊    | 113/196 [08:16<06:52,  4.97s/it] 58%|█████▊    | 114/196 [08:19<05:53,  4.31s/it] 59%|█████▊    | 115/196 [08:23<05:32,  4.10s/it] 59%|█████▉    | 116/196 [08:26<05:10,  3.88s/it] 60%|█████▉    | 117/196 [08:29<04:47,  3.63s/it][codecarbon INFO @ 18:23:04] Energy consumed for RAM : 0.005378 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:23:04] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 139.76688272513536 W
+[codecarbon INFO @ 18:23:04] Energy consumed for All CPU : 0.019682 kWh
+[codecarbon INFO @ 18:23:04] Energy consumed for all GPUs : 0.167810 kWh. Total GPU Power : 1156.743137122798 W
+[codecarbon INFO @ 18:23:04] 0.192870 kWh of electricity used since the beginning.
+ 60%|██████    | 118/196 [08:32<04:25,  3.41s/it] 61%|██████    | 119/196 [08:35<04:15,  3.32s/it] 61%|██████    | 120/196 [08:38<04:08,  3.27s/it]                                                  61%|██████    | 120/196 [08:38<04:08,  3.27s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A[codecarbon INFO @ 18:23:19] Energy consumed for RAM : 0.005536 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:23:19] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 138.7922197231784 W
+[codecarbon INFO @ 18:23:19] Energy consumed for All CPU : 0.020262 kWh
+[codecarbon INFO @ 18:23:19] Energy consumed for all GPUs : 0.172926 kWh. Total GPU Power : 1228.4619853405165 W
+[codecarbon INFO @ 18:23:19] 0.198724 kWh of electricity used since the beginning.
+
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 61%|██████    | 120/196 [08:51<04:08,  3.27s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 62%|██████▏   | 121/196 [08:54<08:34,  6.86s/it] 62%|██████▏   | 122/196 [08:57<07:11,  5.82s/it][codecarbon INFO @ 18:23:34] Energy consumed for RAM : 0.005695 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:23:34] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 139.13072413302862 W
+[codecarbon INFO @ 18:23:34] Energy consumed for All CPU : 0.020840 kWh
+[codecarbon INFO @ 18:23:34] Energy consumed for all GPUs : 0.177952 kWh. Total GPU Power : 1207.00191136993 W
+[codecarbon INFO @ 18:23:34] 0.204487 kWh of electricity used since the beginning.
+ 63%|██████▎   | 123/196 [09:00<06:11,  5.09s/it] 63%|██████▎   | 124/196 [09:04<05:29,  4.57s/it] 64%|██████▍   | 125/196 [09:07<04:56,  4.17s/it] 64%|██████▍   | 126/196 [09:10<04:27,  3.83s/it] 65%|██████▍   | 127/196 [09:14<04:18,  3.75s/it][codecarbon INFO @ 18:23:49] Energy consumed for RAM : 0.005853 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:23:49] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 138.9898864223491 W
+[codecarbon INFO @ 18:23:49] Energy consumed for All CPU : 0.021418 kWh
+[codecarbon INFO @ 18:23:49] Energy consumed for all GPUs : 0.182777 kWh. Total GPU Power : 1159.1022185545216 W
+[codecarbon INFO @ 18:23:49] 0.210049 kWh of electricity used since the beginning.
+ 65%|██████▌   | 128/196 [09:16<03:54,  3.45s/it] 66%|██████▌   | 129/196 [09:20<03:50,  3.44s/it] 66%|██████▋   | 130/196 [09:23<03:42,  3.36s/it]                                                  66%|██████▋   | 130/196 [09:23<03:42,  3.36s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A[codecarbon INFO @ 18:24:04] Energy consumed for RAM : 0.006011 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:24:04] Delta energy consumed for CPU with intel_rapl : 0.000582 kWh, power : 138.9333097590749 W
+[codecarbon INFO @ 18:24:04] Energy consumed for All CPU : 0.022001 kWh
+[codecarbon INFO @ 18:24:04] Energy consumed for all GPUs : 0.187870 kWh. Total GPU Power : 1222.9661924144673 W
+[codecarbon INFO @ 18:24:04] 0.215881 kWh of electricity used since the beginning.
+
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.23it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A                                                 
+                                               [A 66%|██████▋   | 130/196 [09:35<03:42,  3.36s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A
+                                               [A 67%|██████▋   | 131/196 [09:38<07:30,  6.93s/it] 67%|██████▋   | 132/196 [09:42<06:15,  5.87s/it][codecarbon INFO @ 18:24:19] Energy consumed for RAM : 0.006169 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:24:19] Delta energy consumed for CPU with intel_rapl : 0.000581 kWh, power : 139.85637021343567 W
+[codecarbon INFO @ 18:24:19] Energy consumed for All CPU : 0.022582 kWh
+[codecarbon INFO @ 18:24:19] Energy consumed for all GPUs : 0.192850 kWh. Total GPU Power : 1196.0140587625194 W
+[codecarbon INFO @ 18:24:19] 0.221601 kWh of electricity used since the beginning.
+ 68%|██████▊   | 133/196 [09:45<05:20,  5.09s/it] 68%|██████▊   | 134/196 [09:48<04:41,  4.54s/it] 69%|██████▉   | 135/196 [09:51<04:04,  4.00s/it] 69%|██████▉   | 136/196 [09:54<03:42,  3.71s/it] 70%|██████▉   | 137/196 [09:57<03:25,  3.48s/it][codecarbon INFO @ 18:24:34] Energy consumed for RAM : 0.006327 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:24:34] Delta energy consumed for CPU with intel_rapl : 0.000577 kWh, power : 139.43142474310622 W
+[codecarbon INFO @ 18:24:34] Energy consumed for All CPU : 0.023159 kWh
+[codecarbon INFO @ 18:24:34] Energy consumed for all GPUs : 0.197893 kWh. Total GPU Power : 1213.0044888682796 W
+[codecarbon INFO @ 18:24:34] 0.227379 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:24:34] 0.000908 g.CO2eq/s mean an estimation of 28.62808147642127 kg.CO2eq/year
+ 70%|███████   | 138/196 [10:00<03:14,  3.35s/it] 71%|███████   | 139/196 [10:03<03:06,  3.27s/it] 71%|███████▏  | 140/196 [10:06<03:02,  3.26s/it]                                                  71%|███████▏  | 140/196 [10:06<03:02,  3.26s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A[codecarbon INFO @ 18:24:49] Energy consumed for RAM : 0.006485 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:24:49] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 138.8206941937098 W
+[codecarbon INFO @ 18:24:49] Energy consumed for All CPU : 0.023737 kWh
+[codecarbon INFO @ 18:24:49] Energy consumed for all GPUs : 0.203081 kWh. Total GPU Power : 1246.5268754945728 W
+[codecarbon INFO @ 18:24:49] 0.233303 kWh of electricity used since the beginning.
+
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 71%|███████▏  | 140/196 [10:18<03:02,  3.26s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 72%|███████▏  | 141/196 [10:21<06:13,  6.79s/it] 72%|███████▏  | 142/196 [10:24<05:09,  5.73s/it] 73%|███████▎  | 143/196 [10:27<04:19,  4.90s/it][codecarbon INFO @ 18:25:04] Energy consumed for RAM : 0.006644 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:25:04] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 138.90833015207437 W
+[codecarbon INFO @ 18:25:04] Energy consumed for All CPU : 0.024315 kWh
+[codecarbon INFO @ 18:25:04] Energy consumed for all GPUs : 0.208054 kWh. Total GPU Power : 1194.3195145724874 W
+[codecarbon INFO @ 18:25:04] 0.239012 kWh of electricity used since the beginning.
+ 73%|███████▎  | 144/196 [10:30<03:45,  4.33s/it] 74%|███████▍  | 145/196 [10:33<03:18,  3.89s/it] 74%|███████▍  | 146/196 [10:36<03:04,  3.68s/it] 75%|███████▌  | 147/196 [10:40<02:51,  3.51s/it] 76%|███████▌  | 148/196 [10:43<02:42,  3.39s/it][codecarbon INFO @ 18:25:19] Energy consumed for RAM : 0.006802 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:25:19] Delta energy consumed for CPU with intel_rapl : 0.000583 kWh, power : 138.90034230881798 W
+[codecarbon INFO @ 18:25:19] Energy consumed for All CPU : 0.024898 kWh
+[codecarbon INFO @ 18:25:19] Energy consumed for all GPUs : 0.212991 kWh. Total GPU Power : 1185.6575512088239 W
+[codecarbon INFO @ 18:25:19] 0.244691 kWh of electricity used since the beginning.
+ 76%|███████▌  | 149/196 [10:46<02:37,  3.35s/it] 77%|███████▋  | 150/196 [10:49<02:27,  3.20s/it]                                                  77%|███████▋  | 150/196 [10:49<02:27,  3.20s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.81it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.54it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.52it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A[codecarbon INFO @ 18:25:34] Energy consumed for RAM : 0.006960 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:25:34] Delta energy consumed for CPU with intel_rapl : 0.000580 kWh, power : 140.03329278634516 W
+[codecarbon INFO @ 18:25:34] Energy consumed for All CPU : 0.025478 kWh
+[codecarbon INFO @ 18:25:34] Energy consumed for all GPUs : 0.218155 kWh. Total GPU Power : 1240.110723817026 W
+[codecarbon INFO @ 18:25:34] 0.250593 kWh of electricity used since the beginning.
+
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A                                                 
+                                               [A 77%|███████▋  | 150/196 [11:01<02:27,  3.20s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A
+                                               [A 77%|███████▋  | 151/196 [11:04<05:06,  6.81s/it] 78%|███████▊  | 152/196 [11:07<04:14,  5.79s/it] 78%|███████▊  | 153/196 [11:11<03:36,  5.03s/it] 79%|███████▊  | 154/196 [11:14<03:03,  4.37s/it][codecarbon INFO @ 18:25:49] Energy consumed for RAM : 0.007118 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:25:49] Delta energy consumed for CPU with intel_rapl : 0.000576 kWh, power : 139.21647450671034 W
+[codecarbon INFO @ 18:25:49] Energy consumed for All CPU : 0.026054 kWh
+[codecarbon INFO @ 18:25:49] Energy consumed for all GPUs : 0.222977 kWh. Total GPU Power : 1157.918991756663 W
+[codecarbon INFO @ 18:25:49] 0.256150 kWh of electricity used since the beginning.
+ 79%|███████▉  | 155/196 [11:18<02:57,  4.32s/it] 80%|███████▉  | 156/196 [11:21<02:37,  3.93s/it] 80%|████████  | 157/196 [11:24<02:20,  3.61s/it] 81%|████████  | 158/196 [11:27<02:10,  3.44s/it][codecarbon INFO @ 18:26:04] Energy consumed for RAM : 0.007277 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:26:04] Delta energy consumed for CPU with intel_rapl : 0.000577 kWh, power : 138.35461092256406 W
+[codecarbon INFO @ 18:26:04] Energy consumed for All CPU : 0.026632 kWh
+[codecarbon INFO @ 18:26:04] Energy consumed for all GPUs : 0.227867 kWh. Total GPU Power : 1174.1385548198568 W
+[codecarbon INFO @ 18:26:04] 0.261775 kWh of electricity used since the beginning.
+ 81%|████████  | 159/196 [11:30<02:02,  3.31s/it] 82%|████████▏ | 160/196 [11:32<01:53,  3.16s/it]                                                  82%|████████▏ | 160/196 [11:33<01:53,  3.16s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A[codecarbon INFO @ 18:26:19] Energy consumed for RAM : 0.007435 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:26:19] Delta energy consumed for CPU with intel_rapl : 0.000584 kWh, power : 138.76239978892858 W
+[codecarbon INFO @ 18:26:19] Energy consumed for All CPU : 0.027216 kWh
+[codecarbon INFO @ 18:26:19] Energy consumed for all GPUs : 0.233137 kWh. Total GPU Power : 1265.3784167009198 W
+[codecarbon INFO @ 18:26:19] 0.267787 kWh of electricity used since the beginning.
+
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A                                                 
+                                               [A 82%|████████▏ | 160/196 [11:45<01:53,  3.16s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.10it/s][A
+                                               [A 82%|████████▏ | 161/196 [11:48<03:55,  6.72s/it] 83%|████████▎ | 162/196 [11:51<03:16,  5.79s/it] 83%|████████▎ | 163/196 [11:54<02:45,  5.00s/it] 84%|████████▎ | 164/196 [11:58<02:24,  4.52s/it][codecarbon INFO @ 18:26:34] Energy consumed for RAM : 0.007593 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:26:34] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 140.2200766627883 W
+[codecarbon INFO @ 18:26:34] Energy consumed for All CPU : 0.027794 kWh
+[codecarbon INFO @ 18:26:34] Energy consumed for all GPUs : 0.237964 kWh. Total GPU Power : 1159.355274109767 W
+[codecarbon INFO @ 18:26:34] 0.273351 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:26:34] 0.000911 g.CO2eq/s mean an estimation of 28.72142617625644 kg.CO2eq/year
+ 84%|████████▍ | 165/196 [12:01<02:06,  4.08s/it] 85%|████████▍ | 166/196 [12:04<01:51,  3.71s/it] 85%|████████▌ | 167/196 [12:07<01:46,  3.68s/it] 86%|████████▌ | 168/196 [12:10<01:38,  3.53s/it] 86%|████████▌ | 169/196 [12:13<01:30,  3.34s/it][codecarbon INFO @ 18:26:49] Energy consumed for RAM : 0.007751 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:26:49] Delta energy consumed for CPU with intel_rapl : 0.000576 kWh, power : 138.7603004751486 W
+[codecarbon INFO @ 18:26:49] Energy consumed for All CPU : 0.028370 kWh
+[codecarbon INFO @ 18:26:49] Energy consumed for all GPUs : 0.242806 kWh. Total GPU Power : 1162.8767394831182 W
+[codecarbon INFO @ 18:26:49] 0.278927 kWh of electricity used since the beginning.
+ 87%|████████▋ | 170/196 [12:16<01:22,  3.17s/it]                                                  87%|████████▋ | 170/196 [12:16<01:22,  3.17s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.38it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 87%|████████▋ | 170/196 [12:28<01:22,  3.17s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A[codecarbon INFO @ 18:27:04] Energy consumed for RAM : 0.007909 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:27:04] Delta energy consumed for CPU with intel_rapl : 0.000584 kWh, power : 138.46629875204536 W
+[codecarbon INFO @ 18:27:04] Energy consumed for All CPU : 0.028954 kWh
+[codecarbon INFO @ 18:27:04] Energy consumed for all GPUs : 0.248034 kWh. Total GPU Power : 1255.3703924701085 W
+[codecarbon INFO @ 18:27:04] 0.284898 kWh of electricity used since the beginning.
+ 87%|████████▋ | 171/196 [12:32<02:51,  6.87s/it] 88%|████████▊ | 172/196 [12:34<02:16,  5.68s/it] 88%|████████▊ | 173/196 [12:38<01:53,  4.93s/it] 89%|████████▉ | 174/196 [12:41<01:36,  4.41s/it] 89%|████████▉ | 175/196 [12:44<01:23,  3.96s/it][codecarbon INFO @ 18:27:19] Energy consumed for RAM : 0.008068 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:27:19] Delta energy consumed for CPU with intel_rapl : 0.000576 kWh, power : 140.15988260155615 W
+[codecarbon INFO @ 18:27:19] Energy consumed for All CPU : 0.029530 kWh
+[codecarbon INFO @ 18:27:19] Energy consumed for all GPUs : 0.252959 kWh. Total GPU Power : 1182.864833097033 W
+[codecarbon INFO @ 18:27:19] 0.290557 kWh of electricity used since the beginning.
+ 90%|████████▉ | 176/196 [12:47<01:14,  3.73s/it] 90%|█████████ | 177/196 [12:50<01:07,  3.54s/it] 91%|█████████ | 178/196 [12:54<01:04,  3.58s/it] 91%|█████████▏| 179/196 [12:57<00:57,  3.41s/it][codecarbon INFO @ 18:27:34] Energy consumed for RAM : 0.008226 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:27:34] Delta energy consumed for CPU with intel_rapl : 0.000576 kWh, power : 138.24111899520037 W
+[codecarbon INFO @ 18:27:34] Energy consumed for All CPU : 0.030105 kWh
+[codecarbon INFO @ 18:27:35] Energy consumed for all GPUs : 0.257788 kWh. Total GPU Power : 1159.5655023025522 W
+[codecarbon INFO @ 18:27:35] 0.296120 kWh of electricity used since the beginning.
+ 92%|█████████▏| 180/196 [13:00<00:54,  3.43s/it]                                                  92%|█████████▏| 180/196 [13:00<00:54,  3.43s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.31it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.27it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 92%|█████████▏| 180/196 [13:13<00:54,  3.43s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A[codecarbon INFO @ 18:27:49] Energy consumed for RAM : 0.008384 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:27:49] Delta energy consumed for CPU with intel_rapl : 0.000581 kWh, power : 138.33108335224856 W
+[codecarbon INFO @ 18:27:49] Energy consumed for All CPU : 0.030686 kWh
+[codecarbon INFO @ 18:27:49] Energy consumed for all GPUs : 0.263010 kWh. Total GPU Power : 1259.199351938133 W
+[codecarbon INFO @ 18:27:49] 0.302080 kWh of electricity used since the beginning.
+ 92%|█████████▏| 181/196 [13:15<01:44,  6.95s/it] 93%|█████████▎| 182/196 [13:18<01:20,  5.75s/it] 93%|█████████▎| 183/196 [13:21<01:03,  4.89s/it] 94%|█████████▍| 184/196 [13:24<00:51,  4.30s/it] 94%|█████████▍| 185/196 [13:27<00:43,  3.96s/it][codecarbon INFO @ 18:28:04] Energy consumed for RAM : 0.008542 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:28:04] Delta energy consumed for CPU with intel_rapl : 0.000577 kWh, power : 139.90364487677323 W
+[codecarbon INFO @ 18:28:04] Energy consumed for All CPU : 0.031263 kWh
+[codecarbon INFO @ 18:28:04] Energy consumed for all GPUs : 0.267874 kWh. Total GPU Power : 1167.8226774242266 W
+[codecarbon INFO @ 18:28:04] 0.307679 kWh of electricity used since the beginning.
+ 95%|█████████▍| 186/196 [13:31<00:37,  3.74s/it] 95%|█████████▌| 187/196 [13:33<00:31,  3.50s/it] 96%|█████████▌| 188/196 [13:36<00:26,  3.36s/it] 96%|█████████▋| 189/196 [13:40<00:23,  3.31s/it] 97%|█████████▋| 190/196 [13:43<00:20,  3.36s/it]                                                  97%|█████████▋| 190/196 [13:43<00:20,  3.36s/it]
+  0%|          | 0/28 [00:00<?, ?it/s][A
+  7%|▋         | 2/28 [00:00<00:06,  3.96it/s][A[codecarbon INFO @ 18:28:19] Energy consumed for RAM : 0.008700 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:28:19] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 138.60834298189405 W
+[codecarbon INFO @ 18:28:19] Energy consumed for All CPU : 0.031841 kWh
+[codecarbon INFO @ 18:28:19] Energy consumed for all GPUs : 0.272859 kWh. Total GPU Power : 1197.2368721760965 W
+[codecarbon INFO @ 18:28:19] 0.313400 kWh of electricity used since the beginning.
+
+ 11%|█         | 3/28 [00:01<00:08,  2.82it/s][A
+ 14%|█▍        | 4/28 [00:01<00:09,  2.55it/s][A
+ 18%|█▊        | 5/28 [00:01<00:09,  2.48it/s][A
+ 21%|██▏       | 6/28 [00:02<00:08,  2.59it/s][A
+ 25%|██▌       | 7/28 [00:02<00:08,  2.36it/s][A
+ 29%|██▊       | 8/28 [00:03<00:07,  2.53it/s][A
+ 32%|███▏      | 9/28 [00:03<00:07,  2.39it/s][A
+ 36%|███▌      | 10/28 [00:03<00:07,  2.54it/s][A
+ 39%|███▉      | 11/28 [00:04<00:07,  2.38it/s][A
+ 43%|████▎     | 12/28 [00:04<00:06,  2.45it/s][A
+ 46%|████▋     | 13/28 [00:05<00:06,  2.36it/s][A
+ 50%|█████     | 14/28 [00:05<00:06,  2.32it/s][A
+ 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s][A
+ 57%|█████▋    | 16/28 [00:06<00:04,  2.42it/s][A
+ 61%|██████    | 17/28 [00:06<00:04,  2.27it/s][A
+ 64%|██████▍   | 18/28 [00:07<00:04,  2.38it/s][A
+ 68%|██████▊   | 19/28 [00:07<00:03,  2.51it/s][A
+ 71%|███████▏  | 20/28 [00:08<00:03,  2.34it/s][A
+ 75%|███████▌  | 21/28 [00:08<00:03,  2.29it/s][A
+ 79%|███████▊  | 22/28 [00:09<00:02,  2.22it/s][A
+ 82%|████████▏ | 23/28 [00:09<00:02,  2.26it/s][A
+ 86%|████████▌ | 24/28 [00:09<00:01,  2.29it/s][A
+ 89%|████████▉ | 25/28 [00:10<00:01,  2.19it/s][A
+ 93%|█████████▎| 26/28 [00:10<00:00,  2.19it/s][A
+ 96%|█████████▋| 27/28 [00:11<00:00,  2.13it/s][A
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A                                                 
+                                               [A 97%|█████████▋| 190/196 [13:55<00:20,  3.36s/it]
+100%|██████████| 28/28 [00:11<00:00,  2.11it/s][A
+                                               [A 97%|█████████▋| 191/196 [13:59<00:34,  6.97s/it][codecarbon INFO @ 18:28:34] Energy consumed for RAM : 0.008858 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:28:34] Delta energy consumed for CPU with intel_rapl : 0.000579 kWh, power : 138.7510864832358 W
+[codecarbon INFO @ 18:28:34] Energy consumed for All CPU : 0.032420 kWh
+[codecarbon INFO @ 18:28:34] Energy consumed for all GPUs : 0.277987 kWh. Total GPU Power : 1232.0675793117748 W
+[codecarbon INFO @ 18:28:34] 0.319265 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:28:34] 0.000909 g.CO2eq/s mean an estimation of 28.67639125202736 kg.CO2eq/year
+ 98%|█████████▊| 192/196 [14:02<00:23,  5.81s/it] 98%|█████████▊| 193/196 [14:05<00:14,  4.96s/it] 99%|█████████▉| 194/196 [14:08<00:08,  4.48s/it] 99%|█████████▉| 195/196 [14:11<00:04,  4.04s/it]100%|██████████| 196/196 [14:13<00:00,  3.50s/it]wandb: WARNING The get_url method is deprecated and will be removed in a future release. Please use `run.url` instead.
+wandb: WARNING URL not available in offline run
+[codecarbon INFO @ 18:28:49] Energy consumed for RAM : 0.009016 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:28:49] Delta energy consumed for CPU with intel_rapl : 0.000578 kWh, power : 139.14717272481187 W
+[codecarbon INFO @ 18:28:49] Energy consumed for All CPU : 0.032998 kWh
+[codecarbon INFO @ 18:28:49] Energy consumed for all GPUs : 0.282701 kWh. Total GPU Power : 1134.2673771551072 W
+[codecarbon INFO @ 18:28:49] 0.324715 kWh of electricity used since the beginning.
+[codecarbon INFO @ 18:29:04] Energy consumed for RAM : 0.009174 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:29:04] Delta energy consumed for CPU with intel_rapl : 0.000605 kWh, power : 139.5847168123423 W
+[codecarbon INFO @ 18:29:04] Energy consumed for All CPU : 0.033603 kWh
+[codecarbon INFO @ 18:29:04] Energy consumed for all GPUs : 0.284171 kWh. Total GPU Power : 353.12409650736623 W
+[codecarbon INFO @ 18:29:04] 0.326948 kWh of electricity used since the beginning.
+                                                 100%|██████████| 196/196 [14:38<00:00,  3.50s/it][codecarbon INFO @ 18:29:13] Energy consumed for RAM : 0.009266 kWh. RAM Power : 38.0 W
+[codecarbon INFO @ 18:29:13] Delta energy consumed for CPU with intel_rapl : 0.000349 kWh, power : 145.21799389197096 W
+[codecarbon INFO @ 18:29:13] Energy consumed for All CPU : 0.033952 kWh
+[codecarbon INFO @ 18:29:13] Energy consumed for all GPUs : 0.285019 kWh. Total GPU Power : 351.39093085978595 W
+[codecarbon INFO @ 18:29:13] 0.328237 kWh of electricity used since the beginning.
+100%|██████████| 196/196 [14:38<00:00,  4.48s/it]
+[rank0]:[W707 18:29:23.789184638 ProcessGroupNCCL.cpp:1479] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

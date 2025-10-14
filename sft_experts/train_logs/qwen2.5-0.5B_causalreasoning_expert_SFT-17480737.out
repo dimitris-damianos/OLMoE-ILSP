@@ -1,0 +1,210 @@
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/hf_cache/models--Qwen--Qwen2.5-0.5B/snapshots/060db6499f32faf8b98477b0a26969ef7d8b9987', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name='12ml/e-CARE', dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, output_dir='/leonardo_work/EUHPC_A06_067/experts/causalreasoning_expert_Qwen2.5-0.5B_SFT', per_device_train_batch_size=4, gradient_accumulation_steps=8, num_train_epochs=2, learning_rate=2e-05, logging_steps=10, save_steps=500, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, max_length=2048, packing=False, completion_only_loss=True, resume_from_checkpoint=None, neftune_noise_alpha=None, activation_offloading=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.95, adam_epsilon=1e-05, lr_scheduler_type='linear', warmup_ratio=0.03, use_lora=False, lora_r=16, lora_alpha=32, lora_dropout=0.05, use_rslora=False, push_to_hub=False, instruction_format='e-care_causal_reasoning')
+
+Initializing tokenizer and model...
+Loading dataset...
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+activation_offloading=False,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.95,
+adam_epsilon=1e-05,
+assistant_only_loss=False,
+auto_find_batch_size=False,
+average_tokens_across_devices=True,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chat_template_path=None,
+completion_only_loss=True,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=steps,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=8,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_revision=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=2e-05,
+length_column_name=length,
+liger_kernel_config=None,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/experts/causalreasoning_expert_Qwen2.5-0.5B_SFT/runs/Jul08_15-50-11_lrdn1683.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=linear,
+max_grad_norm=1.0,
+max_length=2048,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=2,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/experts/causalreasoning_expert_Qwen2.5-0.5B_SFT,
+overwrite_output_dir=False,
+packing=False,
+packing_strategy=ffd,
+pad_to_multiple_of=None,
+pad_token=<PAD_TOKEN>,
+padding_free=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['wandb', 'codecarbon'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/experts/causalreasoning_expert_Qwen2.5-0.5B_SFT,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+
+Trainable parameters: 494032768 / 494032768 (100.00%)
+Starting training...
+{'loss': 0.2092, 'grad_norm': 3.3339197635650635, 'learning_rate': 1.991150442477876e-05, 'num_tokens': 76527.0, 'mean_token_accuracy': 0.9302418820559979, 'epoch': 0.09}
+{'eval_loss': 0.07123485207557678, 'eval_runtime': 1.942, 'eval_samples_per_second': 1092.662, 'eval_steps_per_second': 34.5, 'eval_num_tokens': 76527.0, 'eval_mean_token_accuracy': 0.9654516542135779, 'epoch': 0.09}
+{'loss': 0.0713, 'grad_norm': 2.913011074066162, 'learning_rate': 1.9026548672566376e-05, 'num_tokens': 153037.0, 'mean_token_accuracy': 0.9669843651354313, 'epoch': 0.17}
+{'eval_loss': 0.06631117314100266, 'eval_runtime': 1.9366, 'eval_samples_per_second': 1095.74, 'eval_steps_per_second': 34.597, 'eval_num_tokens': 153037.0, 'eval_mean_token_accuracy': 0.9713647249919265, 'epoch': 0.17}
+{'loss': 0.0627, 'grad_norm': 2.301952838897705, 'learning_rate': 1.8141592920353983e-05, 'num_tokens': 229417.0, 'mean_token_accuracy': 0.9735239826142787, 'epoch': 0.26}
+{'eval_loss': 0.060766566544771194, 'eval_runtime': 1.9334, 'eval_samples_per_second': 1097.575, 'eval_steps_per_second': 34.655, 'eval_num_tokens': 229417.0, 'eval_mean_token_accuracy': 0.9738066187545434, 'epoch': 0.26}
+{'loss': 0.0599, 'grad_norm': 2.773350715637207, 'learning_rate': 1.7256637168141594e-05, 'num_tokens': 306077.0, 'mean_token_accuracy': 0.9723927348852157, 'epoch': 0.34}
+{'eval_loss': 0.06477568298578262, 'eval_runtime': 1.9332, 'eval_samples_per_second': 1097.65, 'eval_steps_per_second': 34.657, 'eval_num_tokens': 306077.0, 'eval_mean_token_accuracy': 0.9734337774675283, 'epoch': 0.34}
+{'loss': 0.0593, 'grad_norm': 2.407050371170044, 'learning_rate': 1.6371681415929206e-05, 'num_tokens': 382560.0, 'mean_token_accuracy': 0.9746375322341919, 'epoch': 0.43}
+{'eval_loss': 0.057804737240076065, 'eval_runtime': 1.9498, 'eval_samples_per_second': 1088.304, 'eval_steps_per_second': 34.362, 'eval_num_tokens': 382560.0, 'eval_mean_token_accuracy': 0.9765483452312982, 'epoch': 0.43}
+{'loss': 0.057, 'grad_norm': 3.1639111042022705, 'learning_rate': 1.5486725663716813e-05, 'num_tokens': 458942.0, 'mean_token_accuracy': 0.973807480186224, 'epoch': 0.51}
+{'eval_loss': 0.05840293690562248, 'eval_runtime': 1.9373, 'eval_samples_per_second': 1095.358, 'eval_steps_per_second': 34.585, 'eval_num_tokens': 458942.0, 'eval_mean_token_accuracy': 0.9761449018521096, 'epoch': 0.51}
+{'loss': 0.0533, 'grad_norm': 2.280406951904297, 'learning_rate': 1.4601769911504426e-05, 'num_tokens': 535763.0, 'mean_token_accuracy': 0.975471493601799, 'epoch': 0.6}
+{'eval_loss': 0.056381259113550186, 'eval_runtime': 1.938, 'eval_samples_per_second': 1094.951, 'eval_steps_per_second': 34.572, 'eval_num_tokens': 535763.0, 'eval_mean_token_accuracy': 0.974138841700198, 'epoch': 0.6}
+{'loss': 0.0492, 'grad_norm': 1.9613287448883057, 'learning_rate': 1.3716814159292036e-05, 'num_tokens': 612301.0, 'mean_token_accuracy': 0.9777382500469685, 'epoch': 0.69}
+{'eval_loss': 0.05876709148287773, 'eval_runtime': 1.9391, 'eval_samples_per_second': 1094.321, 'eval_steps_per_second': 34.552, 'eval_num_tokens': 612301.0, 'eval_mean_token_accuracy': 0.9768542967625519, 'epoch': 0.69}
+{'loss': 0.0571, 'grad_norm': 2.0996901988983154, 'learning_rate': 1.2831858407079647e-05, 'num_tokens': 688640.0, 'mean_token_accuracy': 0.9736896060407162, 'epoch': 0.77}
+{'eval_loss': 0.055016111582517624, 'eval_runtime': 1.9349, 'eval_samples_per_second': 1096.716, 'eval_steps_per_second': 34.628, 'eval_num_tokens': 688640.0, 'eval_mean_token_accuracy': 0.9759367099448816, 'epoch': 0.77}
+{'loss': 0.049, 'grad_norm': 2.2095818519592285, 'learning_rate': 1.1946902654867258e-05, 'num_tokens': 765218.0, 'mean_token_accuracy': 0.9800322413444519, 'epoch': 0.86}
+{'eval_loss': 0.05663644149899483, 'eval_runtime': 1.9322, 'eval_samples_per_second': 1098.254, 'eval_steps_per_second': 34.676, 'eval_num_tokens': 765218.0, 'eval_mean_token_accuracy': 0.9762835591586668, 'epoch': 0.86}
+{'loss': 0.0522, 'grad_norm': 2.0510919094085693, 'learning_rate': 1.1061946902654867e-05, 'num_tokens': 841970.0, 'mean_token_accuracy': 0.9762183062732219, 'epoch': 0.94}
+{'eval_loss': 0.05407121777534485, 'eval_runtime': 1.9361, 'eval_samples_per_second': 1096.04, 'eval_steps_per_second': 34.606, 'eval_num_tokens': 841970.0, 'eval_mean_token_accuracy': 0.9779024542267643, 'epoch': 0.94}
+{'loss': 0.039, 'grad_norm': 0.8939998149871826, 'learning_rate': 1.0176991150442479e-05, 'num_tokens': 916231.0, 'mean_token_accuracy': 0.9840565246421021, 'epoch': 1.03}
+{'eval_loss': 0.05699419975280762, 'eval_runtime': 1.935, 'eval_samples_per_second': 1096.629, 'eval_steps_per_second': 34.625, 'eval_num_tokens': 916231.0, 'eval_mean_token_accuracy': 0.9781704402681607, 'epoch': 1.03}
+{'loss': 0.0172, 'grad_norm': 1.0498847961425781, 'learning_rate': 9.29203539823009e-06, 'num_tokens': 992920.0, 'mean_token_accuracy': 0.9931425735354423, 'epoch': 1.11}
+{'eval_loss': 0.061036448925733566, 'eval_runtime': 1.9379, 'eval_samples_per_second': 1094.981, 'eval_steps_per_second': 34.573, 'eval_num_tokens': 992920.0, 'eval_mean_token_accuracy': 0.9796537836985801, 'epoch': 1.11}
+{'loss': 0.0145, 'grad_norm': 1.378114938735962, 'learning_rate': 8.4070796460177e-06, 'num_tokens': 1069244.0, 'mean_token_accuracy': 0.9957469396293164, 'epoch': 1.2}
+{'eval_loss': 0.06702058762311935, 'eval_runtime': 1.943, 'eval_samples_per_second': 1092.12, 'eval_steps_per_second': 34.483, 'eval_num_tokens': 1069244.0, 'eval_mean_token_accuracy': 0.9792584821359435, 'epoch': 1.2}
+{'loss': 0.016, 'grad_norm': 1.488241195678711, 'learning_rate': 7.5221238938053095e-06, 'num_tokens': 1146305.0, 'mean_token_accuracy': 0.994538963586092, 'epoch': 1.28}
+{'eval_loss': 0.05832706391811371, 'eval_runtime': 1.9462, 'eval_samples_per_second': 1090.356, 'eval_steps_per_second': 34.427, 'eval_num_tokens': 1146305.0, 'eval_mean_token_accuracy': 0.9794085096957078, 'epoch': 1.28}
+{'loss': 0.0126, 'grad_norm': 1.4302390813827515, 'learning_rate': 6.6371681415929215e-06, 'num_tokens': 1222604.0, 'mean_token_accuracy': 0.9957402072846889, 'epoch': 1.37}
+{'eval_loss': 0.061561692506074905, 'eval_runtime': 1.9327, 'eval_samples_per_second': 1097.97, 'eval_steps_per_second': 34.667, 'eval_num_tokens': 1222604.0, 'eval_mean_token_accuracy': 0.9790840833934386, 'epoch': 1.37}
+{'loss': 0.0115, 'grad_norm': 1.5585304498672485, 'learning_rate': 5.752212389380532e-06, 'num_tokens': 1299034.0, 'mean_token_accuracy': 0.9961375780403614, 'epoch': 1.45}
+{'eval_loss': 0.07436030358076096, 'eval_runtime': 1.9332, 'eval_samples_per_second': 1097.641, 'eval_steps_per_second': 34.657, 'eval_num_tokens': 1299034.0, 'eval_mean_token_accuracy': 0.9794773041312375, 'epoch': 1.45}
+{'loss': 0.0121, 'grad_norm': 1.5867607593536377, 'learning_rate': 4.867256637168142e-06, 'num_tokens': 1375527.0, 'mean_token_accuracy': 0.9956277437508106, 'epoch': 1.54}
+{'eval_loss': 0.06769149750471115, 'eval_runtime': 1.9438, 'eval_samples_per_second': 1091.665, 'eval_steps_per_second': 34.468, 'eval_num_tokens': 1375527.0, 'eval_mean_token_accuracy': 0.9792935439010164, 'epoch': 1.54}
+{'loss': 0.0134, 'grad_norm': 1.165074348449707, 'learning_rate': 3.982300884955752e-06, 'num_tokens': 1452310.0, 'mean_token_accuracy': 0.9946836993098259, 'epoch': 1.63}
+{'eval_loss': 0.05962382256984711, 'eval_runtime': 1.9369, 'eval_samples_per_second': 1095.587, 'eval_steps_per_second': 34.592, 'eval_num_tokens': 1452310.0, 'eval_mean_token_accuracy': 0.9792890094999057, 'epoch': 1.63}
+{'loss': 0.0148, 'grad_norm': 1.335415005683899, 'learning_rate': 3.097345132743363e-06, 'num_tokens': 1528738.0, 'mean_token_accuracy': 0.9948014192283153, 'epoch': 1.71}
+{'eval_loss': 0.062034398317337036, 'eval_runtime': 1.9434, 'eval_samples_per_second': 1091.92, 'eval_steps_per_second': 34.476, 'eval_num_tokens': 1528738.0, 'eval_mean_token_accuracy': 0.979215744716018, 'epoch': 1.71}
+{'loss': 0.013, 'grad_norm': 1.6372897624969482, 'learning_rate': 2.212389380530974e-06, 'num_tokens': 1605616.0, 'mean_token_accuracy': 0.9953247115015984, 'epoch': 1.8}
+{'eval_loss': 0.059843987226486206, 'eval_runtime': 1.9424, 'eval_samples_per_second': 1092.476, 'eval_steps_per_second': 34.494, 'eval_num_tokens': 1605616.0, 'eval_mean_token_accuracy': 0.979259898413473, 'epoch': 1.8}
+{'loss': 0.0107, 'grad_norm': 1.276289939880371, 'learning_rate': 1.3274336283185843e-06, 'num_tokens': 1682129.0, 'mean_token_accuracy': 0.9960836663842201, 'epoch': 1.88}
+{'eval_loss': 0.06174517050385475, 'eval_runtime': 1.9353, 'eval_samples_per_second': 1096.475, 'eval_steps_per_second': 34.62, 'eval_num_tokens': 1682129.0, 'eval_mean_token_accuracy': 0.9787490510228855, 'epoch': 1.88}
+{'loss': 0.0117, 'grad_norm': 1.4204350709915161, 'learning_rate': 4.4247787610619474e-07, 'num_tokens': 1757812.0, 'mean_token_accuracy': 0.9956681862473488, 'epoch': 1.97}
+{'eval_loss': 0.06142980605363846, 'eval_runtime': 1.9371, 'eval_samples_per_second': 1095.439, 'eval_steps_per_second': 34.587, 'eval_num_tokens': 1757812.0, 'eval_mean_token_accuracy': 0.9786243518786644, 'epoch': 1.97}
+{'train_runtime': 257.6706, 'train_samples_per_second': 115.869, 'train_steps_per_second': 0.908, 'train_loss': 0.04148288523284798, 'num_tokens': 1785610.0, 'mean_token_accuracy': 0.99576814421292, 'epoch': 2.0}
+Training complete. Saving model...
+Model saved to /leonardo_work/EUHPC_A06_067/experts/causalreasoning_expert_Qwen2.5-0.5B_SFT
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20250708_154954-c9ntf2tr[0m
+[1;34mwandb[0m: Find logs at: [1;35m../wandb/offline-run-20250708_154954-c9ntf2tr/logs[0m

@@ -178,7 +178,7 @@ def main():
 
     args = parser.parse_args()
 
-    # NOTE: packing is compatible now with masking
+    # NOTE: packing is compatible now with masking (transformers version 4.54?)
     # if args.packing and (args.completion_only_loss or args.assistant_only_loss):
     #     raise ValueError("Cannot use --packing together with --completion_only_loss or --assistant_only_loss.")
 
@@ -236,9 +236,9 @@ def main():
         device_map=get_kbit_device_map() if quantization_config is not None else None,
         quantization_config=quantization_config,
         torch_dtype=torch.bfloat16,
-        # attn_implementation="flash_attention_2",  # TODO: add as param
+        attn_implementation="flash_attention_2",  # TODO: add as param
     )
-    # model.config.attn_implementation = "flash_attention_2"
+    model.config.attn_implementation = "flash_attention_2"
     model.config.use_cache = False if args.gradient_checkpointing else True
     gradient_checkpointing_kwargs = None
     if args.gradient_checkpointing:
@@ -347,9 +347,9 @@ def main():
             "wikiqa": map_wikiqa_to_prompt_completion,
             "wikiqa_chat": map_wikiqa_to_conversation,
         }
+        # convert dataset to prompt-completion (instruction) or conversational format
         mapping_fn = map_functions[args.instruction_format]
 
-        # convert dataset to prompt-completion (instruction) or conversational format
         # NOTE: internally the SFTTrainer uses tha apply_chat_template() method and tokenizes
         train_dataset = dataset[args.train_split].map(
             mapping_fn,
@@ -408,6 +408,7 @@ def main():
     sft_config = SFTConfig(
         output_dir=args.output_dir,
         per_device_train_batch_size=args.per_device_train_batch_size,
+        per_device_eval_batch_size = args.per_device_train_batch_size,
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         learning_rate=args.learning_rate,
         num_train_epochs=args.num_train_epochs,
@@ -468,7 +469,6 @@ def main():
         if latest_ckpt is not None:
             resume_checkpoint = latest_ckpt
             latest = "latest "
-
     if resume_checkpoint:
         accelerator.print(f"Resuming training from {latest}checkpoint: {resume_checkpoint}...")
         trainer.train(resume_from_checkpoint=resume_checkpoint)
