@@ -34,10 +34,10 @@ def create_qwen3_moe_from_specialists(
     base_model = Qwen3ForCausalLM.from_pretrained(base_model_path)
     base_state_dict = base_model.state_dict()
     
-    with open('./ddam_log/moe_config.txt','w') as f:
+    with open('./mzoumpou_logs/moe_config.txt','w') as f:
         f.write(str(moe_config))
 
-    with open('./ddam_log/base_config.txt','w') as f:
+    with open('./mzoumpou_logs/base_config.txt','w') as f:
         f.write(str(base_model.config))
     
     moe_config.moe_intermediate_size = base_model.config.intermediate_size

@@ -6,24 +6,28 @@ Loading cuda/12.2
 Starting training for ddam_qwen3_moe-base_12_math
 
 Training config:
-Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
 
 
 Training config:
-Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
 
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
 Initializing tokenizer and model...
 
 Training config:
-Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
-
-Initializing tokenizer and model...
-
-Training config:
-Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3moe_base-12_coef-1_top-p_latent', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=False, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split=None, data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=0.0005, logging_steps=10, save_steps=100, eval_steps=10, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=True, lora_r=64, lora_alpha=32.0, lora_dropout=0.05, use_rslora=True, lora_experts=True, lora_base=True, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
 
 Initializing tokenizer and model...
 Initializing tokenizer and model...
+Loading Qwen3withRIM MoE model...Loading Qwen3withRIM MoE model...
+
+Loading Qwen3withRIM MoE model...
+Loading Qwen3withRIM MoE model...
 Qwen3ForCausalLMWithRIM(
   (model): Qwen3ModelWithRIM(
     (embed_tokens): Embedding(151936, 1024)
@@ -62,12 +66,11 @@ Qwen3ForCausalLMWithRIM(
 )
 Qwen3WithRIMConfig {
   "architectures": [
-    "Qwen3MoeForCausalLM"
+    "Qwen3ForCausalLMWithRIM"
   ],
   "attention_bias": false,
   "attention_dropout": 0.0,
   "bos_token_id": 151643,
-  "decoder_sparse_step": 1,
   "detach_null_states": false,
   "eos_token_id": 151645,
   "expert_attn_size": 64,
@@ -80,13 +83,9 @@ Qwen3WithRIMConfig {
   "intermediate_size": 3072,
   "max_position_embeddings": 40960,
   "max_window_layers": 28,
-  "mlp_only_layers": [],
   "model_type": "qwen3moe_with_rim",
-  "moe_intermediate_size": 3072,
-  "norm_topk_prob": false,
   "num_attention_heads": 16,
   "num_experts": 12,
-  "num_experts_per_tok": 2,
   "num_hidden_layers": 28,
   "num_key_value_heads": 8,
   "output_expert_mask": true,
@@ -144,12 +143,11 @@ Qwen3ForCausalLMWithRIM(
 )
 Qwen3WithRIMConfig {
   "architectures": [
-    "Qwen3MoeForCausalLM"
+    "Qwen3ForCausalLMWithRIM"
   ],
   "attention_bias": false,
   "attention_dropout": 0.0,
   "bos_token_id": 151643,
-  "decoder_sparse_step": 1,
   "detach_null_states": false,
   "eos_token_id": 151645,
   "expert_attn_size": 64,
@@ -162,13 +160,9 @@ Qwen3WithRIMConfig {
   "intermediate_size": 3072,
   "max_position_embeddings": 40960,
   "max_window_layers": 28,
-  "mlp_only_layers": [],
   "model_type": "qwen3moe_with_rim",
-  "moe_intermediate_size": 3072,
-  "norm_topk_prob": false,
   "num_attention_heads": 16,
   "num_experts": 12,
-  "num_experts_per_tok": 2,
   "num_hidden_layers": 28,
   "num_key_value_heads": 8,
   "output_expert_mask": true,
@@ -224,6 +218,47 @@ Qwen3ForCausalLMWithRIM(
   )
   (lm_head): Linear(in_features=1024, out_features=151936, bias=False)
 )
+Qwen3WithRIMConfig {
+  "architectures": [
+    "Qwen3ForCausalLMWithRIM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "detach_null_states": false,
+  "eos_token_id": 151645,
+  "expert_attn_size": 64,
+  "experts_top_k": 2,
+  "experts_top_p": 0.5,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 40960,
+  "max_window_layers": 28,
+  "model_type": "qwen3moe_with_rim",
+  "num_attention_heads": 16,
+  "num_experts": 12,
+  "num_hidden_layers": 28,
+  "num_key_value_heads": 8,
+  "output_expert_mask": true,
+  "output_router_logits": true,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "router_aux_loss_coef": 1.0,
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.52.4",
+  "use_cache": true,
+  "use_dynamic_routing": false,
+  "use_latent_states": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
 Qwen3ForCausalLMWithRIM(
   (model): Qwen3ModelWithRIM(
     (embed_tokens): Embedding(151936, 1024)
@@ -262,12 +297,11 @@ Qwen3ForCausalLMWithRIM(
 )
 Qwen3WithRIMConfig {
   "architectures": [
-    "Qwen3MoeForCausalLM"
+    "Qwen3ForCausalLMWithRIM"
   ],
   "attention_bias": false,
   "attention_dropout": 0.0,
   "bos_token_id": 151643,
-  "decoder_sparse_step": 1,
   "detach_null_states": false,
   "eos_token_id": 151645,
   "expert_attn_size": 64,
@@ -280,59 +314,9 @@ Qwen3WithRIMConfig {
   "intermediate_size": 3072,
   "max_position_embeddings": 40960,
   "max_window_layers": 28,
-  "mlp_only_layers": [],
   "model_type": "qwen3moe_with_rim",
-  "moe_intermediate_size": 3072,
-  "norm_topk_prob": false,
   "num_attention_heads": 16,
   "num_experts": 12,
-  "num_experts_per_tok": 2,
-  "num_hidden_layers": 28,
-  "num_key_value_heads": 8,
-  "output_expert_mask": true,
-  "output_router_logits": true,
-  "rms_norm_eps": 1e-06,
-  "rope_scaling": null,
-  "rope_theta": 1000000,
-  "router_aux_loss_coef": 1.0,
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "torch_dtype": "bfloat16",
-  "transformers_version": "4.52.4",
-  "use_cache": true,
-  "use_dynamic_routing": false,
-  "use_latent_states": false,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
-Qwen3WithRIMConfig {
-  "architectures": [
-    "Qwen3MoeForCausalLM"
-  ],
-  "attention_bias": false,
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "decoder_sparse_step": 1,
-  "detach_null_states": false,
-  "eos_token_id": 151645,
-  "expert_attn_size": 64,
-  "experts_top_k": 2,
-  "experts_top_p": 0.5,
-  "head_dim": 128,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 3072,
-  "max_position_embeddings": 40960,
-  "max_window_layers": 28,
-  "mlp_only_layers": [],
-  "model_type": "qwen3moe_with_rim",
-  "moe_intermediate_size": 3072,
-  "norm_topk_prob": false,
-  "num_attention_heads": 16,
-  "num_experts": 12,
-  "num_experts_per_tok": 2,
   "num_hidden_layers": 28,
   "num_key_value_heads": 8,
   "output_expert_mask": true,
@@ -369,8 +353,8 @@ Using LoRA adapters.
 Using LoRA adapters.
 
 Using LoRA adapters.
-Using LoRA adapters.
 
+Using LoRA adapters.
 
 SFT config:
 SFTConfig(
@@ -452,153 +436,7 @@ local_rank=1,
 log_level=passive,
 log_level_replica=warning,
 log_on_each_node=True,
-logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
-logging_first_step=False,
-logging_nan_inf_filter=True,
-logging_steps=10,
-logging_strategy=steps,
-lr_scheduler_kwargs={},
-lr_scheduler_type=cosine,
-max_grad_norm=1.0,
-max_length=4096,
-max_seq_length=None,
-max_steps=-1,
-metric_for_best_model=None,
-model_init_kwargs={'attn_implementation': 'flash_attention_2'},
-mp_parameters=,
-neftune_noise_alpha=None,
-no_cuda=False,
-num_of_sequences=None,
-num_train_epochs=3,
-optim=adamw_torch_fused,
-optim_args=None,
-optim_target_modules=None,
-output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
-overwrite_output_dir=False,
-packing=False,
-pad_token=<PAD_TOKEN>,
-padding_free=True,
-past_index=-1,
-per_device_eval_batch_size=4,
-per_device_train_batch_size=4,
-prediction_loss_only=False,
-push_to_hub=False,
-push_to_hub_model_id=None,
-push_to_hub_organization=None,
-push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
-ray_scope=last,
-remove_unused_columns=True,
-report_to=['tensorboard', 'wandb'],
-restore_callback_states_from_checkpoint=False,
-resume_from_checkpoint=None,
-run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
-save_on_each_node=False,
-save_only_model=False,
-save_safetensors=True,
-save_steps=100,
-save_strategy=steps,
-save_total_limit=None,
-seed=42,
-skip_memory_metrics=True,
-tf32=True,
-torch_compile=False,
-torch_compile_backend=None,
-torch_compile_mode=None,
-torch_empty_cache_steps=None,
-torchdynamo=None,
-tpu_metrics_debug=False,
-tpu_num_cores=None,
-use_cpu=False,
-use_ipex=False,
-use_legacy_prediction_loop=False,
-use_liger=None,
-use_liger_kernel=False,
-use_mps_device=False,
-warmup_ratio=0.03,
-warmup_steps=0,
-weight_decay=0.1,
-)
-SFT config:
-SFTConfig(
-_n_gpu=1,
-accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
-adafactor=False,
-adam_beta1=0.9,
-adam_beta2=0.999,
-adam_epsilon=1e-05,
-auto_find_batch_size=False,
-average_tokens_across_devices=False,
-batch_eval_metrics=False,
-bf16=True,
-bf16_full_eval=False,
-chars_per_token=<CHARS_PER_TOKEN>,
-completion_only_loss=None,
-data_seed=None,
-dataloader_drop_last=False,
-dataloader_num_workers=32,
-dataloader_persistent_workers=True,
-dataloader_pin_memory=True,
-dataloader_prefetch_factor=None,
-dataset_batch_size=None,
-dataset_kwargs=None,
-dataset_num_proc=None,
-dataset_text_field=text,
-ddp_backend=None,
-ddp_broadcast_buffers=None,
-ddp_bucket_cap_mb=None,
-ddp_find_unused_parameters=None,
-ddp_timeout=1800000,
-debug=[],
-deepspeed=None,
-disable_tqdm=True,
-do_eval=False,
-do_predict=False,
-do_train=False,
-eos_token=<EOS_TOKEN>,
-eval_accumulation_steps=None,
-eval_delay=0,
-eval_do_concat_batches=True,
-eval_on_start=False,
-eval_packing=None,
-eval_steps=10,
-eval_strategy=no,
-eval_use_gather_object=False,
-fp16=False,
-fp16_backend=auto,
-fp16_full_eval=False,
-fp16_opt_level=O1,
-fsdp=[],
-fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
-fsdp_min_num_params=0,
-fsdp_transformer_layer_cls_to_wrap=None,
-full_determinism=False,
-gradient_accumulation_steps=4,
-gradient_checkpointing=True,
-gradient_checkpointing_kwargs={'use_reentrant': False},
-greater_is_better=None,
-group_by_length=False,
-half_precision_backend=auto,
-hub_always_push=False,
-hub_model_id=None,
-hub_private_repo=None,
-hub_strategy=every_save,
-hub_token=<HUB_TOKEN>,
-ignore_data_skip=False,
-include_for_metrics=[],
-include_inputs_for_metrics=False,
-include_num_input_tokens_seen=False,
-include_tokens_per_second=False,
-jit_mode_eval=False,
-label_names=None,
-label_smoothing_factor=0.0,
-learning_rate=0.0005,
-length_column_name=length,
-load_best_model_at_end=False,
-local_rank=2,
-log_level=passive,
-log_level_replica=warning,
-log_on_each_node=True,
-logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct10_08-17-22_lrdn2590.leonardo.local,
 logging_first_step=False,
 logging_nan_inf_filter=True,
 logging_steps=10,
@@ -744,7 +582,7 @@ local_rank=3,
 log_level=passive,
 log_level_replica=warning,
 log_on_each_node=True,
-logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct10_08-17-22_lrdn2590.leonardo.local,
 logging_first_step=False,
 logging_nan_inf_filter=True,
 logging_steps=10,
@@ -890,7 +728,153 @@ local_rank=0,
 log_level=passive,
 log_level_replica=warning,
 log_on_each_node=True,
-logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct06_14-05-19_lrdn2572.leonardo.local,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct10_08-17-22_lrdn2590.leonardo.local,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=steps,
+lr_scheduler_kwargs={},
+lr_scheduler_type=cosine,
+max_grad_norm=1.0,
+max_length=4096,
+max_seq_length=None,
+max_steps=-1,
+metric_for_best_model=None,
+model_init_kwargs={'attn_implementation': 'flash_attention_2'},
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_of_sequences=None,
+num_train_epochs=3,
+optim=adamw_torch_fused,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+overwrite_output_dir=False,
+packing=False,
+pad_token=<PAD_TOKEN>,
+padding_free=True,
+past_index=-1,
+per_device_eval_batch_size=4,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=['tensorboard', 'wandb'],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=100,
+save_strategy=steps,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+tf32=True,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger=None,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.03,
+warmup_steps=0,
+weight_decay=0.1,
+)
+SFT config:
+SFTConfig(
+_n_gpu=1,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-05,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=True,
+bf16_full_eval=False,
+chars_per_token=<CHARS_PER_TOKEN>,
+completion_only_loss=None,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=32,
+dataloader_persistent_workers=True,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+dataset_batch_size=None,
+dataset_kwargs=None,
+dataset_num_proc=None,
+dataset_text_field=text,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800000,
+debug=[],
+deepspeed=None,
+disable_tqdm=True,
+do_eval=False,
+do_predict=False,
+do_train=False,
+eos_token=<EOS_TOKEN>,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_packing=None,
+eval_steps=10,
+eval_strategy=no,
+eval_use_gather_object=False,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=4,
+gradient_checkpointing=True,
+gradient_checkpointing_kwargs={'use_reentrant': False},
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=None,
+hub_strategy=every_save,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.0005,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=2,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/runs/Oct10_08-17-22_lrdn2590.leonardo.local,
 logging_first_step=False,
 logging_nan_inf_filter=True,
 logging_steps=10,
@@ -962,50 +946,955 @@ All params: 4261609472, Trainable params: 676331520, Frozen params: 1346
 All params: 4261609472, Trainable params: 676331520, Frozen params: 1346
 Training started...
 Training started...
-Training started...Training started...
+Training started...
+Training started...
+[2025-10-10 08:26:04.790948][Step 3710] Torch max mem: 19454.14 MB | Nvidia-smi: 30117 MB
+[2025-10-10 08:26:04.797576][Step 3710] Torch max mem: 20419.27 MB | Nvidia-smi: 30117 MB
+[2025-10-10 08:26:04.807550][Step 3710] Torch max mem: 22538.37 MB | Nvidia-smi: 30117 MB
+[2025-10-10 08:26:04.815703][Step 3710] Torch max mem: 19636.77 MB | Nvidia-smi: 30117 MB
+{'loss': 6.7363, 'grad_norm': 108.12806701660156, 'learning_rate': 0.000489363483332747, 'num_tokens': 161445.0, 'mean_token_accuracy': 0.07024251325055957, 'epoch': 0.36137830269085597}
+[2025-10-10 08:33:36.101126][Step 3720] Torch max mem: 20968.97 MB | Nvidia-smi: 46111 MB
+[2025-10-10 08:33:36.106267][Step 3720] Torch max mem: 20054.04 MB | Nvidia-smi: 46111 MB
+[2025-10-10 08:33:36.111899][Step 3720] Torch max mem: 27127.29 MB | Nvidia-smi: 46111 MB
+[2025-10-10 08:33:36.120891][Step 3720] Torch max mem: 19766.03 MB | Nvidia-smi: 46111 MB
+{'loss': 6.7579, 'grad_norm': 21.640365600585938, 'learning_rate': 0.0004892874857557088, 'num_tokens': 326517.0, 'mean_token_accuracy': 0.06911121839657426, 'epoch': 0.36235236819676125}
+[2025-10-10 08:41:08.281895][Step 3730] Torch max mem: 20471.85 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:41:08.283873][Step 3730] Torch max mem: 20448.86 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:41:08.291891][Step 3730] Torch max mem: 20368.33 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:41:08.328552][Step 3730] Torch max mem: 20035.92 MB | Nvidia-smi: 46113 MB
+{'loss': 6.7885, 'grad_norm': 103.09403991699219, 'learning_rate': 0.0004892112235878396, 'num_tokens': 483365.0, 'mean_token_accuracy': 0.06555986143648625, 'epoch': 0.3633264337026665}
+[2025-10-10 08:48:41.570282][Step 3740] Torch max mem: 20782.53 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:48:41.570950][Step 3740] Torch max mem: 20223.29 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:48:41.592745][Step 3740] Torch max mem: 20039.61 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:48:41.618665][Step 3740] Torch max mem: 19946.54 MB | Nvidia-smi: 46113 MB
+{'loss': 6.7134, 'grad_norm': 11.54475212097168, 'learning_rate': 0.0004891346969134656, 'num_tokens': 641975.0, 'mean_token_accuracy': 0.06990375984460115, 'epoch': 0.36430049920857177}
+[2025-10-10 08:56:14.679209][Step 3750] Torch max mem: 20345.97 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:56:14.688914][Step 3750] Torch max mem: 19743.09 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:56:14.690740][Step 3750] Torch max mem: 19656.13 MB | Nvidia-smi: 46113 MB
+[2025-10-10 08:56:14.725114][Step 3750] Torch max mem: 20140.59 MB | Nvidia-smi: 46113 MB
+{'loss': 6.7229, 'grad_norm': 6.909355640411377, 'learning_rate': 0.0004890579058172063, 'num_tokens': 801291.0, 'mean_token_accuracy': 0.07227537659928203, 'epoch': 0.36527456471447706}
+[2025-10-10 09:03:46.778409][Step 3760] Torch max mem: 20526.33 MB | Nvidia-smi: 46113 MB
+[2025-10-10 09:03:46.784882][Step 3760] Torch max mem: 21558.97 MB | Nvidia-smi: 46113 MB
+[2025-10-10 09:03:46.827730][Step 3760] Torch max mem: 20340.01 MB | Nvidia-smi: 46113 MB
+[2025-10-10 09:03:47.012820][Step 3760] Torch max mem: 20804.37 MB | Nvidia-smi: 46113 MB
+{'loss': 6.7336, 'grad_norm': 32.22384262084961, 'learning_rate': 0.0004889808503839726, 'num_tokens': 962487.0, 'mean_token_accuracy': 0.07310193730518222, 'epoch': 0.36624863022038234}
+[2025-10-10 09:11:20.165257][Step 3770] Torch max mem: 20716.55 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:11:20.170292][Step 3770] Torch max mem: 21413.13 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:11:20.175501][Step 3770] Torch max mem: 20374.80 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:11:20.207857][Step 3770] Torch max mem: 19608.84 MB | Nvidia-smi: 46117 MB
+{'loss': 6.7448, 'grad_norm': 26.347591400146484, 'learning_rate': 0.0004889035306989683, 'num_tokens': 1127745.0, 'mean_token_accuracy': 0.07041230136528612, 'epoch': 0.3672226957262876}
+[2025-10-10 09:18:53.846770][Step 3780] Torch max mem: 20454.34 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:18:53.856007][Step 3780] Torch max mem: 20326.63 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:18:53.869707][Step 3780] Torch max mem: 19232.47 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:18:53.878970][Step 3780] Torch max mem: 20646.90 MB | Nvidia-smi: 46117 MB
+{'loss': 6.7243, 'grad_norm': 868.4495849609375, 'learning_rate': 0.0004888259468476891, 'num_tokens': 1286377.0, 'mean_token_accuracy': 0.06977113224565983, 'epoch': 0.36819676123219286}
+[2025-10-10 09:26:27.692896][Step 3790] Torch max mem: 20162.40 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:26:27.703856][Step 3790] Torch max mem: 20284.82 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:26:27.708951][Step 3790] Torch max mem: 20678.70 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:26:27.736489][Step 3790] Torch max mem: 21349.75 MB | Nvidia-smi: 46117 MB
+{'loss': 6.6969, 'grad_norm': 61.35112380981445, 'learning_rate': 0.0004887480989159231, 'num_tokens': 1449752.0, 'mean_token_accuracy': 0.06852007973939181, 'epoch': 0.36917082673809815}
+[2025-10-10 09:33:57.856321][Step 3800] Torch max mem: 20009.56 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:33:57.865519][Step 3800] Torch max mem: 20820.84 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:33:57.875340][Step 3800] Torch max mem: 19827.68 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:33:57.903070][Step 3800] Torch max mem: 20408.06 MB | Nvidia-smi: 46117 MB
+{'loss': 6.7217, 'grad_norm': 24.009981155395508, 'learning_rate': 0.0004886699869897501, 'num_tokens': 1609063.0, 'mean_token_accuracy': 0.06929558962583542, 'epoch': 0.37014489224400343}
+[2025-10-10 09:41:43.640207][Step 3810] Torch max mem: 19835.85 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:41:43.642310][Step 3810] Torch max mem: 21682.45 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:41:43.642449][Step 3810] Torch max mem: 19831.48 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:41:43.660683][Step 3810] Torch max mem: 20340.96 MB | Nvidia-smi: 46117 MB
+{'loss': 6.6901, 'grad_norm': 29.252405166625977, 'learning_rate': 0.000488591611155542, 'num_tokens': 1762341.0, 'mean_token_accuracy': 0.0701702518388629, 'epoch': 0.37111895774990866}
+[2025-10-10 09:49:15.408760][Step 3820] Torch max mem: 20380.87 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:49:15.415748][Step 3820] Torch max mem: 21918.94 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:49:15.418362][Step 3820] Torch max mem: 20505.32 MB | Nvidia-smi: 46117 MB
+[2025-10-10 09:49:15.450771][Step 3820] Torch max mem: 20004.42 MB | Nvidia-smi: 46117 MB
+{'loss': 6.7928, 'grad_norm': 16.99632453918457, 'learning_rate': 0.0004885129714999623, 'num_tokens': 1925529.0, 'mean_token_accuracy': 0.06936299139633775, 'epoch': 0.37209302325581395}
+[2025-10-10 09:56:47.621274][Step 3830] Torch max mem: 19718.64 MB | Nvidia-smi: 46119 MB
+[2025-10-10 09:56:47.627478][Step 3830] Torch max mem: 20518.19 MB | Nvidia-smi: 46119 MB
+[2025-10-10 09:56:47.632380][Step 3830] Torch max mem: 20219.62 MB | Nvidia-smi: 46119 MB
+[2025-10-10 09:56:47.678297][Step 3830] Torch max mem: 20130.64 MB | Nvidia-smi: 46119 MB
+{'loss': 6.7235, 'grad_norm': 101.64115142822266, 'learning_rate': 0.0004884340681099665, 'num_tokens': 2087752.0, 'mean_token_accuracy': 0.06894381288439036, 'epoch': 0.37306708876171923}
+[2025-10-10 10:04:21.789088][Step 3840] Torch max mem: 21089.67 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:04:21.792635][Step 3840] Torch max mem: 20231.65 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:04:21.800422][Step 3840] Torch max mem: 21696.19 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:04:21.833624][Step 3840] Torch max mem: 20526.31 MB | Nvidia-smi: 46119 MB
+{'loss': 6.8123, 'grad_norm': 4.738245487213135, 'learning_rate': 0.0004883549010728015, 'num_tokens': 2261070.0, 'mean_token_accuracy': 0.0705532138235867, 'epoch': 0.3740411542676245}
+[2025-10-10 10:11:55.831092][Step 3850] Torch max mem: 20198.32 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:11:55.842641][Step 3850] Torch max mem: 20327.43 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:11:55.854659][Step 3850] Torch max mem: 22010.32 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:11:55.859731][Step 3850] Torch max mem: 20706.49 MB | Nvidia-smi: 46119 MB
+{'loss': 6.7522, 'grad_norm': 6.008459568023682, 'learning_rate': 0.00048827547047600606, 'num_tokens': 2426962.0, 'mean_token_accuracy': 0.06939224833622575, 'epoch': 0.37501521977352975}
+[2025-10-10 10:19:27.694959][Step 3860] Torch max mem: 20963.10 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:19:27.697567][Step 3860] Torch max mem: 21627.83 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:19:27.705765][Step 3860] Torch max mem: 21024.13 MB | Nvidia-smi: 46119 MB
+[2025-10-10 10:19:27.742834][Step 3860] Torch max mem: 20556.61 MB | Nvidia-smi: 46119 MB
+{'loss': 6.7199, 'grad_norm': 29.082569122314453, 'learning_rate': 0.00048819577640740996, 'num_tokens': 2590964.0, 'mean_token_accuracy': 0.0723505800589919, 'epoch': 0.37598928527943504}
+[2025-10-10 10:27:00.700395][Step 3870] Torch max mem: 20329.38 MB | Nvidia-smi: 46121 MB
+[2025-10-10 10:27:00.710960][Step 3870] Torch max mem: 19405.44 MB | Nvidia-smi: 46121 MB
+[2025-10-10 10:27:00.713921][Step 3870] Torch max mem: 20101.89 MB | Nvidia-smi: 46121 MB
+[2025-10-10 10:27:00.746263][Step 3870] Torch max mem: 19828.81 MB | Nvidia-smi: 46121 MB
+{'loss': 6.7472, 'grad_norm': 31.85093116760254, 'learning_rate': 0.0004881158189551344, 'num_tokens': 2747637.0, 'mean_token_accuracy': 0.06941748391836881, 'epoch': 0.3769633507853403}
+[2025-10-10 10:34:32.376711][Step 3880] Torch max mem: 21070.42 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:34:32.387373][Step 3880] Torch max mem: 20618.10 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:34:32.391145][Step 3880] Torch max mem: 20557.26 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:34:32.422023][Step 3880] Torch max mem: 19914.40 MB | Nvidia-smi: 46123 MB
+{'loss': 6.7119, 'grad_norm': 63.112831115722656, 'learning_rate': 0.000488035598207592, 'num_tokens': 2910272.0, 'mean_token_accuracy': 0.06933074044063688, 'epoch': 0.3779374162912456}
+[2025-10-10 10:42:04.769150][Step 3890] Torch max mem: 20251.59 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:42:04.774143][Step 3890] Torch max mem: 20720.25 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:42:04.786319][Step 3890] Torch max mem: 21429.82 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:42:04.794407][Step 3890] Torch max mem: 20441.65 MB | Nvidia-smi: 46123 MB
+{'loss': 6.7338, 'grad_norm': 5.417943954467773, 'learning_rate': 0.0004879551142534864, 'num_tokens': 3073447.0, 'mean_token_accuracy': 0.07261046413332224, 'epoch': 0.37891148179715084}
+[2025-10-10 10:49:38.079016][Step 3900] Torch max mem: 22018.00 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:49:38.087620][Step 3900] Torch max mem: 20942.61 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:49:38.088735][Step 3900] Torch max mem: 19773.64 MB | Nvidia-smi: 46123 MB
+[2025-10-10 10:49:38.122768][Step 3900] Torch max mem: 20140.97 MB | Nvidia-smi: 46123 MB
+{'loss': 6.763, 'grad_norm': 7.040507793426514, 'learning_rate': 0.00048787436718181226, 'num_tokens': 3238556.0, 'mean_token_accuracy': 0.06956211710348725, 'epoch': 0.3798855473030561}
+[2025-10-10 10:57:14.814068][Step 3910] Torch max mem: 22291.28 MB | Nvidia-smi: 46125 MB
+[2025-10-10 10:57:14.822229][Step 3910] Torch max mem: 20260.37 MB | Nvidia-smi: 46125 MB
+[2025-10-10 10:57:14.832437][Step 3910] Torch max mem: 20007.80 MB | Nvidia-smi: 46125 MB
+[2025-10-10 10:57:14.845746][Step 3910] Torch max mem: 20230.57 MB | Nvidia-smi: 46125 MB
+{'loss': 6.7611, 'grad_norm': 2.8779008388519287, 'learning_rate': 0.0004877933570818552, 'num_tokens': 3400328.0, 'mean_token_accuracy': 0.07510150112211704, 'epoch': 0.3808596128089614}
+[2025-10-10 11:04:45.943741][Step 3920] Torch max mem: 21331.44 MB | Nvidia-smi: 46125 MB
+[2025-10-10 11:04:45.947449][Step 3920] Torch max mem: 20498.00 MB | Nvidia-smi: 46125 MB
+[2025-10-10 11:04:45.951907][Step 3920] Torch max mem: 20510.73 MB | Nvidia-smi: 46125 MB
+[2025-10-10 11:04:46.196905][Step 3920] Torch max mem: 21214.33 MB | Nvidia-smi: 46125 MB
+{'loss': 6.7389, 'grad_norm': 64.74017333984375, 'learning_rate': 0.00048771208404319185, 'num_tokens': 3565929.0, 'mean_token_accuracy': 0.06725136404857039, 'epoch': 0.3818336783148667}
+[2025-10-10 11:12:15.629996][Step 3930] Torch max mem: 20099.09 MB | Nvidia-smi: 46125 MB
+[2025-10-10 11:12:15.636125][Step 3930] Torch max mem: 20660.20 MB | Nvidia-smi: 46125 MB
+[2025-10-10 11:12:15.642025][Step 3930] Torch max mem: 19882.35 MB | Nvidia-smi: 46125 MB
+[2025-10-10 11:12:15.673503][Step 3930] Torch max mem: 20454.38 MB | Nvidia-smi: 46125 MB
+{'loss': 6.6884, 'grad_norm': 6.740962982177734, 'learning_rate': 0.00048763054815568926, 'num_tokens': 3729722.0, 'mean_token_accuracy': 0.07513924958184362, 'epoch': 0.38280774382077193}
+[2025-10-10 11:19:46.165875][Step 3940] Torch max mem: 19962.85 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:19:46.177911][Step 3940] Torch max mem: 20077.82 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:19:46.187842][Step 3940] Torch max mem: 19888.38 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:19:46.192465][Step 3940] Torch max mem: 20211.47 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7113, 'grad_norm': 7.89100456237793, 'learning_rate': 0.0004875487495095053, 'num_tokens': 3889431.0, 'mean_token_accuracy': 0.07587878378108144, 'epoch': 0.3837818093266772}
+[2025-10-10 11:27:17.417859][Step 3950] Torch max mem: 20659.90 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:27:17.429077][Step 3950] Torch max mem: 20087.19 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:27:17.435693][Step 3950] Torch max mem: 22041.55 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:27:17.445866][Step 3950] Torch max mem: 22345.14 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7039, 'grad_norm': 10.273775100708008, 'learning_rate': 0.00048746668819508847, 'num_tokens': 4053822.0, 'mean_token_accuracy': 0.07116995602846146, 'epoch': 0.3847558748325825}
+[2025-10-10 11:34:49.237690][Step 3960] Torch max mem: 21085.72 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:34:49.241330][Step 3960] Torch max mem: 21721.08 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:34:49.255072][Step 3960] Torch max mem: 19967.69 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:34:49.263070][Step 3960] Torch max mem: 21833.77 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6609, 'grad_norm': 10.132885932922363, 'learning_rate': 0.00048738436430317757, 'num_tokens': 4218918.0, 'mean_token_accuracy': 0.07671423852443696, 'epoch': 0.3857299403384878}
+[2025-10-10 11:42:21.333465][Step 3970] Torch max mem: 20614.66 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:42:21.336784][Step 3970] Torch max mem: 20168.47 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:42:21.349553][Step 3970] Torch max mem: 20432.18 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:42:21.370576][Step 3970] Torch max mem: 20392.98 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7093, 'grad_norm': 8.44765853881836, 'learning_rate': 0.00048730177792480177, 'num_tokens': 4378657.0, 'mean_token_accuracy': 0.07190510518848896, 'epoch': 0.386704005844393}
+[2025-10-10 11:49:52.474395][Step 3980] Torch max mem: 21914.35 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:49:52.492487][Step 3980] Torch max mem: 20123.47 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:49:52.494153][Step 3980] Torch max mem: 19890.44 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:49:52.504538][Step 3980] Torch max mem: 20048.62 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6845, 'grad_norm': 8.934483528137207, 'learning_rate': 0.00048721892915128064, 'num_tokens': 4542753.0, 'mean_token_accuracy': 0.07102280175313354, 'epoch': 0.3876780713502983}
+[2025-10-10 11:57:24.426367][Step 3990] Torch max mem: 20085.41 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:57:24.432036][Step 3990] Torch max mem: 20475.24 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:57:24.449462][Step 3990] Torch max mem: 20063.79 MB | Nvidia-smi: 46143 MB
+[2025-10-10 11:57:24.466418][Step 3990] Torch max mem: 20039.63 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6671, 'grad_norm': 9.123408317565918, 'learning_rate': 0.0004871358180742235, 'num_tokens': 4699950.0, 'mean_token_accuracy': 0.07366492450237275, 'epoch': 0.3886521368562036}
+[2025-10-10 12:04:54.422930][Step 4000] Torch max mem: 20668.30 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:04:54.429345][Step 4000] Torch max mem: 21388.52 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:04:54.430227][Step 4000] Torch max mem: 21539.76 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:04:54.452286][Step 4000] Torch max mem: 21447.92 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7613, 'grad_norm': 11.03988265991211, 'learning_rate': 0.0004870524447855302, 'num_tokens': 4865973.0, 'mean_token_accuracy': 0.07174459267407655, 'epoch': 0.3896262023621089}
+[2025-10-10 12:12:33.900334][Step 4010] Torch max mem: 20275.07 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:12:33.910782][Step 4010] Torch max mem: 21975.48 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:12:33.910916][Step 4010] Torch max mem: 19684.10 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:12:33.925628][Step 4010] Torch max mem: 19824.30 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6889, 'grad_norm': 3.992642641067505, 'learning_rate': 0.0004869688093773902, 'num_tokens': 5025680.0, 'mean_token_accuracy': 0.07476594848558307, 'epoch': 0.3906002678680141}
+[2025-10-10 12:20:03.830917][Step 4020] Torch max mem: 21037.94 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:20:03.840666][Step 4020] Torch max mem: 20597.37 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:20:03.851607][Step 4020] Torch max mem: 21752.58 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:20:03.874635][Step 4020] Torch max mem: 20865.17 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7345, 'grad_norm': 1060.430419921875, 'learning_rate': 0.00048688491194228296, 'num_tokens': 5191987.0, 'mean_token_accuracy': 0.06941604595631361, 'epoch': 0.3915743333739194}
+[2025-10-10 12:27:34.429656][Step 4030] Torch max mem: 20417.26 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:27:34.436828][Step 4030] Torch max mem: 21117.09 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:27:34.454386][Step 4030] Torch max mem: 20373.92 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:27:34.469882][Step 4030] Torch max mem: 21833.65 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6998, 'grad_norm': 36.64639663696289, 'learning_rate': 0.00048680075257297753, 'num_tokens': 5355726.0, 'mean_token_accuracy': 0.07409332692623138, 'epoch': 0.3925483988798247}
+[2025-10-10 12:35:03.741661][Step 4040] Torch max mem: 20530.87 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:35:03.742287][Step 4040] Torch max mem: 19503.04 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:35:03.752564][Step 4040] Torch max mem: 22042.79 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:35:03.996149][Step 4040] Torch max mem: 20892.20 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7403, 'grad_norm': 3.309729814529419, 'learning_rate': 0.0004867163313625327, 'num_tokens': 5525653.0, 'mean_token_accuracy': 0.06935262307524681, 'epoch': 0.39352246438572996}
+[2025-10-10 12:42:33.937190][Step 4050] Torch max mem: 20617.25 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:42:33.939625][Step 4050] Torch max mem: 19699.97 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:42:33.954654][Step 4050] Torch max mem: 20001.11 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:42:33.977054][Step 4050] Torch max mem: 20198.27 MB | Nvidia-smi: 46143 MB
+{'loss': 6.7202, 'grad_norm': 4.928903102874756, 'learning_rate': 0.0004866316484042968, 'num_tokens': 5685532.0, 'mean_token_accuracy': 0.07086799833923578, 'epoch': 0.3944965298916352}
+[2025-10-10 12:50:04.194834][Step 4060] Torch max mem: 20276.08 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:50:04.199524][Step 4060] Torch max mem: 20318.11 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:50:04.208725][Step 4060] Torch max mem: 20339.80 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:50:04.235350][Step 4060] Torch max mem: 19993.77 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6672, 'grad_norm': 2.3050575256347656, 'learning_rate': 0.00048654670379190754, 'num_tokens': 5845504.0, 'mean_token_accuracy': 0.07157218158245086, 'epoch': 0.3954705953975405}
+[2025-10-10 12:57:32.730915][Step 4070] Torch max mem: 20144.24 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:57:32.735689][Step 4070] Torch max mem: 20561.53 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:57:32.740607][Step 4070] Torch max mem: 20940.08 MB | Nvidia-smi: 46143 MB
+[2025-10-10 12:57:32.761943][Step 4070] Torch max mem: 19868.85 MB | Nvidia-smi: 46143 MB
+{'loss': 6.6717, 'grad_norm': 5.5433030128479, 'learning_rate': 0.0004864614976192919, 'num_tokens': 6007943.0, 'mean_token_accuracy': 0.07345556952059269, 'epoch': 0.39644466090344577}
+[2025-10-10 13:05:05.376542][Step 4080] Torch max mem: 20397.39 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:05:05.387233][Step 4080] Torch max mem: 20091.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:05:05.390545][Step 4080] Torch max mem: 21937.53 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:05:05.411936][Step 4080] Torch max mem: 20749.64 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6836, 'grad_norm': 3.3547000885009766, 'learning_rate': 0.00048637602998066623, 'num_tokens': 6165225.0, 'mean_token_accuracy': 0.07284615570679306, 'epoch': 0.39741872640935105}
+[2025-10-10 13:12:38.119386][Step 4090] Torch max mem: 20732.74 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:12:38.130408][Step 4090] Torch max mem: 20715.43 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:12:38.132039][Step 4090] Torch max mem: 19791.17 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:12:38.153920][Step 4090] Torch max mem: 19698.67 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6879, 'grad_norm': 142.73854064941406, 'learning_rate': 0.00048629030097053583, 'num_tokens': 6327881.0, 'mean_token_accuracy': 0.07019165446981787, 'epoch': 0.3983927919152563}
+[2025-10-10 13:20:09.730896][Step 4100] Torch max mem: 20923.65 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:20:09.741406][Step 4100] Torch max mem: 21273.80 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:20:09.750993][Step 4100] Torch max mem: 20632.40 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:20:09.763006][Step 4100] Torch max mem: 20429.31 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6798, 'grad_norm': 8.2062406539917, 'learning_rate': 0.0004862043106836951, 'num_tokens': 6490291.0, 'mean_token_accuracy': 0.07382689286023378, 'epoch': 0.39936685742116157}
+[2025-10-10 13:27:49.276063][Step 4110] Torch max mem: 20025.97 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:27:49.289017][Step 4110] Torch max mem: 20803.35 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:27:49.300331][Step 4110] Torch max mem: 20012.37 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:27:49.310277][Step 4110] Torch max mem: 19950.36 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6588, 'grad_norm': 17.45707893371582, 'learning_rate': 0.00048611805921522735, 'num_tokens': 6655700.0, 'mean_token_accuracy': 0.07197971669957041, 'epoch': 0.40034092292706686}
+[2025-10-10 13:35:21.971256][Step 4120] Torch max mem: 20256.28 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:35:21.976296][Step 4120] Torch max mem: 20373.38 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:35:21.982806][Step 4120] Torch max mem: 20483.49 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:35:21.992222][Step 4120] Torch max mem: 20608.05 MB | Nvidia-smi: 46151 MB
+{'loss': 6.688, 'grad_norm': 6.740911960601807, 'learning_rate': 0.0004860315466605047, 'num_tokens': 6819674.0, 'mean_token_accuracy': 0.07083728341385723, 'epoch': 0.40131498843297214}
+[2025-10-10 13:42:52.242716][Step 4130] Torch max mem: 19866.39 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:42:52.243565][Step 4130] Torch max mem: 20380.20 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:42:52.254412][Step 4130] Torch max mem: 19693.46 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:42:52.285490][Step 4130] Torch max mem: 20119.57 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6705, 'grad_norm': 7.833673477172852, 'learning_rate': 0.00048594477311518784, 'num_tokens': 6980137.0, 'mean_token_accuracy': 0.07486108029261232, 'epoch': 0.4022890539388774}
+[2025-10-10 13:50:23.610570][Step 4140] Torch max mem: 19704.51 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:50:23.615072][Step 4140] Torch max mem: 21799.83 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:50:23.617654][Step 4140] Torch max mem: 20910.02 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:50:23.641042][Step 4140] Torch max mem: 19992.95 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7515, 'grad_norm': 39.216426849365234, 'learning_rate': 0.0004858577386752263, 'num_tokens': 7138822.0, 'mean_token_accuracy': 0.06798949558287859, 'epoch': 0.40326311944478266}
+[2025-10-10 13:57:55.589377][Step 4150] Torch max mem: 20952.88 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:57:55.595970][Step 4150] Torch max mem: 20416.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:57:55.612936][Step 4150] Torch max mem: 20528.64 MB | Nvidia-smi: 46151 MB
+[2025-10-10 13:57:55.618559][Step 4150] Torch max mem: 20284.03 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7614, 'grad_norm': 94.71460723876953, 'learning_rate': 0.0004857704434368577, 'num_tokens': 7302633.0, 'mean_token_accuracy': 0.06788985850289464, 'epoch': 0.40423718495068794}
+[2025-10-10 14:05:27.011644][Step 4160] Torch max mem: 20791.45 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:05:27.028133][Step 4160] Torch max mem: 20983.62 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:05:27.034912][Step 4160] Torch max mem: 19914.99 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:05:27.041779][Step 4160] Torch max mem: 20138.80 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7321, 'grad_norm': 3.1805684566497803, 'learning_rate': 0.00048568288749660857, 'num_tokens': 7460859.0, 'mean_token_accuracy': 0.06666235234588384, 'epoch': 0.40521125045659323}
+[2025-10-10 14:12:57.609496][Step 4170] Torch max mem: 20741.63 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:12:57.617960][Step 4170] Torch max mem: 20551.88 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:12:57.625000][Step 4170] Torch max mem: 21353.44 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:12:57.646828][Step 4170] Torch max mem: 20233.21 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6956, 'grad_norm': 4.94961404800415, 'learning_rate': 0.0004855950709512932, 'num_tokens': 7628728.0, 'mean_token_accuracy': 0.06976549820974469, 'epoch': 0.40618531596249846}
+[2025-10-10 14:20:26.664999][Step 4180] Torch max mem: 20071.35 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:20:26.670870][Step 4180] Torch max mem: 20298.93 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:20:26.676928][Step 4180] Torch max mem: 19800.80 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:20:26.709300][Step 4180] Torch max mem: 20848.96 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7192, 'grad_norm': 1.241096019744873, 'learning_rate': 0.0004855069938980142, 'num_tokens': 7791673.0, 'mean_token_accuracy': 0.07356879012659193, 'epoch': 0.40715938146840375}
+[2025-10-10 14:27:56.606070][Step 4190] Torch max mem: 19360.86 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:27:56.613160][Step 4190] Torch max mem: 21563.05 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:27:56.616111][Step 4190] Torch max mem: 20278.35 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:27:56.649080][Step 4190] Torch max mem: 19566.02 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7253, 'grad_norm': 4.273151874542236, 'learning_rate': 0.00048541865643416255, 'num_tokens': 7949756.0, 'mean_token_accuracy': 0.07486430667340756, 'epoch': 0.40813344697430903}
+[2025-10-10 14:35:26.390301][Step 4200] Torch max mem: 20719.67 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:35:26.390423][Step 4200] Torch max mem: 20179.69 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:35:26.394014][Step 4200] Torch max mem: 20438.16 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:35:26.405874][Step 4200] Torch max mem: 21870.56 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7076, 'grad_norm': 2.0286803245544434, 'learning_rate': 0.0004853300586574168, 'num_tokens': 8110989.0, 'mean_token_accuracy': 0.0745770737528801, 'epoch': 0.4091075124802143}
+[2025-10-10 14:43:03.579642][Step 4210] Torch max mem: 20622.56 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:43:03.589585][Step 4210] Torch max mem: 20661.10 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:43:03.598060][Step 4210] Torch max mem: 20879.65 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:43:03.609013][Step 4210] Torch max mem: 19693.51 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6696, 'grad_norm': 14.373344421386719, 'learning_rate': 0.00048524120066574327, 'num_tokens': 8272838.0, 'mean_token_accuracy': 0.06789102163165808, 'epoch': 0.41008157798611955}
+[2025-10-10 14:50:34.232402][Step 4220] Torch max mem: 20880.08 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:50:34.244614][Step 4220] Torch max mem: 20436.33 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:50:34.253629][Step 4220] Torch max mem: 21036.64 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:50:34.261865][Step 4220] Torch max mem: 20710.90 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7091, 'grad_norm': 5.370146751403809, 'learning_rate': 0.00048515208255739645, 'num_tokens': 8438748.0, 'mean_token_accuracy': 0.07236169390380383, 'epoch': 0.41105564349202484}
+[2025-10-10 14:58:03.265326][Step 4230] Torch max mem: 20067.65 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:58:03.271285][Step 4230] Torch max mem: 21244.17 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:58:03.274312][Step 4230] Torch max mem: 20550.61 MB | Nvidia-smi: 46151 MB
+[2025-10-10 14:58:03.305874][Step 4230] Torch max mem: 20722.31 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6684, 'grad_norm': 7.39277458190918, 'learning_rate': 0.0004850627044309181, 'num_tokens': 8599609.0, 'mean_token_accuracy': 0.0744120162911713, 'epoch': 0.4120297089979301}
+[2025-10-10 15:05:32.116901][Step 4240] Torch max mem: 20509.01 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:05:32.127452][Step 4240] Torch max mem: 20583.83 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:05:32.136420][Step 4240] Torch max mem: 21632.97 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:05:32.159046][Step 4240] Torch max mem: 20219.97 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6596, 'grad_norm': 6.591226100921631, 'learning_rate': 0.0004849730663851376, 'num_tokens': 8763765.0, 'mean_token_accuracy': 0.07160033220425248, 'epoch': 0.4130037745038354}
+[2025-10-10 15:13:06.854643][Step 4250] Torch max mem: 20424.15 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:13:06.863535][Step 4250] Torch max mem: 20048.89 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:13:06.871851][Step 4250] Torch max mem: 22028.20 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:13:06.888034][Step 4250] Torch max mem: 20824.18 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6977, 'grad_norm': 4.702499866485596, 'learning_rate': 0.00048488316851917173, 'num_tokens': 8927464.0, 'mean_token_accuracy': 0.0753424696624279, 'epoch': 0.41397784000974064}
+[2025-10-10 15:20:36.144403][Step 4260] Torch max mem: 20612.87 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:20:36.151031][Step 4260] Torch max mem: 22317.17 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:20:36.166830][Step 4260] Torch max mem: 19573.82 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:20:36.186204][Step 4260] Torch max mem: 21746.80 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6701, 'grad_norm': 3.253540277481079, 'learning_rate': 0.0004847930109324246, 'num_tokens': 9086541.0, 'mean_token_accuracy': 0.07473679091781378, 'epoch': 0.4149519055156459}
+[2025-10-10 15:28:04.779803][Step 4270] Torch max mem: 20477.22 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:28:04.790455][Step 4270] Torch max mem: 20122.87 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:28:04.805286][Step 4270] Torch max mem: 22124.58 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:28:04.813155][Step 4270] Torch max mem: 21541.13 MB | Nvidia-smi: 46151 MB
+{'loss': 6.693, 'grad_norm': 1.208580493927002, 'learning_rate': 0.0004847025937245874, 'num_tokens': 9249439.0, 'mean_token_accuracy': 0.07550502074882388, 'epoch': 0.4159259710215512}
+[2025-10-10 15:35:33.003180][Step 4280] Torch max mem: 20792.49 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:35:33.011161][Step 4280] Torch max mem: 20326.39 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:35:33.012965][Step 4280] Torch max mem: 19771.73 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:35:33.019200][Step 4280] Torch max mem: 20790.23 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6542, 'grad_norm': 2.560004949569702, 'learning_rate': 0.0004846119169956386, 'num_tokens': 9407392.0, 'mean_token_accuracy': 0.07799240313470364, 'epoch': 0.4169000365274565}
+[2025-10-10 15:43:01.789892][Step 4290] Torch max mem: 19945.90 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:43:01.793200][Step 4290] Torch max mem: 19510.63 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:43:01.805346][Step 4290] Torch max mem: 20735.02 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:43:01.810290][Step 4290] Torch max mem: 20934.98 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7345, 'grad_norm': 2.1417462825775146, 'learning_rate': 0.0004845209808458433, 'num_tokens': 9569876.0, 'mean_token_accuracy': 0.07324702823534608, 'epoch': 0.4178741020333617}
+[2025-10-10 15:50:31.961977][Step 4300] Torch max mem: 21313.03 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:50:31.962149][Step 4300] Torch max mem: 21160.16 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:50:31.975070][Step 4300] Torch max mem: 20316.40 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:50:31.984052][Step 4300] Torch max mem: 20321.03 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7143, 'grad_norm': 3.019857168197632, 'learning_rate': 0.0004844297853757538, 'num_tokens': 9730744.0, 'mean_token_accuracy': 0.070931311044842, 'epoch': 0.418848167539267}
+[2025-10-10 15:58:09.802350][Step 4310] Torch max mem: 20744.08 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:58:09.808389][Step 4310] Torch max mem: 20553.28 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:58:09.830289][Step 4310] Torch max mem: 19886.73 MB | Nvidia-smi: 46151 MB
+[2025-10-10 15:58:09.833714][Step 4310] Torch max mem: 20079.05 MB | Nvidia-smi: 46151 MB
+{'loss': 6.697, 'grad_norm': 5.56703519821167, 'learning_rate': 0.0004843383306862089, 'num_tokens': 9893815.0, 'mean_token_accuracy': 0.07378907203674316, 'epoch': 0.4198222330451723}
+[2025-10-10 16:05:39.287621][Step 4320] Torch max mem: 20371.50 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:05:39.293976][Step 4320] Torch max mem: 19763.60 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:05:39.298995][Step 4320] Torch max mem: 20433.42 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:05:39.307497][Step 4320] Torch max mem: 21398.29 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6946, 'grad_norm': 3.3357081413269043, 'learning_rate': 0.00048424661687833414, 'num_tokens': 10053309.0, 'mean_token_accuracy': 0.06994211534038186, 'epoch': 0.4207962985510776}
+[2025-10-10 16:13:10.759031][Step 4330] Torch max mem: 21347.02 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:13:10.759083][Step 4330] Torch max mem: 19915.24 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:13:10.773519][Step 4330] Torch max mem: 20318.02 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:13:10.781273][Step 4330] Torch max mem: 21442.30 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6734, 'grad_norm': 2.1652510166168213, 'learning_rate': 0.0004841546440535417, 'num_tokens': 10214797.0, 'mean_token_accuracy': 0.07552307564765215, 'epoch': 0.4217703640569828}
+[2025-10-10 16:20:40.892742][Step 4340] Torch max mem: 21528.53 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:20:40.903476][Step 4340] Torch max mem: 20123.31 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:20:40.906389][Step 4340] Torch max mem: 20333.12 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:20:40.924405][Step 4340] Torch max mem: 20004.93 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6261, 'grad_norm': 2.5875961780548096, 'learning_rate': 0.0004840624123135299, 'num_tokens': 10376980.0, 'mean_token_accuracy': 0.07421421576291323, 'epoch': 0.4227444295628881}
+[2025-10-10 16:28:10.041374][Step 4350] Torch max mem: 20241.36 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:28:10.052407][Step 4350] Torch max mem: 20491.11 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:28:10.055343][Step 4350] Torch max mem: 19651.56 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:28:10.076865][Step 4350] Torch max mem: 20480.26 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6941, 'grad_norm': 1.652349829673767, 'learning_rate': 0.00048396992176028344, 'num_tokens': 10543134.0, 'mean_token_accuracy': 0.07469246946275235, 'epoch': 0.4237184950687934}
+[2025-10-10 16:35:39.028706][Step 4360] Torch max mem: 20464.87 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:35:39.041331][Step 4360] Torch max mem: 19900.24 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:35:39.051460][Step 4360] Torch max mem: 20450.15 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:35:39.063774][Step 4360] Torch max mem: 19946.42 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5934, 'grad_norm': 1.3469607830047607, 'learning_rate': 0.0004838771724960733, 'num_tokens': 10702393.0, 'mean_token_accuracy': 0.07606593696400524, 'epoch': 0.4246925605746987}
+[2025-10-10 16:43:07.122778][Step 4370] Torch max mem: 20284.26 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:43:07.131006][Step 4370] Torch max mem: 19836.86 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:43:07.144143][Step 4370] Torch max mem: 21012.40 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:43:07.152819][Step 4370] Torch max mem: 20623.76 MB | Nvidia-smi: 46151 MB
+{'loss': 6.688, 'grad_norm': 3.8999998569488525, 'learning_rate': 0.00048378416462345654, 'num_tokens': 10873383.0, 'mean_token_accuracy': 0.07271038992330432, 'epoch': 0.4256666260806039}
+[2025-10-10 16:50:36.706700][Step 4380] Torch max mem: 19784.66 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:50:36.719465][Step 4380] Torch max mem: 21213.05 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:50:36.730820][Step 4380] Torch max mem: 21161.63 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:50:36.740724][Step 4380] Torch max mem: 20283.55 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6209, 'grad_norm': 8.529006004333496, 'learning_rate': 0.000483690898245276, 'num_tokens': 11037973.0, 'mean_token_accuracy': 0.07798373075202107, 'epoch': 0.4266406915865092}
+[2025-10-10 16:58:05.761983][Step 4390] Torch max mem: 21124.11 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:58:05.764088][Step 4390] Torch max mem: 20928.33 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:58:05.776258][Step 4390] Torch max mem: 19589.76 MB | Nvidia-smi: 46151 MB
+[2025-10-10 16:58:05.784237][Step 4390] Torch max mem: 20836.44 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5684, 'grad_norm': 16.615386962890625, 'learning_rate': 0.0004835973734646606, 'num_tokens': 11193352.0, 'mean_token_accuracy': 0.0802852587774396, 'epoch': 0.4276147570924145}
+[2025-10-10 17:05:35.615086][Step 4400] Torch max mem: 20896.04 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:05:35.626046][Step 4400] Torch max mem: 20335.27 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:05:35.636522][Step 4400] Torch max mem: 20041.61 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:05:35.653061][Step 4400] Torch max mem: 19977.25 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6071, 'grad_norm': 3.7506654262542725, 'learning_rate': 0.00048350359038502465, 'num_tokens': 11351687.0, 'mean_token_accuracy': 0.08061463786289096, 'epoch': 0.42858882259831976}
+[2025-10-10 17:13:10.543359][Step 4410] Torch max mem: 20575.24 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:13:10.543354][Step 4410] Torch max mem: 21010.68 MB | Nvidia-smi: 46151 MB[2025-10-10 17:13:10.543352][Step 4410] Torch max mem: 20438.54 MB | Nvidia-smi: 46151 MB
 
-[2025-10-06 14:23:04.968740][Step 10] Torch max mem: 21059.07 MB | Nvidia-smi: 30848 MB
-[2025-10-06 14:23:04.979571][Step 10] Torch max mem: 20820.49 MB | Nvidia-smi: 30848 MB
-[2025-10-06 14:23:04.979836][Step 10] Torch max mem: 20482.53 MB | Nvidia-smi: 30848 MB
-[2025-10-06 14:23:04.999659][Step 10] Torch max mem: 21774.84 MB | Nvidia-smi: 30848 MB
-{'loss': 4.5364, 'grad_norm': 26.495946884155273, 'learning_rate': 4.864864864864865e-06, 'num_tokens': 159100.0, 'mean_token_accuracy': 0.49092509001493456, 'epoch': 0.0009740655059052721}
-[2025-10-06 14:30:43.545476][Step 20] Torch max mem: 19801.86 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:30:43.555842][Step 20] Torch max mem: 20029.04 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:30:43.567719][Step 20] Torch max mem: 21633.62 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:30:43.575816][Step 20] Torch max mem: 22132.12 MB | Nvidia-smi: 36624 MB
-{'loss': 3.5686, 'grad_norm': 9.995664596557617, 'learning_rate': 1.027027027027027e-05, 'num_tokens': 321141.0, 'mean_token_accuracy': 0.6059352636337281, 'epoch': 0.0019481310118105442}
-[2025-10-06 14:38:23.696175][Step 30] Torch max mem: 20485.12 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:38:23.699736][Step 30] Torch max mem: 20835.88 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:38:23.707458][Step 30] Torch max mem: 20772.96 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:38:23.716585][Step 30] Torch max mem: 21658.11 MB | Nvidia-smi: 36624 MB
-{'loss': 2.8826, 'grad_norm': 9.105796813964844, 'learning_rate': 1.5675675675675676e-05, 'num_tokens': 487362.0, 'mean_token_accuracy': 0.6890474811196328, 'epoch': 0.0029221965177158166}
-[2025-10-06 14:46:04.899291][Step 40] Torch max mem: 20613.40 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:46:04.909044][Step 40] Torch max mem: 20858.23 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:46:04.910979][Step 40] Torch max mem: 20755.54 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:46:04.928234][Step 40] Torch max mem: 20635.54 MB | Nvidia-smi: 36624 MB
-{'loss': 2.5267, 'grad_norm': 6.1528778076171875, 'learning_rate': 2.1081081081081082e-05, 'num_tokens': 653436.0, 'mean_token_accuracy': 0.7293582707643509, 'epoch': 0.0038962620236210883}
-[2025-10-06 14:53:45.405193][Step 50] Torch max mem: 20576.70 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:53:45.407530][Step 50] Torch max mem: 24025.71 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:53:45.418845][Step 50] Torch max mem: 20846.97 MB | Nvidia-smi: 36624 MB
-[2025-10-06 14:53:45.429825][Step 50] Torch max mem: 21519.34 MB | Nvidia-smi: 36624 MB
-{'loss': 2.3453, 'grad_norm': 6.830225467681885, 'learning_rate': 2.6486486486486488e-05, 'num_tokens': 819631.0, 'mean_token_accuracy': 0.75584616959095, 'epoch': 0.004870327529526361}
-[2025-10-06 15:01:27.768266][Step 60] Torch max mem: 21195.81 MB | Nvidia-smi: 36624 MB
-[2025-10-06 15:01:27.778871][Step 60] Torch max mem: 20124.58 MB | Nvidia-smi: 36624 MB
-[2025-10-06 15:01:27.788786][Step 60] Torch max mem: 21955.21 MB | Nvidia-smi: 36624 MB
-[2025-10-06 15:01:27.814089][Step 60] Torch max mem: 20095.97 MB | Nvidia-smi: 36624 MB
-{'loss': 2.2442, 'grad_norm': 7.733977794647217, 'learning_rate': 3.1891891891891894e-05, 'num_tokens': 985563.0, 'mean_token_accuracy': 0.7642592698335647, 'epoch': 0.005844393035431633}
-[2025-10-06 15:09:12.418387][Step 70] Torch max mem: 20436.85 MB | Nvidia-smi: 36626 MB
-[2025-10-06 15:09:12.429387][Step 70] Torch max mem: 20939.04 MB | Nvidia-smi: 36626 MB
-[2025-10-06 15:09:12.429711][Step 70] Torch max mem: 19821.62 MB | Nvidia-smi: 36626 MB[2025-10-06 15:09:12.429764][Step 70] Torch max mem: 22077.68 MB | Nvidia-smi: 36626 MB
+[2025-10-10 17:13:10.543357][Step 4410] Torch max mem: 21079.98 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6379, 'grad_norm': 2.052525758743286, 'learning_rate': 0.0004834095491100685, 'num_tokens': 11523996.0, 'mean_token_accuracy': 0.0773537085391581, 'epoch': 0.429562888104225}
+[2025-10-10 17:20:39.344454][Step 4420] Torch max mem: 20632.45 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:20:39.348547][Step 4420] Torch max mem: 21275.60 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:20:39.350223][Step 4420] Torch max mem: 20907.12 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:20:39.387702][Step 4420] Torch max mem: 20300.19 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6001, 'grad_norm': 3.9585366249084473, 'learning_rate': 0.00048331524974377764, 'num_tokens': 11688971.0, 'mean_token_accuracy': 0.07912286277860403, 'epoch': 0.4305369536101303}
+[2025-10-10 17:28:09.605442][Step 4430] Torch max mem: 21057.99 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:28:09.613178][Step 4430] Torch max mem: 21604.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:28:09.617218][Step 4430] Torch max mem: 20164.99 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:28:09.647524][Step 4430] Torch max mem: 20799.29 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6399, 'grad_norm': 62.73469924926758, 'learning_rate': 0.0004832206923904231, 'num_tokens': 11851570.0, 'mean_token_accuracy': 0.07903357520699501, 'epoch': 0.43151101911603557}
+[2025-10-10 17:35:38.770549][Step 4440] Torch max mem: 20683.06 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:35:38.771663][Step 4440] Torch max mem: 19558.10 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:35:38.780546][Step 4440] Torch max mem: 20889.27 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:35:38.800429][Step 4440] Torch max mem: 19820.02 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6229, 'grad_norm': 3.945221185684204, 'learning_rate': 0.0004831258771545612, 'num_tokens': 12014449.0, 'mean_token_accuracy': 0.07882079221308232, 'epoch': 0.43248508462194085}
+[2025-10-10 17:43:06.768155][Step 4450] Torch max mem: 21502.67 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:43:06.773958][Step 4450] Torch max mem: 19742.83 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:43:06.785003][Step 4450] Torch max mem: 19974.24 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:43:06.790907][Step 4450] Torch max mem: 20232.42 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5699, 'grad_norm': 180.47097778320312, 'learning_rate': 0.0004830308041410334, 'num_tokens': 12174536.0, 'mean_token_accuracy': 0.07869277279824019, 'epoch': 0.4334591501278461}
+[2025-10-10 17:50:35.495144][Step 4460] Torch max mem: 20103.69 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:50:35.502936][Step 4460] Torch max mem: 21472.08 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:50:35.510263][Step 4460] Torch max mem: 19653.41 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:50:35.514569][Step 4460] Torch max mem: 23165.88 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7517, 'grad_norm': 55.33445739746094, 'learning_rate': 0.000482935473454966, 'num_tokens': 12336416.0, 'mean_token_accuracy': 0.0745073227211833, 'epoch': 0.43443321563375137}
+[2025-10-10 17:58:04.872074][Step 4470] Torch max mem: 20949.46 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:58:04.874932][Step 4470] Torch max mem: 19831.41 MB | Nvidia-smi: 46151 MB
+[2025-10-10 17:58:04.903265][Step 4470] Torch max mem: 20284.47 MB | Nvidia-smi: 46151 MB[2025-10-10 17:58:04.903344][Step 4470] Torch max mem: 20164.81 MB | Nvidia-smi: 46151 MB
 
-{'loss': 2.1289, 'grad_norm': 7.035658836364746, 'learning_rate': 3.72972972972973e-05, 'num_tokens': 1150951.0, 'mean_token_accuracy': 0.764706788957119, 'epoch': 0.006818458541336905}
-[2025-10-06 15:16:51.701261][Step 80] Torch max mem: 20296.67 MB | Nvidia-smi: 36626 MB
-[2025-10-06 15:16:51.712379][Step 80] Torch max mem: 19243.15 MB | Nvidia-smi: 36626 MB
-[2025-10-06 15:16:51.719078][Step 80] Torch max mem: 21497.17 MB | Nvidia-smi: 36626 MB
-[2025-10-06 15:16:51.746241][Step 80] Torch max mem: 19710.83 MB | Nvidia-smi: 36626 MB
-{'loss': 1.9917, 'grad_norm': 5.078913688659668, 'learning_rate': 4.2702702702702706e-05, 'num_tokens': 1304480.0, 'mean_token_accuracy': 0.7692786291241646, 'epoch': 0.007792524047242177}
-[2025-10-06 15:24:32.242921][Step 90] Torch max mem: 20758.55 MB | Nvidia-smi: 36654 MB
-[2025-10-06 15:24:32.243076][Step 90] Torch max mem: 20292.60 MB | Nvidia-smi: 36654 MB
-[2025-10-06 15:24:32.253174][Step 90] Torch max mem: 20674.39 MB | Nvidia-smi: 36654 MB
-[2025-10-06 15:24:32.286035][Step 90] Torch max mem: 20547.34 MB | Nvidia-smi: 36654 MB
-{'loss': 1.866, 'grad_norm': 20.133535385131836, 'learning_rate': 4.810810810810811e-05, 'num_tokens': 1470404.0, 'mean_token_accuracy': 0.7731306433677674, 'epoch': 0.00876658955314745}
+{'loss': 6.8268, 'grad_norm': 118.8837890625, 'learning_rate': 0.0004828398852017706, 'num_tokens': 12497423.0, 'mean_token_accuracy': 0.07415740340948104, 'epoch': 0.43540728113965665}
+[2025-10-10 18:05:33.622411][Step 4480] Torch max mem: 19600.39 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:05:33.627456][Step 4480] Torch max mem: 20174.63 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:05:33.638586][Step 4480] Torch max mem: 20531.94 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:05:33.656996][Step 4480] Torch max mem: 20095.39 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7126, 'grad_norm': 190.93272399902344, 'learning_rate': 0.00048274403948714317, 'num_tokens': 12660458.0, 'mean_token_accuracy': 0.07308452893048525, 'epoch': 0.43638134664556194}
+[2025-10-10 18:13:04.478198][Step 4490] Torch max mem: 19948.21 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:13:04.479641][Step 4490] Torch max mem: 20093.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:13:04.489843][Step 4490] Torch max mem: 19956.56 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:13:04.498610][Step 4490] Torch max mem: 20619.08 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6696, 'grad_norm': 56.74757385253906, 'learning_rate': 0.00048264793641706477, 'num_tokens': 12825518.0, 'mean_token_accuracy': 0.07529619885608554, 'epoch': 0.43735541215146717}
+[2025-10-10 18:20:34.439340][Step 4500] Torch max mem: 20370.56 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:20:34.439947][Step 4500] Torch max mem: 21006.02 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:20:34.440232][Step 4500] Torch max mem: 20465.26 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:20:34.440316][Step 4500] Torch max mem: 21960.49 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6795, 'grad_norm': 193.3192901611328, 'learning_rate': 0.00048255157609780077, 'num_tokens': 12992175.0, 'mean_token_accuracy': 0.07601461326703429, 'epoch': 0.43832947765737246}
+[2025-10-10 18:28:11.105785][Step 4510] Torch max mem: 20384.19 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:28:11.110697][Step 4510] Torch max mem: 21386.66 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:28:11.118051][Step 4510] Torch max mem: 21490.52 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:28:11.134735][Step 4510] Torch max mem: 20611.41 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6639, 'grad_norm': 35.70051193237305, 'learning_rate': 0.0004824549586359011, 'num_tokens': 13158076.0, 'mean_token_accuracy': 0.0761414460837841, 'epoch': 0.43930354316327774}
+[2025-10-10 18:35:39.682666][Step 4520] Torch max mem: 20348.85 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:35:39.692118][Step 4520] Torch max mem: 20004.84 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:35:39.692845][Step 4520] Torch max mem: 20283.89 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:35:39.721127][Step 4520] Torch max mem: 22664.20 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6215, 'grad_norm': 22.864078521728516, 'learning_rate': 0.0004823580841381999, 'num_tokens': 13316435.0, 'mean_token_accuracy': 0.07932315226644278, 'epoch': 0.44027760866918303}
+[2025-10-10 18:43:11.827754][Step 4530] Torch max mem: 19556.52 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:43:11.828668][Step 4530] Torch max mem: 19864.74 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:43:11.839352][Step 4530] Torch max mem: 19636.54 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:43:11.849997][Step 4530] Torch max mem: 20765.76 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5733, 'grad_norm': 30.416994094848633, 'learning_rate': 0.00048226095271181567, 'num_tokens': 13477663.0, 'mean_token_accuracy': 0.0800072168931365, 'epoch': 0.44125167417508826}
+[2025-10-10 18:50:44.141284][Step 4540] Torch max mem: 20986.91 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:50:44.152501][Step 4540] Torch max mem: 20663.41 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:50:44.164562][Step 4540] Torch max mem: 20313.20 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:50:44.172579][Step 4540] Torch max mem: 21042.20 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6522, 'grad_norm': 411.4193115234375, 'learning_rate': 0.000482163564464151, 'num_tokens': 13644323.0, 'mean_token_accuracy': 0.0756092395633459, 'epoch': 0.44222573968099355}
+[2025-10-10 18:58:17.081039][Step 4550] Torch max mem: 20776.55 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:58:17.092387][Step 4550] Torch max mem: 20573.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:58:17.102713][Step 4550] Torch max mem: 20413.33 MB | Nvidia-smi: 46151 MB
+[2025-10-10 18:58:17.114325][Step 4550] Torch max mem: 22013.98 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6414, 'grad_norm': 21.588823318481445, 'learning_rate': 0.00048206591950289234, 'num_tokens': 13800031.0, 'mean_token_accuracy': 0.0772170371375978, 'epoch': 0.44319980518689883}
+[2025-10-10 19:05:50.671762][Step 4560] Torch max mem: 19874.79 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:05:50.679481][Step 4560] Torch max mem: 21446.60 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:05:50.692499][Step 4560] Torch max mem: 20225.72 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:05:50.701494][Step 4560] Torch max mem: 21896.56 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6774, 'grad_norm': 31.178874969482422, 'learning_rate': 0.0004819680179360102, 'num_tokens': 13955072.0, 'mean_token_accuracy': 0.07366730403155089, 'epoch': 0.4441738706928041}
+[2025-10-10 19:13:25.472994][Step 4570] Torch max mem: 19853.32 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:13:25.496095][Step 4570] Torch max mem: 20885.55 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:13:25.497095][Step 4570] Torch max mem: 19842.99 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:13:25.510730][Step 4570] Torch max mem: 20362.47 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7141, 'grad_norm': 45.489891052246094, 'learning_rate': 0.00048186985987175854, 'num_tokens': 14117804.0, 'mean_token_accuracy': 0.0728328806348145, 'epoch': 0.44514793619870935}
+[2025-10-10 19:20:54.745763][Step 4580] Torch max mem: 20439.48 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:20:54.755970][Step 4580] Torch max mem: 20345.01 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:20:54.767149][Step 4580] Torch max mem: 20834.24 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:20:54.772677][Step 4580] Torch max mem: 21796.20 MB | Nvidia-smi: 46151 MB
+{'loss': 6.8635, 'grad_norm': 59.33447265625, 'learning_rate': 0.0004817714454186752, 'num_tokens': 14280966.0, 'mean_token_accuracy': 0.07202545721083879, 'epoch': 0.44612200170461463}
+[2025-10-10 19:28:25.281460][Step 4590] Torch max mem: 21655.75 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:28:25.289665][Step 4590] Torch max mem: 19396.43 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:28:25.290145][Step 4590] Torch max mem: 19558.19 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:28:25.299960][Step 4590] Torch max mem: 21192.88 MB | Nvidia-smi: 46151 MB
+{'loss': 6.8423, 'grad_norm': 55.180416107177734, 'learning_rate': 0.00048167277468558136, 'num_tokens': 14432580.0, 'mean_token_accuracy': 0.07126256674528123, 'epoch': 0.4470960672105199}
+[2025-10-10 19:35:56.044438][Step 4600] Torch max mem: 20645.97 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:35:56.047383][Step 4600] Torch max mem: 20212.74 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:35:56.058074][Step 4600] Torch max mem: 20152.73 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:35:56.080429][Step 4600] Torch max mem: 21302.34 MB | Nvidia-smi: 46151 MB
+{'loss': 6.8108, 'grad_norm': 83.60382843017578, 'learning_rate': 0.00048157384778158176, 'num_tokens': 14593105.0, 'mean_token_accuracy': 0.06763794077560306, 'epoch': 0.4480701327164252}
+[2025-10-10 19:43:33.496353][Step 4610] Torch max mem: 19885.95 MB | Nvidia-smi: 46151 MB[2025-10-10 19:43:33.496368][Step 4610] Torch max mem: 21911.75 MB | Nvidia-smi: 46151 MB
+
+[2025-10-10 19:43:33.506983][Step 4610] Torch max mem: 20946.71 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:43:33.522221][Step 4610] Torch max mem: 19969.31 MB | Nvidia-smi: 46151 MB
+{'loss': 6.9495, 'grad_norm': 119.2639389038086, 'learning_rate': 0.00048147466481606414, 'num_tokens': 14749462.0, 'mean_token_accuracy': 0.06696332627907395, 'epoch': 0.44904419822233044}
+[2025-10-10 19:51:05.091676][Step 4620] Torch max mem: 20590.78 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:51:05.098411][Step 4620] Torch max mem: 20362.82 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:51:05.103285][Step 4620] Torch max mem: 21823.10 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:51:05.135069][Step 4620] Torch max mem: 20127.56 MB | Nvidia-smi: 46151 MB
+{'loss': 6.9529, 'grad_norm': 258.6978454589844, 'learning_rate': 0.0004813752258986996, 'num_tokens': 14915220.0, 'mean_token_accuracy': 0.06905122753232718, 'epoch': 0.4500182637282357}
+[2025-10-10 19:58:34.057208][Step 4630] Torch max mem: 20637.61 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:58:34.063561][Step 4630] Torch max mem: 19594.22 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:58:34.067139][Step 4630] Torch max mem: 20551.41 MB | Nvidia-smi: 46151 MB
+[2025-10-10 19:58:34.098754][Step 4630] Torch max mem: 20224.91 MB | Nvidia-smi: 46151 MB
+{'loss': 6.747, 'grad_norm': 3.6703312397003174, 'learning_rate': 0.00048127553113944224, 'num_tokens': 15072501.0, 'mean_token_accuracy': 0.07242909856140614, 'epoch': 0.450992329234141}
+[2025-10-10 20:06:04.032509][Step 4640] Torch max mem: 20258.50 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:06:04.036705][Step 4640] Torch max mem: 20197.43 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:06:04.043766][Step 4640] Torch max mem: 19803.36 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:06:04.044349][Step 4640] Torch max mem: 20030.21 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6933, 'grad_norm': 6.4160895347595215, 'learning_rate': 0.00048117558064852885, 'num_tokens': 15230647.0, 'mean_token_accuracy': 0.06970606418326497, 'epoch': 0.4519663947400463}
+[2025-10-10 20:13:34.931358][Step 4650] Torch max mem: 19587.17 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:13:34.941868][Step 4650] Torch max mem: 20076.80 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:13:34.950641][Step 4650] Torch max mem: 20301.52 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:13:34.959083][Step 4650] Torch max mem: 20931.24 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6518, 'grad_norm': 1.84707510471344, 'learning_rate': 0.0004810753745364792, 'num_tokens': 15386124.0, 'mean_token_accuracy': 0.07632495211437344, 'epoch': 0.4529404602459515}
+[2025-10-10 20:21:05.718755][Step 4660] Torch max mem: 20644.62 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:21:05.718820][Step 4660] Torch max mem: 19570.55 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:21:05.720768][Step 4660] Torch max mem: 21724.53 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:21:05.728127][Step 4660] Torch max mem: 21033.38 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6359, 'grad_norm': 1.9591820240020752, 'learning_rate': 0.0004809749129140958, 'num_tokens': 15546992.0, 'mean_token_accuracy': 0.07422687038779259, 'epoch': 0.4539145257518568}
+[2025-10-10 20:28:36.633679][Step 4670] Torch max mem: 20973.26 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:28:36.633953][Step 4670] Torch max mem: 20146.80 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:28:36.638073][Step 4670] Torch max mem: 20292.78 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:28:36.672841][Step 4670] Torch max mem: 19861.02 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5983, 'grad_norm': 1.5719102621078491, 'learning_rate': 0.0004808741958924633, 'num_tokens': 15708235.0, 'mean_token_accuracy': 0.07160573452711105, 'epoch': 0.4548885912577621}
+[2025-10-10 20:36:06.307306][Step 4680] Torch max mem: 20451.92 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:36:06.309413][Step 4680] Torch max mem: 21918.19 MB | Nvidia-smi: 46151 MB[2025-10-10 20:36:06.309464][Step 4680] Torch max mem: 19192.27 MB | Nvidia-smi: 46151 MB
+
+[2025-10-10 20:36:06.318037][Step 4680] Torch max mem: 19954.26 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6057, 'grad_norm': 5.235019683837891, 'learning_rate': 0.0004807732235829491, 'num_tokens': 15868446.0, 'mean_token_accuracy': 0.07692638793960213, 'epoch': 0.4558626567636674}
+[2025-10-10 20:43:34.964313][Step 4690] Torch max mem: 20627.29 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:43:34.969331][Step 4690] Torch max mem: 20972.32 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:43:34.976044][Step 4690] Torch max mem: 20834.68 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:43:35.005750][Step 4690] Torch max mem: 21214.02 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6243, 'grad_norm': 1.2137236595153809, 'learning_rate': 0.00048067199609720283, 'num_tokens': 16037083.0, 'mean_token_accuracy': 0.07278419518843293, 'epoch': 0.4568367222695726}
+[2025-10-10 20:51:04.138215][Step 4700] Torch max mem: 20395.66 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:51:04.138260][Step 4700] Torch max mem: 20512.17 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:51:04.140150][Step 4700] Torch max mem: 21419.64 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:51:04.176883][Step 4700] Torch max mem: 19589.25 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6078, 'grad_norm': 1.650057077407837, 'learning_rate': 0.0004805705135471562, 'num_tokens': 16195555.0, 'mean_token_accuracy': 0.0774472982622683, 'epoch': 0.4578107877754779}
+[2025-10-10 20:58:40.862039][Step 4710] Torch max mem: 19891.26 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:58:40.862397][Step 4710] Torch max mem: 20130.69 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:58:40.862795][Step 4710] Torch max mem: 22078.49 MB | Nvidia-smi: 46151 MB
+[2025-10-10 20:58:40.873708][Step 4710] Torch max mem: 20464.27 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6515, 'grad_norm': 4.406930923461914, 'learning_rate': 0.0004804687760450229, 'num_tokens': 16357702.0, 'mean_token_accuracy': 0.07537351315841079, 'epoch': 0.4587848532813832}
+[2025-10-10 21:06:10.221378][Step 4720] Torch max mem: 21000.66 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:06:10.227289][Step 4720] Torch max mem: 20186.05 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:06:10.237847][Step 4720] Torch max mem: 20134.42 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:06:10.245736][Step 4720] Torch max mem: 20918.88 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5849, 'grad_norm': 5.4372477531433105, 'learning_rate': 0.0004803667837032988, 'num_tokens': 16519119.0, 'mean_token_accuracy': 0.07653495166450738, 'epoch': 0.4597589187872884}
+[2025-10-10 21:13:40.098298][Step 4730] Torch max mem: 20295.93 MB | Nvidia-smi: 46151 MB[2025-10-10 21:13:40.098293][Step 4730] Torch max mem: 21260.56 MB | Nvidia-smi: 46151 MB[2025-10-10 21:13:40.098291][Step 4730] Torch max mem: 20822.75 MB | Nvidia-smi: 46151 MB
+
+
+[2025-10-10 21:13:40.101197][Step 4730] Torch max mem: 20090.36 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6302, 'grad_norm': 1.0008360147476196, 'learning_rate': 0.0004802645366347611, 'num_tokens': 16678282.0, 'mean_token_accuracy': 0.07332437252625823, 'epoch': 0.4607329842931937}
+[2025-10-10 21:21:09.780261][Step 4740] Torch max mem: 21112.39 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:21:09.783873][Step 4740] Torch max mem: 20417.25 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:21:09.788974][Step 4740] Torch max mem: 21183.90 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:21:09.825270][Step 4740] Torch max mem: 21590.36 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5735, 'grad_norm': 2.130389451980591, 'learning_rate': 0.00048016203495246927, 'num_tokens': 16845194.0, 'mean_token_accuracy': 0.07617528354749084, 'epoch': 0.461707049799099}
+[2025-10-10 21:28:40.491272][Step 4750] Torch max mem: 20181.69 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:28:40.496836][Step 4750] Torch max mem: 19886.44 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:28:40.508833][Step 4750] Torch max mem: 20198.01 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:28:40.513888][Step 4750] Torch max mem: 20464.60 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5739, 'grad_norm': 1.4608733654022217, 'learning_rate': 0.00048005927876976375, 'num_tokens': 17005483.0, 'mean_token_accuracy': 0.07656350312754512, 'epoch': 0.4626811153050043}
+[2025-10-10 21:36:12.474302][Step 4760] Torch max mem: 20876.57 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:36:12.485238][Step 4760] Torch max mem: 20053.73 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:36:12.495065][Step 4760] Torch max mem: 20448.27 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:36:12.505750][Step 4760] Torch max mem: 23014.68 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6726, 'grad_norm': 1.8658528327941895, 'learning_rate': 0.00047995626820026665, 'num_tokens': 17169945.0, 'mean_token_accuracy': 0.07469109687954187, 'epoch': 0.4636551808109095}
+[2025-10-10 21:43:43.030373][Step 4770] Torch max mem: 20639.01 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:43:43.031711][Step 4770] Torch max mem: 20886.46 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:43:43.031854][Step 4770] Torch max mem: 20298.56 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:43:43.039334][Step 4770] Torch max mem: 20927.01 MB | Nvidia-smi: 46151 MB
+{'loss': 6.604, 'grad_norm': 1.6963160037994385, 'learning_rate': 0.0004798530033578814, 'num_tokens': 17331190.0, 'mean_token_accuracy': 0.07744470648467541, 'epoch': 0.4646292463168148}
+[2025-10-10 21:51:14.683337][Step 4780] Torch max mem: 22555.41 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:51:14.687952][Step 4780] Torch max mem: 20575.16 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:51:14.699964][Step 4780] Torch max mem: 20842.52 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:51:14.706758][Step 4780] Torch max mem: 21429.51 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6228, 'grad_norm': 2.8936429023742676, 'learning_rate': 0.0004797494843567926, 'num_tokens': 17492901.0, 'mean_token_accuracy': 0.07524556005373598, 'epoch': 0.4656033118227201}
+[2025-10-10 21:58:46.039273][Step 4790] Torch max mem: 20252.27 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:58:46.047985][Step 4790] Torch max mem: 19712.76 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:58:46.060119][Step 4790] Torch max mem: 20842.34 MB | Nvidia-smi: 46151 MB
+[2025-10-10 21:58:46.063018][Step 4790] Torch max mem: 21422.56 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5868, 'grad_norm': 54.86704635620117, 'learning_rate': 0.00047964571131146574, 'num_tokens': 17650002.0, 'mean_token_accuracy': 0.07374795777723193, 'epoch': 0.46657737732862536}
+[2025-10-10 22:06:16.832061][Step 4800] Torch max mem: 20524.47 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:06:16.832306][Step 4800] Torch max mem: 25158.04 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:06:16.841983][Step 4800] Torch max mem: 20733.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:06:16.862443][Step 4800] Torch max mem: 20614.23 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5892, 'grad_norm': 3.314540386199951, 'learning_rate': 0.00047954168433664724, 'num_tokens': 17814344.0, 'mean_token_accuracy': 0.0766230808570981, 'epoch': 0.4675514428345306}
+[2025-10-10 22:13:56.796157][Step 4810] Torch max mem: 19738.38 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:13:56.805189][Step 4810] Torch max mem: 19423.85 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:13:56.816775][Step 4810] Torch max mem: 20645.86 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:13:56.840005][Step 4810] Torch max mem: 19810.19 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6151, 'grad_norm': 1.3071438074111938, 'learning_rate': 0.0004794374035473644, 'num_tokens': 17971031.0, 'mean_token_accuracy': 0.08118122182786465, 'epoch': 0.4685255083404359}
+[2025-10-10 22:21:26.844312][Step 4820] Torch max mem: 20368.37 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:21:26.844381][Step 4820] Torch max mem: 20791.14 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:21:26.854462][Step 4820] Torch max mem: 19772.10 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:21:26.883973][Step 4820] Torch max mem: 20358.63 MB | Nvidia-smi: 46151 MB
+{'loss': 6.581, 'grad_norm': 1.6457552909851074, 'learning_rate': 0.00047933286905892526, 'num_tokens': 18129553.0, 'mean_token_accuracy': 0.07693929430097342, 'epoch': 0.46949957384634117}
+[2025-10-10 22:28:57.485855][Step 4830] Torch max mem: 20172.81 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:28:57.487527][Step 4830] Torch max mem: 20751.54 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:28:57.488284][Step 4830] Torch max mem: 20506.88 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:28:57.512661][Step 4830] Torch max mem: 21205.84 MB | Nvidia-smi: 46151 MB
+{'loss': 6.583, 'grad_norm': 3.030045509338379, 'learning_rate': 0.0004792280809869181, 'num_tokens': 18290418.0, 'mean_token_accuracy': 0.07904320610687136, 'epoch': 0.47047363935224645}
+[2025-10-10 22:36:28.033160][Step 4840] Torch max mem: 20190.70 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:36:28.041202][Step 4840] Torch max mem: 21242.91 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:36:28.057057][Step 4840] Torch max mem: 21233.38 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:36:28.067640][Step 4840] Torch max mem: 21588.90 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5381, 'grad_norm': 29.958087921142578, 'learning_rate': 0.0004791230394472118, 'num_tokens': 18449726.0, 'mean_token_accuracy': 0.08008765047416092, 'epoch': 0.4714477048581517}
+[2025-10-10 22:43:58.157307][Step 4850] Torch max mem: 21132.70 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:43:58.157387][Step 4850] Torch max mem: 20346.19 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:43:58.169024][Step 4850] Torch max mem: 22712.57 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:43:58.209197][Step 4850] Torch max mem: 20402.16 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5854, 'grad_norm': 4.571667194366455, 'learning_rate': 0.00047901774455595556, 'num_tokens': 18615214.0, 'mean_token_accuracy': 0.07709503583610058, 'epoch': 0.47242177036405697}
+[2025-10-10 22:51:27.463060][Step 4860] Torch max mem: 21938.69 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:51:27.463838][Step 4860] Torch max mem: 19701.29 MB | Nvidia-smi: 46151 MB[2025-10-10 22:51:27.463951][Step 4860] Torch max mem: 19895.15 MB | Nvidia-smi: 46151 MB
+
+[2025-10-10 22:51:27.471639][Step 4860] Torch max mem: 19705.14 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5657, 'grad_norm': 6.693548679351807, 'learning_rate': 0.0004789121964295785, 'num_tokens': 18773345.0, 'mean_token_accuracy': 0.08076459178701043, 'epoch': 0.47339583586996226}
+[2025-10-10 22:58:55.672469][Step 4870] Torch max mem: 20974.13 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:58:55.681519][Step 4870] Torch max mem: 19982.40 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:58:55.681966][Step 4870] Torch max mem: 20017.05 MB | Nvidia-smi: 46151 MB
+[2025-10-10 22:58:55.713458][Step 4870] Torch max mem: 19621.32 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5563, 'grad_norm': 1.5405185222625732, 'learning_rate': 0.00047880639518478997, 'num_tokens': 18932513.0, 'mean_token_accuracy': 0.07946192463859916, 'epoch': 0.47436990137586754}
+[2025-10-10 23:06:26.703888][Step 4880] Torch max mem: 19730.69 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:06:26.704306][Step 4880] Torch max mem: 20900.32 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:06:26.707558][Step 4880] Torch max mem: 21113.80 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:06:26.725938][Step 4880] Torch max mem: 21097.40 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5617, 'grad_norm': 4.462571144104004, 'learning_rate': 0.00047870034093857905, 'num_tokens': 19090969.0, 'mean_token_accuracy': 0.08123544435948134, 'epoch': 0.4753439668817728}
+[2025-10-10 23:13:57.826658][Step 4890] Torch max mem: 21061.42 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:13:57.829416][Step 4890] Torch max mem: 20112.33 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:13:57.846083][Step 4890] Torch max mem: 21248.09 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:13:57.848828][Step 4890] Torch max mem: 20044.69 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5665, 'grad_norm': 3.1803030967712402, 'learning_rate': 0.00047859403380821463, 'num_tokens': 19251780.0, 'mean_token_accuracy': 0.07922277580946684, 'epoch': 0.47631803238767806}
+[2025-10-10 23:21:29.236907][Step 4900] Torch max mem: 20128.63 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:21:29.242829][Step 4900] Torch max mem: 21357.71 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:21:29.243356][Step 4900] Torch max mem: 20319.92 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:21:29.260963][Step 4900] Torch max mem: 20210.80 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5832, 'grad_norm': 2.6190521717071533, 'learning_rate': 0.0004784874739112454, 'num_tokens': 19412219.0, 'mean_token_accuracy': 0.08061339315026998, 'epoch': 0.47729209789358334}
+[2025-10-10 23:29:11.643549][Step 4910] Torch max mem: 21630.52 MB | Nvidia-smi: 46151 MB[2025-10-10 23:29:11.643545][Step 4910] Torch max mem: 20115.97 MB | Nvidia-smi: 46151 MB[2025-10-10 23:29:11.643547][Step 4910] Torch max mem: 21784.78 MB | Nvidia-smi: 46151 MB[2025-10-10 23:29:11.643551][Step 4910] Torch max mem: 19826.99 MB | Nvidia-smi: 46151 MB
+
+
+
+{'loss': 6.5906, 'grad_norm': 3.95991587638855, 'learning_rate': 0.00047838066136549924, 'num_tokens': 19568913.0, 'mean_token_accuracy': 0.08723196294158697, 'epoch': 0.47826616339948863}
+[2025-10-10 23:36:40.950285][Step 4920] Torch max mem: 19480.12 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:36:40.956213][Step 4920] Torch max mem: 20768.54 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:36:40.967059][Step 4920] Torch max mem: 19951.34 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:36:40.983372][Step 4920] Torch max mem: 21270.71 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5247, 'grad_norm': 2.087161064147949, 'learning_rate': 0.00047827359628908363, 'num_tokens': 19729293.0, 'mean_token_accuracy': 0.08850479796528817, 'epoch': 0.47924022890539386}
+[2025-10-10 23:44:11.619151][Step 4930] Torch max mem: 20809.05 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:44:11.629848][Step 4930] Torch max mem: 20883.64 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:44:11.633655][Step 4930] Torch max mem: 20160.52 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:44:11.667692][Step 4930] Torch max mem: 21643.22 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5958, 'grad_norm': 1.4642703533172607, 'learning_rate': 0.00047816627880038504, 'num_tokens': 19886878.0, 'mean_token_accuracy': 0.08625484313815832, 'epoch': 0.48021429441129915}
+[2025-10-10 23:51:41.079210][Step 4940] Torch max mem: 20600.36 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:51:41.090881][Step 4940] Torch max mem: 21842.92 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:51:41.098984][Step 4940] Torch max mem: 20752.44 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:51:41.111038][Step 4940] Torch max mem: 21607.16 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5497, 'grad_norm': 1.8542897701263428, 'learning_rate': 0.00047805870901806936, 'num_tokens': 20051573.0, 'mean_token_accuracy': 0.08438107632100582, 'epoch': 0.48118835991720443}
+[2025-10-10 23:59:10.390094][Step 4950] Torch max mem: 20755.74 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:59:10.392056][Step 4950] Torch max mem: 20526.05 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:59:10.392089][Step 4950] Torch max mem: 21761.10 MB | Nvidia-smi: 46151 MB
+[2025-10-10 23:59:10.402574][Step 4950] Torch max mem: 20543.05 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5484, 'grad_norm': 10.563658714294434, 'learning_rate': 0.0004779508870610812, 'num_tokens': 20213952.0, 'mean_token_accuracy': 0.0828188493847847, 'epoch': 0.4821624254231097}
+[2025-10-11 00:06:40.671739][Step 4960] Torch max mem: 20193.46 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:06:40.677583][Step 4960] Torch max mem: 20677.81 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:06:40.681077][Step 4960] Torch max mem: 21878.16 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:06:40.702086][Step 4960] Torch max mem: 20422.56 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5585, 'grad_norm': 24.510744094848633, 'learning_rate': 0.0004778428130486441, 'num_tokens': 20382615.0, 'mean_token_accuracy': 0.0858974376693368, 'epoch': 0.48313649092901495}
+[2025-10-11 00:14:10.666670][Step 4970] Torch max mem: 20913.61 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:14:10.678802][Step 4970] Torch max mem: 20722.62 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:14:10.682462][Step 4970] Torch max mem: 20638.57 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:14:10.710296][Step 4970] Torch max mem: 20202.15 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5898, 'grad_norm': 2.2100608348846436, 'learning_rate': 0.0004777344871002604, 'num_tokens': 20548638.0, 'mean_token_accuracy': 0.0848567282781005, 'epoch': 0.48411055643492024}
+[2025-10-11 00:21:41.163809][Step 4980] Torch max mem: 20239.61 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:21:41.165317][Step 4980] Torch max mem: 21855.12 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:21:41.173969][Step 4980] Torch max mem: 19983.95 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:21:41.196009][Step 4980] Torch max mem: 19901.58 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5402, 'grad_norm': 3.6225204467773438, 'learning_rate': 0.0004776259093357108, 'num_tokens': 20708878.0, 'mean_token_accuracy': 0.0842570399865508, 'epoch': 0.4850846219408255}
+[2025-10-11 00:29:10.683848][Step 4990] Torch max mem: 21915.90 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:29:10.684488][Step 4990] Torch max mem: 21427.06 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:29:10.693719][Step 4990] Torch max mem: 20340.50 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:29:10.722238][Step 4990] Torch max mem: 19943.78 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5543, 'grad_norm': 3.927107810974121, 'learning_rate': 0.0004775170798750547, 'num_tokens': 20869393.0, 'mean_token_accuracy': 0.08593932343646885, 'epoch': 0.4860586874467308}
+[2025-10-11 00:36:42.283792][Step 5000] Torch max mem: 22586.14 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:36:42.284547][Step 5000] Torch max mem: 21530.70 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:36:42.295838][Step 5000] Torch max mem: 20187.98 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:36:42.316374][Step 5000] Torch max mem: 20543.94 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5316, 'grad_norm': 4.272919654846191, 'learning_rate': 0.0004774079988386296, 'num_tokens': 21037623.0, 'mean_token_accuracy': 0.08435458233579993, 'epoch': 0.48703275295263604}
+[2025-10-11 00:44:20.407701][Step 5010] Torch max mem: 19692.42 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:44:20.407800][Step 5010] Torch max mem: 20370.63 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:44:20.418161][Step 5010] Torch max mem: 20566.01 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:44:20.425878][Step 5010] Torch max mem: 20790.78 MB | Nvidia-smi: 46151 MB
+{'loss': 6.5548, 'grad_norm': 12.392051696777344, 'learning_rate': 0.0004772986663470513, 'num_tokens': 21193702.0, 'mean_token_accuracy': 0.08659671377390624, 'epoch': 0.4880068184585413}
+[2025-10-11 00:51:53.035720][Step 5020] Torch max mem: 21457.10 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:51:53.038859][Step 5020] Torch max mem: 20378.59 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:51:53.048790][Step 5020] Torch max mem: 21102.57 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:51:53.059517][Step 5020] Torch max mem: 20397.95 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6143, 'grad_norm': 43.522708892822266, 'learning_rate': 0.00047718908252121354, 'num_tokens': 21358182.0, 'mean_token_accuracy': 0.0790675331838429, 'epoch': 0.4889808839644466}
+[2025-10-11 00:59:26.337661][Step 5030] Torch max mem: 20470.15 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:59:26.350693][Step 5030] Torch max mem: 20370.07 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:59:26.356487][Step 5030] Torch max mem: 20015.07 MB | Nvidia-smi: 46151 MB
+[2025-10-11 00:59:26.367312][Step 5030] Torch max mem: 20659.79 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7392, 'grad_norm': 4209.6435546875, 'learning_rate': 0.000477079247482288, 'num_tokens': 21522246.0, 'mean_token_accuracy': 0.07786434786394239, 'epoch': 0.4899549494703519}
+[2025-10-11 01:06:58.661235][Step 5040] Torch max mem: 21628.13 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:06:58.661536][Step 5040] Torch max mem: 20135.27 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:06:58.664920][Step 5040] Torch max mem: 21182.08 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:06:58.672479][Step 5040] Torch max mem: 19527.38 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6904, 'grad_norm': 276.9200439453125, 'learning_rate': 0.00047696916135172435, 'num_tokens': 21683576.0, 'mean_token_accuracy': 0.07743283035233617, 'epoch': 0.4909290149762571}
+[2025-10-11 01:14:31.642462][Step 5050] Torch max mem: 19605.40 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:14:31.647994][Step 5050] Torch max mem: 20513.85 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:14:31.653171][Step 5050] Torch max mem: 20490.80 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:14:31.687228][Step 5050] Torch max mem: 20163.56 MB | Nvidia-smi: 46151 MB
+{'loss': 6.649, 'grad_norm': 50.619895935058594, 'learning_rate': 0.0004768588242512496, 'num_tokens': 21841530.0, 'mean_token_accuracy': 0.07448819912970066, 'epoch': 0.4919030804821624}
+[2025-10-11 01:22:03.865865][Step 5060] Torch max mem: 21665.99 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:22:03.877760][Step 5060] Torch max mem: 20104.95 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:22:03.885769][Step 5060] Torch max mem: 21557.91 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:22:03.904951][Step 5060] Torch max mem: 20113.64 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6691, 'grad_norm': 223.86325073242188, 'learning_rate': 0.0004767482363028685, 'num_tokens': 22003951.0, 'mean_token_accuracy': 0.07198489662259817, 'epoch': 0.4928771459880677}
+[2025-10-11 01:29:35.434200][Step 5070] Torch max mem: 20339.99 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:29:35.437828][Step 5070] Torch max mem: 20505.00 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:29:35.449805][Step 5070] Torch max mem: 20194.15 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:29:35.456690][Step 5070] Torch max mem: 21145.18 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6186, 'grad_norm': 78.83224487304688, 'learning_rate': 0.0004766373976288629, 'num_tokens': 22162694.0, 'mean_token_accuracy': 0.07144602993503213, 'epoch': 0.493851211493973}
+[2025-10-11 01:37:05.689434][Step 5080] Torch max mem: 21182.18 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:37:05.696005][Step 5080] Torch max mem: 19953.00 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:37:05.700441][Step 5080] Torch max mem: 19390.59 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:37:05.725556][Step 5080] Torch max mem: 20377.68 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7184, 'grad_norm': 172.6712188720703, 'learning_rate': 0.00047652630835179224, 'num_tokens': 22321324.0, 'mean_token_accuracy': 0.07234160415828228, 'epoch': 0.4948252769998782}
+[2025-10-11 01:44:39.980200][Step 5090] Torch max mem: 20518.07 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:44:39.980936][Step 5090] Torch max mem: 21023.88 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:44:39.988544][Step 5090] Torch max mem: 20206.43 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:44:39.997508][Step 5090] Torch max mem: 20703.73 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7925, 'grad_norm': 1083.8458251953125, 'learning_rate': 0.00047641496859449273, 'num_tokens': 22484821.0, 'mean_token_accuracy': 0.06631152052432299, 'epoch': 0.4957993425057835}
+[2025-10-11 01:52:12.681373][Step 5100] Torch max mem: 20312.74 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:52:12.696252][Step 5100] Torch max mem: 21471.46 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:52:12.697711][Step 5100] Torch max mem: 20615.23 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:52:12.701242][Step 5100] Torch max mem: 20017.21 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7897, 'grad_norm': 82.8472900390625, 'learning_rate': 0.00047630337848007776, 'num_tokens': 22639695.0, 'mean_token_accuracy': 0.06880684131756425, 'epoch': 0.4967734080116888}
+[2025-10-11 01:59:52.171404][Step 5110] Torch max mem: 20639.96 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:59:52.172114][Step 5110] Torch max mem: 19427.67 MB | Nvidia-smi: 46151 MB[2025-10-11 01:59:52.172234][Step 5110] Torch max mem: 20302.60 MB | Nvidia-smi: 46151 MB
+[2025-10-11 01:59:52.182916][Step 5110] Torch max mem: 20915.34 MB | Nvidia-smi: 46151 MB
+
+{'loss': 6.8036, 'grad_norm': 114.25157165527344, 'learning_rate': 0.0004761915381319375, 'num_tokens': 22797973.0, 'mean_token_accuracy': 0.06827611485496163, 'epoch': 0.4977474735175941}
+[2025-10-11 02:07:24.766573][Step 5120] Torch max mem: 20304.78 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:07:24.766683][Step 5120] Torch max mem: 21108.24 MB | Nvidia-smi: 46151 MB[2025-10-11 02:07:24.766809][Step 5120] Torch max mem: 21264.48 MB | Nvidia-smi: 46151 MB
+
+[2025-10-11 02:07:24.776696][Step 5120] Torch max mem: 21569.95 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7281, 'grad_norm': 52.943077087402344, 'learning_rate': 0.0004760794476737389, 'num_tokens': 22960817.0, 'mean_token_accuracy': 0.07041951417922973, 'epoch': 0.4987215390234993}
+[2025-10-11 02:14:55.924781][Step 5130] Torch max mem: 21517.66 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:14:55.999201][Step 5130] Torch max mem: 23093.29 MB | Nvidia-smi: 46151 MB[2025-10-11 02:14:55.999263][Step 5130] Torch max mem: 22176.38 MB | Nvidia-smi: 46151 MB
+
+[2025-10-11 02:14:56.008241][Step 5130] Torch max mem: 20228.07 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7989, 'grad_norm': 59.60389709472656, 'learning_rate': 0.00047596710722942515, 'num_tokens': 23128163.0, 'mean_token_accuracy': 0.07351315384730697, 'epoch': 0.4996956045294046}
+[2025-10-11 02:22:28.022538][Step 5140] Torch max mem: 20593.31 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:22:28.033845][Step 5140] Torch max mem: 20356.76 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:22:28.041657][Step 5140] Torch max mem: 20363.03 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:22:28.061103][Step 5140] Torch max mem: 21044.04 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7431, 'grad_norm': 512.3170776367188, 'learning_rate': 0.00047585451692321626, 'num_tokens': 23296428.0, 'mean_token_accuracy': 0.07237100945785642, 'epoch': 0.5006696700353098}
+[2025-10-11 02:30:00.371597][Step 5150] Torch max mem: 20147.81 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:30:00.371745][Step 5150] Torch max mem: 24161.91 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:30:00.381806][Step 5150] Torch max mem: 20593.00 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:30:00.411079][Step 5150] Torch max mem: 21677.05 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7676, 'grad_norm': 3642.40771484375, 'learning_rate': 0.0004757416768796083, 'num_tokens': 23469071.0, 'mean_token_accuracy': 0.07375461999326945, 'epoch': 0.5016437355412151}
+[2025-10-11 02:37:32.659138][Step 5160] Torch max mem: 19602.15 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:37:32.669666][Step 5160] Torch max mem: 20855.68 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:37:32.679208][Step 5160] Torch max mem: 20772.51 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:37:32.697835][Step 5160] Torch max mem: 20302.94 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7477, 'grad_norm': 41.230491638183594, 'learning_rate': 0.00047562858722337346, 'num_tokens': 23633570.0, 'mean_token_accuracy': 0.07341279406100512, 'epoch': 0.5026178010471204}
+[2025-10-11 02:45:02.500925][Step 5170] Torch max mem: 21396.71 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:45:02.511992][Step 5170] Torch max mem: 20532.86 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:45:02.520773][Step 5170] Torch max mem: 19732.97 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:45:02.530285][Step 5170] Torch max mem: 20730.39 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7486, 'grad_norm': 4838.1787109375, 'learning_rate': 0.0004755152480795601, 'num_tokens': 23795940.0, 'mean_token_accuracy': 0.07549296449869872, 'epoch': 0.5035918665530257}
+[2025-10-11 02:52:34.409149][Step 5180] Torch max mem: 20327.66 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:52:34.409642][Step 5180] Torch max mem: 21907.92 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:52:34.419270][Step 5180] Torch max mem: 20613.91 MB | Nvidia-smi: 46151 MB
+[2025-10-11 02:52:34.423451][Step 5180] Torch max mem: 20426.90 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7579, 'grad_norm': 110.04959106445312, 'learning_rate': 0.0004754016595734924, 'num_tokens': 23961646.0, 'mean_token_accuracy': 0.07289501167833805, 'epoch': 0.504565932058931}
+[2025-10-11 03:00:08.110488][Step 5190] Torch max mem: 20978.56 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:00:08.122104][Step 5190] Torch max mem: 20454.74 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:00:08.124566][Step 5190] Torch max mem: 20607.78 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:00:08.132468][Step 5190] Torch max mem: 20121.90 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7409, 'grad_norm': 462.3888854980469, 'learning_rate': 0.0004752878218307701, 'num_tokens': 24122983.0, 'mean_token_accuracy': 0.0727456278167665, 'epoch': 0.5055399975648363}
+[2025-10-11 03:07:40.545887][Step 5200] Torch max mem: 20961.20 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:07:40.546935][Step 5200] Torch max mem: 20186.11 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:07:40.554283][Step 5200] Torch max mem: 20232.52 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:07:40.564583][Step 5200] Torch max mem: 19858.83 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7299, 'grad_norm': 50.74045944213867, 'learning_rate': 0.0004751737349772688, 'num_tokens': 24283529.0, 'mean_token_accuracy': 0.07389555526897311, 'epoch': 0.5065140630707415}
+[2025-10-11 03:15:20.205936][Step 5210] Torch max mem: 20291.81 MB | Nvidia-smi: 46151 MB[2025-10-11 03:15:20.205933][Step 5210] Torch max mem: 20871.55 MB | Nvidia-smi: 46151 MB[2025-10-11 03:15:20.205931][Step 5210] Torch max mem: 20036.21 MB | Nvidia-smi: 46151 MB[2025-10-11 03:15:20.205939][Step 5210] Torch max mem: 20707.85 MB | Nvidia-smi: 46151 MB
+
+
+
+{'loss': 6.7098, 'grad_norm': 1039.1201171875, 'learning_rate': 0.0004750593991391393, 'num_tokens': 24441599.0, 'mean_token_accuracy': 0.07185006719082594, 'epoch': 0.5074881285766468}
+[2025-10-11 03:22:53.581813][Step 5220] Torch max mem: 21253.44 MB | Nvidia-smi: 46151 MB[2025-10-11 03:22:53.581924][Step 5220] Torch max mem: 20905.09 MB | Nvidia-smi: 46151 MB
+
+[2025-10-11 03:22:53.582161][Step 5220] Torch max mem: 19563.10 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:22:53.592093][Step 5220] Torch max mem: 20376.05 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6812, 'grad_norm': 374.4962463378906, 'learning_rate': 0.0004749448144428078, 'num_tokens': 24605384.0, 'mean_token_accuracy': 0.07219316083937884, 'epoch': 0.508462194082552}
+[2025-10-11 03:30:28.329645][Step 5230] Torch max mem: 21044.08 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:30:28.336870][Step 5230] Torch max mem: 22274.66 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:30:28.348161][Step 5230] Torch max mem: 19692.16 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:30:28.373044][Step 5230] Torch max mem: 20826.20 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7519, 'grad_norm': 39.17219924926758, 'learning_rate': 0.00047482998101497587, 'num_tokens': 24771687.0, 'mean_token_accuracy': 0.07150092227384448, 'epoch': 0.5094362595884573}
+[2025-10-11 03:38:03.380535][Step 5240] Torch max mem: 19178.17 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:38:03.394596][Step 5240] Torch max mem: 20674.01 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:38:03.399427][Step 5240] Torch max mem: 19519.96 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:38:03.404494][Step 5240] Torch max mem: 20685.45 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6847, 'grad_norm': 73.25349426269531, 'learning_rate': 0.0004747148989826198, 'num_tokens': 24931341.0, 'mean_token_accuracy': 0.07117646746337414, 'epoch': 0.5104103250943626}
+[2025-10-11 03:45:34.752158][Step 5250] Torch max mem: 20616.08 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:45:34.759666][Step 5250] Torch max mem: 21711.64 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:45:34.763793][Step 5250] Torch max mem: 19724.12 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:45:34.791913][Step 5250] Torch max mem: 22076.69 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6833, 'grad_norm': 99.40377807617188, 'learning_rate': 0.00047459956847299104, 'num_tokens': 25095415.0, 'mean_token_accuracy': 0.0714923745021224, 'epoch': 0.5113843906002679}
+[2025-10-11 03:53:06.735094][Step 5260] Torch max mem: 20313.58 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:53:06.745658][Step 5260] Torch max mem: 20888.52 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:53:06.753170][Step 5260] Torch max mem: 21645.01 MB | Nvidia-smi: 46151 MB
+[2025-10-11 03:53:06.770077][Step 5260] Torch max mem: 21269.95 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7211, 'grad_norm': 21.77861785888672, 'learning_rate': 0.0004744839896136155, 'num_tokens': 25260699.0, 'mean_token_accuracy': 0.06746812704950571, 'epoch': 0.5123584561061731}
+[2025-10-11 04:00:40.999332][Step 5270] Torch max mem: 20982.71 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:00:40.999737][Step 5270] Torch max mem: 20051.12 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:00:41.003862][Step 5270] Torch max mem: 20814.73 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:00:41.016003][Step 5270] Torch max mem: 20180.76 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7491, 'grad_norm': 6.178394794464111, 'learning_rate': 0.00047436816253229396, 'num_tokens': 25424087.0, 'mean_token_accuracy': 0.061141058895736934, 'epoch': 0.5133325216120784}
+[2025-10-11 04:08:10.829525][Step 5280] Torch max mem: 20088.62 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:08:10.839433][Step 5280] Torch max mem: 20390.95 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:08:10.848048][Step 5280] Torch max mem: 21595.75 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:08:10.857886][Step 5280] Torch max mem: 21410.82 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7275, 'grad_norm': 67.44679260253906, 'learning_rate': 0.0004742520873571017, 'num_tokens': 25589437.0, 'mean_token_accuracy': 0.06283185156062246, 'epoch': 0.5143065871179837}
+[2025-10-11 04:15:41.425950][Step 5290] Torch max mem: 22998.13 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:15:41.435873][Step 5290] Torch max mem: 20101.77 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:15:41.443631][Step 5290] Torch max mem: 20009.26 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:15:41.466404][Step 5290] Torch max mem: 21159.62 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7123, 'grad_norm': 27.103803634643555, 'learning_rate': 0.000474135764216388, 'num_tokens': 25747446.0, 'mean_token_accuracy': 0.06407101610675454, 'epoch': 0.515280652623889}
+[2025-10-11 04:23:13.174812][Step 5300] Torch max mem: 20018.10 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:23:13.175219][Step 5300] Torch max mem: 20118.91 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:23:13.185664][Step 5300] Torch max mem: 20945.59 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:23:13.204084][Step 5300] Torch max mem: 19672.25 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6873, 'grad_norm': 116.28490447998047, 'learning_rate': 0.00047401919323877676, 'num_tokens': 25908445.0, 'mean_token_accuracy': 0.07084954660385848, 'epoch': 0.5162547181297942}
+[2025-10-11 04:30:56.237979][Step 5310] Torch max mem: 20897.52 MB | Nvidia-smi: 46151 MB[2025-10-11 04:30:56.237977][Step 5310] Torch max mem: 20067.93 MB | Nvidia-smi: 46151 MB[2025-10-11 04:30:56.237975][Step 5310] Torch max mem: 20030.28 MB | Nvidia-smi: 46151 MB[2025-10-11 04:30:56.237982][Step 5310] Torch max mem: 20450.10 MB | Nvidia-smi: 46151 MB
+
+
+
+{'loss': 6.6556, 'grad_norm': 197.69187927246094, 'learning_rate': 0.00047390237455316556, 'num_tokens': 26071200.0, 'mean_token_accuracy': 0.07123520160093903, 'epoch': 0.5172287836356995}
+[2025-10-11 04:38:28.761430][Step 5320] Torch max mem: 21238.03 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:38:28.775912][Step 5320] Torch max mem: 20938.04 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:38:28.785043][Step 5320] Torch max mem: 20752.07 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:38:28.793970][Step 5320] Torch max mem: 20438.19 MB | Nvidia-smi: 46151 MB
+{'loss': 6.648, 'grad_norm': 51.574012756347656, 'learning_rate': 0.000473785308288726, 'num_tokens': 26229370.0, 'mean_token_accuracy': 0.07458570580929517, 'epoch': 0.5182028491416047}
+[2025-10-11 04:45:58.164011][Step 5330] Torch max mem: 20113.83 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:45:58.170582][Step 5330] Torch max mem: 20494.69 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:45:58.173255][Step 5330] Torch max mem: 21049.40 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:45:58.203091][Step 5330] Torch max mem: 21073.90 MB | Nvidia-smi: 46151 MB
+{'loss': 6.6877, 'grad_norm': 15.963709831237793, 'learning_rate': 0.0004736679945749035, 'num_tokens': 26395770.0, 'mean_token_accuracy': 0.07326026177033781, 'epoch': 0.51917691464751}
+[2025-10-11 04:53:27.281127][Step 5340] Torch max mem: 20222.93 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:53:27.289053][Step 5340] Torch max mem: 21454.59 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:53:27.291322][Step 5340] Torch max mem: 20152.45 MB | Nvidia-smi: 46151 MB
+[2025-10-11 04:53:27.324372][Step 5340] Torch max mem: 21196.22 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7022, 'grad_norm': 557.5291748046875, 'learning_rate': 0.0004735504335414171, 'num_tokens': 26560032.0, 'mean_token_accuracy': 0.07280393606051802, 'epoch': 0.5201509801534153}
+[2025-10-11 05:00:57.248022][Step 5350] Torch max mem: 20791.03 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:00:57.249874][Step 5350] Torch max mem: 20249.12 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:00:57.250972][Step 5350] Torch max mem: 20915.87 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:00:57.282101][Step 5350] Torch max mem: 20707.98 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7158, 'grad_norm': 223.37161254882812, 'learning_rate': 0.00047343262531825933, 'num_tokens': 26724706.0, 'mean_token_accuracy': 0.07015871973708272, 'epoch': 0.5211250456593206}
+[2025-10-11 05:08:28.103405][Step 5360] Torch max mem: 20017.95 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:08:28.115944][Step 5360] Torch max mem: 20306.40 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:08:28.126022][Step 5360] Torch max mem: 19662.71 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:08:28.136662][Step 5360] Torch max mem: 20084.34 MB | Nvidia-smi: 46151 MB
+{'loss': 6.75, 'grad_norm': 26.728235244750977, 'learning_rate': 0.0004733145700356958, 'num_tokens': 26878868.0, 'mean_token_accuracy': 0.07230584230273962, 'epoch': 0.5220991111652259}
+[2025-10-11 05:15:58.734336][Step 5370] Torch max mem: 20021.18 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:15:59.079955][Step 5370] Torch max mem: 19796.45 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:15:59.462340][Step 5370] Torch max mem: 20251.05 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:15:59.826799][Step 5370] Torch max mem: 20058.19 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7188, 'grad_norm': 22.886390686035156, 'learning_rate': 0.0004731962678242656, 'num_tokens': 27033255.0, 'mean_token_accuracy': 0.07406930439174175, 'epoch': 0.5230731766711312}
+[2025-10-11 05:23:30.325838][Step 5380] Torch max mem: 20040.92 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:23:30.331247][Step 5380] Torch max mem: 20139.32 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:23:30.335966][Step 5380] Torch max mem: 19860.03 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:23:30.367952][Step 5380] Torch max mem: 21226.30 MB | Nvidia-smi: 46151 MB
+{'loss': 6.7597, 'grad_norm': 256.2502136230469, 'learning_rate': 0.0004730777188147808, 'num_tokens': 27195007.0, 'mean_token_accuracy': 0.06992183532565832, 'epoch': 0.5240472421770364}
+[2025-10-11 05:31:01.607698][Step 5390] Torch max mem: 20179.23 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:31:01.607792][Step 5390] Torch max mem: 20510.67 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:31:01.617191][Step 5390] Torch max mem: 19865.44 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:31:01.634108][Step 5390] Torch max mem: 20191.85 MB | Nvidia-smi: 46151 MB
+{'loss': 7.0661, 'grad_norm': 437.353515625, 'learning_rate': 0.00047295892313832625, 'num_tokens': 27353065.0, 'mean_token_accuracy': 0.06382409809157252, 'epoch': 0.5250213076829416}
+[2025-10-11 05:38:34.141414][Step 5400] Torch max mem: 19870.81 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:38:34.142860][Step 5400] Torch max mem: 20032.97 MB | Nvidia-smi: 46151 MB[2025-10-11 05:38:34.142969][Step 5400] Torch max mem: 20868.19 MB | Nvidia-smi: 46151 MB
+
+[2025-10-11 05:38:34.151818][Step 5400] Torch max mem: 20133.29 MB | Nvidia-smi: 46151 MB
+{'loss': 7.0023, 'grad_norm': 267.3997497558594, 'learning_rate': 0.00047283988092625964, 'num_tokens': 27517352.0, 'mean_token_accuracy': 0.06249634716659784, 'epoch': 0.5259953731888469}
+[2025-10-11 05:46:13.135521][Step 5410] Torch max mem: 20651.71 MB | Nvidia-smi: 46151 MB[2025-10-11 05:46:13.135529][Step 5410] Torch max mem: 20744.17 MB | Nvidia-smi: 46151 MB
+
+[2025-10-11 05:46:13.141210][Step 5410] Torch max mem: 20147.38 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:46:13.160542][Step 5410] Torch max mem: 21460.74 MB | Nvidia-smi: 46151 MB
+{'loss': 7.2018, 'grad_norm': 2353.431396484375, 'learning_rate': 0.0004727205923102112, 'num_tokens': 27681160.0, 'mean_token_accuracy': 0.060150455310940744, 'epoch': 0.5269694386947522}
+[2025-10-11 05:53:47.665487][Step 5420] Torch max mem: 20988.44 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:53:47.666547][Step 5420] Torch max mem: 19656.20 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:53:47.676153][Step 5420] Torch max mem: 22420.20 MB | Nvidia-smi: 46151 MB
+[2025-10-11 05:53:47.705601][Step 5420] Torch max mem: 20725.69 MB | Nvidia-smi: 46151 MB
+{'loss': 7.5426, 'grad_norm': 129.23822021484375, 'learning_rate': 0.00047260105742208375, 'num_tokens': 27841253.0, 'mean_token_accuracy': 0.054268588032573464, 'epoch': 0.5279435042006575}
+[2025-10-11 06:01:22.864941][Step 5430] Torch max mem: 21554.54 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:01:22.870963][Step 5430] Torch max mem: 20639.89 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:01:22.878866][Step 5430] Torch max mem: 22349.67 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:01:22.889279][Step 5430] Torch max mem: 19819.80 MB | Nvidia-smi: 46151 MB
+{'loss': 7.4993, 'grad_norm': 157.10507202148438, 'learning_rate': 0.00047248127639405236, 'num_tokens': 28011063.0, 'mean_token_accuracy': 0.05226964047178626, 'epoch': 0.5289175697065628}
+[2025-10-11 06:08:55.784240][Step 5440] Torch max mem: 21112.13 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:08:55.791512][Step 5440] Torch max mem: 20881.56 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:08:55.796333][Step 5440] Torch max mem: 19083.67 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:08:55.829561][Step 5440] Torch max mem: 21628.85 MB | Nvidia-smi: 46151 MB
+{'loss': 7.5998, 'grad_norm': 178.57176208496094, 'learning_rate': 0.0004723612493585641, 'num_tokens': 28168372.0, 'mean_token_accuracy': 0.05135223185643554, 'epoch': 0.5298916352124681}
+[2025-10-11 06:16:29.261875][Step 5450] Torch max mem: 19536.40 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:16:29.264914][Step 5450] Torch max mem: 19611.34 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:16:29.277290][Step 5450] Torch max mem: 20016.38 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:16:29.300579][Step 5450] Torch max mem: 20563.27 MB | Nvidia-smi: 46151 MB
+{'loss': 7.4761, 'grad_norm': 127.25576782226562, 'learning_rate': 0.0004722409764483383, 'num_tokens': 28326081.0, 'mean_token_accuracy': 0.05481032747775316, 'epoch': 0.5308657007183734}
+[2025-10-11 06:24:03.036914][Step 5460] Torch max mem: 20027.03 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:24:03.043437][Step 5460] Torch max mem: 20664.05 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:24:03.048191][Step 5460] Torch max mem: 21359.50 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:24:03.078799][Step 5460] Torch max mem: 20703.31 MB | Nvidia-smi: 46151 MB
+{'loss': 7.3775, 'grad_norm': 926.3458862304688, 'learning_rate': 0.00047212045779636616, 'num_tokens': 28489554.0, 'mean_token_accuracy': 0.05737150227651, 'epoch': 0.5318397662242785}
+[2025-10-11 06:31:33.697509][Step 5470] Torch max mem: 20526.13 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:31:33.701225][Step 5470] Torch max mem: 19724.17 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:31:33.706371][Step 5470] Torch max mem: 19844.49 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:31:33.752565][Step 5470] Torch max mem: 20725.89 MB | Nvidia-smi: 46151 MB
+{'loss': 7.2976, 'grad_norm': 80.64601135253906, 'learning_rate': 0.0004719996935359104, 'num_tokens': 28653282.0, 'mean_token_accuracy': 0.05680930856615305, 'epoch': 0.5328138317301838}
+[2025-10-11 06:39:08.343631][Step 5480] Torch max mem: 20286.95 MB | Nvidia-smi: 46151 MB[2025-10-11 06:39:08.343630][Step 5480] Torch max mem: 20883.75 MB | Nvidia-smi: 46151 MB
+
+[2025-10-11 06:39:08.351709][Step 5480] Torch max mem: 20622.27 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:39:08.367639][Step 5480] Torch max mem: 22466.29 MB | Nvidia-smi: 46151 MB
+{'loss': 7.3297, 'grad_norm': 137.68527221679688, 'learning_rate': 0.0004718786838005055, 'num_tokens': 28813121.0, 'mean_token_accuracy': 0.05027903988957405, 'epoch': 0.5337878972360891}
+[2025-10-11 06:46:44.972159][Step 5490] Torch max mem: 20998.94 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:46:44.974728][Step 5490] Torch max mem: 20912.61 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:46:44.986354][Step 5490] Torch max mem: 19778.84 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:46:44.993709][Step 5490] Torch max mem: 19635.96 MB | Nvidia-smi: 46151 MB
+{'loss': 7.207, 'grad_norm': 1180.3914794921875, 'learning_rate': 0.0004717574287239572, 'num_tokens': 28967039.0, 'mean_token_accuracy': 0.060626238398253915, 'epoch': 0.5347619627419944}
+[2025-10-11 06:54:20.522376][Step 5500] Torch max mem: 19897.23 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:54:20.529552][Step 5500] Torch max mem: 19741.18 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:54:20.535394][Step 5500] Torch max mem: 20090.91 MB | Nvidia-smi: 46151 MB
+[2025-10-11 06:54:20.567664][Step 5500] Torch max mem: 20980.93 MB | Nvidia-smi: 46151 MB
+{'loss': 7.1456, 'grad_norm': 4406.65673828125, 'learning_rate': 0.00047163592844034287, 'num_tokens': 29128056.0, 'mean_token_accuracy': 0.06344297081232071, 'epoch': 0.5357360282478997}
+[2025-10-11 07:02:12.987897][Step 5510] Torch max mem: 20477.46 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:02:12.988051][Step 5510] Torch max mem: 21614.30 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:02:12.996751][Step 5510] Torch max mem: 20185.23 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:02:13.009224][Step 5510] Torch max mem: 20830.98 MB | Nvidia-smi: 46151 MB
+{'loss': 7.127, 'grad_norm': 297.2730712890625, 'learning_rate': 0.0004715141830840105, 'num_tokens': 29295298.0, 'mean_token_accuracy': 0.05861003268510103, 'epoch': 0.536710093753805}
+[2025-10-11 07:09:47.487058][Step 5520] Torch max mem: 19894.43 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:09:47.495341][Step 5520] Torch max mem: 19917.65 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:09:47.511122][Step 5520] Torch max mem: 21329.71 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:09:47.526999][Step 5520] Torch max mem: 22752.86 MB | Nvidia-smi: 46151 MB
+{'loss': 7.1064, 'grad_norm': 95.3017807006836, 'learning_rate': 0.00047139219278957955, 'num_tokens': 29461557.0, 'mean_token_accuracy': 0.06272756168618798, 'epoch': 0.5376841592597102}
+[2025-10-11 07:17:22.282202][Step 5530] Torch max mem: 21055.83 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:17:22.295025][Step 5530] Torch max mem: 20828.00 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:17:22.305186][Step 5530] Torch max mem: 20310.53 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:17:22.306952][Step 5530] Torch max mem: 20644.12 MB | Nvidia-smi: 46151 MB
+{'loss': 7.0445, 'grad_norm': 232.82180786132812, 'learning_rate': 0.00047126995769194015, 'num_tokens': 29622410.0, 'mean_token_accuracy': 0.0635531579144299, 'epoch': 0.5386582247656155}
+[2025-10-11 07:24:56.759073][Step 5540] Torch max mem: 20070.82 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:24:56.764743][Step 5540] Torch max mem: 20198.60 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:24:56.781104][Step 5540] Torch max mem: 20258.13 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:24:56.800942][Step 5540] Torch max mem: 19705.26 MB | Nvidia-smi: 46151 MB
+{'loss': 7.066, 'grad_norm': 666.2030639648438, 'learning_rate': 0.00047114747792625293, 'num_tokens': 29782596.0, 'mean_token_accuracy': 0.06557599948719144, 'epoch': 0.5396322902715207}
+[2025-10-11 07:32:29.641195][Step 5550] Torch max mem: 21028.08 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:32:29.647419][Step 5550] Torch max mem: 20984.54 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:32:29.652254][Step 5550] Torch max mem: 20338.98 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:32:29.684623][Step 5550] Torch max mem: 19820.89 MB | Nvidia-smi: 46151 MB
+{'loss': 6.969, 'grad_norm': 537.5118408203125, 'learning_rate': 0.0004710247536279494, 'num_tokens': 29943176.0, 'mean_token_accuracy': 0.0677170218899846, 'epoch': 0.540606355777426}
+[2025-10-11 07:40:03.763100][Step 5560] Torch max mem: 20361.87 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:40:03.766894][Step 5560] Torch max mem: 19734.41 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:40:03.768646][Step 5560] Torch max mem: 20104.73 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:40:03.799509][Step 5560] Torch max mem: 21380.49 MB | Nvidia-smi: 46151 MB
+{'loss': 6.9725, 'grad_norm': 491.424560546875, 'learning_rate': 0.00047090178493273103, 'num_tokens': 30104530.0, 'mean_token_accuracy': 0.06622722707688808, 'epoch': 0.5415804212833313}
+[2025-10-11 07:47:37.489051][Step 5570] Torch max mem: 20309.71 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:47:37.495477][Step 5570] Torch max mem: 19858.72 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:47:37.512429][Step 5570] Torch max mem: 20063.74 MB | Nvidia-smi: 46151 MB
+[2025-10-11 07:47:37.533810][Step 5570] Torch max mem: 19220.27 MB | Nvidia-smi: 46151 MB
+{'loss': 6.9144, 'grad_norm': 15986.2412109375, 'learning_rate': 0.0004707785719765701, 'num_tokens': 30263259.0, 'mean_token_accuracy': 0.06705550253391265, 'epoch': 0.5425544867892366}
+[2025-10-11 07:55:09.236487][Step 5580] Torch max mem: 20101.94 MB | Nvidia-smi: 46161 MB
+[2025-10-11 07:55:09.236587][Step 5580] Torch max mem: 20283.46 MB | Nvidia-smi: 46161 MB
+[2025-10-11 07:55:09.245408][Step 5580] Torch max mem: 20407.30 MB | Nvidia-smi: 46161 MB
+[2025-10-11 07:55:09.247362][Step 5580] Torch max mem: 20296.79 MB | Nvidia-smi: 46161 MB
+{'loss': 6.997, 'grad_norm': 158.14212036132812, 'learning_rate': 0.00047065511489570845, 'num_tokens': 30424391.0, 'mean_token_accuracy': 0.06426231637597084, 'epoch': 0.5435285522951419}
+[2025-10-11 08:02:44.269834][Step 5590] Torch max mem: 20268.01 MB | Nvidia-smi: 46161 MB
+[2025-10-11 08:02:44.277734][Step 5590] Torch max mem: 19970.23 MB | Nvidia-smi: 46161 MB
+[2025-10-11 08:02:44.286287][Step 5590] Torch max mem: 21459.03 MB | Nvidia-smi: 46161 MB
+[2025-10-11 08:02:44.325153][Step 5590] Torch max mem: 21521.57 MB | Nvidia-smi: 46161 MB
+{'loss': 7.0445, 'grad_norm': 255.70106506347656, 'learning_rate': 0.0004705314138266581, 'num_tokens': 30585340.0, 'mean_token_accuracy': 0.06353261023759842, 'epoch': 0.5445026178010471}
+[2025-10-11 08:10:20.802553][Step 5600] Torch max mem: 20714.41 MB | Nvidia-smi: 46161 MB
+[2025-10-11 08:10:20.812156][Step 5600] Torch max mem: 21698.18 MB | Nvidia-smi: 46161 MB
+[2025-10-11 08:10:20.822229][Step 5600] Torch max mem: 19958.85 MB | Nvidia-smi: 46161 MB
+[2025-10-11 08:10:20.832522][Step 5600] Torch max mem: 20400.83 MB | Nvidia-smi: 46161 MB
+{'loss': 7.0443, 'grad_norm': 6980.65087890625, 'learning_rate': 0.0004704074689062009, 'num_tokens': 30753045.0, 'mean_token_accuracy': 0.06360210962593556, 'epoch': 0.5454766833069524}

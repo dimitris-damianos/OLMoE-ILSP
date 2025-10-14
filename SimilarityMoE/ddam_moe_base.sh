@@ -25,7 +25,7 @@ export PYTHONUNBUFFERED=TRUE
 TASK="ddam_qwen3_moe-base_12_math"
 WORK_MOE="/leonardo_work/EUHPC_A06_067"
 DATASET_CONFIG="/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/configs/math_mix.yaml"
-MODEL_PATH="/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-1_top-p_use-latent_detach-null"
+MODEL_PATH="/leonardo_work/EUHPC_A06_067/moe_models/base/ddam_qwen3rim-base-12_coef-0.01_top-p_use-latent_detach-null"
 
 export HF_HOME="/leonardo_work/EUHPC_A06_067/hf_cache"
 export WANDB_PROJECT=$TASK
@@ -77,7 +77,7 @@ srun accelerate launch --config_file configs/multi_gpu.yaml moe_sft.py \
   --lora_experts \
   --lora_base \
   --disable_tqdm  \
-  # --resume_from_checkpoint
+  --resume_from_checkpoint
 
   # --resume_from_checkpoint \
   # --use_dynamic_routing \

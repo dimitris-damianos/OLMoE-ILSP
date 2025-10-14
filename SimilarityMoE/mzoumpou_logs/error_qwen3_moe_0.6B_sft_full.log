@@ -1,0 +1,225 @@
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+ipex flag is deprecated, will be removed in Accelerate v1.10. From 2.7.0, PyTorch has all needed optimizations for Intel CPU and XPU.
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+    multi_gpu_launcher(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    multi_gpu_launcher(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+    elastic_launch(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    elastic_launch(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = agent.run()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = agent.run()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 711, in run
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 711, in run
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 711, in run
+    result = self._invoke_run(role)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 864, in _invoke_run
+    result = self._invoke_run(role)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 864, in _invoke_run
+    result = self._invoke_run(role)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 864, in _invoke_run
+    self._initialize_workers(self._worker_group)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    self._initialize_workers(self._worker_group)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    self._initialize_workers(self._worker_group)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 683, in _initialize_workers
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 683, in _initialize_workers
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 683, in _initialize_workers
+    self._rendezvous(worker_group)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    self._rendezvous(worker_group)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    self._rendezvous(worker_group)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 500, in _rendezvous
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 500, in _rendezvous
+    result = f(*args, **kwargs)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 500, in _rendezvous
+    rdzv_info = spec.rdzv_handler.next_rendezvous()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 67, in next_rendezvous
+    rdzv_info = spec.rdzv_handler.next_rendezvous()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 67, in next_rendezvous
+    rdzv_info = spec.rdzv_handler.next_rendezvous()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 67, in next_rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: 0, code: -98, name: EADDRINUSE, message: address already in use
+srun: error: lrdn1934: tasks 0-2: Exited with exit code 1
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+wandb: Tracking run with wandb version 0.21.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+[rank2]:[W1008 16:06:55.273222377 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 2]  using GPU 2 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W1008 16:06:55.273223023 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank3]:[W1008 16:06:55.273350981 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 3]  using GPU 3 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank0]:[W1008 16:06:56.385358292 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:24<00:48, 24.09s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:24<00:48, 24.50s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:24<00:48, 24.50s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:24<00:48, 24.50s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:50<00:25, 25.47s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:50<00:25, 25.52s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:50<00:25, 25.53s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:50<00:25, 25.53s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 21.41s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 22.42s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 21.45s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 22.45s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 21.53s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 22.45s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 21.46s/it]Loading checkpoint shards: 100%|██████████| 3/3 [01:07<00:00, 22.45s/it]
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Oct  6 14:14:59 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Oct  6 14:14:59 2025).
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Using the latest cached version of the dataset since TIGER-Lab/MathInstruct couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Oct  6 14:14:59 2025).
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/TIGER-Lab___math_instruct/default/0.0.0/b4fdc323a7be1379c9c7c0b67b1de72dfee2111a (last modified on Mon Oct  6 14:14:59 2025).
+Using the latest cached version of the dataset since meta-math/MetaMathQA couldn't be found on the Hugging Face Hub
+Found the latest cached dataset configuration 'default' at /leonardo_work/EUHPC_A06_067/hf_cache/meta-math___meta_math_qa/default/0.0.0/aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18 (last modified on Fri Sep 19 15:30:34 2025).
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/../sft_experts/dataset_mixer.py", line 140, in mix_datasets_with_mapping
+    dataset = load_dataset(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1392, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/packaged_modules/cache/cache.py", line 133, in __init__
+    super().__init__(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/builder.py", line 388, in __init__
+    with FileLock(lock_path):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 376, in __enter__
+    self.acquire()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 332, in acquire
+    self._acquire()
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_unix.py", line 44, in _acquire
+    fd = os.open(self.lock_file, open_flags, self._context.mode)
+PermissionError: [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_meta-math___meta_math_qa_default_0.0.0_aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18.lock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 613, in <module>
+    main()
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 497, in main
+    train_dataset, eval_dataset = make_dataset(args, accelerator)
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 208, in make_dataset
+    dataset = mix_datasets_with_mapping(
+  File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/../sft_experts/dataset_mixer.py", line 147, in mix_datasets_with_mapping
+    raise RuntimeError(f"Failed to load dataset {dataset_id} [{split}]: {e}")
+RuntimeError: Failed to load dataset meta-math/MetaMathQA [train]: [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_meta-math___meta_math_qa_default_0.0.0_aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18.lock'
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/../sft_experts/dataset_mixer.py", line 140, in mix_datasets_with_mapping
+[rank0]:     dataset = load_dataset(
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1392, in load_dataset
+[rank0]:     builder_instance = load_dataset_builder(
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+[rank0]:     builder_instance: DatasetBuilder = builder_cls(
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/packaged_modules/cache/cache.py", line 133, in __init__
+[rank0]:     super().__init__(
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/datasets/builder.py", line 388, in __init__
+[rank0]:     with FileLock(lock_path):
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 376, in __enter__
+[rank0]:     self.acquire()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_api.py", line 332, in acquire
+[rank0]:     self._acquire()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/filelock/_unix.py", line 44, in _acquire
+[rank0]:     fd = os.open(self.lock_file, open_flags, self._context.mode)
+[rank0]: PermissionError: [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_meta-math___meta_math_qa_default_0.0.0_aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18.lock'
+
+[rank0]: During handling of the above exception, another exception occurred:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 613, in <module>
+[rank0]:     main()
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 497, in main
+[rank0]:     train_dataset, eval_dataset = make_dataset(args, accelerator)
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/moe_sft.py", line 208, in make_dataset
+[rank0]:     dataset = mix_datasets_with_mapping(
+[rank0]:   File "/leonardo_work/EUHPC_A06_067/OLMoE-ILSP/SimilarityMoE/../sft_experts/dataset_mixer.py", line 147, in mix_datasets_with_mapping
+[rank0]:     raise RuntimeError(f"Failed to load dataset {dataset_id} [{split}]: {e}")
+[rank0]: RuntimeError: Failed to load dataset meta-math/MetaMathQA [train]: [Errno 13] Permission denied: '/leonardo_work/EUHPC_A06_067/hf_cache/_leonardo_work_EUHPC_A06_067_hf_cache_meta-math___meta_math_qa_default_0.0.0_aa4f34d3d2d3231299b5b03d9b3e5a20da45aa18.lock'
+[rank0]:[W1008 16:08:39.879463025 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W1008 16:08:41.789000 2523035 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2523399 closing signal SIGTERM
+W1008 16:08:41.790000 2523035 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2523400 closing signal SIGTERM
+W1008 16:08:41.791000 2523035 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 2523401 closing signal SIGTERM
+E1008 16:08:42.268000 2523035 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 2523398) of binary: /leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/python3.10
+Traceback (most recent call last):
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1190, in launch_command
+    multi_gpu_launcher(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/accelerate/commands/launch.py", line 815, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/leonardo_work/EUHPC_A06_067/.conda/envs/moe/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+moe_sft.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-10-08_16:08:41
+  host      : lrdn1934.leonardo.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2523398)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: lrdn1934: task 3: Exited with exit code 1

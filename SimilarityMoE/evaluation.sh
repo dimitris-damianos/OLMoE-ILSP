@@ -32,12 +32,12 @@ export HF_DATASETS_OFFLINE=1
 export HF_MODULES_CACHE=$WORK_DIR/hf_cache/huggingface/modules
 
 
-TASK=ddam_base_ckp-400_gsm8k
+TASK=ddam_base_math-3000_gsm8k
 # TASK=test-eval
 # MODEL_PATH=$WORK_DIR/experts/math_datamix_expert_Qwen2.5-1.5B_SFT # expert
 # MODEL_PATH=$WORK/hf_cache/models--Qwen--Qwen3-0.6B/snapshots/e6de91484c29aa9480d55605af694f39b081c455 # baseline
 # MODEL_PATH=/leonardo_work/EUHPC_A06_067/moe_models/ddam_moe-grouped_top-p_aux-0.5_lora_bal-mix/checkpoint-1200
-MODEL_PATH=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_bal-mix/checkpoint-400
+MODEL_PATH=/leonardo_work/EUHPC_A06_067/moe_models/ddam_qwen3_moe-base_12_math/checkpoint-3000
 OUTPUT_JSON=$WORK_DIR/eval_results/$TASK.json
 mkdir -p $(dirname $OUTPUT_JSON)
 

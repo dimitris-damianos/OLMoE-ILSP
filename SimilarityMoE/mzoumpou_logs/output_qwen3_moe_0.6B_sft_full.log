@@ -1,0 +1,48 @@
+Loading cuda/12.2
+  Loading requirement: libiconv/1.17-nhc3mhm xz/5.4.6-xxxg42c
+    zlib-ng/2.1.6-jkgunjc libxml2/2.10.3-zbbe7lm
+=== Preflight ===
+REAL_DIR exists? YES
+SYMLINK_DIR exists? YES
+MODEL_PATH = /leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_moe_0.6B_classic_moe
+MODEL_PATH (lower) contains 'qwen3_moe'? YES
+Listing model dir:
+lrwxrwxrwx 1 mzoumpou interactive 76 Οκτ   7 15:20 /leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_moe_0.6B_classic_moe -> /leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_0.6B_classic_moe
+DATASET_CONFIG = /leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml
+===============
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_moe_0.6B_classic_moe', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/mzoumpou_qwen3_moe_0.6B_sft_full_20251008_160406', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=5e-05, logging_steps=1, save_steps=100, eval_steps=50, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_moe_0.6B_classic_moe', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/mzoumpou_qwen3_moe_0.6B_sft_full_20251008_160406', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=5e-05, logging_steps=1, save_steps=100, eval_steps=50, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_moe_0.6B_classic_moe', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/mzoumpou_qwen3_moe_0.6B_sft_full_20251008_160406', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=5e-05, logging_steps=1, save_steps=100, eval_steps=50, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+
+Training config:
+Namespace(model_name_or_path='/leonardo_work/EUHPC_A06_067/moe_models/base/mzoumpou_qwen3_moe_0.6B_classic_moe', tokenizer_name_or_path='Qwen/Qwen3-0.6B', cache_dir='/leonardo_work/EUHPC_A06_067/hf_cache', dataset_name=None, dataset_config_name=None, train_split='train', eval_split='validation', data_files=None, dataset_mix_config='/leonardo_work/EUHPC_A06_067/scripts/balanced_mix_for_moe.yaml', instruction_format='insert_system_message', output_dir='/leonardo_work/EUHPC_A06_067/moe_models/mzoumpou_qwen3_moe_0.6B_sft_full_20251008_160406', per_device_train_batch_size=4, gradient_accumulation_steps=4, num_train_epochs=3, learning_rate=5e-05, logging_steps=1, save_steps=100, eval_steps=50, bf16=True, fp16=False, gradient_checkpointing=True, use_liger=False, max_length=4096, packing=False, completion_only_loss=False, assistant_only_loss=False, resume_from_checkpoint=True, neftune_noise_alpha=None, activation_offloading=False, detach_null_states=False, use_latent_states=False, use_dynamic_routing=False, optim='adamw_torch_fused', weight_decay=0.1, max_grad_norm=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_epsilon=1e-05, lr_scheduler_type='cosine', warmup_ratio=0.03, use_peft=False, lora_r=32, lora_alpha=16, lora_dropout=0.05, use_rslora=False, lora_experts=False, lora_base=False, freeze_experts=False, freeze_base=False, push_to_hub=False, disable_tqdm=True)
+
+Initializing tokenizer and model...
+Initializing tokenizer and model...
+Loading Qwen3MoE model...Loading Qwen3MoE model...
+
+Loading Qwen3MoE model...
+Loading Qwen3MoE model...
+
+Loading dataset...
+
+Loading dataset...
+
+Loading dataset...
+
+Loading dataset...
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /leonardo_work/EUHPC_A06_067/wandb/offline-run-20251008_160653-svhi10el[0m
+[1;34mwandb[0m: Find logs at: [1;35m../../wandb/offline-run-20251008_160653-svhi10el/logs[0m
